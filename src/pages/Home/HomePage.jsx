@@ -1,23 +1,25 @@
 import React from 'react';
+import HeroSection from './components/HeroSection';
+import StatsSection from './components/StatsSection';
+import AboutSection from './components/AboutSection';
+import ProgramsSection from './components/ProgramsSection';
+import WhyChooseUsSection from './components/WhyChooseUsSection';
+import TeachersSection from './components/TeachersSection';
+import GallerySection from './components/GallerySection';
+import FaqSection from './components/FaqSection';
 
 function HomePage() {
     return (
-        <>
-            <h1 className="text-primary text-5xl font-bold">Tầm nhìn - Sứ mệnh</h1>
-
-            <button className="bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded">
-                Đăng ký học
-            </button>
-
-            <div>
-                <p className="text-text">Đây là đoạn văn bản chính.</p>
-                <p className="text-text-muted">Đây là thông tin bổ sung.</p>
-            </div>
-
-            <span className="text-secondary">
-                {/* SVG icon here */}
-            </span>
-        </>
+        <main>
+            <HeroSection />
+            <StatsSection />
+            <AboutSection />
+            <ProgramsSection />
+            <WhyChooseUsSection />
+            <TeachersSection />
+            <GallerySection />
+            <FaqSection />
+        </main>
     );
 }
 
