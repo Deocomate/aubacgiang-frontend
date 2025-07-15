@@ -7,6 +7,7 @@ import WhyChooseUsSection from './components/WhyChooseUsSection';
 import TeachersSection from './components/TeachersSection';
 import GallerySection from './components/GallerySection';
 import FaqSection from './components/FaqSection';
+import YoutubeSection from './components/YoutubeSection';
 
 function HomePage() {
     return (
@@ -18,6 +19,7 @@ function HomePage() {
             <WhyChooseUsSection />
             <TeachersSection />
             <GallerySection />
+            <YoutubeSection />
             <FaqSection />
         </main>
     );

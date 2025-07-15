@@ -2,7 +2,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ['placehold.co'],
+        // Thêm 'i.ytimg.com' vào danh sách domains
+        domains: ['placehold.co', 'i.ytimg.com'],
     },
 };
 
