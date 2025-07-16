@@ -25,34 +25,32 @@ function MainHeader() {
 
     return (
         <header
-            // **FIX:** Luôn có nền trắng, đổ bóng và hiệu ứng transition mượt mà
             className="fixed top-0 left-0 w-full z-30 bg-white/90 backdrop-blur-sm shadow-md transition-all duration-300"
         >
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                {/* **FIX:** Tăng padding cho header */}
                 <div className="flex items-center justify-between h-20">
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-3">
                         <Image
                             src="/assets/images/logo-au.png"
                             alt="Trung tâm Anh ngữ A&U"
-                            width={50} // **FIX:** Điều chỉnh kích thước logo
+                            width={50}
                             height={50}
                             className="object-contain"
                         />
-                        <span className="font-bold text-2xl text-gray-800">
+                        <span className="font-bold text-2xl xl:text-3xl text-gray-800">
                             A&U English
                         </span>
                     </Link>
 
                     {/* Desktop Navigation */}
-                    <nav className="hidden md:flex items-center gap-1">
+                    <nav className="hidden md:flex items-center gap-1 xl:gap-2">
                         {navigation.map((item) => (
                             <Link
                                 key={item.href}
                                 href={item.href}
-                                // **FIX:** Tăng kích thước chữ, hiệu ứng hover mượt mà
-                                className={`relative px-4 py-2 text-base font-medium transition-colors duration-300 rounded-md ${pathname === item.href
+                                // FIX: Dùng breakpoint 'xl' để phân biệt tablet và desktop
+                                className={`relative px-2 xl:px-4 py-2 text-sm xl:text-base font-medium transition-colors duration-300 rounded-md ${pathname === item.href
                                     ? 'text-orange-500'
                                     : 'text-gray-700 hover:text-orange-500'
                                     }`}

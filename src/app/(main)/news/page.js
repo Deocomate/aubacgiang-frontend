@@ -1,9 +1,11 @@
-// src/app/(main)/about/page.js
-export default function AboutPage() {
-  return (
-    <div className="container mx-auto py-8">
-      <h1 className="text-3xl font-bold text-color-primary">Tin tức và sự kiện</h1>
-      <p className="mt-4 text-color-text">Nội dung về tin tức và sự kiện của trung tâm...</p>
-    </div>
-  );
+// src/app/(main)/news/page.js
+import NewsPage from "@/pages/News/NewsPage";
+
+export const metadata = {
+  title: "Tin tức & Sự kiện - A & U English",
+  description: "Cập nhật những tin tức, sự kiện và thông báo mới nhất từ Hệ thống Anh ngữ A&U.",
+};
+
+export default function News() {
+  return <NewsPage />;
 }

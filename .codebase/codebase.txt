@@ -1,7 +1,7 @@
 /* ==========================================================
-   CODEBASE SNAPSHOT - 2025-07-16 12:52:59
+   CODEBASE SNAPSHOT - 2025-07-16 15:18:01
    Project: landing-page-english-education-center
-   Files: 253 (101 text, 152 binary)
+   Files: 261 (109 text, 152 binary)
    Ignored Items: 24
    ========================================================== */
 
@@ -202,6 +202,8 @@
    │   │   │   ├── legal/
    │   │   │   │   └── page.js
    │   │   │   ├── news/
+   │   │   │   │   ├── [slug]/
+   │   │   │   │   │   └── page.js
    │   │   │   │   └── page.js
    │   │   │   ├── teachers/
    │   │   │   │   └── page.js
@@ -270,8 +272,11 @@
    │   │   └── use-mobile.js
    │   ├── lib/
    │   │   ├── course-data.js
+   │   │   ├── news-data.js
    │   │   └── utils.js
    │   └── pages/
+   │       ├── Contact/
+   │       │   └── ContactPage.jsx
    │       ├── Home/
    │       │   ├── components/
    │       │   │   ├── AboutSection.jsx
@@ -284,6 +289,14 @@
    │       │   │   ├── WhyChooseUsSection.jsx
    │       │   │   └── YoutubeSection.jsx
    │       │   └── HomePage.jsx
+   │       ├── News/
+   │       │   ├── components/
+   │       │   │   ├── ArticleItem.jsx
+   │       │   │   ├── NewsSidebar.jsx
+   │       │   │   └── RecentPostsSection.jsx
+   │       │   ├── Detail/
+   │       │   │   └── NewsDetailPage.jsx
+   │       │   └── NewsPage.jsx
    │       ├── Teachers/
    │       │   ├── components/
    │       │   │   ├── CtaSection.jsx
@@ -4437,9 +4450,16 @@ export default function Home() {
 }
 
 /* ===== src\app\(main)\contact\page.js ===== */
-export default function ContactPage() {
-  return <div>Contact Us</div>;
-}
+import ContactPage from '@/pages/Contact/ContactPage';
+
+export const metadata = {
+  title: "Liên hệ - Hệ thống Anh ngữ A&U",
+  description: "Thông tin liên hệ các cơ sở của Hệ thống Anh ngữ A&U tại Hà Nội và Thanh Hóa. Tìm địa chỉ, số điện thoại và bản đồ đường đi chi tiết.",
+};
+
+export default function Contact() {
+  return <ContactPage />;
+} 
 
 /* ===== src\app\(main)\facilities\page.js ===== */
 export default function FacilitiesPage() {
@@ -4452,14 +4472,60 @@ export default function LegalPage() {
 }
 
 /* ===== src\app\(main)\news\page.js ===== */
-// src/app/(main)/about/page.js
-export default function AboutPage() {
-  return (
-    <div className="container mx-auto py-8">
-      <h1 className="text-3xl font-bold text-color-primary">Tin tức và sự kiện</h1>
-      <p className="mt-4 text-color-text">Nội dung về tin tức và sự kiện của trung tâm...</p>
-    </div>
-  );
+// src/app/(main)/news/page.js
+import NewsPage from "@/pages/News/NewsPage";
+
+export const metadata = {
+  title: "Tin tức & Sự kiện - A & U English",
+  description: "Cập nhật những tin tức, sự kiện và thông báo mới nhất từ Hệ thống Anh ngữ A&U.",
+};
+
+export default function News() {
+  return <NewsPage />;
+}
+
+/* ===== src\app\(main)\news\[slug]\page.js ===== */
+import { notFound } from 'next/navigation';
+import { NEWS_ARTICLES } from '@/lib/news-data';
+import NewsDetailPage from '@/pages/News/Detail/NewsDetailPage';
+
+export async function generateStaticParams() {
+    // Hàm này không thay đổi, vẫn giữ nguyên
+    return NEWS_ARTICLES.map(article => ({
+        slug: article.slug,
+    }));
+}
+
+export async function generateMetadata({ params }) {
+    // FIX: Thêm await và destructuring params
+    const { slug } = await params;
+    const article = NEWS_ARTICLES.find(p => p.slug === slug);
+
+    if (!article) {
+        return {
+            title: "Không tìm thấy bài viết"
+        };
+    }
+    return {
+        title: `${article.title} - A&U English`,
+        description: article.excerpt,
+    };
+}
+
+export default async function NewsDetail({ params }) {
+    // FIX: Thêm await và destructuring params
+    const { slug } = await params;
+    const article = NEWS_ARTICLES.find(p => p.slug === slug);
+
+    if (!article) {
+        notFound();
+    }
+    
+    const recentArticles = NEWS_ARTICLES
+        .filter(p => p.slug !== slug)
+        .slice(0, 5);
+
+    return <NewsDetailPage article={article} recentArticles={recentArticles} />;
 }
 
 /* ===== src\app\(main)\teachers\page.js ===== */
@@ -4703,9 +4769,6 @@ function MainHeader() {
                                 )}
                             </Link>
                         ))}
-                        <Button className="bg-orange-500 hover:bg-orange-600 text-white font-bold ml-4 transition-transform hover:scale-105">
-                            Đăng ký ngay
-                        </Button>
                     </nav>
 
                     {/* Mobile Navigation Button */}
@@ -4730,9 +4793,6 @@ function MainHeader() {
                                 {item.label}
                             </Link>
                         ))}
-                        <Button size="lg" className="bg-orange-500 hover:bg-orange-600 text-white font-bold w-48 mt-4">
-                            Đăng ký ngay
-                        </Button>
                     </nav>
                 </div>
             )}
@@ -9876,6 +9936,69 @@ export const COURSE_DATA = {
 };
 
 
+/* ===== src\lib\news-data.js ===== */
+// src/lib/news-data.js
+
+export const NEWS_ARTICLES = Array.from({ length: 25 }, (_, i) => {
+  const title =
+    i % 2 === 0
+      ? `A&U & PTIT JOB FAIR 2025: Sôi Nổi – Nhiệt Huyết – Truyền Cảm Hứng! #${
+          i + 1
+        }`
+      : `A&U TẠI EPU’S JOB FAIR 2025 – GẮN KẾT CƠ HỘI, MỞ RỘNG TƯƠNG LAI #${
+          i + 1
+        }`;
+  // Tạo slug đơn giản từ title
+  const slug =
+    title
+      .toLowerCase()
+      .replace(/#\d+/g, "") // Bỏ số hiệu
+      .replace(/đ/g, "d") // Thay thế 'đ' thành 'd'
+      .replace(/[^\w\s-]/g, "") // Bỏ ký tự đặc biệt (giữ lại chữ, số, khoảng trắng, gạch nối)
+      .trim()
+      .replace(/\s+/g, "-") + `-${i + 1}`;
+
+  return {
+    id: i + 1,
+    slug: slug,
+    title: title,
+    imageSrc:
+      i % 2 === 0
+        ? "/assets/images/R5AT3894.jpg"
+        : "/assets/images/R5AT4140.jpg",
+    author: "ADMIN",
+    date: `12/05/2025`,
+    comments: 0,
+    category: i % 3 === 0 ? "Sự kiện" : i % 3 === 1 ? "Tin tức" : "Tuyển dụng",
+    excerpt:
+      "Tại gian hàng của A&U, hàng trăm sinh viên đã đến trải nghiệm các hoạt động tư vấn định hướng nghề nghiệp, kiểm tra trình độ tiếng Anh miễn phí và nhận những phần quà hấp dẫn...",
+    content: `
+            <p>Đây là nội dung chi tiết của bài viết. Tại A&U, chúng tôi không chỉ mang đến những giờ học tiếng Anh chất lượng mà còn tạo ra những cơ hội để sinh viên tiếp cận với các nhà tuyển dụng hàng đầu. Ngày hội việc làm là một minh chứng rõ nét cho cam kết đó.</p>
+            <img src="${
+              i % 2 === 0
+                ? "/assets/images/R5AT3894.jpg"
+                : "/assets/images/R5AT4140.jpg"
+            }" alt="Nội dung bài viết" style="width:100%; border-radius: 8px; margin-top: 1rem; margin-bottom: 1rem;" />
+            <p>Sự kiện đã thu hút hàng trăm sinh viên tham gia, không chỉ để tìm kiếm cơ hội việc làm mà còn để lắng nghe những chia sẻ quý báu từ các chuyên gia, định hướng cho con đường sự nghiệp tương lai.</p>
+            <h3>Những hoạt động chính:</h3>
+            <ul>
+                <li>Tư vấn và định hướng nghề nghiệp 1:1.</li>
+                <li>Kiểm tra trình độ tiếng Anh miễn phí.</li>
+                <li>Phỏng vấn thử với các nhà tuyển dụng.</li>
+                <li>Giao lưu và nhận quà từ A&U.</li>
+            </ul>
+            <p>Chúng tôi tự hào là cầu nối vững chắc giữa sinh viên và doanh nghiệp, góp phần vào sự phát triển chung của cộng đồng.</p>
+        `,
+  };
+});
+
+export const NEWS_CATEGORIES = [
+  { name: "Sự kiện", count: 41 },
+  { name: "Tin tức", count: 85 },
+  { name: "Tuyển dụng", count: 30 },
+];
+
+
 /* ===== src\lib\utils.js ===== */
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge"
@@ -9884,6 +10007,136 @@ export function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
 
+
+/* ===== src\pages\Contact\ContactPage.jsx ===== */
+"use client";
+
+import React from 'react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { MapPin, Phone, Mail, Facebook } from 'lucide-react';
+import Link from 'next/link';
+
+// Data for all locations displayed on the left panel
+const allLocations = [
+    { address: '173 NV2/10 Xuân Thủy, Cầu Giấy, Hà Nội' },
+    { address: 'Liên kề 8 Lô 10 – Ngõ 67, Phùng Khoang, Trung Văn, Nam Từ Liêm, Hà Nội' },
+    { address: 'Số 34 Tăng Thiết Giáp, P. Cổ Nhuế 2, Q. Bắc Từ Liêm, Hà Nội' },
+    { address: 'Số 99, Trung Liệt, Đống Đa, Hà Nội' },
+    { address: 'Số 10 Ngõ 31 Đặng Thùy Trâm, Nghĩa Tân, Cầu Giấy, Hà Nội' },
+    { address: 'Cơ sở Thanh Hóa: Lô C10-11 Khu Thương Mại Dịch Vụ & Chung Cư Đông Hương, P. Đông Hương, TP. Thanh Hoá' },
+];
+
+// Data for the 4 branches with interactive maps
+const hanoiBranches = [
+    {
+        id: 'cs1',
+        name: 'Cơ sở 1',
+        address: '173 NV2/10 Xuân Thủy, Cầu Giấy, Hà Nội',
+    },
+    {
+        id: 'cs2',
+        name: 'Cơ sở 2',
+        address: 'Liên kề 8 Lô 10 – Ngõ 67, Phùng Khoang, Trung Văn, Nam Từ Liêm, Hà Nội',
+    },
+    {
+        id: 'cs3',
+        name: 'Cơ sở 3',
+        address: 'Số 34 Tăng Thiết Giáp, P. Cổ Nhuế 2, Q. Bắc Từ Liêm, Hà Nội',
+    },
+    {
+        id: 'cs4',
+        name: 'Cơ sở 4',
+        address: 'Số 99, Trung Liệt, Đống Đa, Hà Nội',
+    },
+];
+
+const contactDetails = {
+    phone: '0906.875.918',
+    email: 'truyenthong@anu.edu.vn',
+    fanpage: 'fb.com/anulanguage',
+    fanpageUrl: 'https://www.facebook.com/anulanguage'
+};
+
+function ContactPage() {
+    return (
+        <div className="bg-white py-24 sm:py-32 sm:px-16 px-0">
+            <div className="container mx-auto px-4">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+                    {/* Left Column: Contact Information */}
+                    <div className="prose prose-lg max-w-none">
+                        {/* FIX: Title size reduced */}
+                        <h1 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                            Hệ thống Anh ngữ A&U tại Hà Nội
+                        </h1>
+                        <div className="mt-8 space-y-4">
+                            {allLocations.map((location, index) => (
+                                <div key={index} className="flex items-start">
+                                    <MapPin className="h-6 w-6 mr-3 mt-1 flex-shrink-0 text-orange-500" />
+                                    <p className="text-gray-700 not-prose my-0">{location.address}</p>
+                                </div>
+                            ))}
+                        </div>
+                        <div className="mt-10 pt-8 border-t border-gray-200 space-y-4">
+                            <div className="flex items-center">
+                                <Phone className="h-6 w-6 mr-3 flex-shrink-0 text-orange-500" />
+                                <a href={`tel:${contactDetails.phone}`} className="text-gray-700 not-prose no-underline hover:text-orange-600">
+                                    {contactDetails.phone}
+                                </a>
+                            </div>
+                            <div className="flex items-center">
+                                <Mail className="h-6 w-6 mr-3 flex-shrink-0 text-orange-500" />
+                                <a href={`mailto:${contactDetails.email}`} className="text-orange-600 not-prose no-underline hover:text-orange-800">
+                                    {contactDetails.email}
+                                </a>
+                            </div>
+                            <div className="flex items-center">
+                                <Facebook className="h-6 w-6 mr-3 flex-shrink-0 text-orange-500" />
+                                <Link href={contactDetails.fanpageUrl} target="_blank" rel="noopener noreferrer" className="text-orange-600 not-prose no-underline hover:text-orange-800">
+                                    {contactDetails.fanpage}
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Right Column: Interactive Map */}
+                    <div className="rounded-lg shadow-2xl overflow-hidden">
+                        <Tabs defaultValue="cs1" className="w-full flex flex-col h-full">
+                            <TabsList className="grid w-full grid-cols-4 rounded-b-none h-auto p-2 bg-gray-100">
+                                {hanoiBranches.map((branch) => (
+                                    // FIX: Added cursor, padding, and active state styles
+                                    <TabsTrigger
+                                        key={branch.id}
+                                        value={branch.id}
+                                        className="text-xs sm:text-sm cursor-pointer px-3 py-1.5 transition-colors data-[state=active]:bg-orange-500 data-[state=active]:text-white"
+                                    >
+                                        {branch.name}
+                                    </TabsTrigger>
+                                ))}
+                            </TabsList>
+                            <div className="flex-grow">
+                                {hanoiBranches.map((branch) => (
+                                    <TabsContent key={branch.id} value={branch.id} className="w-full h-full m-0">
+                                        <iframe
+                                            src={`https://maps.google.com/maps?q=${encodeURIComponent(branch.address)}&t=&z=17&ie=UTF8&iwloc=&output=embed`}
+                                            width="100%"
+                                            height="100%"
+                                            style={{ border: 0, minHeight: '500px' }}
+                                            allowFullScreen=""
+                                            loading="lazy"
+                                            referrerPolicy="no-referrer-when-downgrade"
+                                        ></iframe>
+                                    </TabsContent>
+                                ))}
+                            </div>
+                        </Tabs>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default ContactPage;
 
 /* ===== src\pages\Home\HomePage.jsx ===== */
 import React from 'react';
@@ -10840,6 +11093,332 @@ function YoutubeSection() {
 
 export default YoutubeSection;
 
+/* ===== src\pages\News\NewsPage.jsx ===== */
+"use client";
+
+import React, { useState } from 'react';
+import { NEWS_ARTICLES, NEWS_CATEGORIES } from '@/lib/news-data';
+import ArticleItem from '@/pages/News/components/ArticleItem';
+import NewsSidebar from '@/pages/News/components/NewsSidebar';
+import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/components/ui/pagination';
+import { cn } from '@/lib/utils';
+
+const ITEMS_PER_PAGE = 10;
+
+function NewsPage() {
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const totalPages = Math.ceil(NEWS_ARTICLES.length / ITEMS_PER_PAGE);
+
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const endIndex = startIndex + ITEMS_PER_PAGE;
+    const currentArticles = NEWS_ARTICLES.slice(startIndex, endIndex);
+
+    const handlePageChange = (page) => {
+        if (page >= 1 && page <= totalPages) {
+            setCurrentPage(page);
+            window.scrollTo(0, 0);
+        }
+    };
+    
+    const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
+
+    return (
+        <div className="bg-white py-24 sm:py-32">
+            <div className="container mx-auto px-4">
+                <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
+                    <main className="lg:col-span-3">
+                        <div className="flex flex-col">
+                            {currentArticles.map(article => (
+                                <ArticleItem key={article.id} article={article} />
+                            ))}
+                        </div>
+                        
+                        <div className="mt-16">
+                            <Pagination>
+                                <PaginationContent>
+                                    <PaginationItem>
+                                        <PaginationPrevious 
+                                            href="#" 
+                                            onClick={(e) => { e.preventDefault(); handlePageChange(currentPage - 1); }} 
+                                            className={cn(
+                                                currentPage === 1 
+                                                ? 'pointer-events-none opacity-50' 
+                                                : 'hover:bg-orange-100 hover:text-orange-600'
+                                            )}
+                                        />
+                                    </PaginationItem>
+                                    
+                                    {pageNumbers.map(number => (
+                                        <PaginationItem key={number}>
+                                            <PaginationLink 
+                                                href="#" 
+                                                onClick={(e) => { e.preventDefault(); handlePageChange(number); }}
+                                                isActive={currentPage === number}
+                                                className={cn(
+                                                    "hover:bg-orange-500 hover:text-white",
+                                                    currentPage === number && "bg-orange-500 text-white border-orange-500 hover:bg-orange-600"
+                                                )}
+                                            >
+                                                {number}
+                                            </PaginationLink>
+                                        </PaginationItem>
+                                    ))}
+
+                                    <PaginationItem>
+                                        <PaginationNext 
+                                            href="#" 
+                                            onClick={(e) => { e.preventDefault(); handlePageChange(currentPage + 1); }}
+                                            className={cn(
+                                                currentPage === totalPages
+                                                ? 'pointer-events-none opacity-50'
+                                                : 'hover:bg-orange-100 hover:text-orange-600'
+                                            )}
+                                        />
+                                    </PaginationItem>
+                                </PaginationContent>
+                            </Pagination>
+                        </div>
+                    </main>
+
+                    <aside className="lg:col-span-1">
+                        <NewsSidebar categories={NEWS_CATEGORIES} />
+                    </aside>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default NewsPage;
+
+/* ===== src\pages\News\components\ArticleItem.jsx ===== */
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Calendar, MessageSquare, User } from 'lucide-react';
+import { AspectRatio } from "@/components/ui/aspect-ratio";
+
+function ArticleItem({ article }) {
+    return (
+        <article className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start border-b pb-8 mb-8 last:border-b-0 last:mb-0 last:pb-0">
+            <div className="md:col-span-1">
+                <Link href={`/news/${article.slug}`}>
+                    <div className="rounded-lg overflow-hidden shadow-md transition-transform duration-300 hover:scale-105">
+                        <AspectRatio ratio={16 / 9}>
+                            <Image
+                                src={article.imageSrc}
+                                alt={article.title}
+                                fill
+                                className="object-cover"
+                                sizes="(max-width: 768px) 100vw, 33vw"
+                            />
+                        </AspectRatio>
+                    </div>
+                </Link>
+            </div>
+            
+            <div className="md:col-span-2 flex flex-col h-full">
+                <h2 className="text-2xl font-bold leading-tight text-gray-900 hover:text-orange-600 transition-colors">
+                    <Link href={`/news/${article.slug}`}>{article.title}</Link>
+                </h2>
+                <div className="flex items-center flex-wrap gap-x-4 gap-y-2 text-sm text-gray-500 mt-2 mb-3">
+                    <span className="flex items-center gap-1.5">
+                        <User className="w-4 h-4 text-orange-500" />
+                        BY <span className="font-semibold text-orange-500 uppercase">{article.author}</span>
+                    </span>
+                    <span className="flex items-center gap-1.5">
+                        <Calendar className="w-4 h-4" /> {article.date}
+                    </span>
+                    <span className="flex items-center gap-1.5">
+                        <MessageSquare className="w-4 h-4" /> {article.comments}
+                    </span>
+                </div>
+                <p className="text-base text-gray-600 leading-relaxed">
+                    {article.excerpt}
+                </p>
+            </div>
+        </article>
+    );
+}
+
+export default ArticleItem;
+
+/* ===== src\pages\News\components\NewsSidebar.jsx ===== */
+// src/pages/News/components/NewsSidebar.jsx
+import React from 'react';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { Search } from 'lucide-react';
+import Link from 'next/link';
+
+function NewsSidebar({ categories }) {
+    return (
+        <aside className="sticky top-28">
+            <div className="space-y-10">
+                <div>
+                    <div className="flex w-full items-center">
+                        <Input type="text" placeholder="Search..." className="h-11 rounded-r-none border-gray-300 focus-visible:ring-0 focus-visible:ring-offset-0" />
+                        <Button type="submit" className="h-11 rounded-l-none bg-orange-500 hover:bg-orange-600">
+                            <Search className="h-5 w-5" />
+                        </Button>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 className="text-lg font-bold text-gray-900 mb-4 pb-2 border-b-2 border-orange-500 inline-block">
+                        Danh mục
+                    </h3>
+                    <ul className="space-y-4">
+                        {categories.map((category) => (
+                            <li key={category.name}>
+                                <Link href={`/category/${category.name.toLowerCase()}`} className="flex justify-between items-center text-gray-700 hover:text-orange-600 transition-colors border-b border-gray-200 pb-3 text-base">
+                                    <span className="font-semibold uppercase">{category.name}</span>
+                                    <span className="text-gray-500">({category.count})</span>
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </div>
+        </aside>
+    );
+}
+
+export default NewsSidebar;
+
+/* ===== src\pages\News\components\RecentPostsSection.jsx ===== */
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
+import { Calendar, MessageSquare } from 'lucide-react';
+
+function RecentPostsSection({ articles }) {
+    if (!articles || articles.length === 0) {
+        return null;
+    }
+
+    const featuredArticle = articles[0];
+    const otherArticles = articles.slice(1, 5);
+
+    return (
+        <section className="px-52 py-16 sm:py-24 border-t bg-gray-50/50">
+            <div className="container mx-auto px-4">
+                <h2 className="text-2xl font-bold text-gray-900 mb-8 pb-2 border-b-2 border-orange-500 inline-block">
+                    Bài viết mới
+                </h2>
+                <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-x-12 gap-y-12">
+                    <div className="flex flex-col">
+                        <Link href={`/news/${featuredArticle.slug}`}>
+                            <div className="relative rounded-lg overflow-hidden shadow-md mb-4 group">
+                                <AspectRatio ratio={16 / 9}>
+                                    <Image
+                                        src={featuredArticle.imageSrc}
+                                        alt={featuredArticle.title}
+                                        fill
+                                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                                        sizes="(max-width: 1024px) 100vw, 50vw"
+                                    />
+                                    <div className="absolute bottom-4 left-4 bg-orange-500 text-white text-xs font-semibold px-3 py-1 rounded-sm">
+                                        {featuredArticle.category.toUpperCase()}
+                                    </div>
+                                </AspectRatio>
+                            </div>
+                        </Link>
+                        <h3 className="text-2xl font-bold leading-tight text-gray-800 hover:text-orange-600 transition-colors">
+                            <Link href={`/news/${featuredArticle.slug}`}>{featuredArticle.title}</Link>
+                        </h3>
+                        <div className="flex items-center gap-4 text-xs text-gray-500 mt-2 mb-3">
+                            <span className="flex items-center gap-1.5">BY <span className="font-medium text-orange-500 uppercase">{featuredArticle.author}</span></span>
+                            <span className="flex items-center gap-1.5"><Calendar className="w-3 h-3" /> {featuredArticle.date}</span>
+                            <span className="flex items-center gap-1.5"><MessageSquare className="w-3 h-3" /> {featuredArticle.comments}</span>
+                        </div>
+                        <p className="text-base text-gray-600 leading-relaxed mb-4 line-clamp-3">
+                            {featuredArticle.excerpt}
+                        </p>
+                        <Button asChild variant="outline" className="mt-auto self-start border-gray-300 hover:bg-orange-500 hover:text-white hover:border-orange-500">
+                            <Link href={`/news/${featuredArticle.slug}`}>READ MORE</Link>
+                        </Button>
+                    </div>
+
+                    <div className="flex flex-col space-y-6">
+                        {otherArticles.map(article => (
+                            <Link key={article.id} href={`/news/${article.slug}`} className="group flex items-center gap-4">
+                                <div className="flex-shrink-0 w-32 h-20 rounded-md overflow-hidden shadow-sm">
+                                    <Image
+                                        src={article.imageSrc}
+                                        alt={article.title}
+                                        width={128}
+                                        height={80}
+                                        className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-110"
+                                    />
+                                </div>
+                                <div className="flex-1">
+                                    <h4 className="text-base font-semibold leading-tight text-gray-800 group-hover:text-orange-600 transition-colors line-clamp-2">
+                                        {article.title}
+                                    </h4>
+                                    <p className="text-xs text-gray-500 mt-1 flex items-center gap-1.5">
+                                        <Calendar className="w-3 h-3" />
+                                        {article.date}
+                                    </p>
+                                </div>
+                            </Link>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+export default RecentPostsSection;
+
+/* ===== src\pages\News\Detail\NewsDetailPage.jsx ===== */
+import React from 'react';
+import { Calendar, MessageSquare, User } from 'lucide-react';
+import RecentPostsSection from '@/pages/News/components/RecentPostsSection';
+
+function NewsDetailPage({ article, recentArticles }) {
+    return (
+        <main>
+            <div className="bg-white py-16 sm:py-24">
+                <div className="container mx-auto">
+                    <div className="max-w-4xl mx-auto"> 
+                        <header className="mb-8">
+                            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight">
+                                {article.title}
+                            </h1>
+                            <div className="flex items-center flex-wrap gap-x-4 gap-y-2 text-sm text-gray-500 mt-4 border-b pb-4">
+                                <span className="flex items-center gap-1.5">
+                                    <User className="w-4 h-4 text-orange-500" />
+                                    BY <span className="font-semibold text-orange-500 uppercase">{article.author}</span>
+                                </span>
+                                <span className="flex items-center gap-1.5">
+                                    <Calendar className="w-4 h-4" /> {article.date}
+                                </span>
+                                <span className="flex items-center gap-1.5">
+                                    <MessageSquare className="w-4 h-4" /> {article.comments}
+                                </span>
+                            </div>
+                        </header>
+                        
+                        <div
+                            className="prose prose-lg max-w-none prose-img:rounded-xl prose-h3:text-gray-800"
+                            dangerouslySetInnerHTML={{ __html: article.content }}
+                        />
+                    </div>
+                </div>
+            </div>
+            
+            <RecentPostsSection articles={recentArticles} />
+        </main>
+    );
+}
+
+export default NewsDetailPage;
+
 /* ===== src\pages\Teachers\TeachersPage.jsx ===== */
 import React from 'react';
 import CtaSection from './components/CtaSection';
@@ -11271,18 +11850,19 @@ function TrainingPage() {
 export default TrainingPage;
 
 /* ===== src\pages\Training\components\ProgramsList.jsx ===== */
-import React from 'react';
+"use client";
+
+import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { ArrowRight, Baby, BookOpen, Briefcase, School, Shield, Sun, Users, Video } from 'lucide-react';
+import { ArrowRight, Baby, BookOpen, Briefcase, School, Shield, Sun } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-// Fake JSON data for training programs
 const trainingPrograms = [
     {
-        id: 'mau-giao', // Sửa href thành id
+        id: 'mau-giao',
         title: 'Tiếng Anh Mẫu giáo',
         age: '3 - 6 tuổi',
         description: 'Bé làm quen với tiếng Anh qua các hoạt động vui nhộn, bài hát và trò chơi, tạo nền tảng phát âm chuẩn và niềm yêu thích ngôn ngữ từ sớm.',
@@ -11290,7 +11870,7 @@ const trainingPrograms = [
         icon: <Baby className="h-6 w-6" />,
     },
     {
-        id: 'tieu-hoc', // Sửa href thành id
+        id: 'tieu-hoc',
         title: 'Tiếng Anh Tiểu học',
         age: '6 - 11 tuổi',
         description: 'Phát triển toàn diện 4 kỹ năng Nghe - Nói - Đọc - Viết theo chuẩn Cambridge, giúp học sinh tự tin giao tiếp và đạt kết quả cao trong các kỳ thi.',
@@ -11298,7 +11878,7 @@ const trainingPrograms = [
         icon: <School className="h-6 w-6" />,
     },
     {
-        id: 'thcs', // Sửa href thành id
+        id: 'thcs',
         title: 'Tiếng Anh THCS',
         age: '11 - 13 tuổi',
         description: 'Nâng cao ngữ pháp, từ vựng và kỹ năng học thuật, chuẩn bị cho các kỳ thi chuyển cấp và định hướng lấy chứng chỉ quốc tế.',
@@ -11306,16 +11886,32 @@ const trainingPrograms = [
         icon: <Shield className="h-6 w-6" />,
     },
     {
-        id: 'ielts', // Sửa href thành id
+        id: 'ielts',
         title: 'Luyện thi IELTS',
         age: '13 tuổi trở lên',
         description: 'Lộ trình cá nhân hóa với các chiến thuật làm bài hiệu quả, tập trung vào việc tối đa hóa điểm số cho cả 4 kỹ năng, phục vụ mục tiêu du học và sự nghiệp.',
         imageSrc: '/assets/images/R5AT4255.jpg',
         icon: <BookOpen className="h-6 w-6" />,
     },
-    // Các chương trình khác giữ nguyên
+    {
+        id: 'summer-camp',
+        title: 'Trại Hè Tiếng Anh',
+        age: '7 - 14 tuổi',
+        description: 'Trải nghiệm mùa hè sôi động với các hoạt động dự án, dã ngoại và thực hành tiếng Anh trong môi trường thực tế, nâng cao kỹ năng mềm và sự tự tin.',
+        imageSrc: '/assets/images/R5AT3865.jpg',
+        icon: <Sun className="h-6 w-6" />,
+    },
+    {
+        id: 'business-english',
+        title: 'Tiếng Anh Doanh Nghiệp',
+        age: 'Người đi làm',
+        description: 'Chương trình thiết kế riêng cho doanh nghiệp, tập trung vào kỹ năng giao tiếp, thuyết trình, viết email và đàm phán trong môi trường công sở quốc tế.',
+        imageSrc: '/assets/images/R5AT4168.jpg',
+        icon: <Briefcase className="h-6 w-6" />,
+    },
 ];
 
+const PROGRAMS_PER_PAGE = 2;
 
 function ProgramCard({ program, reverse = false }) {
     return (
@@ -11339,7 +11935,6 @@ function ProgramCard({ program, reverse = false }) {
                     {program.description}
                 </p>
                 <div className="mt-6">
-                    {/* Cập nhật Link ở đây */}
                     <Button asChild variant="ghost" className="text-orange-600 hover:text-orange-700 hover:bg-orange-50 text-base">
                         <Link href={`/training/${program.id}`}>
                             Xem chi tiết <ArrowRight className="ml-2 h-4 w-4" />
@@ -11352,8 +11947,13 @@ function ProgramCard({ program, reverse = false }) {
 }
 
 function ProgramsList() {
-    // Chỉ lấy 4 chương trình chính để hiển thị
-    const displayPrograms = trainingPrograms.slice(0, 4);
+    const [visibleCount, setVisibleCount] = useState(PROGRAMS_PER_PAGE);
+
+    const displayPrograms = trainingPrograms.slice(0, visibleCount);
+    
+    const handleLoadMore = () => {
+        setVisibleCount(prevCount => prevCount + PROGRAMS_PER_PAGE);
+    };
 
     return (
         <section className="bg-white py-24 sm:py-32">
@@ -11370,11 +11970,16 @@ function ProgramsList() {
                     ))}
                 </div>
                  <div className="text-center mt-20">
-                    <Button asChild size="lg">
-                        <Link href="/training">
-                            Xem tất cả chương trình <ArrowRight className="ml-2 h-5 w-5" />
-                        </Link>
-                    </Button>
+                    {visibleCount < trainingPrograms.length && (
+                        <Button
+                            size="lg"
+                            onClick={handleLoadMore}
+                            // --- FIX: Thêm class `cursor-pointer` ---
+                            className="bg-orange-500 hover:bg-orange-600 text-white text-lg font-semibold px-10 py-6 cursor-pointer"
+                        >
+                            Xem thêm
+                        </Button>
+                    )}
                 </div>
             </div>
         </section>
@@ -11815,6 +12420,9 @@ export default SkillBreakdown;
 /*   *.tsbuildinfo */
 /*   next-env.d.ts */
 /*   .codebase/ */
+
+/* .watchignore patterns: */
+/*   .codebase/codebase.txt */
 
 /* Ignored items list: */
 /* Ignored directories: */
