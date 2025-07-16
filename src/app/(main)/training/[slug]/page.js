@@ -1,4 +1,4 @@
-import TrainingDetailPage from "@/pages/Training/TrainingDetailPage";
+import TrainingDetailPage from "@/pages/Training/Detail/TrainingDetailPage";
 import { COURSE_DATA } from "@/lib/course-data";
 import { notFound } from "next/navigation";
 

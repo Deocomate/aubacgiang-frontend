@@ -1,9 +1,9 @@
 import React from 'react';
-import CourseHero from './Detail/components/CourseHero';
-import CourseOverview from './Detail/components/CourseOverview';
-import SkillBreakdown from './Detail/components/SkillBreakdown';
-import CourseCurriculum from './Detail/components/CourseCurriculum';
-import RegistrationCta from './Detail/components/RegistrationCta';
+import CourseHero from './components/CourseHero';
+import CourseOverview from './components/CourseOverview';
+import SkillBreakdown from './components/SkillBreakdown';
+import CourseCurriculum from './components/CourseCurriculum';
+import RegistrationCta from './components/RegistrationCta';
 
 function TrainingDetailPage({ course }) {
     if (!course) {
