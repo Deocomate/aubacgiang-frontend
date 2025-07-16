@@ -2,8 +2,20 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        // Thêm 'i.ytimg.com' vào danh sách domains
-        domains: ['placehold.co', 'i.ytimg.com'],
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'placehold.co',
+                port: '',
+                pathname: '/**',
+            },
+            {
+                protocol: 'https',
+                hostname: 'i.ytimg.com',
+                port: '',
+                pathname: '/**',
+            },
+        ],
     },
 };
 

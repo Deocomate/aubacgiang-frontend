@@ -1,5 +1,4 @@
 "use client"
-// src/components/layouts/MainHeader.jsx
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -9,10 +8,10 @@ import { usePathname } from 'next/navigation';
 
 const navigation = [
     { label: 'Trang chủ', href: '/' },
-    { label: 'Giới thiệu', href: '/about' },
-    { label: 'Chương trình học', href: '/programs' },
+    { label: 'Tin tức & Sự kiện', href: '/news' },
+    { label: 'Chương trình học', href: '/training' },
     { label: 'Đội ngũ giáo viên', href: '/teachers' },
-    { label: 'Thư viện', href: '/gallery' },
+    { label: 'Góc phụ huynh', href: '/parents-corner' },
     { label: 'Liên hệ', href: '/contact' },
 ];
 
