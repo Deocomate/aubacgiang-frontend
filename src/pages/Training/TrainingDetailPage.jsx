@@ -24,7 +24,8 @@ function TrainingDetailPage({ course }) {
             <CourseOverview overview={course.overview} />
             <SkillBreakdown skills={course.skills} />
             <CourseCurriculum curriculum={course.curriculum} />
-            <RegistrationCta />
+            {/* FIX: Truyền `course.title` vào component */}
+            <RegistrationCta courseTitle={course.title} />
         </main>
     );
 }

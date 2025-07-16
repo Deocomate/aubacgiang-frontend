@@ -1,7 +1,7 @@
 /* ==========================================================
-   CODEBASE SNAPSHOT - 2025-07-16 15:18:01
+   CODEBASE SNAPSHOT - 2025-07-16 16:26:43
    Project: landing-page-english-education-center
-   Files: 261 (109 text, 152 binary)
+   Files: 270 (118 text, 152 binary)
    Ignored Items: 24
    ========================================================== */
 
@@ -195,6 +195,9 @@
    ├── src/
    │   ├── app/
    │   │   ├── (main)/
+   │   │   │   ├── category/
+   │   │   │   │   └── [slug]/
+   │   │   │   │       └── page.js
    │   │   │   ├── contact/
    │   │   │   │   └── page.js
    │   │   │   ├── facilities/
@@ -204,6 +207,8 @@
    │   │   │   ├── news/
    │   │   │   │   ├── [slug]/
    │   │   │   │   │   └── page.js
+   │   │   │   │   └── page.js
+   │   │   │   ├── parents-corner/
    │   │   │   │   └── page.js
    │   │   │   ├── teachers/
    │   │   │   │   └── page.js
@@ -297,6 +302,15 @@
    │       │   ├── Detail/
    │       │   │   └── NewsDetailPage.jsx
    │       │   └── NewsPage.jsx
+   │       ├── ParentsCorner/
+   │       │   ├── components/
+   │       │   │   ├── AnnouncementsSection.jsx
+   │       │   │   ├── DownloadsSection.jsx
+   │       │   │   ├── HandbookSection.jsx
+   │       │   │   ├── HeroSection.jsx
+   │       │   │   ├── KeyResourcesSection.jsx
+   │       │   │   └── TestimonialsSection.jsx
+   │       │   └── ParentsCornerPage.jsx
    │       ├── Teachers/
    │       │   ├── components/
    │       │   │   ├── CtaSection.jsx
@@ -4449,6 +4463,61 @@ export default function Home() {
   return (<HomePage />);
 }
 
+/* ===== src\app\(main)\category\[slug]\page.js ===== */
+import { NEWS_ARTICLES, NEWS_CATEGORIES } from "@/lib/news-data";
+import { slugify } from "@/lib/utils";
+import NewsPage from "@/pages/News/NewsPage";
+import { notFound } from "next/navigation";
+
+// Hàm này sẽ tạo các trang tĩnh cho mỗi slug danh mục tại thời điểm build
+export async function generateStaticParams() {
+  return NEWS_CATEGORIES.map((category) => ({
+    slug: slugify(category.name),
+  }));
+}
+
+// Hàm này tạo metadata động cho mỗi trang danh mục
+export async function generateMetadata({ params }) {
+  // FIX: Thêm await và destructuring params
+  const { slug } = await params;
+  const category = NEWS_CATEGORIES.find((cat) => slugify(cat.name) === slug);
+
+  if (!category) {
+    return {
+      title: "Không tìm thấy danh mục",
+    };
+  }
+
+  return {
+    title: `${category.name} - Tin tức & Sự kiện | A&U English`,
+    description: `Các bài viết, tin tức và sự kiện thuộc danh mục ${category.name} tại Hệ thống Anh ngữ A&U.`,
+  };
+}
+
+// Component chính của trang danh mục
+export default async function CategoryPage({ params }) {
+  // FIX: Thêm await và destructuring params
+  const { slug } = await params;
+
+  const filteredArticles = NEWS_ARTICLES.filter(
+    (article) => slugify(article.category) === slug
+  );
+
+  // Nếu không có bài viết nào hoặc slug không hợp lệ, có thể hiển thị trang 404
+  if (filteredArticles.length === 0) {
+    const isValidCategory = NEWS_CATEGORIES.some(
+      (cat) => slugify(cat.name) === slug
+    );
+    if (!isValidCategory) {
+      notFound();
+    }
+  }
+
+  // Tái sử dụng component NewsPage và truyền vào danh sách bài viết đã được lọc
+  return <NewsPage articles={filteredArticles} />;
+}
+
+
 /* ===== src\app\(main)\contact\page.js ===== */
 import ContactPage from '@/pages/Contact/ContactPage';
 
@@ -4527,6 +4596,20 @@ export default async function NewsDetail({ params }) {
 
     return <NewsDetailPage article={article} recentArticles={recentArticles} />;
 }
+
+/* ===== src\app\(main)\parents-corner\page.js ===== */
+import ParentsCornerPage from "@/pages/ParentsCorner/ParentsCornerPage";
+
+export const metadata = {
+  title: "Góc phụ huynh - Đồng hành cùng con | A&U English",
+  description:
+    "Nguồn tài nguyên, cẩm nang và thông tin hữu ích dành cho phụ huynh tại A&U English để cùng con chinh phục tiếng Anh hiệu quả.",
+};
+
+export default function ParentsCorner() {
+  return <ParentsCornerPage />;
+}
+
 
 /* ===== src\app\(main)\teachers\page.js ===== */
 import TeachersPage from "@/pages/Teachers/TeachersPage";
@@ -4731,34 +4814,32 @@ function MainHeader() {
 
     return (
         <header
-            // **FIX:** Luôn có nền trắng, đổ bóng và hiệu ứng transition mượt mà
             className="fixed top-0 left-0 w-full z-30 bg-white/90 backdrop-blur-sm shadow-md transition-all duration-300"
         >
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                {/* **FIX:** Tăng padding cho header */}
                 <div className="flex items-center justify-between h-20">
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-3">
                         <Image
                             src="/assets/images/logo-au.png"
                             alt="Trung tâm Anh ngữ A&U"
-                            width={50} // **FIX:** Điều chỉnh kích thước logo
+                            width={50}
                             height={50}
                             className="object-contain"
                         />
-                        <span className="font-bold text-2xl text-gray-800">
+                        <span className="font-bold text-2xl xl:text-3xl text-gray-800">
                             A&U English
                         </span>
                     </Link>
 
                     {/* Desktop Navigation */}
-                    <nav className="hidden md:flex items-center gap-1">
+                    <nav className="hidden md:flex items-center gap-1 xl:gap-2">
                         {navigation.map((item) => (
                             <Link
                                 key={item.href}
                                 href={item.href}
-                                // **FIX:** Tăng kích thước chữ, hiệu ứng hover mượt mà
-                                className={`relative px-4 py-2 text-base font-medium transition-colors duration-300 rounded-md ${pathname === item.href
+                                // FIX: Dùng breakpoint 'xl' để phân biệt tablet và desktop
+                                className={`relative px-2 xl:px-4 py-2 text-sm xl:text-base font-medium transition-colors duration-300 rounded-md ${pathname === item.href
                                     ? 'text-orange-500'
                                     : 'text-gray-700 hover:text-orange-500'
                                     }`}
@@ -10007,6 +10088,21 @@ export function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
 
+export function slugify(text) {
+  if (!text) return "";
+  
+  return text
+    .toString()
+    .toLowerCase()
+    .normalize('NFD') // Chuẩn hóa Unicode
+    .replace(/[\u0300-\u036f]/g, '') // Bỏ các dấu thanh
+    .replace(/đ/g, 'd') // Thay 'đ' thành 'd'
+    .replace(/\s+/g, '-') // Thay khoảng trắng bằng gạch nối
+    .replace(/[^\w-]+/g, '') // Bỏ các ký tự không phải chữ, số, gạch nối
+    .replace(/--+/g, '-') // Thay nhiều gạch nối thành một
+    .replace(/^-+/, '') // Bỏ gạch nối ở đầu
+    .replace(/-+$/, ''); // Bỏ gạch nối ở cuối
+}
 
 /* ===== src\pages\Contact\ContactPage.jsx ===== */
 "use client";
@@ -11094,6 +11190,7 @@ function YoutubeSection() {
 export default YoutubeSection;
 
 /* ===== src\pages\News\NewsPage.jsx ===== */
+/* src/pages/News/NewsPage.jsx */
 "use client";
 
 import React, { useState } from 'react';
@@ -11105,14 +11202,18 @@ import { cn } from '@/lib/utils';
 
 const ITEMS_PER_PAGE = 10;
 
-function NewsPage() {
+// FIX: Nhận 'articles' như một prop, nếu không có thì dùng mặc định là NEWS_ARTICLES
+function NewsPage({ articles: initialArticles }) {
     const [currentPage, setCurrentPage] = useState(1);
+    
+    // Sử dụng danh sách bài viết được truyền vào hoặc danh sách đầy đủ
+    const articles = initialArticles || NEWS_ARTICLES;
 
-    const totalPages = Math.ceil(NEWS_ARTICLES.length / ITEMS_PER_PAGE);
+    const totalPages = Math.ceil(articles.length / ITEMS_PER_PAGE);
 
     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
     const endIndex = startIndex + ITEMS_PER_PAGE;
-    const currentArticles = NEWS_ARTICLES.slice(startIndex, endIndex);
+    const currentArticles = articles.slice(startIndex, endIndex);
 
     const handlePageChange = (page) => {
         if (page >= 1 && page <= totalPages) {
@@ -11128,57 +11229,68 @@ function NewsPage() {
             <div className="container mx-auto px-4">
                 <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
                     <main className="lg:col-span-3">
-                        <div className="flex flex-col">
-                            {currentArticles.map(article => (
-                                <ArticleItem key={article.id} article={article} />
-                            ))}
-                        </div>
+                        {/* FIX: Hiển thị thông báo nếu không có bài viết nào */}
+                        {currentArticles.length > 0 ? (
+                            <div className="flex flex-col">
+                                {currentArticles.map(article => (
+                                    <ArticleItem key={article.id} article={article} />
+                                ))}
+                            </div>
+                        ) : (
+                            <div className="text-center py-16">
+                                <h2 className="text-2xl font-bold text-gray-800">Không có bài viết nào.</h2>
+                                <p className="text-gray-600 mt-2">Hiện tại chưa có bài viết nào trong danh mục này. Vui lòng quay lại sau.</p>
+                            </div>
+                        )}
                         
-                        <div className="mt-16">
-                            <Pagination>
-                                <PaginationContent>
-                                    <PaginationItem>
-                                        <PaginationPrevious 
-                                            href="#" 
-                                            onClick={(e) => { e.preventDefault(); handlePageChange(currentPage - 1); }} 
-                                            className={cn(
-                                                currentPage === 1 
-                                                ? 'pointer-events-none opacity-50' 
-                                                : 'hover:bg-orange-100 hover:text-orange-600'
-                                            )}
-                                        />
-                                    </PaginationItem>
-                                    
-                                    {pageNumbers.map(number => (
-                                        <PaginationItem key={number}>
-                                            <PaginationLink 
+                        {/* Chỉ hiển thị pagination nếu có nhiều hơn 1 trang */}
+                        {totalPages > 1 && (
+                            <div className="mt-16">
+                                <Pagination>
+                                    <PaginationContent>
+                                        <PaginationItem>
+                                            <PaginationPrevious 
                                                 href="#" 
-                                                onClick={(e) => { e.preventDefault(); handlePageChange(number); }}
-                                                isActive={currentPage === number}
+                                                onClick={(e) => { e.preventDefault(); handlePageChange(currentPage - 1); }} 
                                                 className={cn(
-                                                    "hover:bg-orange-500 hover:text-white",
-                                                    currentPage === number && "bg-orange-500 text-white border-orange-500 hover:bg-orange-600"
+                                                    currentPage === 1 
+                                                    ? 'pointer-events-none opacity-50' 
+                                                    : 'hover:bg-orange-100 hover:text-orange-600'
                                                 )}
-                                            >
-                                                {number}
-                                            </PaginationLink>
+                                            />
                                         </PaginationItem>
-                                    ))}
+                                        
+                                        {pageNumbers.map(number => (
+                                            <PaginationItem key={number}>
+                                                <PaginationLink 
+                                                    href="#" 
+                                                    onClick={(e) => { e.preventDefault(); handlePageChange(number); }}
+                                                    isActive={currentPage === number}
+                                                    className={cn(
+                                                        "hover:bg-orange-500 hover:text-white",
+                                                        currentPage === number && "bg-orange-500 text-white border-orange-500 hover:bg-orange-600"
+                                                    )}
+                                                >
+                                                    {number}
+                                                </PaginationLink>
+                                            </PaginationItem>
+                                        ))}
 
-                                    <PaginationItem>
-                                        <PaginationNext 
-                                            href="#" 
-                                            onClick={(e) => { e.preventDefault(); handlePageChange(currentPage + 1); }}
-                                            className={cn(
-                                                currentPage === totalPages
-                                                ? 'pointer-events-none opacity-50'
-                                                : 'hover:bg-orange-100 hover:text-orange-600'
-                                            )}
-                                        />
-                                    </PaginationItem>
-                                </PaginationContent>
-                            </Pagination>
-                        </div>
+                                        <PaginationItem>
+                                            <PaginationNext 
+                                                href="#" 
+                                                onClick={(e) => { e.preventDefault(); handlePageChange(currentPage + 1); }}
+                                                className={cn(
+                                                    currentPage === totalPages
+                                                    ? 'pointer-events-none opacity-50'
+                                                    : 'hover:bg-orange-100 hover:text-orange-600'
+                                                )}
+                                            />
+                                        </PaginationItem>
+                                    </PaginationContent>
+                                </Pagination>
+                            </div>
+                        )}
                     </main>
 
                     <aside className="lg:col-span-1">
@@ -11198,13 +11310,25 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Calendar, MessageSquare, User } from 'lucide-react';
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { cn } from '@/lib/utils';
+
+// FIX: Tạo một map để định kiểu cho từng danh mục
+const categoryStyles = {
+    'Sự kiện': 'bg-orange-500 text-white',
+    'Tin tức': 'bg-blue-500 text-white',
+    'Tuyển dụng': 'bg-green-500 text-white',
+};
 
 function ArticleItem({ article }) {
+    // FIX: Lấy lớp CSS tương ứng hoặc một lớp mặc định
+    const badgeClass = categoryStyles[article.category] || 'bg-gray-500 text-white';
+
     return (
         <article className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start border-b pb-8 mb-8 last:border-b-0 last:mb-0 last:pb-0">
             <div className="md:col-span-1">
-                <Link href={`/news/${article.slug}`}>
-                    <div className="rounded-lg overflow-hidden shadow-md transition-transform duration-300 hover:scale-105">
+                {/* FIX: Thêm class 'relative block' để định vị badge */}
+                <Link href={`/news/${article.slug}`} className="relative block group">
+                    <div className="rounded-lg overflow-hidden shadow-md transition-transform duration-300 group-hover:scale-105">
                         <AspectRatio ratio={16 / 9}>
                             <Image
                                 src={article.imageSrc}
@@ -11214,6 +11338,13 @@ function ArticleItem({ article }) {
                                 sizes="(max-width: 768px) 100vw, 33vw"
                             />
                         </AspectRatio>
+                    </div>
+                    {/* FIX: Thêm badge danh mục */}
+                    <div className={cn(
+                        "absolute top-3 left-3 z-10 rounded-md px-2 py-1 text-xs font-semibold uppercase tracking-wider",
+                        badgeClass
+                    )}>
+                        {article.category}
                     </div>
                 </Link>
             </div>
@@ -11245,12 +11376,14 @@ function ArticleItem({ article }) {
 export default ArticleItem;
 
 /* ===== src\pages\News\components\NewsSidebar.jsx ===== */
-// src/pages/News/components/NewsSidebar.jsx
+/* src/pages/News/components/NewsSidebar.jsx */
 import React from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Search } from 'lucide-react';
 import Link from 'next/link';
+// FIX: Import hàm slugify
+import { slugify } from '@/lib/utils';
 
 function NewsSidebar({ categories }) {
     return (
@@ -11272,7 +11405,8 @@ function NewsSidebar({ categories }) {
                     <ul className="space-y-4">
                         {categories.map((category) => (
                             <li key={category.name}>
-                                <Link href={`/category/${category.name.toLowerCase()}`} className="flex justify-between items-center text-gray-700 hover:text-orange-600 transition-colors border-b border-gray-200 pb-3 text-base">
+                                {/* FIX: Sử dụng slugify để tạo đường dẫn đúng */}
+                                <Link href={`/category/${slugify(category.name)}`} className="flex justify-between items-center text-gray-700 hover:text-orange-600 transition-colors border-b border-gray-200 pb-3 text-base">
                                     <span className="font-semibold uppercase">{category.name}</span>
                                     <span className="text-gray-500">({category.count})</span>
                                 </Link>
@@ -11288,6 +11422,7 @@ function NewsSidebar({ categories }) {
 export default NewsSidebar;
 
 /* ===== src\pages\News\components\RecentPostsSection.jsx ===== */
+/* src/pages/News/components/RecentPostsSection.jsx */
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -11304,7 +11439,7 @@ function RecentPostsSection({ articles }) {
     const otherArticles = articles.slice(1, 5);
 
     return (
-        <section className="px-52 py-16 sm:py-24 border-t bg-gray-50/50">
+        <section className="py-16 sm:py-24 border-t bg-gray-50/50">
             <div className="container mx-auto px-4">
                 <h2 className="text-2xl font-bold text-gray-900 mb-8 pb-2 border-b-2 border-orange-500 inline-block">
                     Bài viết mới
@@ -11383,8 +11518,9 @@ import RecentPostsSection from '@/pages/News/components/RecentPostsSection';
 function NewsDetailPage({ article, recentArticles }) {
     return (
         <main>
-            <div className="bg-white py-16 sm:py-24">
-                <div className="container mx-auto">
+            {/* FIX: Tăng padding top để không bị header che, và thêm padding ngang cho mobile */}
+            <div className="bg-white pt-24 pb-16 sm:pt-32 sm:pb-24">
+                <div className="container mx-auto px-4">
                     <div className="max-w-4xl mx-auto"> 
                         <header className="mb-8">
                             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight">
@@ -11418,6 +11554,314 @@ function NewsDetailPage({ article, recentArticles }) {
 }
 
 export default NewsDetailPage;
+
+/* ===== src\pages\ParentsCorner\ParentsCornerPage.jsx ===== */
+import React from 'react';
+import HeroSection from './components/HeroSection';
+import KeyResourcesSection from './components/KeyResourcesSection';
+import HandbookSection from './components/HandbookSection';
+import DownloadsSection from './components/DownloadsSection';
+import AnnouncementsSection from './components/AnnouncementsSection';
+import TestimonialsSection from './components/TestimonialsSection';
+// FIX: Xóa CommunityCtaSection
+
+function ParentsCornerPage() {
+    return (
+        <main>
+            <HeroSection />
+            <KeyResourcesSection />
+            <HandbookSection />
+            <DownloadsSection />
+            <AnnouncementsSection />
+            <TestimonialsSection />
+        </main>
+    );
+}
+
+export default ParentsCornerPage;
+
+/* ===== src\pages\ParentsCorner\components\AnnouncementsSection.jsx ===== */
+import React from 'react';
+import { CalendarDays, Megaphone, Trophy } from 'lucide-react';
+
+const announcements = [
+    { date: '25/08/2025', title: 'Họp phụ huynh đầu năm học mới', description: 'Trao đổi về lộ trình và mục tiêu học tập năm học 2025-2026.', icon: <Megaphone className="text-blue-500" /> },
+    { date: '15/09/2025', title: 'Phát động cuộc thi "A&U Spelling Bee"', description: 'Cuộc thi đánh vần tiếng Anh thường niên dành cho khối Tiểu học.', icon: <Trophy className="text-yellow-500" /> },
+    { date: '30/09/2025 - 02/10/2025', title: 'Lịch nghỉ lễ Quốc Khánh', description: 'Trung tâm sẽ nghỉ lễ từ ngày 30/09 đến hết ngày 02/10.', icon: <CalendarDays className="text-red-500" /> },
+];
+
+function AnnouncementsSection() {
+    return (
+        <section id="announcements" className="bg-white py-24">
+            <div className="container mx-auto px-4">
+                 <div className="text-center mb-16">
+                    <h2 className="text-base font-semibold leading-7 text-orange-500">Thông Tin Quan Trọng</h2>
+                    <p className="mt-2 text-4xl md:text-5xl font-extrabold tracking-tight text-gray-800">
+                        Lịch Sự Kiện & Thông Báo
+                    </p>
+                </div>
+                 <div className="max-w-4xl mx-auto space-y-8">
+                    {announcements.map((item, index) => (
+                        <div key={index} className="flex items-start gap-4">
+                            <div className="flex-shrink-0 mt-1">
+                                <span className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-100">
+                                    {item.icon}
+                                </span>
+                            </div>
+                            <div>
+                                <p className="font-bold text-gray-900">{item.title}</p>
+                                <p className="text-sm text-gray-500">{item.date}</p>
+                                <p className="mt-1 text-gray-700">{item.description}</p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+}
+
+export default AnnouncementsSection;
+
+/* ===== src\pages\ParentsCorner\components\DownloadsSection.jsx ===== */
+import React from 'react';
+import { Button } from '@/components/ui/button';
+import { Download, FileText, Star } from 'lucide-react';
+import Link from 'next/link';
+
+const downloadItems = [
+    { title: 'Bộ flashcards từ vựng theo chủ đề (Mẫu giáo)', icon: <FileText className="h-5 w-5 text-orange-500" />, href: '#' },
+    { title: 'Bài tập cuối tuần (Tiểu học - Unit 3)', icon: <FileText className="h-5 w-5 text-blue-500" />, href: '#' },
+    { title: '5 truyện tranh song ngữ hay cho bé', icon: <FileText className="h-5 w-5 text-green-500" />, href: '#' },
+    { title: 'Gợi ý các ứng dụng học tiếng Anh miễn phí', icon: <Star className="h-5 w-5 text-purple-500" />, href: '#' },
+];
+
+function DownloadsSection() {
+    return (
+        <section id="downloads" className="bg-gray-50 py-24">
+            <div className="container mx-auto px-4">
+                <div className="text-center mb-16">
+                    <h2 className="text-base font-semibold leading-7 text-orange-500">Tài Nguyên Học Tập</h2>
+                    <p className="mt-2 text-4xl md:text-5xl font-extrabold tracking-tight text-gray-800">
+                        Tài Liệu Tải Về
+                    </p>
+                </div>
+                <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md">
+                    <ul className="space-y-4">
+                        {downloadItems.map((item) => (
+                            <li key={item.title} className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 border rounded-md transition-colors hover:bg-gray-50">
+                                <div className="flex items-center gap-4 mb-3 sm:mb-0">
+                                    {item.icon}
+                                    <span className="font-medium text-gray-800">{item.title}</span>
+                                </div>
+                                <Button asChild>
+                                    <Link href={item.href}>
+                                        <Download className="mr-2 h-4 w-4" /> Tải về
+                                    </Link>
+                                </Button>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+export default DownloadsSection;
+
+/* ===== src\pages\ParentsCorner\components\HandbookSection.jsx ===== */
+import React from 'react';
+import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { ArrowRight } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+
+const handbookArticles = [
+    { title: '5 cách giúp con ôn từ vựng tại nhà hiệu quả', image: '/assets/images/R5AT4016.jpg', excerpt: 'Biến việc học từ vựng thành trò chơi thú vị mà cả gia đình có thể tham gia...' },
+    { title: 'Giải mã phương pháp học qua dự án tại A&U', image: '/assets/images/R5AT4016.jpg', excerpt: 'Tìm hiểu tại sao học qua dự án (Project-based learning) lại giúp con tự tin và chủ động hơn...' },
+    { title: 'Cùng con đọc sách tiếng Anh: Bắt đầu từ đâu?', image: '/assets/images/R5AT3943.jpg', excerpt: 'Những đầu sách và phương pháp tuyệt vời để khơi gợi niềm đam mê đọc sách cho trẻ...' },
+];
+
+function HandbookSection() {
+    return (
+        <section id="handbook" className="bg-white py-24">
+            <div className="container mx-auto px-4">
+                <div className="text-center mb-16">
+                    <h2 className="text-base font-semibold leading-7 text-orange-500">Cẩm Nang Cho Phụ Huynh</h2>
+                    <p className="mt-2 text-4xl md:text-5xl font-extrabold tracking-tight text-gray-800">
+                        Kiến Thức & Kinh Nghiệm
+                    </p>
+                </div>
+                {/* FIX: Thêm wrapper để giới hạn chiều rộng của lưới thẻ */}
+                <div className="max-w-7xl mx-auto">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {handbookArticles.map((article) => (
+                            <Card key={article.title} className="overflow-hidden flex flex-col group p-0">
+                                {/* FIX: Tăng chiều cao ảnh lên h-72 */}
+                                <div className="relative w-full h-72">
+                                    <Image 
+                                        src={article.image} 
+                                        alt={article.title} 
+                                        fill 
+                                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                    />
+                                </div>
+                                <CardContent className="p-6 flex flex-col flex-grow">
+                                    <h3 className="text-xl font-bold text-gray-900 flex-grow">{article.title}</h3>
+                                    <p className="mt-2 text-gray-600 text-sm mb-4">{article.excerpt}</p>
+                                    <Button asChild variant="ghost" className="mt-auto self-start p-0 h-auto text-orange-600 hover:text-orange-700">
+                                        <Link href="#">
+                                            Đọc thêm <ArrowRight className="ml-1 h-4 w-4" />
+                                        </Link>
+                                    </Button>
+                                </CardContent>
+                            </Card>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+export default HandbookSection;
+
+/* ===== src\pages\ParentsCorner\components\HeroSection.jsx ===== */
+import React from 'react';
+import Image from 'next/image';
+
+function HeroSection() {
+    return (
+        <section className="relative w-full h-screen flex items-center justify-center text-white">
+            <Image
+                src="/assets/images/R5AT3907.jpg" // Chọn ảnh phụ huynh và con hoặc giáo viên và phụ huynh
+                alt="Phụ huynh và học viên tại A&U English"
+                fill
+                className="object-cover"
+                quality={90}
+                priority
+            />
+            <div className="absolute inset-0 bg-black/50 z-10" />
+            <div className="relative z-20 text-center px-4">
+                <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight drop-shadow-md">
+                    Đồng hành cùng con chinh phục tiếng Anh
+                </h1>
+                <p className="mt-4 text-lg md:text-xl max-w-3xl mx-auto drop-shadow-md">
+                    A&U tin rằng sự hợp tác chặt chẽ giữa gia đình và nhà trường là chìa khóa cho sự thành công của trẻ.
+                </p>
+            </div>
+        </section>
+    );
+}
+
+export default HeroSection;
+
+/* ===== src\pages\ParentsCorner\components\KeyResourcesSection.jsx ===== */
+import React from 'react';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { BookOpen, Download, CalendarDays, MessageSquare } from 'lucide-react';
+import Link from 'next/link';
+
+const resources = [
+    { title: 'Cẩm nang cho cha mẹ', description: 'Bài viết và lời khuyên hữu ích', icon: <BookOpen className="h-8 w-8 text-orange-500" />, href: '#handbook' },
+    { title: 'Tài liệu học tập', description: 'Tải về flashcards, bài tập', icon: <Download className="h-8 w-8 text-blue-500" />, href: '#downloads' },
+    { title: 'Lịch sự kiện', description: 'Họp phụ huynh, cuộc thi, nghỉ lễ', icon: <CalendarDays className="h-8 w-8 text-green-500" />, href: '#announcements' },
+    { title: 'Liên hệ giáo viên', description: 'Trao đổi trực tiếp về con', icon: <MessageSquare className="h-8 w-8 text-purple-500" />, href: '/contact' },
+];
+
+function KeyResourcesSection() {
+    return (
+        <section className="bg-gray-50 py-20">
+            <div className="container mx-auto px-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {resources.map((resource) => (
+                        <Link key={resource.title} href={resource.href}>
+                            <Card className="text-center h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                                <CardHeader className="items-center">
+                                    {resource.icon}
+                                    <CardTitle className="mt-4">{resource.title}</CardTitle>
+                                </CardHeader>
+                                <CardContent>
+                                    <p className="text-sm text-gray-500">{resource.description}</p>
+                                </CardContent>
+                            </Card>
+                        </Link>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+}
+
+export default KeyResourcesSection;
+
+/* ===== src\pages\ParentsCorner\components\TestimonialsSection.jsx ===== */
+import React from 'react';
+import { Card, CardContent } from '@/components/ui/card';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+
+const testimonials = [
+    { name: 'Chị Mai Anh', relation: 'Phụ huynh bé Minh Khang', quote: 'Từ ngày học ở A&U, con tự tin hơn hẳn. Về nhà lúc nào cũng líu lo hát tiếng Anh. Cảm ơn các thầy cô rất nhiều!', image: '/assets/images/R5AT4219.jpg' },
+    { name: 'Anh Tuấn', relation: 'Phụ huynh bé An Nhiên', quote: 'Điều tôi thích nhất là phương pháp dạy học sáng tạo và sự quan tâm sát sao của giáo viên. Con tôi tiến bộ từng ngày.', image: '/assets/images/R5AT4035.jpg' },
+    { name: 'Chị Lan', relation: 'Phụ huynh bé Gia Bảo', quote: 'Cơ sở vật chất hiện đại, chương trình học bài bản. A&U thực sự là lựa chọn đúng đắn của gia đình tôi.', image: '/assets/images/R5AT3945.jpg' },
+    { name: 'Anh Hùng', relation: 'Phụ huynh bé Bảo Châu', quote: 'Các hoạt động ngoại khóa rất bổ ích, giúp con không chỉ học tiếng Anh mà còn phát triển nhiều kỹ năng mềm khác.', image: '/assets/images/R5AT3967.jpg' },
+];
+
+function TestimonialsSection() {
+    return (
+        <section className="bg-gray-50 py-24">
+            <div className="container mx-auto px-4">
+                <div className="text-center mb-16">
+                    <h2 className="text-base font-semibold leading-7 text-orange-500">Phụ Huynh Nói Về Chúng Tôi</h2>
+                    <p className="mt-2 text-4xl md:text-5xl font-extrabold tracking-tight text-gray-800">
+                        Câu Chuyện Thành Công
+                    </p>
+                </div>
+                
+                {/* FIX: Sử dụng Carousel với nhiều item trên mỗi view */}
+                <Carousel 
+                    opts={{ align: "start", loop: true }} 
+                    className="w-full max-w-7xl mx-auto"
+                >
+                    <CarouselContent className="-ml-4">
+                        {testimonials.map((item, index) => (
+                            // FIX: Các lớp basis responsive để hiển thị 1, 2 hoặc 4 item
+                            <CarouselItem key={index} className="pl-4 basis-full md:basis-1/2 lg:basis-1/4">
+                                <div className="p-1 h-full">
+                                    {/* FIX: Thêm class để đồng bộ chiều cao và căn giữa */}
+                                    <Card className="flex flex-col h-full">
+                                        <CardContent className="p-6 text-center flex flex-col flex-grow items-center">
+                                            <Avatar className="w-20 h-20 mb-4 mx-auto">
+                                                <AvatarImage src={item.image} alt={item.name} />
+                                                <AvatarFallback>{item.name.charAt(0)}</AvatarFallback>
+                                            </Avatar>
+                                            {/* FIX: Thêm flex-grow để đẩy nội dung xuống dưới */}
+                                            <blockquote className="text-base text-gray-700 italic flex-grow my-4">
+                                                "{item.quote}"
+                                            </blockquote>
+                                            <div>
+                                                <p className="font-bold text-gray-900">{item.name}</p>
+                                                <p className="text-sm text-gray-500">{item.relation}</p>
+                                            </div>
+                                        </CardContent>
+                                    </Card>
+                                </div>
+                            </CarouselItem>
+                        ))}
+                    </CarouselContent>
+                    <CarouselPrevious className="hidden sm:flex" />
+                    <CarouselNext className="hidden sm:flex" />
+                </Carousel>
+            </div>
+        </section>
+    );
+}
+
+export default TestimonialsSection;
 
 /* ===== src\pages\Teachers\TeachersPage.jsx ===== */
 import React from 'react';
@@ -12070,7 +12514,7 @@ import Image from 'next/image';
 
 function CourseHero({ title, description, imageSrc }) {
     return (
-        <section className="relative w-full h-[60vh] flex items-center justify-center text-white">
+        <section className="relative w-full h-screen flex items-center justify-center text-white">
             <Image
                 src={imageSrc}
                 alt={title}
@@ -12099,7 +12543,6 @@ import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Users, Clock, Target, BookOpen } from 'lucide-react';
 
-// UPDATE: Chỉnh sửa component InfoPill để căn giữa nội dung
 function InfoPill({ icon, title, content }) {
     return (
         <div className="flex flex-col items-center text-center gap-3">
@@ -12117,13 +12560,12 @@ function CourseOverview({ overview }) {
         <section className="py-24 bg-gray-50">
             <div className="container mx-auto px-4">
                 <Card className="p-8 md:p-12">
-                    {/* UPDATE: Căn giữa tiêu đề */}
                     <CardHeader className="p-0 mb-8 text-center">
                         <CardTitle className="text-3xl font-bold">Tổng Quan Khóa Học</CardTitle>
                     </CardHeader>
                     <CardContent className="p-0">
-                        {/* UPDATE: Thay đổi grid layout để cân đối hơn */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                        {/* FIX: Thay đổi grid layout để mặc định là 2 cột, và 4 cột trên màn hình lớn */}
+                        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
                             <InfoPill icon={<Users className="h-8 w-8" />} title="Đối tượng học viên" content={overview.age} />
                             <InfoPill icon={<Clock className="h-8 w-8" />} title="Thời lượng" content={overview.duration} />
                             <InfoPill icon={<Target className="h-8 w-8" />} title="Mục tiêu đầu ra" content={overview.outcome} />
@@ -12149,19 +12591,20 @@ function RegistrationCta() {
         <section className="bg-white py-20">
             <div className="container mx-auto px-4">
                 <div className="bg-orange-500 rounded-2xl p-8 md:p-12 text-center text-white">
-                     <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+                    <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
                         Sẵn sàng để bắt đầu?
                     </h2>
                     <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-orange-100">
                         Đăng ký ngay để nhận tư vấn chi tiết về lộ trình học và kiểm tra trình độ miễn phí tại A&U English.
                     </p>
-                    <div className="mt-10 flex items-center justify-center gap-4">
+                    {/* FIX: Thêm flex-col và sm:flex-row để xử lý responsive */}
+                    <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
                         <Button asChild size="lg" variant="outline" className="bg-white text-orange-600 hover:bg-orange-50 transition-transform hover:scale-105">
                             <Link href="/contact">
                                 Đăng ký khoá học
                             </Link>
                         </Button>
-                         <Button asChild size="lg" className="bg-white/20 hover:bg-white/30 text-white transition-transform hover:scale-105">
+                        <Button asChild size="lg" className="bg-white/20 hover:bg-white/30 text-white transition-transform hover:scale-105">
                             <Link href="/training">
                                 Khám phá khóa học khác <ArrowRight className="ml-2 h-5 w-5" />
                             </Link>
