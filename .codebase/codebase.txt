@@ -1,8 +1,8 @@
 /* ==========================================================
-   CODEBASE SNAPSHOT - 2025-07-16 10:37:25
+   CODEBASE SNAPSHOT - 2025-07-16 12:52:59
    Project: landing-page-english-education-center
    Files: 253 (101 text, 152 binary)
-   Ignored Items: 23
+   Ignored Items: 24
    ========================================================== */
 
 /* PROJECT STRUCTURE
@@ -14,6 +14,7 @@
    │   ├── logs/
    │   ├── objects/
    │   ├── refs/
+   │   ├── COMMIT_EDITMSG
    │   ├── config
    │   ├── description
    │   ├── HEAD
@@ -194,13 +195,13 @@
    ├── src/
    │   ├── app/
    │   │   ├── (main)/
-   │   │   │   ├── about/
-   │   │   │   │   └── page.js
    │   │   │   ├── contact/
    │   │   │   │   └── page.js
    │   │   │   ├── facilities/
    │   │   │   │   └── page.js
    │   │   │   ├── legal/
+   │   │   │   │   └── page.js
+   │   │   │   ├── news/
    │   │   │   │   └── page.js
    │   │   │   ├── teachers/
    │   │   │   │   └── page.js
@@ -404,8 +405,20 @@ Gemini CLI phải tuân thủ nghiêm ngặt các chỉ dẫn từ yêu cầu c�
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        // Thêm 'i.ytimg.com' vào danh sách domains
-        domains: ['placehold.co', 'i.ytimg.com'],
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'placehold.co',
+                port: '',
+                pathname: '/**',
+            },
+            {
+                protocol: 'https',
+                hostname: 'i.ytimg.com',
+                port: '',
+                pathname: '/**',
+            },
+        ],
     },
 };
 
@@ -4423,17 +4436,6 @@ export default function Home() {
   return (<HomePage />);
 }
 
-/* ===== src\app\(main)\about\page.js ===== */
-// src/app/(main)/about/page.js
-export default function AboutPage() {
-  return (
-    <div className="container mx-auto py-8">
-      <h1 className="text-3xl font-bold text-color-primary">Tầm nhìn - Sứ mệnh</h1>
-      <p className="mt-4 text-color-text">Nội dung về tầm nhìn và sứ mệnh của trung tâm...</p>
-    </div>
-  );
-}
-
 /* ===== src\app\(main)\contact\page.js ===== */
 export default function ContactPage() {
   return <div>Contact Us</div>;
@@ -4447,6 +4449,17 @@ export default function FacilitiesPage() {
 /* ===== src\app\(main)\legal\page.js ===== */
 export default function LegalPage() {
   return <div>Legal</div>;
+}
+
+/* ===== src\app\(main)\news\page.js ===== */
+// src/app/(main)/about/page.js
+export default function AboutPage() {
+  return (
+    <div className="container mx-auto py-8">
+      <h1 className="text-3xl font-bold text-color-primary">Tin tức và sự kiện</h1>
+      <p className="mt-4 text-color-text">Nội dung về tin tức và sự kiện của trung tâm...</p>
+    </div>
+  );
 }
 
 /* ===== src\app\(main)\teachers\page.js ===== */
@@ -4471,44 +4484,40 @@ export default function Training() {
 /* ===== src\app\(main)\training\[slug]\page.js ===== */
 import TrainingDetailPage from "@/pages/Training/TrainingDetailPage";
 import { COURSE_DATA } from "@/lib/course-data";
-import { notFound } from 'next/navigation';
+import { notFound } from "next/navigation";
 
-// Tạo metadata động cho SEO
 export async function generateMetadata({ params }) {
-  // FIX: Truy cập trực tiếp params.slug
-  const course = COURSE_DATA[params.slug];
-  
+  const { slug } = await params;
+  const course = COURSE_DATA[slug];
+
   if (!course) {
     return {
-      title: "Không tìm thấy khóa học"
-    }
+      title: "Không tìm thấy khóa học",
+    };
   }
   return {
     title: `${course.title} - A&U Bắc Giang`,
     description: course.shortDescription,
-  }
+  };
 }
 
-// Tạo các trang tĩnh để có hiệu năng tốt hơn
 export async function generateStaticParams() {
-    return Object.keys(COURSE_DATA).map((slug) => ({
-        slug: slug,
-    }));
+  return Object.keys(COURSE_DATA).map((slug) => ({
+    slug: slug,
+  }));
 }
 
-
-// Chuyển component thành `async function` để sửa lỗi
 export default async function CourseDetailPage({ params }) {
-  // FIX: Truy cập trực tiếp params.slug
-  const course = COURSE_DATA[params.slug];
+  const { slug } = await params;
+  const course = COURSE_DATA[slug];
 
-  // Nếu không tìm thấy khóa học, hiển thị trang 404
   if (!course) {
     notFound();
   }
 
   return <TrainingDetailPage course={course} />;
 }
+
 
 /* ===== src\assets\css\globals.css ===== */
 @import "tailwindcss";
@@ -4639,10 +4648,10 @@ import { usePathname } from 'next/navigation';
 
 const navigation = [
     { label: 'Trang chủ', href: '/' },
-    { label: 'Giới thiệu', href: '/about' },
+    { label: 'Tin tức & Sự kiện', href: '/news' },
     { label: 'Chương trình học', href: '/training' },
     { label: 'Đội ngũ giáo viên', href: '/teachers' },
-    { label: 'Thư viện', href: '/gallery' },
+    { label: 'Góc phụ huynh', href: '/parents-corner' },
     { label: 'Liên hệ', href: '/contact' },
 ];
 
@@ -11544,7 +11553,7 @@ function RegistrationCta() {
                     <div className="mt-10 flex items-center justify-center gap-4">
                         <Button asChild size="lg" variant="outline" className="bg-white text-orange-600 hover:bg-orange-50 transition-transform hover:scale-105">
                             <Link href="/contact">
-                                <Phone className="mr-2 h-5 w-5" /> Đăng ký tư vấn
+                                Đăng ký khoá học
                             </Link>
                         </Button>
                          <Button asChild size="lg" className="bg-white/20 hover:bg-white/30 text-white transition-transform hover:scale-105">
@@ -11822,6 +11831,7 @@ export default SkillBreakdown;
 /*   node_modules/ */
 
 /* Ignored files: */
+/*   .git\COMMIT_EDITMSG */
 /*   .git\HEAD */
 /*   .git\config */
 /*   .git\description */

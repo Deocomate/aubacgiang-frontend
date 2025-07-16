@@ -63,9 +63,6 @@ function MainHeader() {
                                 )}
                             </Link>
                         ))}
-                        <Button className="bg-orange-500 hover:bg-orange-600 text-white font-bold ml-4 transition-transform hover:scale-105">
-                            Đăng ký ngay
-                        </Button>
                     </nav>
 
                     {/* Mobile Navigation Button */}
@@ -90,9 +87,6 @@ function MainHeader() {
                                 {item.label}
                             </Link>
                         ))}
-                        <Button size="lg" className="bg-orange-500 hover:bg-orange-600 text-white font-bold w-48 mt-4">
-                            Đăng ký ngay
-                        </Button>
                     </nav>
                 </div>
             )}
