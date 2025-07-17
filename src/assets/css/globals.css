@@ -1,2 +1,9 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+
+.container {
+    @media screen and (width >= 96rem) {
+        max-width: 80rem;
+        
+    }
+}
