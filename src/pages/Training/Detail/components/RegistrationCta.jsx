@@ -1,3 +1,4 @@
+/* ===== pages\Training\Detail\components\RegistrationCta.jsx ===== */
 "use client";
 
 import React, { useState } from 'react';
@@ -28,7 +29,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from '@/components/ui/textarea';
 
-// CHỈNH SỬA: Schema xác thực dữ liệu cho form, thêm trường địa chỉ
 const formSchema = z.object({
     hoTenPhuHuynh: z.string().min(2, { message: "Vui lòng nhập tên phụ huynh." }),
     soDienThoai: z.string().regex(/^(0[3|5|7|8|9])+([0-9]{8})$/, { message: "Số điện thoại không hợp lệ." }),
@@ -80,7 +80,6 @@ function RegistrationCta({ courseTitle }) {
                         </p>
                         <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
                             <DialogTrigger asChild>
-                                {/* CHỈNH SỬA: Thêm cursor-pointer */}
                                 <Button size="lg" variant="outline" className="bg-white text-orange-600 hover:bg-orange-50 transition-transform hover:scale-105 cursor-pointer">
                                     Đăng ký khoá học
                                 </Button>
@@ -95,7 +94,6 @@ function RegistrationCta({ courseTitle }) {
                 </div>
             </section>
 
-            {/* CHỈNH SỬA: Tăng kích thước dialog và làm đẹp form */}
             <DialogContent className="sm:max-w-2xl bg-white p-8">
                 <DialogHeader>
                     <DialogTitle className="text-2xl font-bold text-gray-900">Đăng ký khóa học: {courseTitle}</DialogTitle>
@@ -177,7 +175,6 @@ function RegistrationCta({ courseTitle }) {
                             />
                         </div>
 
-                        {/* THÊM: Trường địa chỉ */}
                         <FormField
                             control={form.control}
                             name="diaChi"
@@ -205,7 +202,8 @@ function RegistrationCta({ courseTitle }) {
                                 </FormItem>
                             )}
                         />
-                        <Button type="submit" className="w-full bg-orange-500 hover:bg-orange-600 text-base text-white" size="lg" disabled={form.formState.isSubmitting}>
+                        {/* SỬA ĐỔI: Thêm class `cursor-pointer` */}
+                        <Button type="submit" className="w-full bg-orange-500 hover:bg-orange-600 text-base text-white cursor-pointer" size="lg" disabled={form.formState.isSubmitting}>
                             {form.formState.isSubmitting ? "Đang gửi..." : "Gửi Đăng Ký"}
                         </Button>
                     </form>

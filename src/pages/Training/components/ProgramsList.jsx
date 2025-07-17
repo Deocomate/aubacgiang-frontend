@@ -1,3 +1,4 @@
+/* ===== pages\Training\components\ProgramsList.jsx ===== */
 "use client";
 
 import React, { useState } from 'react';
@@ -64,15 +65,18 @@ const PROGRAMS_PER_PAGE = 2;
 function ProgramCard({ program, reverse = false }) {
     return (
         <div id={program.id} className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
-            <div className={cn("relative w-full h-80 md:h-96 rounded-xl overflow-hidden shadow-lg", reverse && "md:order-last")}>
-                <Image
-                    src={program.imageSrc}
-                    alt={program.title}
-                    fill
-                    className="object-cover transition-transform duration-500 hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                />
-            </div>
+            {/* SỬA ĐỔI: Bọc toàn bộ div chứa ảnh bằng thẻ Link và thêm cursor-pointer */}
+            <Link href={`/training/${program.id}`} className={cn(reverse && "md:order-last")}>
+                <div className="relative w-full h-80 md:h-96 rounded-xl overflow-hidden shadow-lg cursor-pointer">
+                    <Image
+                        src={program.imageSrc}
+                        alt={program.title}
+                        fill
+                        className="object-cover transition-transform duration-500 hover:scale-105"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                </div>
+            </Link>
             <div className="prose prose-lg max-w-none">
                 <Badge variant="secondary" className="mb-2 text-base">{program.age}</Badge>
                 <h3 className="flex items-center gap-3 mt-2 text-3xl font-extrabold tracking-tight text-gray-900">
@@ -98,7 +102,7 @@ function ProgramsList() {
     const [visibleCount, setVisibleCount] = useState(PROGRAMS_PER_PAGE);
 
     const displayPrograms = trainingPrograms.slice(0, visibleCount);
-    
+
     const handleLoadMore = () => {
         setVisibleCount(prevCount => prevCount + PROGRAMS_PER_PAGE);
     };
@@ -117,12 +121,11 @@ function ProgramsList() {
                         <ProgramCard key={program.id} program={program} reverse={index % 2 !== 0} />
                     ))}
                 </div>
-                 <div className="text-center mt-20">
+                <div className="text-center mt-20">
                     {visibleCount < trainingPrograms.length && (
                         <Button
                             size="lg"
                             onClick={handleLoadMore}
-                            // --- FIX: Thêm class `cursor-pointer` ---
                             className="bg-orange-500 hover:bg-orange-600 text-white text-lg font-semibold px-10 py-6 cursor-pointer"
                         >
                             Xem thêm
