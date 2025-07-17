@@ -1,3 +1,4 @@
+/* ===== components\ui\form.jsx ===== */
 "use client";
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
@@ -125,7 +126,7 @@ function FormMessage({
     <p
       data-slot="form-message"
       id={formMessageId}
-      className={cn("text-destructive text-sm", className)}
+      className={cn("text-red-500 text-sm", className)}
       {...props}>
       {body}
     </p>

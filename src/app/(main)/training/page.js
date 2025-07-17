@@ -1,3 +1,5 @@
-export default function TrainingPage() {
-  return <div>Training Programs</div>;
+import TrainingPage from "@/pages/Training/TrainingPage";
+
+export default function Training() {
+  return <TrainingPage />;
 }

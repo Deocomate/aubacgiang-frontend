@@ -1,4 +1,0 @@
-# File này giúp bạn bỏ qua (ignore) các file và thư mục không cần thiết khỏi quá trình quét codebase của bạn (Cú pháp tương tự như .gitignore). Bạn có thể bỏ qua code của thư viện, file nhị phân, folder không cần thiết để codebase nhẹ hơn.
-
-# Ví dụ: build/
-# Ví dụ: *.log
