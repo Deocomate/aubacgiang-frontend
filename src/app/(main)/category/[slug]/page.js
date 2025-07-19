@@ -1,3 +1,4 @@
+// src/app/(main)/category/[slug]/page.js
 import { NEWS_ARTICLES, NEWS_CATEGORIES } from "@/lib/news-data";
 import { slugify } from "@/lib/utils";
 import NewsPage from "@/pages/News/NewsPage";
@@ -12,8 +13,7 @@ export async function generateStaticParams() {
 
 // Hàm này tạo metadata động cho mỗi trang danh mục
 export async function generateMetadata({ params }) {
-  // FIX: Thêm await và destructuring params
-  const { slug } = await params;
+  const { slug } = await params; // SỬA: Thêm await
   const category = NEWS_CATEGORIES.find((cat) => slugify(cat.name) === slug);
 
   if (!category) {
@@ -30,8 +30,7 @@ export async function generateMetadata({ params }) {
 
 // Component chính của trang danh mục
 export default async function CategoryPage({ params }) {
-  // FIX: Thêm await và destructuring params
-  const { slug } = await params;
+  const { slug } = await params; // SỬA: Thêm await
 
   const filteredArticles = NEWS_ARTICLES.filter(
     (article) => slugify(article.category) === slug

@@ -1,17 +1,16 @@
+// src/app/(main)/news/[slug]/page.js
 import { notFound } from 'next/navigation';
 import { NEWS_ARTICLES } from '@/lib/news-data';
 import NewsDetailPage from '@/pages/News/Detail/NewsDetailPage';
 
 export async function generateStaticParams() {
-    // Hàm này không thay đổi, vẫn giữ nguyên
     return NEWS_ARTICLES.map(article => ({
         slug: article.slug,
     }));
 }
 
 export async function generateMetadata({ params }) {
-    // FIX: Thêm await và destructuring params
-    const { slug } = await params;
+    const { slug } = await params; // SỬA: Thêm await
     const article = NEWS_ARTICLES.find(p => p.slug === slug);
 
     if (!article) {
@@ -26,8 +25,7 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function NewsDetail({ params }) {
-    // FIX: Thêm await và destructuring params
-    const { slug } = await params;
+    const { slug } = await params; // SỬA: Thêm await
     const article = NEWS_ARTICLES.find(p => p.slug === slug);
 
     if (!article) {

@@ -1,16 +1,17 @@
 // src/pages/Training/components/ProgramsList.jsx
 "use client";
 
-import React, { useState } from 'react';
+// SỬA: Thêm useRef
+import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ArrowRight, Baby, BookOpen, Briefcase, School, Shield, Sun, Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-// THÊM: Import Server Action
 import { loadMoreTrainings } from '@/app/actions/trainingActions';
 
+// ... (phần code iconMap và ProgramCard giữ nguyên không đổi) ...
 const iconMap = {
     'mau-giao': <Baby className="h-6 w-6" />,
     'tieu-hoc': <School className="h-6 w-6" />,
@@ -24,8 +25,6 @@ const getIconForProgram = (slug) => {
     const key = Object.keys(iconMap).find(k => slug.includes(k));
     return key ? iconMap[key] : <BookOpen className="h-6 w-6" />;
 };
-
-const PROGRAMS_PER_PAGE = 2;
 
 function ProgramCard({ program, reverse = false }) {
     return (
@@ -62,12 +61,58 @@ function ProgramCard({ program, reverse = false }) {
         </div>
     );
 }
+// ... (hết phần không đổi) ...
+
+const PROGRAMS_PER_PAGE = 2;
+// THÊM: Định nghĩa một key để lưu vào storage
+const STORAGE_KEY = 'trainingPageState';
 
 function ProgramsList({ initialTrainingData }) {
     const [programs, setPrograms] = useState(initialTrainingData.data || []);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(initialTrainingData.totalPages || 1);
     const [isLoading, setIsLoading] = useState(false);
+    
+    // THÊM: Dùng isInitialMount để chỉ lưu state sau lần render đầu tiên
+    const isInitialMount = useRef(true);
+
+    // THÊM: useEffect để khôi phục state từ sessionStorage khi component mount
+    useEffect(() => {
+        try {
+            const savedState = sessionStorage.getItem(STORAGE_KEY);
+            if (savedState) {
+                const { savedPrograms, savedCurrentPage, savedTotalPages } = JSON.parse(savedState);
+                // Chỉ khôi phục nếu có nhiều hơn dữ liệu ban đầu
+                if (savedPrograms.length > initialTrainingData.data.length) {
+                    setPrograms(savedPrograms);
+                    setCurrentPage(savedCurrentPage);
+                    setTotalPages(savedTotalPages);
+                }
+            }
+        } catch (error) {
+            console.error("Could not restore state from sessionStorage:", error);
+        }
+    }, [initialTrainingData.data.length]); // Chỉ chạy 1 lần khi component mount
+
+    // THÊM: useEffect để lưu state vào sessionStorage khi nó thay đổi
+    useEffect(() => {
+        // Bỏ qua lần mount đầu tiên để không ghi đè state đã khôi phục
+        if (isInitialMount.current) {
+            isInitialMount.current = false;
+            return;
+        }
+        try {
+            const stateToSave = {
+                savedPrograms: programs,
+                savedCurrentPage: currentPage,
+                savedTotalPages: totalPages,
+            };
+            sessionStorage.setItem(STORAGE_KEY, JSON.stringify(stateToSave));
+        } catch (error) {
+            console.error("Could not save state to sessionStorage:", error);
+        }
+    }, [programs, currentPage, totalPages]);
+
 
     const handleLoadMore = async () => {
         if (currentPage >= totalPages) return;
@@ -75,7 +120,6 @@ function ProgramsList({ initialTrainingData }) {
         const nextPage = currentPage + 1;
         
         try {
-            // SỬA: Gọi trực tiếp Server Action thay vì fetch
             const newData = await loadMoreTrainings(nextPage, PROGRAMS_PER_PAGE);
             
             if (newData.error) {
@@ -86,7 +130,6 @@ function ProgramsList({ initialTrainingData }) {
             setCurrentPage(nextPage);
         } catch (error) {
             console.error("Failed to load more programs:", error);
-            // Có thể thêm toast thông báo lỗi ở đây
         } finally {
             setIsLoading(false);
         }

@@ -1,9 +1,11 @@
+// src/app/(main)/training/[slug]/page.js
 import TrainingDetailPage from "@/pages/Training/Detail/TrainingDetailPage";
 import { getTrainingBySlug, getAllTrainings, getOtherTrainings } from "@/services/trainingService";
 import { notFound } from "next/navigation";
 
 export async function generateMetadata({ params }) {
-  const course = await getTrainingBySlug(params.slug);
+  const { slug } = await params; // SỬA LẠI: Thêm `await`
+  const course = await getTrainingBySlug(slug);
 
   if (!course) {
     return {
@@ -27,7 +29,7 @@ export async function generateStaticParams() {
 }
 
 export default async function CourseDetailPage({ params }) {
-  const { slug } = params;
+  const { slug } = await params; // SỬA LẠI: Thêm `await`
   
   const [course, otherCourses] = await Promise.all([
     getTrainingBySlug(slug),

@@ -4,11 +4,11 @@ import { getTeacherBySlug, getOtherTeachers } from '@/services/teacherService';
 import TeacherDetailPage from '@/pages/Teachers/Detail/TeacherDetailPage';
 
 export async function generateMetadata({ params }) {
-    const teacher = await getTeacherBySlug(params.slug);
+    const { slug } = await params; // SỬA LẠI: Thêm `await`
+    const teacher = await getTeacherBySlug(slug);
     if (!teacher) {
         return { title: "Teacher Not Found" };
     }
-    // Simple text extraction from description for SEO
     const plainDescription = teacher.description?.replace(/<[^>]+>/g, '').substring(0, 160) || `Profile of ${teacher.full_name}, an instructor at A&U English.`;
 
     return {
@@ -18,7 +18,7 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function TeacherDetail({ params }) {
-    const { slug } = params;
+    const { slug } = await params; // SỬA LẠI: Thêm `await`
     const teacher = await getTeacherBySlug(slug);
 
     if (!teacher) {
