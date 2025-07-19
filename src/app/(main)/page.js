@@ -1,10 +1,13 @@
 import HomePage from "@/pages/Home/HomePage";
 import { getHomepageData } from "@/services/homeService";
+import { getFeaturedTeachers } from "@/services/teacherService";
 
 export default async function Home() {
-  const homeData = await getHomepageData();
+  const [homeData, featuredTeachers] = await Promise.all([
+    getHomepageData(),
+    getFeaturedTeachers(6)
+  ]);
 
-  // Render a fallback or an error component if data fetching fails
   if (!homeData) {
     return (
       <main className="flex items-center justify-center h-screen">
@@ -13,5 +16,7 @@ export default async function Home() {
     );
   }
 
-  return (<HomePage data={homeData} />);
+  const pageData = { ...homeData, teachers: featuredTeachers };
+
+  return (<HomePage data={pageData} />);
 }

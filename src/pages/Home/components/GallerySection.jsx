@@ -6,7 +6,8 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { Button } from '@/components/ui/button';
 import { Camera } from 'lucide-react';
 
-const INITIAL_IMAGES_COUNT = 7;
+// Change the initial number of images to display
+const INITIAL_IMAGES_COUNT = 9;
 const IMAGES_TO_LOAD_MORE = 5;
 
 function GallerySection({ images }) {
@@ -24,7 +25,8 @@ function GallerySection({ images }) {
     };
 
     const visibleImages = images.slice(0, visibleCount);
-    // Simple logic to create some layout variation
+    
+    // Simple logic to create some layout variation for aesthetic purposes
     const imageObjects = visibleImages.map((src, index) => ({
         src,
         alt: `Gallery image ${index + 1}`,

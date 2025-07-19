@@ -10,8 +10,7 @@ import FaqSection from './components/FaqSection';
 import YoutubeSection from './components/YoutubeSection';
 
 function HomePage({ data }) {
-    // API returns 'fags', we use it as is.
-    const { banners, stats, fags, images, link_youtubes } = data;
+    const { banners, stats, fags, images, link_youtubes, teachers } = data;
 
     return (
         <main>
@@ -20,7 +19,7 @@ function HomePage({ data }) {
             <AboutSection />
             <ProgramsSection />
             <WhyChooseUsSection />
-            <TeachersSection />
+            <TeachersSection teachers={teachers} />
             <GallerySection images={images} />
             <YoutubeSection links={link_youtubes} />
             <FaqSection faqs={fags} />
