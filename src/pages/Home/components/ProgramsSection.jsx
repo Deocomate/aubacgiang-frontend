@@ -1,11 +1,10 @@
-"use client";
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Baby, Rocket, Plane, GraduationCap, Briefcase, ArrowRight } from 'lucide-react';
+import { Baby, Rocket, Plane, GraduationCap, Briefcase, ArrowRight, BookCopy, Target, Lightbulb, PenSquare } from 'lucide-react';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 
@@ -17,9 +16,24 @@ const iconMap = {
     'ielts': <Briefcase className="h-8 w-8 text-red-500" />,
 };
 
+// Danh sách các icon chung để lựa chọn ngẫu nhiên
+const genericIcons = [
+    <GraduationCap className="h-8 w-8 text-purple-500" />,
+    <Briefcase className="h-8 w-8 text-red-500" />,
+    <BookCopy className="h-8 w-8 text-teal-500" />,
+    <Target className="h-8 w-8 text-indigo-500" />,
+    <Lightbulb className="h-8 w-8 text-yellow-500" />,
+    <PenSquare className="h-8 w-8 text-sky-500" />
+];
+
 const getIconForProgram = (slug) => {
     const key = Object.keys(iconMap).find(k => slug.includes(k));
-    return key ? iconMap[key] : <GraduationCap className="h-8 w-8 text-gray-500" />;
+    if (key) {
+        return iconMap[key];
+    }
+    // Nếu không tìm thấy icon cụ thể, chọn ngẫu nhiên một icon từ danh sách chung
+    const randomIndex = Math.floor(Math.random() * genericIcons.length);
+    return genericIcons[randomIndex];
 };
 
 function ProgramsSection({ trainings }) {

@@ -1,4 +1,3 @@
-// src/pages/Training/components/ProgramsList.jsx
 "use client";
 
 import React, { useState, useEffect } from 'react';
@@ -6,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { ArrowRight, Baby, BookOpen, Briefcase, School, Shield, Sun, Loader2 } from 'lucide-react';
+import { ArrowRight, Baby, BookOpen, Briefcase, School, Shield, Sun, Loader2, Target, Lightbulb } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { loadMoreTrainings } from '@/app/actions/trainingActions';
 // SỬA: Import custom hook useTraining
@@ -22,9 +21,25 @@ const iconMap = {
     'business-english': <Briefcase className="h-6 w-6" />,
 };
 
+// Danh sách các icon chung để lựa chọn ngẫu nhiên
+const genericIcons = [
+    <BookOpen className="h-6 w-6" />,
+    <Briefcase className="h-6 w-6" />,
+    <School className="h-6 w-6" />,
+    <Shield className="h-6 w-6" />,
+    <Target className="h-6 w-6" />,
+    <Lightbulb className="h-6 w-6" />
+];
+
+
 const getIconForProgram = (slug) => {
     const key = Object.keys(iconMap).find(k => slug.includes(k));
-    return key ? iconMap[key] : <BookOpen className="h-6 w-6" />;
+    if (key) {
+        return iconMap[key];
+    }
+    // Nếu không tìm thấy icon cụ thể, chọn ngẫu nhiên một icon từ danh sách chung
+    const randomIndex = Math.floor(Math.random() * genericIcons.length);
+    return genericIcons[randomIndex];
 };
 
 function ProgramCard({ program, reverse = false }) {

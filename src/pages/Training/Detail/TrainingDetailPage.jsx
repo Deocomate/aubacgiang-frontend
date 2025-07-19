@@ -1,3 +1,4 @@
+// src/pages/Training/Detail/TrainingDetailPage.jsx
 import React from 'react';
 import CourseHero from './components/CourseHero';
 import CourseOverview from './components/CourseOverview';
@@ -6,7 +7,7 @@ import CourseCurriculum from './components/CourseCurriculum';
 import RegistrationCta from './components/RegistrationCta';
 import OtherTrainingsSection from './components/OtherTrainingsSection';
 
-function TrainingDetailPage({ course, otherCourses }) {
+function TrainingDetailPage({ data: course, otherData: otherCourses }) { // SỬA: Thay đổi tên props
     if (!course) {
         return (
             <div className="container mx-auto py-24 text-center">

@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { Award } from 'lucide-react';
 import OtherTeachersSection from './components/OtherTeachersSection';
 
-function TeacherDetailPage({ teacher, otherTeachers }) {
+function TeacherDetailPage({ data: teacher, otherData: otherTeachers }) { // SỬA: Thay đổi tên props
     return (
         <main>
             <div className="bg-white pt-24 pb-16 sm:pt-32 sm:pb-24">
