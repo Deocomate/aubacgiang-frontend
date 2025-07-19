@@ -1,4 +1,3 @@
-/* ===== pages\Home\components\GallerySection.jsx ===== */
 "use client";
 
 import React, { useState } from 'react';
@@ -7,25 +6,10 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { Button } from '@/components/ui/button';
 import { Camera } from 'lucide-react';
 
-const allGalleryImages = [
-    { src: '/assets/images/R5AT3838.jpg', alt: 'Không khí lớp học sôi nổi', className: 'md:col-span-2 md:row-span-2' },
-    { src: '/assets/images/R5AT4012.jpg', alt: 'Học viên thực hành giao tiếp', className: '' },
-    { src: '/assets/images/R5AT4208.jpg', alt: 'Giáo viên hướng dẫn tận tình', className: '' },
-    { src: '/assets/images/R5AT4153.jpg', alt: 'Hoạt động ngoại khóa vui vẻ', className: 'md:row-span-2' },
-    { src: '/assets/images/R5AT4083.jpg', alt: 'Học viên thuyết trình tự tin', className: 'md:col-span-2' },
-    { src: '/assets/images/R5AT3975.jpg', alt: 'Lớp học với giáo viên bản xứ', className: '' },
-    { src: '/assets/images/R5AT4123.jpg', alt: 'Không gian học tập hiện đại', className: '' },
-    { src: '/assets/images/R5AT4178.jpg', alt: 'Giờ học tại A&U', className: '' },
-    { src: '/assets/images/R5AT3961.jpg', alt: 'Học sinh tiểu học', className: '' },
-    { src: '/assets/images/R5AT3931.jpg', alt: 'Hoạt động nhóm', className: 'md:col-span-2' },
-    { src: '/assets/images/R5AT4255.jpg', alt: 'Luyện thi IELTS', className: 'md:row-span-2' },
-    { src: '/assets/images/R5AT4202.jpg', alt: 'Lớp mẫu giáo', className: 'md:col-span-2' },
-];
+const INITIAL_IMAGES_COUNT = 7;
+const IMAGES_TO_LOAD_MORE = 5;
 
-const INITIAL_IMAGES_COUNT = 7; 
-const IMAGES_TO_LOAD_MORE = 5;  
-
-function GallerySection() {
+function GallerySection({ images }) {
     const [selectedImage, setSelectedImage] = useState(null);
     const [visibleCount, setVisibleCount] = useState(INITIAL_IMAGES_COUNT);
 
@@ -36,10 +20,16 @@ function GallerySection() {
     };
 
     const handleLoadMore = () => {
-        setVisibleCount(prevCount => Math.min(prevCount + IMAGES_TO_LOAD_MORE, allGalleryImages.length));
+        setVisibleCount(prevCount => Math.min(prevCount + IMAGES_TO_LOAD_MORE, images.length));
     };
 
-    const visibleImages = allGalleryImages.slice(0, visibleCount);
+    const visibleImages = images.slice(0, visibleCount);
+    // Simple logic to create some layout variation
+    const imageObjects = visibleImages.map((src, index) => ({
+        src,
+        alt: `Gallery image ${index + 1}`,
+        className: index === 0 ? 'md:col-span-2 md:row-span-2' : ''
+    }));
 
     return (
         <section className="py-24 bg-gray-50">
@@ -56,7 +46,7 @@ function GallerySection() {
 
                 <Dialog onOpenChange={handleOpenChange}>
                     <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[250px] gap-4 md:grid-flow-row-dense">
-                        {visibleImages.map((image, index) => (
+                        {imageObjects.map((image, index) => (
                             <div key={index} className={`group relative cursor-pointer overflow-hidden rounded-xl shadow-lg ${image.className}`}>
                                 <DialogTrigger asChild onClick={() => setSelectedImage(image.src)}>
                                     <div>
@@ -81,7 +71,7 @@ function GallerySection() {
                             <DialogHeader className="sr-only">
                                 <DialogTitle>Xem ảnh chi tiết</DialogTitle>
                                 <DialogDescription>
-                                    Phóng to hình ảnh: {selectedImage}.
+                                    Phóng to hình ảnh.
                                 </DialogDescription>
                             </DialogHeader>
                             <div className="relative w-full h-auto">
@@ -97,11 +87,10 @@ function GallerySection() {
                     )}
                 </Dialog>
 
-                {visibleCount < allGalleryImages.length && (
+                {visibleCount < images.length && (
                     <div className="text-center mt-12">
-                        {/* SỬA ĐỔI: Thay đổi style của nút */}
-                        <Button 
-                            size="lg" 
+                        <Button
+                            size="lg"
                             onClick={handleLoadMore}
                             className="bg-orange-500 hover:bg-orange-600 text-white text-lg font-semibold px-10 py-6 cursor-pointer"
                         >

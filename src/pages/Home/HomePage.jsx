@@ -9,18 +9,21 @@ import GallerySection from './components/GallerySection';
 import FaqSection from './components/FaqSection';
 import YoutubeSection from './components/YoutubeSection';
 
-function HomePage() {
+function HomePage({ data }) {
+    // API returns 'fags', we use it as is.
+    const { banners, stats, fags, images, link_youtubes } = data;
+
     return (
         <main>
-            <HeroSection />
-            <StatsSection />
+            <HeroSection banner={banners} />
+            <StatsSection stats={stats} />
             <AboutSection />
             <ProgramsSection />
             <WhyChooseUsSection />
             <TeachersSection />
-            <GallerySection />
-            <YoutubeSection />
-            <FaqSection />
+            <GallerySection images={images} />
+            <YoutubeSection links={link_youtubes} />
+            <FaqSection faqs={fags} />
         </main>
     );
 }

@@ -1,8 +1,8 @@
 /* ==========================================================
-   CODEBASE SNAPSHOT - 2025-07-15 23:03:18
+   CODEBASE SNAPSHOT - 2025-07-19 11:53:25
    Project: landing-page-english-education-center
-   Text Files Included: 83
-   Items Ignored: 175
+   Files: 270 (118 text, 152 binary)
+   Ignored Items: 26
    ========================================================== */
 
 /* PROJECT STRUCTURE
@@ -17,8 +17,11 @@
    │   ├── COMMIT_EDITMSG
    │   ├── config
    │   ├── description
+   │   ├── FETCH_HEAD
    │   ├── HEAD
-   │   └── index
+   │   ├── index
+   │   ├── ORIG_HEAD
+   │   └── packed-refs
    ├── .next/
    │   ├── build/
    │   ├── cache/
@@ -194,17 +197,26 @@
    ├── src/
    │   ├── app/
    │   │   ├── (main)/
-   │   │   │   ├── about/
-   │   │   │   │   └── page.js
+   │   │   │   ├── category/
+   │   │   │   │   └── [slug]/
+   │   │   │   │       └── page.js
    │   │   │   ├── contact/
    │   │   │   │   └── page.js
    │   │   │   ├── facilities/
    │   │   │   │   └── page.js
    │   │   │   ├── legal/
    │   │   │   │   └── page.js
+   │   │   │   ├── news/
+   │   │   │   │   ├── [slug]/
+   │   │   │   │   │   └── page.js
+   │   │   │   │   └── page.js
+   │   │   │   ├── parents-corner/
+   │   │   │   │   └── page.js
    │   │   │   ├── teachers/
    │   │   │   │   └── page.js
    │   │   │   ├── training/
+   │   │   │   │   ├── [slug]/
+   │   │   │   │   │   └── page.js
    │   │   │   │   └── page.js
    │   │   │   └── page.js
    │   │   ├── favicon.ico
@@ -266,20 +278,63 @@
    │   ├── hooks/
    │   │   └── use-mobile.js
    │   ├── lib/
+   │   │   ├── course-data.js
+   │   │   ├── news-data.js
    │   │   └── utils.js
    │   └── pages/
-   │       └── Home/
+   │       ├── Contact/
+   │       │   └── ContactPage.jsx
+   │       ├── Home/
+   │       │   ├── components/
+   │       │   │   ├── AboutSection.jsx
+   │       │   │   ├── FaqSection.jsx
+   │       │   │   ├── GallerySection.jsx
+   │       │   │   ├── HeroSection.jsx
+   │       │   │   ├── ProgramsSection.jsx
+   │       │   │   ├── StatsSection.jsx
+   │       │   │   ├── TeachersSection.jsx
+   │       │   │   ├── WhyChooseUsSection.jsx
+   │       │   │   └── YoutubeSection.jsx
+   │       │   └── HomePage.jsx
+   │       ├── News/
+   │       │   ├── components/
+   │       │   │   ├── ArticleItem.jsx
+   │       │   │   ├── NewsSidebar.jsx
+   │       │   │   └── RecentPostsSection.jsx
+   │       │   ├── Detail/
+   │       │   │   └── NewsDetailPage.jsx
+   │       │   └── NewsPage.jsx
+   │       ├── ParentsCorner/
+   │       │   ├── components/
+   │       │   │   ├── AnnouncementsSection.jsx
+   │       │   │   ├── DownloadsSection.jsx
+   │       │   │   ├── HandbookSection.jsx
+   │       │   │   ├── HeroSection.jsx
+   │       │   │   ├── KeyResourcesSection.jsx
+   │       │   │   └── TestimonialsSection.jsx
+   │       │   └── ParentsCornerPage.jsx
+   │       ├── Teachers/
+   │       │   ├── components/
+   │       │   │   ├── CtaSection.jsx
+   │       │   │   ├── PhilosophySection.jsx
+   │       │   │   ├── QualityStandardsSection.jsx
+   │       │   │   ├── TeacherProfilesSection.jsx
+   │       │   │   ├── TeachersHero.jsx
+   │       │   │   └── WorkPermitsSection.jsx
+   │       │   └── TeachersPage.jsx
+   │       └── Training/
    │           ├── components/
-   │           │   ├── AboutSection.jsx
-   │           │   ├── FaqSection.jsx
-   │           │   ├── GallerySection.jsx
-   │           │   ├── HeroSection.jsx
-   │           │   ├── ProgramsSection.jsx
-   │           │   ├── StatsSection.jsx
-   │           │   ├── TeachersSection.jsx
-   │           │   ├── WhyChooseUsSection.jsx
-   │           │   └── YoutubeSection.jsx
-   │           └── HomePage.jsx
+   │           │   ├── ProgramsList.jsx
+   │           │   └── TrainingHero.jsx
+   │           ├── Detail/
+   │           │   ├── components/
+   │           │   │   ├── CourseCurriculum.jsx
+   │           │   │   ├── CourseHero.jsx
+   │           │   │   ├── CourseOverview.jsx
+   │           │   │   ├── RegistrationCta.jsx
+   │           │   │   └── SkillBreakdown.jsx
+   │           │   └── TrainingDetailPage.jsx
+   │           └── TrainingPage.jsx
    ├── .gitignore
    ├── components.json
    ├── GEMINI.md
@@ -379,8 +434,20 @@ Gemini CLI phải tuân thủ nghiêm ngặt các chỉ dẫn từ yêu cầu c�
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        // Thêm 'i.ytimg.com' vào danh sách domains
-        domains: ['placehold.co', 'i.ytimg.com'],
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'placehold.co',
+                port: '',
+                pathname: '/**',
+            },
+            {
+                protocol: 'https',
+                hostname: 'i.ytimg.com',
+                port: '',
+                pathname: '/**',
+            },
+        ],
     },
 };
 
@@ -4373,6 +4440,8 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 import "@/assets/css/globals.css";
 import MainFooter from "@/components/layouts/MainFooter";
 import MainHeader from "@/components/layouts/MainHeader";
+// THÊM: Import Toaster
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata = {
   title: "A & U Bắc Giang",
@@ -4386,6 +4455,8 @@ export default function RootLayout({ children }) {
         <MainHeader />
         {children}
         <MainFooter />
+        {/* THÊM: Component Toaster để hiển thị thông báo */}
+        <Toaster richColors position="top-center" />
       </body>
     </html>
   );
@@ -4398,21 +4469,72 @@ export default function Home() {
   return (<HomePage />);
 }
 
-/* ===== src\app\(main)\about\page.js ===== */
-// src/app/(main)/about/page.js
-export default function AboutPage() {
-  return (
-    <div className="container mx-auto py-8">
-      <h1 className="text-3xl font-bold text-color-primary">Tầm nhìn - Sứ mệnh</h1>
-      <p className="mt-4 text-color-text">Nội dung về tầm nhìn và sứ mệnh của trung tâm...</p>
-    </div>
-  );
+/* ===== src\app\(main)\category\[slug]\page.js ===== */
+import { NEWS_ARTICLES, NEWS_CATEGORIES } from "@/lib/news-data";
+import { slugify } from "@/lib/utils";
+import NewsPage from "@/pages/News/NewsPage";
+import { notFound } from "next/navigation";
+
+// Hàm này sẽ tạo các trang tĩnh cho mỗi slug danh mục tại thời điểm build
+export async function generateStaticParams() {
+  return NEWS_CATEGORIES.map((category) => ({
+    slug: slugify(category.name),
+  }));
 }
 
-/* ===== src\app\(main)\contact\page.js ===== */
-export default function ContactPage() {
-  return <div>Contact Us</div>;
+// Hàm này tạo metadata động cho mỗi trang danh mục
+export async function generateMetadata({ params }) {
+  // FIX: Thêm await và destructuring params
+  const { slug } = await params;
+  const category = NEWS_CATEGORIES.find((cat) => slugify(cat.name) === slug);
+
+  if (!category) {
+    return {
+      title: "Không tìm thấy danh mục",
+    };
+  }
+
+  return {
+    title: `${category.name} - Tin tức & Sự kiện | A&U English`,
+    description: `Các bài viết, tin tức và sự kiện thuộc danh mục ${category.name} tại Hệ thống Anh ngữ A&U.`,
+  };
 }
+
+// Component chính của trang danh mục
+export default async function CategoryPage({ params }) {
+  // FIX: Thêm await và destructuring params
+  const { slug } = await params;
+
+  const filteredArticles = NEWS_ARTICLES.filter(
+    (article) => slugify(article.category) === slug
+  );
+
+  // Nếu không có bài viết nào hoặc slug không hợp lệ, có thể hiển thị trang 404
+  if (filteredArticles.length === 0) {
+    const isValidCategory = NEWS_CATEGORIES.some(
+      (cat) => slugify(cat.name) === slug
+    );
+    if (!isValidCategory) {
+      notFound();
+    }
+  }
+
+  // Tái sử dụng component NewsPage và truyền vào danh sách bài viết đã được lọc
+  return <NewsPage articles={filteredArticles} />;
+}
+
+
+/* ===== src\app\(main)\contact\page.js ===== */
+import ContactPage from '@/pages/Contact/ContactPage';
+
+export const metadata = {
+  title: "Liên hệ - Hệ thống Anh ngữ A&U",
+  description: "Thông tin liên hệ các cơ sở của Hệ thống Anh ngữ A&U tại Hà Nội và Thanh Hóa. Tìm địa chỉ, số điện thoại và bản đồ đường đi chi tiết.",
+};
+
+export default function Contact() {
+  return <ContactPage />;
+} 
 
 /* ===== src\app\(main)\facilities\page.js ===== */
 export default function FacilitiesPage() {
@@ -4424,23 +4546,146 @@ export default function LegalPage() {
   return <div>Legal</div>;
 }
 
+/* ===== src\app\(main)\news\page.js ===== */
+// src/app/(main)/news/page.js
+import NewsPage from "@/pages/News/NewsPage";
+
+export const metadata = {
+  title: "Tin tức & Sự kiện - A & U English",
+  description: "Cập nhật những tin tức, sự kiện và thông báo mới nhất từ Hệ thống Anh ngữ A&U.",
+};
+
+export default function News() {
+  return <NewsPage />;
+}
+
+/* ===== src\app\(main)\news\[slug]\page.js ===== */
+import { notFound } from 'next/navigation';
+import { NEWS_ARTICLES } from '@/lib/news-data';
+import NewsDetailPage from '@/pages/News/Detail/NewsDetailPage';
+
+export async function generateStaticParams() {
+    // Hàm này không thay đổi, vẫn giữ nguyên
+    return NEWS_ARTICLES.map(article => ({
+        slug: article.slug,
+    }));
+}
+
+export async function generateMetadata({ params }) {
+    // FIX: Thêm await và destructuring params
+    const { slug } = await params;
+    const article = NEWS_ARTICLES.find(p => p.slug === slug);
+
+    if (!article) {
+        return {
+            title: "Không tìm thấy bài viết"
+        };
+    }
+    return {
+        title: `${article.title} - A&U English`,
+        description: article.excerpt,
+    };
+}
+
+export default async function NewsDetail({ params }) {
+    // FIX: Thêm await và destructuring params
+    const { slug } = await params;
+    const article = NEWS_ARTICLES.find(p => p.slug === slug);
+
+    if (!article) {
+        notFound();
+    }
+    
+    const recentArticles = NEWS_ARTICLES
+        .filter(p => p.slug !== slug)
+        .slice(0, 5);
+
+    return <NewsDetailPage article={article} recentArticles={recentArticles} />;
+}
+
+/* ===== src\app\(main)\parents-corner\page.js ===== */
+import ParentsCornerPage from "@/pages/ParentsCorner/ParentsCornerPage";
+
+export const metadata = {
+  title: "Góc phụ huynh - Đồng hành cùng con | A&U English",
+  description:
+    "Nguồn tài nguyên, cẩm nang và thông tin hữu ích dành cho phụ huynh tại A&U English để cùng con chinh phục tiếng Anh hiệu quả.",
+};
+
+export default function ParentsCorner() {
+  return <ParentsCornerPage />;
+}
+
+
 /* ===== src\app\(main)\teachers\page.js ===== */
-export default function TeachersPage() {
-  return <div>Our Teachers</div>;
+import TeachersPage from "@/pages/Teachers/TeachersPage";
+
+export const metadata = {
+  title: "Đội ngũ giáo viên - A & U Bắc Giang",
+  description: "Gặp gỡ đội ngũ giáo viên bản xứ và Việt Nam tâm huyết, chuyên môn cao tại A&U Bắc Giang. Chúng tôi cam kết chất lượng giảng dạy theo chuẩn quốc tế.",
+};
+
+export default function Teachers() {
+  return <TeachersPage />;
 }
 
 /* ===== src\app\(main)\training\page.js ===== */
-export default function TrainingPage() {
-  return <div>Training Programs</div>;
+import TrainingPage from "@/pages/Training/TrainingPage";
+
+export default function Training() {
+  return <TrainingPage />;
 }
+
+/* ===== src\app\(main)\training\[slug]\page.js ===== */
+import TrainingDetailPage from "@/pages/Training/Detail/TrainingDetailPage";
+import { COURSE_DATA } from "@/lib/course-data";
+import { notFound } from "next/navigation";
+
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const course = COURSE_DATA[slug];
+
+  if (!course) {
+    return {
+      title: "Không tìm thấy khóa học",
+    };
+  }
+  return {
+    title: `${course.title} - A&U Bắc Giang`,
+    description: course.shortDescription,
+  };
+}
+
+export async function generateStaticParams() {
+  return Object.keys(COURSE_DATA).map((slug) => ({
+    slug: slug,
+  }));
+}
+
+export default async function CourseDetailPage({ params }) {
+  const { slug } = await params;
+  const course = COURSE_DATA[slug];
+
+  if (!course) {
+    notFound();
+  }
+
+  return <TrainingDetailPage course={course} />;
+}
+
 
 /* ===== src\assets\css\globals.css ===== */
 @import "tailwindcss";
 @import "tw-animate-css";
 
+.container {
+    @media screen and (width >= 96rem) {
+        max-width: 80rem;
+        
+    }
+}
 
 /* ===== src\components\layouts\MainFooter.jsx ===== */
-// src/components/MainFooter.jsx
 import React from 'react';
 import Link from 'next/link';
 import { MapPin, Phone, Mail, Facebook, Instagram, Youtube } from 'lucide-react';
@@ -4555,7 +4800,6 @@ export default MainFooter;
 
 /* ===== src\components\layouts\MainHeader.jsx ===== */
 "use client"
-// src/components/layouts/MainHeader.jsx
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -4565,10 +4809,10 @@ import { usePathname } from 'next/navigation';
 
 const navigation = [
     { label: 'Trang chủ', href: '/' },
-    { label: 'Giới thiệu', href: '/about' },
-    { label: 'Chương trình học', href: '/programs' },
+    { label: 'Tin tức & Sự kiện', href: '/news' },
+    { label: 'Chương trình học', href: '/training' },
     { label: 'Đội ngũ giáo viên', href: '/teachers' },
-    { label: 'Thư viện', href: '/gallery' },
+    { label: 'Góc phụ huynh', href: '/parents-corner' },
     { label: 'Liên hệ', href: '/contact' },
 ];
 
@@ -4582,34 +4826,32 @@ function MainHeader() {
 
     return (
         <header
-            // **FIX:** Luôn có nền trắng, đổ bóng và hiệu ứng transition mượt mà
             className="fixed top-0 left-0 w-full z-30 bg-white/90 backdrop-blur-sm shadow-md transition-all duration-300"
         >
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                {/* **FIX:** Tăng padding cho header */}
                 <div className="flex items-center justify-between h-20">
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-3">
                         <Image
                             src="/assets/images/logo-au.png"
                             alt="Trung tâm Anh ngữ A&U"
-                            width={50} // **FIX:** Điều chỉnh kích thước logo
+                            width={50}
                             height={50}
                             className="object-contain"
                         />
-                        <span className="font-bold text-2xl text-gray-800">
+                        <span className="font-bold text-2xl xl:text-3xl text-gray-800">
                             A&U English
                         </span>
                     </Link>
 
                     {/* Desktop Navigation */}
-                    <nav className="hidden md:flex items-center gap-1">
+                    <nav className="hidden md:flex items-center gap-1 xl:gap-2">
                         {navigation.map((item) => (
                             <Link
                                 key={item.href}
                                 href={item.href}
-                                // **FIX:** Tăng kích thước chữ, hiệu ứng hover mượt mà
-                                className={`relative px-4 py-2 text-base font-medium transition-colors duration-300 rounded-md ${pathname === item.href
+                                // FIX: Dùng breakpoint 'xl' để phân biệt tablet và desktop
+                                className={`relative px-2 xl:px-4 py-2 text-sm xl:text-base font-medium transition-colors duration-300 rounded-md ${pathname === item.href
                                     ? 'text-orange-500'
                                     : 'text-gray-700 hover:text-orange-500'
                                     }`}
@@ -4620,9 +4862,6 @@ function MainHeader() {
                                 )}
                             </Link>
                         ))}
-                        <Button className="bg-orange-500 hover:bg-orange-600 text-white font-bold ml-4 transition-transform hover:scale-105">
-                            Đăng ký ngay
-                        </Button>
                     </nav>
 
                     {/* Mobile Navigation Button */}
@@ -4647,9 +4886,6 @@ function MainHeader() {
                                 {item.label}
                             </Link>
                         ))}
-                        <Button size="lg" className="bg-orange-500 hover:bg-orange-600 text-white font-bold w-48 mt-4">
-                            Đăng ký ngay
-                        </Button>
                     </nav>
                 </div>
             )}
@@ -6964,6 +7200,7 @@ export {
 
 
 /* ===== src\components\ui\form.jsx ===== */
+/* ===== components\ui\form.jsx ===== */
 "use client";
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
@@ -7091,7 +7328,7 @@ function FormMessage({
     <p
       data-slot="form-message"
       id={formMessageId}
-      className={cn("text-destructive text-sm", className)}
+      className={cn("text-red-500 text-sm", className)}
       {...props}>
       {body}
     </p>
@@ -7108,7 +7345,6 @@ export {
   FormMessage,
   FormField,
 }
-
 
 /* ===== src\components\ui\hover-card.jsx ===== */
 "use client"
@@ -9623,6 +9859,239 @@ export function useIsMobile() {
 }
 
 
+/* ===== src\lib\course-data.js ===== */
+// src/lib/course-data.js
+
+export const COURSE_DATA = {
+  "mau-giao": {
+    slug: "mau-giao",
+    title: "Tiếng Anh Mẫu giáo (Pre-Starters)",
+    imageSrc: "/assets/images/R5AT4202.jpg",
+    shortDescription:
+      "Tạo nền tảng Anh ngữ vững chắc cho bé qua các hoạt động vui nhộn, bài hát và trò chơi tương tác.",
+    overview: {
+      age: "3 - 6 tuổi",
+      duration: "3 tháng / cấp độ",
+      outcome:
+        "Phát âm chuẩn, nhận biết từ vựng cơ bản, tự tin và yêu thích tiếng Anh.",
+      method:
+        "Học qua chơi (Play-based learning), TPR (Total Physical Response).",
+    },
+    skills: {
+      speaking:
+        "Làm quen với cấu trúc cơ bản, từ vựng về chủ đề gần gũi như classroom, family, greetings. Sử dụng TPR để học ngôn ngữ. Học cách nói câu xin lỗi, yêu cầu ai đó làm gì.",
+      listening:
+        "Nghe và nhận biết các từ mới về: At school (notebook, pen, table), Family (members), Playtime (boat, car, bike), My house (lamp, desk), My body (body parts, face parts), Time to eat (bread, chicken), On the farm (cow, duck, goat), The weather (hot, sunny).",
+      reading:
+        "Làm quen với mặt chữ và hình ảnh. Xem và nghe kể truyện sử dụng hình ảnh. Học sinh có thể đọc truyện dài bằng tiếng Anh với những từ đơn giản.",
+      writing:
+        "Tô màu, nối chữ và các hoạt động làm quen với bút. Phát triển kỹ năng tinh và làm quen với việc viết các ký tự cơ bản.",
+    },
+    curriculum: [
+      {
+        module: "Module 1: Welcome to my world!",
+        content:
+          '<ul><li>Chào hỏi và giới thiệu bản thân.</li><li>Học về màu sắc, hình dạng và số đếm.</li><li>Bài hát: "Hello Song", "Colors Song".</li></ul>',
+      },
+      {
+        module: "Module 2: My Family & Friends",
+        content:
+          '<ul><li>Từ vựng về các thành viên trong gia đình.</li><li>Trò chơi đóng vai, thực hành giao tiếp đơn giản.</li><li>Kể chuyện: "Goldilocks and the Three Bears".</li></ul>',
+      },
+      {
+        module: "Module 3: Fun with Animals",
+        content:
+          "<ul><li>Nhận biết các con vật trong nông trại và sở thú.</li><li>Hoạt động thể chất (TPR) theo chủ đề động vật.</li><li>Sản phẩm cuối khóa: Vẽ và giới thiệu con vật yêu thích.</li></ul>",
+      },
+    ],
+  },
+  "tieu-hoc": {
+    slug: "tieu-hoc",
+    title: "Tiếng Anh Tiểu học (Starters)",
+    imageSrc: "/assets/images/R5AT3961.jpg",
+    shortDescription:
+      "Phát triển toàn diện 4 kỹ năng theo chuẩn Cambridge, giúp học sinh tự tin giao tiếp và đạt kết quả cao.",
+    overview: {
+      age: "6 - 11 tuổi",
+      duration: "4 tháng / cấp độ",
+      outcome:
+        "Tương đương trình độ Starters của Cambridge. Giao tiếp cơ bản, đọc hiểu truyện ngắn, viết đoạn văn đơn giản.",
+      method:
+        "Học theo dự án (Project-based learning), Giao tiếp tương tác (Communicative approach).",
+    },
+    skills: {
+      speaking:
+        "Học sinh có thể tương tác một cách đơn giản bằng tiếng Anh với tốc độ nói chậm. Học sinh có thể hỏi và trả lời những câu hỏi đơn giản về các chủ đề rất quen thuộc. Học sinh có thể sử dụng các câu và từ đơn giản để mô tả về nơi họ sống và những người học sinh biết.",
+      listening:
+        "Học sinh có thể nhận ra những từ quen thuộc và những cụm từ rất cơ bản liên quan đến bản thân, gia đình tôi và môi trường xung quanh cụ thể ngay lập tức khi mọi người nói chậm và rõ ràng.",
+      reading:
+        "Học sinh có thể hiểu những cái tên quen thuộc, những từ và những câu rất đơn giản, chẳng hạn như trên các thông báo, áp phích hoặc quảng cáo.",
+      writing:
+        "Học sinh có thể viết một đoạn ngắn gọn, đơn giản, như bưu thiếp. Học sinh có thể điền vào các mẫu đơn với chi tiết cá nhân, ví dụ nhập tên, tuổi, quốc tịch và địa chỉ trên mẫu đăng ký khách sạn.",
+    },
+    curriculum: [
+      {
+        module: "Module 1: All About Me",
+        content:
+          '<ul><li>Giới thiệu chi tiết về bản thân, sở thích, trường lớp.</li><li>Thực hành thì hiện tại đơn.</li><li>Dự án: Tạo một "Portfolio" cá nhân.</li></ul>',
+      },
+      {
+        module: "Module 2: My Town",
+        content:
+          "<ul><li>Từ vựng về các địa điểm trong thành phố.</li><li>Học cách hỏi đường và chỉ đường.</li><li>Dự án: Vẽ bản đồ khu phố và giới thiệu.</li></ul>",
+      },
+      {
+        module: "Module 3: Amazing Animals",
+        content:
+          "<ul><li>So sánh các loài động vật.</li><li>Thực hành cấu trúc so sánh hơn và so sánh nhất.</li><li>Dự án: Làm một bài thuyết trình về động vật hoang dã.</li></ul>",
+      },
+    ],
+  },
+  // Thêm dữ liệu cho các khóa học khác tương tự (Movers, Flyers, IELTS...)
+  thcs: {
+    slug: "thcs",
+    title: "Tiếng Anh THCS (Movers & Flyers)",
+    imageSrc: "/assets/images/R5AT3931.jpg",
+    shortDescription:
+      "Nâng cao ngữ pháp, từ vựng và kỹ năng học thuật, chuẩn bị cho các kỳ thi chuyển cấp và định hướng quốc tế.",
+    overview: {
+      age: "11 - 15 tuổi",
+      duration: "4 tháng / cấp độ",
+      outcome:
+        "Tương đương trình độ Movers/Flyers của Cambridge. Viết luận, thuyết trình, tranh biện về các chủ đề phức tạp hơn.",
+      method:
+        "Tranh biện (Debate), Tư duy phản biện (Critical Thinking), Học thuật (Academic English).",
+    },
+    skills: {
+      speaking:
+        "Học sinh có thể giao tiếp trong các hội thoại đơn giản và trao đổi thông tin trực tiếp về các chủ đề và hoạt động quen thuộc. Học sinh có thể xử lý các cuộc hội thoại rất ngắn, ngay cả khi họ thường không thể hiểu đủ để tự mình tiếp tục cuộc trò chuyện.",
+      listening:
+        "Học sinh có thể đọc được những đoạn văn rất ngắn, đơn giản. Học sinh có thể tìm thông tin cụ thể, có thể dự đoán được trong các tài liệu đơn giản hàng ngày như quảng cáo, bản cáo bạch, menu và thời gian biểu và họ có thể hiểu các bức thư cá nhân ngắn gọn đơn giản.",
+      reading:
+        "Học sinh có thể viết các ghi chú và tin nhắn ngắn gọn, đơn giản liên quan đến các vấn đề trong các lĩnh vực cần thiết ngay lập tức. Học sinh có thể viết một lá thư cá nhân rất đơn giản, ví dụ như cảm ơn ai đó.",
+      writing:
+        "Học sinh có thể viết các cụm từ và từ vựng phổ biến và gần gũi nhất với bản thân (ví dụ: thông tin rất cơ bản về cá nhân và gia đình, mua sắm, việc làm). Học sinh có thể nắm bắt được điểm chính trong các tin nhắn và thông báo báo ngắn gọn, rõ ràng, đơn giản.",
+    },
+    curriculum: [
+      {
+        module: "Module 1: Technology",
+        content:
+          "<ul><li>Thảo luận về ưu và nhược điểm của công nghệ.</li><li>Học thì tương lai và câu điều kiện.</li><li>Dự án: Thiết kế một sản phẩm công nghệ tương lai.</li></ul>",
+      },
+      {
+        module: "Module 2: Environment",
+        content:
+          "<ul><li>Tranh biện về các vấn đề môi trường.</li><li>Học cách viết bài luận nêu quan điểm.</li><li>Dự án: Tổ chức một chiến dịch bảo vệ môi trường nhỏ.</li></ul>",
+      },
+    ],
+  },
+  ielts: {
+    slug: "ielts",
+    title: "Luyện thi IELTS",
+    imageSrc: "/assets/images/R5AT4255.jpg",
+    shortDescription:
+      "Lộ trình cá nhân hóa với chiến thuật làm bài hiệu quả, tối đa hóa điểm số cho cả 4 kỹ năng.",
+    overview: {
+      age: "13 tuổi trở lên",
+      duration: "Linh hoạt theo mục tiêu",
+      outcome:
+        "Đạt band điểm IELTS mục tiêu, sẵn sàng cho du học và sự nghiệp toàn cầu.",
+      method: "Luyện đề chuyên sâu, Phân tích lỗi sai, Mock test định kỳ.",
+    },
+    skills: {
+      speaking:
+        "Học sinh có thể mô tả những trải nghiệm và hoài bão. Học sinh có thể đưa ra lý do và giải thích ngắn gọn cho các ý kiến và kế hoạch. Học sinh có thể thuật lại một câu chuyện hoặc kể lại cốt truyện của một cuốn sách hoặc bộ phim và mô tả phản ứng của mình.",
+      listening:
+        "Học sinh có thể hiểu ý chính của các bài phát biểu, các vấn đề quen thuộc thường gặp trong công việc, trường học, giải trí, v.v. Học sinh có thể hiểu nhiều chương trình phát thanh hoặc truyền hình về các vấn đề, chủ đề hoặc nghệ thuật quan tâm khi đối thoại tương đối chậm và rõ ràng.",
+      reading:
+        "Học sinh có thể hiểu các văn bản bao gồm ngôn ngữ có tần suất sử dụng cao trong ngày hoặc liên quan đến công việc. Học sinh có thể hiểu được mô tả về các sự kiện, cảm xúc và mong muốn trong các bức thư cá nhân.",
+      writing:
+        "Học sinh có thể viết văn bản liên kết đơn giản về các chủ đề quen thuộc hoặc sở thích cá nhân. Học sinh có thể mô tả kinh nghiệm và ấn tượng.",
+    },
+    curriculum: [
+      {
+        module: "Module 1: Foundation (Band 4.0 - 5.0)",
+        content:
+          "<ul><li>Xây dựng nền tảng ngữ pháp và từ vựng cốt lõi.</li><li>Làm quen với cấu trúc đề thi IELTS.</li></ul>",
+      },
+      {
+        module: "Module 2: Developing (Band 5.0 - 6.5)",
+        content:
+          "<ul><li>Phát triển chiến thuật cho từng dạng bài.</li><li>Luyện tập chuyên sâu từng kỹ năng.</li></ul>",
+      },
+      {
+        module: "Module 3: Advanced (Band 6.5+)",
+        content:
+          "<ul><li>Tối ưu hóa điểm số với các kỹ thuật nâng cao.</li><li>Luyện tập với đề thi thật và mock test bấm giờ.</li></ul>",
+      },
+    ],
+  },
+};
+
+
+/* ===== src\lib\news-data.js ===== */
+// src/lib/news-data.js
+
+export const NEWS_ARTICLES = Array.from({ length: 25 }, (_, i) => {
+  const title =
+    i % 2 === 0
+      ? `A&U & PTIT JOB FAIR 2025: Sôi Nổi – Nhiệt Huyết – Truyền Cảm Hứng! #${
+          i + 1
+        }`
+      : `A&U TẠI EPU’S JOB FAIR 2025 – GẮN KẾT CƠ HỘI, MỞ RỘNG TƯƠNG LAI #${
+          i + 1
+        }`;
+  // Tạo slug đơn giản từ title
+  const slug =
+    title
+      .toLowerCase()
+      .replace(/#\d+/g, "") // Bỏ số hiệu
+      .replace(/đ/g, "d") // Thay thế 'đ' thành 'd'
+      .replace(/[^\w\s-]/g, "") // Bỏ ký tự đặc biệt (giữ lại chữ, số, khoảng trắng, gạch nối)
+      .trim()
+      .replace(/\s+/g, "-") + `-${i + 1}`;
+
+  return {
+    id: i + 1,
+    slug: slug,
+    title: title,
+    imageSrc:
+      i % 2 === 0
+        ? "/assets/images/R5AT3894.jpg"
+        : "/assets/images/R5AT4140.jpg",
+    author: "ADMIN",
+    date: `12/05/2025`,
+    comments: 0,
+    category: i % 3 === 0 ? "Sự kiện" : i % 3 === 1 ? "Tin tức" : "Tuyển dụng",
+    excerpt:
+      "Tại gian hàng của A&U, hàng trăm sinh viên đã đến trải nghiệm các hoạt động tư vấn định hướng nghề nghiệp, kiểm tra trình độ tiếng Anh miễn phí và nhận những phần quà hấp dẫn...",
+    content: `
+            <p>Đây là nội dung chi tiết của bài viết. Tại A&U, chúng tôi không chỉ mang đến những giờ học tiếng Anh chất lượng mà còn tạo ra những cơ hội để sinh viên tiếp cận với các nhà tuyển dụng hàng đầu. Ngày hội việc làm là một minh chứng rõ nét cho cam kết đó.</p>
+            <img src="${
+              i % 2 === 0
+                ? "/assets/images/R5AT3894.jpg"
+                : "/assets/images/R5AT4140.jpg"
+            }" alt="Nội dung bài viết" style="width:100%; border-radius: 8px; margin-top: 1rem; margin-bottom: 1rem;" />
+            <p>Sự kiện đã thu hút hàng trăm sinh viên tham gia, không chỉ để tìm kiếm cơ hội việc làm mà còn để lắng nghe những chia sẻ quý báu từ các chuyên gia, định hướng cho con đường sự nghiệp tương lai.</p>
+            <h3>Những hoạt động chính:</h3>
+            <ul>
+                <li>Tư vấn và định hướng nghề nghiệp 1:1.</li>
+                <li>Kiểm tra trình độ tiếng Anh miễn phí.</li>
+                <li>Phỏng vấn thử với các nhà tuyển dụng.</li>
+                <li>Giao lưu và nhận quà từ A&U.</li>
+            </ul>
+            <p>Chúng tôi tự hào là cầu nối vững chắc giữa sinh viên và doanh nghiệp, góp phần vào sự phát triển chung của cộng đồng.</p>
+        `,
+  };
+});
+
+export const NEWS_CATEGORIES = [
+  { name: "Sự kiện", count: 41 },
+  { name: "Tin tức", count: 85 },
+  { name: "Tuyển dụng", count: 30 },
+];
+
+
 /* ===== src\lib\utils.js ===== */
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge"
@@ -9631,6 +10100,151 @@ export function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
 
+export function slugify(text) {
+  if (!text) return "";
+  
+  return text
+    .toString()
+    .toLowerCase()
+    .normalize('NFD') // Chuẩn hóa Unicode
+    .replace(/[\u0300-\u036f]/g, '') // Bỏ các dấu thanh
+    .replace(/đ/g, 'd') // Thay 'đ' thành 'd'
+    .replace(/\s+/g, '-') // Thay khoảng trắng bằng gạch nối
+    .replace(/[^\w-]+/g, '') // Bỏ các ký tự không phải chữ, số, gạch nối
+    .replace(/--+/g, '-') // Thay nhiều gạch nối thành một
+    .replace(/^-+/, '') // Bỏ gạch nối ở đầu
+    .replace(/-+$/, ''); // Bỏ gạch nối ở cuối
+}
+
+/* ===== src\pages\Contact\ContactPage.jsx ===== */
+"use client";
+
+import React from 'react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { MapPin, Phone, Mail, Facebook } from 'lucide-react';
+import Link from 'next/link';
+
+// Data for all locations displayed on the left panel
+const allLocations = [
+    { address: '173 NV2/10 Xuân Thủy, Cầu Giấy, Hà Nội' },
+    { address: 'Liên kề 8 Lô 10 – Ngõ 67, Phùng Khoang, Trung Văn, Nam Từ Liêm, Hà Nội' },
+    { address: 'Số 34 Tăng Thiết Giáp, P. Cổ Nhuế 2, Q. Bắc Từ Liêm, Hà Nội' },
+    { address: 'Số 99, Trung Liệt, Đống Đa, Hà Nội' },
+    { address: 'Số 10 Ngõ 31 Đặng Thùy Trâm, Nghĩa Tân, Cầu Giấy, Hà Nội' },
+    { address: 'Cơ sở Thanh Hóa: Lô C10-11 Khu Thương Mại Dịch Vụ & Chung Cư Đông Hương, P. Đông Hương, TP. Thanh Hoá' },
+];
+
+// Data for the 4 branches with interactive maps
+const hanoiBranches = [
+    {
+        id: 'cs1',
+        name: 'Cơ sở 1',
+        address: '173 NV2/10 Xuân Thủy, Cầu Giấy, Hà Nội',
+    },
+    {
+        id: 'cs2',
+        name: 'Cơ sở 2',
+        address: 'Liên kề 8 Lô 10 – Ngõ 67, Phùng Khoang, Trung Văn, Nam Từ Liêm, Hà Nội',
+    },
+    {
+        id: 'cs3',
+        name: 'Cơ sở 3',
+        address: 'Số 34 Tăng Thiết Giáp, P. Cổ Nhuế 2, Q. Bắc Từ Liêm, Hà Nội',
+    },
+    {
+        id: 'cs4',
+        name: 'Cơ sở 4',
+        address: 'Số 99, Trung Liệt, Đống Đa, Hà Nội',
+    },
+];
+
+const contactDetails = {
+    phone: '0906.875.918',
+    email: 'truyenthong@anu.edu.vn',
+    fanpage: 'fb.com/anulanguage',
+    fanpageUrl: 'https://www.facebook.com/anulanguage'
+};
+
+function ContactPage() {
+    return (
+        <div className="bg-white py-24 sm:py-32 sm:px-16 px-0">
+            <div className="container mx-auto px-4">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+                    {/* Left Column: Contact Information */}
+                    <div className="prose prose-lg max-w-none">
+                        {/* FIX: Title size reduced */}
+                        <h1 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                            Hệ thống Anh ngữ A&U tại Hà Nội
+                        </h1>
+                        <div className="mt-8 space-y-4">
+                            {allLocations.map((location, index) => (
+                                <div key={index} className="flex items-start">
+                                    <MapPin className="h-6 w-6 mr-3 mt-1 flex-shrink-0 text-orange-500" />
+                                    <p className="text-gray-700 not-prose my-0">{location.address}</p>
+                                </div>
+                            ))}
+                        </div>
+                        <div className="mt-10 pt-8 border-t border-gray-200 space-y-4">
+                            <div className="flex items-center">
+                                <Phone className="h-6 w-6 mr-3 flex-shrink-0 text-orange-500" />
+                                <a href={`tel:${contactDetails.phone}`} className="text-gray-700 not-prose no-underline hover:text-orange-600">
+                                    {contactDetails.phone}
+                                </a>
+                            </div>
+                            <div className="flex items-center">
+                                <Mail className="h-6 w-6 mr-3 flex-shrink-0 text-orange-500" />
+                                <a href={`mailto:${contactDetails.email}`} className="text-orange-600 not-prose no-underline hover:text-orange-800">
+                                    {contactDetails.email}
+                                </a>
+                            </div>
+                            <div className="flex items-center">
+                                <Facebook className="h-6 w-6 mr-3 flex-shrink-0 text-orange-500" />
+                                <Link href={contactDetails.fanpageUrl} target="_blank" rel="noopener noreferrer" className="text-orange-600 not-prose no-underline hover:text-orange-800">
+                                    {contactDetails.fanpage}
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Right Column: Interactive Map */}
+                    <div className="rounded-lg shadow-2xl overflow-hidden">
+                        <Tabs defaultValue="cs1" className="w-full flex flex-col h-full">
+                            <TabsList className="grid w-full grid-cols-4 rounded-b-none h-auto p-2 bg-gray-100">
+                                {hanoiBranches.map((branch) => (
+                                    // FIX: Added cursor, padding, and active state styles
+                                    <TabsTrigger
+                                        key={branch.id}
+                                        value={branch.id}
+                                        className="text-xs sm:text-sm cursor-pointer px-3 py-1.5 transition-colors data-[state=active]:bg-orange-500 data-[state=active]:text-white"
+                                    >
+                                        {branch.name}
+                                    </TabsTrigger>
+                                ))}
+                            </TabsList>
+                            <div className="flex-grow">
+                                {hanoiBranches.map((branch) => (
+                                    <TabsContent key={branch.id} value={branch.id} className="w-full h-full m-0">
+                                        <iframe
+                                            src={`https://maps.google.com/maps?q=${encodeURIComponent(branch.address)}&t=&z=17&ie=UTF8&iwloc=&output=embed`}
+                                            width="100%"
+                                            height="100%"
+                                            style={{ border: 0, minHeight: '500px' }}
+                                            allowFullScreen=""
+                                            loading="lazy"
+                                            referrerPolicy="no-referrer-when-downgrade"
+                                        ></iframe>
+                                    </TabsContent>
+                                ))}
+                            </div>
+                        </Tabs>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default ContactPage;
 
 /* ===== src\pages\Home\HomePage.jsx ===== */
 import React from 'react';
@@ -9823,18 +10437,16 @@ function FaqSection() {
 export default FaqSection;
 
 /* ===== src\pages\Home\components\GallerySection.jsx ===== */
-// src/pages/Home/components/GallerySection.jsx
+/* ===== pages\Home\components\GallerySection.jsx ===== */
 "use client";
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Camera } from 'lucide-react';
 
-// Chọn lọc một số ảnh tiêu biểu từ thư mục của bạn
-// Thêm className để xác định kích thước và vị trí trong lưới
-const galleryImages = [
+const allGalleryImages = [
     { src: '/assets/images/R5AT3838.jpg', alt: 'Không khí lớp học sôi nổi', className: 'md:col-span-2 md:row-span-2' },
     { src: '/assets/images/R5AT4012.jpg', alt: 'Học viên thực hành giao tiếp', className: '' },
     { src: '/assets/images/R5AT4208.jpg', alt: 'Giáo viên hướng dẫn tận tình', className: '' },
@@ -9842,18 +10454,31 @@ const galleryImages = [
     { src: '/assets/images/R5AT4083.jpg', alt: 'Học viên thuyết trình tự tin', className: 'md:col-span-2' },
     { src: '/assets/images/R5AT3975.jpg', alt: 'Lớp học với giáo viên bản xứ', className: '' },
     { src: '/assets/images/R5AT4123.jpg', alt: 'Không gian học tập hiện đại', className: '' },
+    { src: '/assets/images/R5AT4178.jpg', alt: 'Giờ học tại A&U', className: '' },
+    { src: '/assets/images/R5AT3961.jpg', alt: 'Học sinh tiểu học', className: '' },
+    { src: '/assets/images/R5AT3931.jpg', alt: 'Hoạt động nhóm', className: 'md:col-span-2' },
+    { src: '/assets/images/R5AT4255.jpg', alt: 'Luyện thi IELTS', className: 'md:row-span-2' },
+    { src: '/assets/images/R5AT4202.jpg', alt: 'Lớp mẫu giáo', className: 'md:col-span-2' },
 ];
 
+const INITIAL_IMAGES_COUNT = 7; 
+const IMAGES_TO_LOAD_MORE = 5;  
 
 function GallerySection() {
     const [selectedImage, setSelectedImage] = useState(null);
+    const [visibleCount, setVisibleCount] = useState(INITIAL_IMAGES_COUNT);
 
-    // Hàm xử lý khi Dialog được đóng
     const handleOpenChange = (isOpen) => {
         if (!isOpen) {
             setSelectedImage(null);
         }
     };
+
+    const handleLoadMore = () => {
+        setVisibleCount(prevCount => Math.min(prevCount + IMAGES_TO_LOAD_MORE, allGalleryImages.length));
+    };
+
+    const visibleImages = allGalleryImages.slice(0, visibleCount);
 
     return (
         <section className="py-24 bg-gray-50">
@@ -9869,8 +10494,8 @@ function GallerySection() {
                 </div>
 
                 <Dialog onOpenChange={handleOpenChange}>
-                    <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[250px] gap-4">
-                        {galleryImages.map((image, index) => (
+                    <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[250px] gap-4 md:grid-flow-row-dense">
+                        {visibleImages.map((image, index) => (
                             <div key={index} className={`group relative cursor-pointer overflow-hidden rounded-xl shadow-lg ${image.className}`}>
                                 <DialogTrigger asChild onClick={() => setSelectedImage(image.src)}>
                                     <div>
@@ -9892,6 +10517,12 @@ function GallerySection() {
 
                     {selectedImage && (
                         <DialogContent className="max-w-5xl p-0 bg-transparent border-0">
+                            <DialogHeader className="sr-only">
+                                <DialogTitle>Xem ảnh chi tiết</DialogTitle>
+                                <DialogDescription>
+                                    Phóng to hình ảnh: {selectedImage}.
+                                </DialogDescription>
+                            </DialogHeader>
                             <div className="relative w-full h-auto">
                                 <Image
                                     src={selectedImage}
@@ -9905,11 +10536,18 @@ function GallerySection() {
                     )}
                 </Dialog>
 
-                <div className="text-center mt-12">
-                    <Button size="lg" variant="outline">
-                        Xem Thêm Ảnh
-                    </Button>
-                </div>
+                {visibleCount < allGalleryImages.length && (
+                    <div className="text-center mt-12">
+                        {/* SỬA ĐỔI: Thay đổi style của nút */}
+                        <Button 
+                            size="lg" 
+                            onClick={handleLoadMore}
+                            className="bg-orange-500 hover:bg-orange-600 text-white text-lg font-semibold px-10 py-6 cursor-pointer"
+                        >
+                            Xem Thêm Ảnh
+                        </Button>
+                    </div>
+                )}
             </div>
         </section>
     );
@@ -10587,212 +11225,1895 @@ function YoutubeSection() {
 
 export default YoutubeSection;
 
+/* ===== src\pages\News\NewsPage.jsx ===== */
+/* src/pages/News/NewsPage.jsx */
+"use client";
+
+import React, { useState } from 'react';
+import { NEWS_ARTICLES, NEWS_CATEGORIES } from '@/lib/news-data';
+import ArticleItem from '@/pages/News/components/ArticleItem';
+import NewsSidebar from '@/pages/News/components/NewsSidebar';
+import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/components/ui/pagination';
+import { cn } from '@/lib/utils';
+
+const ITEMS_PER_PAGE = 10;
+
+// FIX: Nhận 'articles' như một prop, nếu không có thì dùng mặc định là NEWS_ARTICLES
+function NewsPage({ articles: initialArticles }) {
+    const [currentPage, setCurrentPage] = useState(1);
+    
+    // Sử dụng danh sách bài viết được truyền vào hoặc danh sách đầy đủ
+    const articles = initialArticles || NEWS_ARTICLES;
+
+    const totalPages = Math.ceil(articles.length / ITEMS_PER_PAGE);
+
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const endIndex = startIndex + ITEMS_PER_PAGE;
+    const currentArticles = articles.slice(startIndex, endIndex);
+
+    const handlePageChange = (page) => {
+        if (page >= 1 && page <= totalPages) {
+            setCurrentPage(page);
+            window.scrollTo(0, 0);
+        }
+    };
+    
+    const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
+
+    return (
+        <div className="bg-white py-24 sm:py-32">
+            <div className="container mx-auto px-4">
+                <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
+                    <main className="lg:col-span-3">
+                        {/* FIX: Hiển thị thông báo nếu không có bài viết nào */}
+                        {currentArticles.length > 0 ? (
+                            <div className="flex flex-col">
+                                {currentArticles.map(article => (
+                                    <ArticleItem key={article.id} article={article} />
+                                ))}
+                            </div>
+                        ) : (
+                            <div className="text-center py-16">
+                                <h2 className="text-2xl font-bold text-gray-800">Không có bài viết nào.</h2>
+                                <p className="text-gray-600 mt-2">Hiện tại chưa có bài viết nào trong danh mục này. Vui lòng quay lại sau.</p>
+                            </div>
+                        )}
+                        
+                        {/* Chỉ hiển thị pagination nếu có nhiều hơn 1 trang */}
+                        {totalPages > 1 && (
+                            <div className="mt-16">
+                                <Pagination>
+                                    <PaginationContent>
+                                        <PaginationItem>
+                                            <PaginationPrevious 
+                                                href="#" 
+                                                onClick={(e) => { e.preventDefault(); handlePageChange(currentPage - 1); }} 
+                                                className={cn(
+                                                    currentPage === 1 
+                                                    ? 'pointer-events-none opacity-50' 
+                                                    : 'hover:bg-orange-100 hover:text-orange-600'
+                                                )}
+                                            />
+                                        </PaginationItem>
+                                        
+                                        {pageNumbers.map(number => (
+                                            <PaginationItem key={number}>
+                                                <PaginationLink 
+                                                    href="#" 
+                                                    onClick={(e) => { e.preventDefault(); handlePageChange(number); }}
+                                                    isActive={currentPage === number}
+                                                    className={cn(
+                                                        "hover:bg-orange-500 hover:text-white",
+                                                        currentPage === number && "bg-orange-500 text-white border-orange-500 hover:bg-orange-600"
+                                                    )}
+                                                >
+                                                    {number}
+                                                </PaginationLink>
+                                            </PaginationItem>
+                                        ))}
+
+                                        <PaginationItem>
+                                            <PaginationNext 
+                                                href="#" 
+                                                onClick={(e) => { e.preventDefault(); handlePageChange(currentPage + 1); }}
+                                                className={cn(
+                                                    currentPage === totalPages
+                                                    ? 'pointer-events-none opacity-50'
+                                                    : 'hover:bg-orange-100 hover:text-orange-600'
+                                                )}
+                                            />
+                                        </PaginationItem>
+                                    </PaginationContent>
+                                </Pagination>
+                            </div>
+                        )}
+                    </main>
+
+                    <aside className="lg:col-span-1">
+                        <NewsSidebar categories={NEWS_CATEGORIES} />
+                    </aside>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default NewsPage;
+
+/* ===== src\pages\News\components\ArticleItem.jsx ===== */
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Calendar, MessageSquare, User } from 'lucide-react';
+import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { cn } from '@/lib/utils';
+
+// FIX: Tạo một map để định kiểu cho từng danh mục
+const categoryStyles = {
+    'Sự kiện': 'bg-orange-500 text-white',
+    'Tin tức': 'bg-blue-500 text-white',
+    'Tuyển dụng': 'bg-green-500 text-white',
+};
+
+function ArticleItem({ article }) {
+    // FIX: Lấy lớp CSS tương ứng hoặc một lớp mặc định
+    const badgeClass = categoryStyles[article.category] || 'bg-gray-500 text-white';
+
+    return (
+        <article className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start border-b pb-8 mb-8 last:border-b-0 last:mb-0 last:pb-0">
+            <div className="md:col-span-1">
+                {/* FIX: Thêm class 'relative block' để định vị badge */}
+                <Link href={`/news/${article.slug}`} className="relative block group">
+                    <div className="rounded-lg overflow-hidden shadow-md transition-transform duration-300 group-hover:scale-105">
+                        <AspectRatio ratio={16 / 9}>
+                            <Image
+                                src={article.imageSrc}
+                                alt={article.title}
+                                fill
+                                className="object-cover"
+                                sizes="(max-width: 768px) 100vw, 33vw"
+                            />
+                        </AspectRatio>
+                    </div>
+                    {/* FIX: Thêm badge danh mục */}
+                    <div className={cn(
+                        "absolute top-3 left-3 z-10 rounded-md px-2 py-1 text-xs font-semibold uppercase tracking-wider",
+                        badgeClass
+                    )}>
+                        {article.category}
+                    </div>
+                </Link>
+            </div>
+            
+            <div className="md:col-span-2 flex flex-col h-full">
+                <h2 className="text-2xl font-bold leading-tight text-gray-900 hover:text-orange-600 transition-colors">
+                    <Link href={`/news/${article.slug}`}>{article.title}</Link>
+                </h2>
+                <div className="flex items-center flex-wrap gap-x-4 gap-y-2 text-sm text-gray-500 mt-2 mb-3">
+                    <span className="flex items-center gap-1.5">
+                        <User className="w-4 h-4 text-orange-500" />
+                        BY <span className="font-semibold text-orange-500 uppercase">{article.author}</span>
+                    </span>
+                    <span className="flex items-center gap-1.5">
+                        <Calendar className="w-4 h-4" /> {article.date}
+                    </span>
+                    <span className="flex items-center gap-1.5">
+                        <MessageSquare className="w-4 h-4" /> {article.comments}
+                    </span>
+                </div>
+                <p className="text-base text-gray-600 leading-relaxed">
+                    {article.excerpt}
+                </p>
+            </div>
+        </article>
+    );
+}
+
+export default ArticleItem;
+
+/* ===== src\pages\News\components\NewsSidebar.jsx ===== */
+/* src/pages/News/components/NewsSidebar.jsx */
+import React from 'react';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { Search } from 'lucide-react';
+import Link from 'next/link';
+// FIX: Import hàm slugify
+import { slugify } from '@/lib/utils';
+
+function NewsSidebar({ categories }) {
+    return (
+        <aside className="sticky top-28">
+            <div className="space-y-10">
+                <div>
+                    <div className="flex w-full items-center">
+                        <Input type="text" placeholder="Search..." className="h-11 rounded-r-none border-gray-300 focus-visible:ring-0 focus-visible:ring-offset-0" />
+                        <Button type="submit" className="h-11 rounded-l-none bg-orange-500 hover:bg-orange-600">
+                            <Search className="h-5 w-5" />
+                        </Button>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 className="text-lg font-bold text-gray-900 mb-4 pb-2 border-b-2 border-orange-500 inline-block">
+                        Danh mục
+                    </h3>
+                    <ul className="space-y-4">
+                        {categories.map((category) => (
+                            <li key={category.name}>
+                                {/* FIX: Sử dụng slugify để tạo đường dẫn đúng */}
+                                <Link href={`/category/${slugify(category.name)}`} className="flex justify-between items-center text-gray-700 hover:text-orange-600 transition-colors border-b border-gray-200 pb-3 text-base">
+                                    <span className="font-semibold uppercase">{category.name}</span>
+                                    <span className="text-gray-500">({category.count})</span>
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </div>
+        </aside>
+    );
+}
+
+export default NewsSidebar;
+
+/* ===== src\pages\News\components\RecentPostsSection.jsx ===== */
+/* src/pages/News/components/RecentPostsSection.jsx */
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
+import { Calendar, MessageSquare } from 'lucide-react';
+
+function RecentPostsSection({ articles }) {
+    if (!articles || articles.length === 0) {
+        return null;
+    }
+
+    const featuredArticle = articles[0];
+    const otherArticles = articles.slice(1, 5);
+
+    return (
+        <section className="py-16 sm:py-24 border-t bg-gray-50/50">
+            <div className="container mx-auto px-4">
+                <h2 className="text-2xl font-bold text-gray-900 mb-8 pb-2 border-b-2 border-orange-500 inline-block">
+                    Bài viết mới
+                </h2>
+                <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-x-12 gap-y-12">
+                    <div className="flex flex-col">
+                        <Link href={`/news/${featuredArticle.slug}`}>
+                            <div className="relative rounded-lg overflow-hidden shadow-md mb-4 group">
+                                <AspectRatio ratio={16 / 9}>
+                                    <Image
+                                        src={featuredArticle.imageSrc}
+                                        alt={featuredArticle.title}
+                                        fill
+                                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                                        sizes="(max-width: 1024px) 100vw, 50vw"
+                                    />
+                                    <div className="absolute bottom-4 left-4 bg-orange-500 text-white text-xs font-semibold px-3 py-1 rounded-sm">
+                                        {featuredArticle.category.toUpperCase()}
+                                    </div>
+                                </AspectRatio>
+                            </div>
+                        </Link>
+                        <h3 className="text-2xl font-bold leading-tight text-gray-800 hover:text-orange-600 transition-colors">
+                            <Link href={`/news/${featuredArticle.slug}`}>{featuredArticle.title}</Link>
+                        </h3>
+                        <div className="flex items-center gap-4 text-xs text-gray-500 mt-2 mb-3">
+                            <span className="flex items-center gap-1.5">BY <span className="font-medium text-orange-500 uppercase">{featuredArticle.author}</span></span>
+                            <span className="flex items-center gap-1.5"><Calendar className="w-3 h-3" /> {featuredArticle.date}</span>
+                            <span className="flex items-center gap-1.5"><MessageSquare className="w-3 h-3" /> {featuredArticle.comments}</span>
+                        </div>
+                        <p className="text-base text-gray-600 leading-relaxed mb-4 line-clamp-3">
+                            {featuredArticle.excerpt}
+                        </p>
+                        <Button asChild variant="outline" className="mt-auto self-start border-gray-300 hover:bg-orange-500 hover:text-white hover:border-orange-500">
+                            <Link href={`/news/${featuredArticle.slug}`}>READ MORE</Link>
+                        </Button>
+                    </div>
+
+                    <div className="flex flex-col space-y-6">
+                        {otherArticles.map(article => (
+                            <Link key={article.id} href={`/news/${article.slug}`} className="group flex items-center gap-4">
+                                <div className="flex-shrink-0 w-32 h-20 rounded-md overflow-hidden shadow-sm">
+                                    <Image
+                                        src={article.imageSrc}
+                                        alt={article.title}
+                                        width={128}
+                                        height={80}
+                                        className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-110"
+                                    />
+                                </div>
+                                <div className="flex-1">
+                                    <h4 className="text-base font-semibold leading-tight text-gray-800 group-hover:text-orange-600 transition-colors line-clamp-2">
+                                        {article.title}
+                                    </h4>
+                                    <p className="text-xs text-gray-500 mt-1 flex items-center gap-1.5">
+                                        <Calendar className="w-3 h-3" />
+                                        {article.date}
+                                    </p>
+                                </div>
+                            </Link>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+export default RecentPostsSection;
+
+/* ===== src\pages\News\Detail\NewsDetailPage.jsx ===== */
+import React from 'react';
+import { Calendar, MessageSquare, User } from 'lucide-react';
+import RecentPostsSection from '@/pages/News/components/RecentPostsSection';
+
+function NewsDetailPage({ article, recentArticles }) {
+    return (
+        <main>
+            {/* FIX: Tăng padding top để không bị header che, và thêm padding ngang cho mobile */}
+            <div className="bg-white pt-24 pb-16 sm:pt-32 sm:pb-24">
+                <div className="container mx-auto px-4">
+                    <div className="max-w-4xl mx-auto"> 
+                        <header className="mb-8">
+                            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight">
+                                {article.title}
+                            </h1>
+                            <div className="flex items-center flex-wrap gap-x-4 gap-y-2 text-sm text-gray-500 mt-4 border-b pb-4">
+                                <span className="flex items-center gap-1.5">
+                                    <User className="w-4 h-4 text-orange-500" />
+                                    BY <span className="font-semibold text-orange-500 uppercase">{article.author}</span>
+                                </span>
+                                <span className="flex items-center gap-1.5">
+                                    <Calendar className="w-4 h-4" /> {article.date}
+                                </span>
+                                <span className="flex items-center gap-1.5">
+                                    <MessageSquare className="w-4 h-4" /> {article.comments}
+                                </span>
+                            </div>
+                        </header>
+                        
+                        <div
+                            className="prose prose-lg max-w-none prose-img:rounded-xl prose-h3:text-gray-800"
+                            dangerouslySetInnerHTML={{ __html: article.content }}
+                        />
+                    </div>
+                </div>
+            </div>
+            
+            <RecentPostsSection articles={recentArticles} />
+        </main>
+    );
+}
+
+export default NewsDetailPage;
+
+/* ===== src\pages\ParentsCorner\ParentsCornerPage.jsx ===== */
+import React from 'react';
+import HeroSection from './components/HeroSection';
+import KeyResourcesSection from './components/KeyResourcesSection';
+import HandbookSection from './components/HandbookSection';
+import DownloadsSection from './components/DownloadsSection';
+import AnnouncementsSection from './components/AnnouncementsSection';
+import TestimonialsSection from './components/TestimonialsSection';
+// FIX: Xóa CommunityCtaSection
+
+function ParentsCornerPage() {
+    return (
+        <main>
+            <HeroSection />
+            <KeyResourcesSection />
+            <HandbookSection />
+            <DownloadsSection />
+            <AnnouncementsSection />
+            <TestimonialsSection />
+        </main>
+    );
+}
+
+export default ParentsCornerPage;
+
+/* ===== src\pages\ParentsCorner\components\AnnouncementsSection.jsx ===== */
+import React from 'react';
+import { CalendarDays, Megaphone, Trophy } from 'lucide-react';
+
+const announcements = [
+    { date: '25/08/2025', title: 'Họp phụ huynh đầu năm học mới', description: 'Trao đổi về lộ trình và mục tiêu học tập năm học 2025-2026.', icon: <Megaphone className="text-blue-500" /> },
+    { date: '15/09/2025', title: 'Phát động cuộc thi "A&U Spelling Bee"', description: 'Cuộc thi đánh vần tiếng Anh thường niên dành cho khối Tiểu học.', icon: <Trophy className="text-yellow-500" /> },
+    { date: '30/09/2025 - 02/10/2025', title: 'Lịch nghỉ lễ Quốc Khánh', description: 'Trung tâm sẽ nghỉ lễ từ ngày 30/09 đến hết ngày 02/10.', icon: <CalendarDays className="text-red-500" /> },
+];
+
+function AnnouncementsSection() {
+    return (
+        <section id="announcements" className="bg-white py-24">
+            <div className="container mx-auto px-4">
+                 <div className="text-center mb-16">
+                    <h2 className="text-base font-semibold leading-7 text-orange-500">Thông Tin Quan Trọng</h2>
+                    <p className="mt-2 text-4xl md:text-5xl font-extrabold tracking-tight text-gray-800">
+                        Lịch Sự Kiện & Thông Báo
+                    </p>
+                </div>
+                 <div className="max-w-4xl mx-auto space-y-8">
+                    {announcements.map((item, index) => (
+                        <div key={index} className="flex items-start gap-4">
+                            <div className="flex-shrink-0 mt-1">
+                                <span className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-100">
+                                    {item.icon}
+                                </span>
+                            </div>
+                            <div>
+                                <p className="font-bold text-gray-900">{item.title}</p>
+                                <p className="text-sm text-gray-500">{item.date}</p>
+                                <p className="mt-1 text-gray-700">{item.description}</p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+}
+
+export default AnnouncementsSection;
+
+/* ===== src\pages\ParentsCorner\components\DownloadsSection.jsx ===== */
+import React from 'react';
+import { Button } from '@/components/ui/button';
+import { Download, FileText, Star } from 'lucide-react';
+import Link from 'next/link';
+
+const downloadItems = [
+    { title: 'Bộ flashcards từ vựng theo chủ đề (Mẫu giáo)', icon: <FileText className="h-5 w-5 text-orange-500" />, href: '#' },
+    { title: 'Bài tập cuối tuần (Tiểu học - Unit 3)', icon: <FileText className="h-5 w-5 text-blue-500" />, href: '#' },
+    { title: '5 truyện tranh song ngữ hay cho bé', icon: <FileText className="h-5 w-5 text-green-500" />, href: '#' },
+    { title: 'Gợi ý các ứng dụng học tiếng Anh miễn phí', icon: <Star className="h-5 w-5 text-purple-500" />, href: '#' },
+];
+
+function DownloadsSection() {
+    return (
+        <section id="downloads" className="bg-gray-50 py-24">
+            <div className="container mx-auto px-4">
+                <div className="text-center mb-16">
+                    <h2 className="text-base font-semibold leading-7 text-orange-500">Tài Nguyên Học Tập</h2>
+                    <p className="mt-2 text-4xl md:text-5xl font-extrabold tracking-tight text-gray-800">
+                        Tài Liệu Tải Về
+                    </p>
+                </div>
+                <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md">
+                    <ul className="space-y-4">
+                        {downloadItems.map((item) => (
+                            <li key={item.title} className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 border rounded-md transition-colors hover:bg-gray-50">
+                                <div className="flex items-center gap-4 mb-3 sm:mb-0">
+                                    {item.icon}
+                                    <span className="font-medium text-gray-800">{item.title}</span>
+                                </div>
+                                <Button asChild>
+                                    <Link href={item.href}>
+                                        <Download className="mr-2 h-4 w-4" /> Tải về
+                                    </Link>
+                                </Button>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+export default DownloadsSection;
+
+/* ===== src\pages\ParentsCorner\components\HandbookSection.jsx ===== */
+import React from 'react';
+import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { ArrowRight } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+
+const handbookArticles = [
+    { title: '5 cách giúp con ôn từ vựng tại nhà hiệu quả', image: '/assets/images/R5AT4016.jpg', excerpt: 'Biến việc học từ vựng thành trò chơi thú vị mà cả gia đình có thể tham gia...' },
+    { title: 'Giải mã phương pháp học qua dự án tại A&U', image: '/assets/images/R5AT4016.jpg', excerpt: 'Tìm hiểu tại sao học qua dự án (Project-based learning) lại giúp con tự tin và chủ động hơn...' },
+    { title: 'Cùng con đọc sách tiếng Anh: Bắt đầu từ đâu?', image: '/assets/images/R5AT3943.jpg', excerpt: 'Những đầu sách và phương pháp tuyệt vời để khơi gợi niềm đam mê đọc sách cho trẻ...' },
+];
+
+function HandbookSection() {
+    return (
+        <section id="handbook" className="bg-white py-24">
+            <div className="container mx-auto px-4">
+                <div className="text-center mb-16">
+                    <h2 className="text-base font-semibold leading-7 text-orange-500">Cẩm Nang Cho Phụ Huynh</h2>
+                    <p className="mt-2 text-4xl md:text-5xl font-extrabold tracking-tight text-gray-800">
+                        Kiến Thức & Kinh Nghiệm
+                    </p>
+                </div>
+                {/* FIX: Thêm wrapper để giới hạn chiều rộng của lưới thẻ */}
+                <div className="max-w-7xl mx-auto">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {handbookArticles.map((article) => (
+                            <Card key={article.title} className="overflow-hidden flex flex-col group p-0">
+                                {/* FIX: Tăng chiều cao ảnh lên h-72 */}
+                                <div className="relative w-full h-72">
+                                    <Image 
+                                        src={article.image} 
+                                        alt={article.title} 
+                                        fill 
+                                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                    />
+                                </div>
+                                <CardContent className="p-6 flex flex-col flex-grow">
+                                    <h3 className="text-xl font-bold text-gray-900 flex-grow">{article.title}</h3>
+                                    <p className="mt-2 text-gray-600 text-sm mb-4">{article.excerpt}</p>
+                                    <Button asChild variant="ghost" className="mt-auto self-start p-0 h-auto text-orange-600 hover:text-orange-700">
+                                        <Link href="#">
+                                            Đọc thêm <ArrowRight className="ml-1 h-4 w-4" />
+                                        </Link>
+                                    </Button>
+                                </CardContent>
+                            </Card>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+export default HandbookSection;
+
+/* ===== src\pages\ParentsCorner\components\HeroSection.jsx ===== */
+import React from 'react';
+import Image from 'next/image';
+
+function HeroSection() {
+    return (
+        <section className="relative w-full h-screen flex items-center justify-center text-white">
+            <Image
+                src="/assets/images/R5AT3907.jpg" // Chọn ảnh phụ huynh và con hoặc giáo viên và phụ huynh
+                alt="Phụ huynh và học viên tại A&U English"
+                fill
+                className="object-cover"
+                quality={90}
+                priority
+            />
+            <div className="absolute inset-0 bg-black/50 z-10" />
+            <div className="relative z-20 text-center px-4">
+                <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight drop-shadow-md">
+                    Đồng hành cùng con chinh phục tiếng Anh
+                </h1>
+                <p className="mt-4 text-lg md:text-xl max-w-3xl mx-auto drop-shadow-md">
+                    A&U tin rằng sự hợp tác chặt chẽ giữa gia đình và nhà trường là chìa khóa cho sự thành công của trẻ.
+                </p>
+            </div>
+        </section>
+    );
+}
+
+export default HeroSection;
+
+/* ===== src\pages\ParentsCorner\components\KeyResourcesSection.jsx ===== */
+import React from 'react';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { BookOpen, Download, CalendarDays, MessageSquare } from 'lucide-react';
+import Link from 'next/link';
+
+const resources = [
+    { title: 'Cẩm nang cho cha mẹ', description: 'Bài viết và lời khuyên hữu ích', icon: <BookOpen className="h-8 w-8 text-orange-500" />, href: '#handbook' },
+    { title: 'Tài liệu học tập', description: 'Tải về flashcards, bài tập', icon: <Download className="h-8 w-8 text-blue-500" />, href: '#downloads' },
+    { title: 'Lịch sự kiện', description: 'Họp phụ huynh, cuộc thi, nghỉ lễ', icon: <CalendarDays className="h-8 w-8 text-green-500" />, href: '#announcements' },
+    { title: 'Liên hệ giáo viên', description: 'Trao đổi trực tiếp về con', icon: <MessageSquare className="h-8 w-8 text-purple-500" />, href: '/contact' },
+];
+
+function KeyResourcesSection() {
+    return (
+        <section className="bg-gray-50 py-20">
+            <div className="container mx-auto px-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {resources.map((resource) => (
+                        <Link key={resource.title} href={resource.href}>
+                            <Card className="text-center h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                                <CardHeader className="items-center">
+                                    {resource.icon}
+                                    <CardTitle className="mt-4">{resource.title}</CardTitle>
+                                </CardHeader>
+                                <CardContent>
+                                    <p className="text-sm text-gray-500">{resource.description}</p>
+                                </CardContent>
+                            </Card>
+                        </Link>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+}
+
+export default KeyResourcesSection;
+
+/* ===== src\pages\ParentsCorner\components\TestimonialsSection.jsx ===== */
+import React from 'react';
+import { Card, CardContent } from '@/components/ui/card';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+
+const testimonials = [
+    { name: 'Chị Mai Anh', relation: 'Phụ huynh bé Minh Khang', quote: 'Từ ngày học ở A&U, con tự tin hơn hẳn. Về nhà lúc nào cũng líu lo hát tiếng Anh. Cảm ơn các thầy cô rất nhiều!', image: '/assets/images/R5AT4219.jpg' },
+    { name: 'Anh Tuấn', relation: 'Phụ huynh bé An Nhiên', quote: 'Điều tôi thích nhất là phương pháp dạy học sáng tạo và sự quan tâm sát sao của giáo viên. Con tôi tiến bộ từng ngày.', image: '/assets/images/R5AT4035.jpg' },
+    { name: 'Chị Lan', relation: 'Phụ huynh bé Gia Bảo', quote: 'Cơ sở vật chất hiện đại, chương trình học bài bản. A&U thực sự là lựa chọn đúng đắn của gia đình tôi.', image: '/assets/images/R5AT3945.jpg' },
+    { name: 'Anh Hùng', relation: 'Phụ huynh bé Bảo Châu', quote: 'Các hoạt động ngoại khóa rất bổ ích, giúp con không chỉ học tiếng Anh mà còn phát triển nhiều kỹ năng mềm khác.', image: '/assets/images/R5AT3967.jpg' },
+];
+
+function TestimonialsSection() {
+    return (
+        <section className="bg-gray-50 py-24">
+            <div className="container mx-auto px-4">
+                <div className="text-center mb-16">
+                    <h2 className="text-base font-semibold leading-7 text-orange-500">Phụ Huynh Nói Về Chúng Tôi</h2>
+                    <p className="mt-2 text-4xl md:text-5xl font-extrabold tracking-tight text-gray-800">
+                        Câu Chuyện Thành Công
+                    </p>
+                </div>
+                
+                {/* FIX: Sử dụng Carousel với nhiều item trên mỗi view */}
+                <Carousel 
+                    opts={{ align: "start", loop: true }} 
+                    className="w-full max-w-7xl mx-auto"
+                >
+                    <CarouselContent className="-ml-4">
+                        {testimonials.map((item, index) => (
+                            // FIX: Các lớp basis responsive để hiển thị 1, 2 hoặc 4 item
+                            <CarouselItem key={index} className="pl-4 basis-full md:basis-1/2 lg:basis-1/4">
+                                <div className="p-1 h-full">
+                                    {/* FIX: Thêm class để đồng bộ chiều cao và căn giữa */}
+                                    <Card className="flex flex-col h-full">
+                                        <CardContent className="p-6 text-center flex flex-col flex-grow items-center">
+                                            <Avatar className="w-20 h-20 mb-4 mx-auto">
+                                                <AvatarImage src={item.image} alt={item.name} />
+                                                <AvatarFallback>{item.name.charAt(0)}</AvatarFallback>
+                                            </Avatar>
+                                            {/* FIX: Thêm flex-grow để đẩy nội dung xuống dưới */}
+                                            <blockquote className="text-base text-gray-700 italic flex-grow my-4">
+                                                "{item.quote}"
+                                            </blockquote>
+                                            <div>
+                                                <p className="font-bold text-gray-900">{item.name}</p>
+                                                <p className="text-sm text-gray-500">{item.relation}</p>
+                                            </div>
+                                        </CardContent>
+                                    </Card>
+                                </div>
+                            </CarouselItem>
+                        ))}
+                    </CarouselContent>
+                    <CarouselPrevious className="hidden sm:flex" />
+                    <CarouselNext className="hidden sm:flex" />
+                </Carousel>
+            </div>
+        </section>
+    );
+}
+
+export default TestimonialsSection;
+
+/* ===== src\pages\Teachers\TeachersPage.jsx ===== */
+import React from 'react';
+import CtaSection from './components/CtaSection';
+import PhilosophySection from './components/PhilosophySection';
+import QualityStandardsSection from './components/QualityStandardsSection';
+import TeacherProfilesSection from './components/TeacherProfilesSection';
+import TeachersHero from './components/TeachersHero';
+import WorkPermitsSection from './components/WorkPermitsSection';
+
+function TeachersPage() {
+    return (
+        <main>
+            <TeachersHero />
+            <PhilosophySection />
+            <TeacherProfilesSection />
+            <WorkPermitsSection />
+            <QualityStandardsSection />
+            <CtaSection />
+        </main>
+    );
+}
+
+export default TeachersPage;
+
+/* ===== src\pages\Teachers\components\CtaSection.jsx ===== */
+// src/pages/Teachers/components/CtaSection.jsx
+import React from 'react';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import { ArrowRight, Phone } from 'lucide-react';
+
+function CtaSection() {
+    return (
+        <section className="bg-orange-50 py-20">
+            <div className="container mx-auto px-4 text-center">
+                <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                    Sẵn sàng đồng hành cùng đội ngũ chuyên gia của chúng tôi?
+                </h2>
+                <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-gray-600">
+                    Hãy để A&U Bắc Giang chắp cánh cho hành trình chinh phục Anh ngữ của bạn.
+                </p>
+                <div className="mt-10 flex items-center justify-center gap-x-6">
+                    <Button asChild size="lg" className="bg-orange-500 hover:bg-orange-600 text-white transition-transform hover:scale-105">
+                        <Link href="/training">
+                            Khám phá các khóa học <ArrowRight className="ml-2 h-5 w-5" />
+                        </Link>
+                    </Button>
+                    <Button asChild size="lg" variant="outline" className="transition-transform hover:scale-105">
+                        <Link href="/contact">
+                            <Phone className="mr-2 h-5 w-5" /> Liên hệ tư vấn
+                        </Link>
+                    </Button>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+export default CtaSection;
+
+/* ===== src\pages\Teachers\components\PhilosophySection.jsx ===== */
+// src/pages/Teachers/components/PhilosophySection.jsx
+import React from 'react';
+import Image from 'next/image';
+
+function PhilosophySection() {
+    return (
+        <section className="bg-white py-24 sm:py-32">
+            <div className="container mx-auto px-4">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                    <div className="prose prose-lg max-w-none">
+                        <h2 className="text-base font-semibold leading-7 text-orange-500">Triết Lý Giảng Dạy</h2>
+                        <p className="mt-2 text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">
+                            Không Chỉ Dạy, Mà Là Huấn Luyện
+                        </p>
+                        <p className="mt-6 leading-8 text-gray-600">
+                            Một trong những yếu tố quan trọng nhất - quyết định thành công của người học tiếng Anh, chính là đội ngũ Giáo Viên. Tại A&U Bắc Giang, triết lý giảng dạy của đội ngũ Giáo Viên chính là <strong className="text-orange-600">"We don't teach - We coach"</strong>.
+                        </p>
+                        <p className="mt-4 leading-8 text-gray-600">
+                            Với triết lý đó, Giáo Viên của A&U Bắc Giang không phải những người thầy, người cô như bình thường, mà là những huấn luyện viên tâm huyết, những người bạn sẵn sàng đồng hành bất kể ngày đêm trên con đường chinh phục tiếng Anh của học viên.
+                        </p>
+                    </div>
+                    <div className="w-full h-[500px] relative">
+                        <Image
+                            src="/assets/images/R5AT4240.jpg" // Ảnh bà Minh Nguyệt
+                            alt="Giáo viên A&U - người bạn đồng hành"
+                            fill
+                            className="rounded-xl shadow-2xl object-cover transform hover:scale-105 transition-transform duration-500"
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+export default PhilosophySection;
+
+/* ===== src\pages\Teachers\components\QualityStandardsSection.jsx ===== */
+// src/pages/Teachers/components/QualityStandardsSection.jsx
+import React from 'react';
+import { Award, Globe, UserCheck } from 'lucide-react';
+
+const standards = [
+    {
+        icon: <UserCheck className="h-10 w-10 text-white" />,
+        title: "100% Đạt Chuẩn",
+        description: "Tỷ lệ giáo viên tại A&U đạt chuẩn theo yêu cầu của Sở Giáo dục và Đào tạo."
+    },
+    {
+        icon: <Globe className="h-10 w-10 text-white" />,
+        title: "Giáo Viên Bản Xứ",
+        description: "Đến từ 5 quốc gia: Anh, Úc, Mỹ, Canada và Ireland, mang lại môi trường phát âm chuẩn quốc tế."
+    },
+    {
+        icon: <Award className="h-10 w-10 text-white" />,
+        title: "Bằng Cấp & Kinh Nghiệm",
+        description: "Có bằng cử nhân trở lên, chứng chỉ giảng dạy quốc tế (TEFL, TESOL) và kinh nghiệm giảng dạy."
+    }
+];
+
+function QualityStandardsSection() {
+    return (
+        <section className="bg-orange-500 py-20">
+            <div className="container mx-auto px-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    {standards.map((standard, index) => (
+                        <div key={index} className="flex flex-col items-center text-center text-white">
+                            <div className="mb-4">{standard.icon}</div>
+                            <h3 className="text-2xl font-bold">{standard.title}</h3>
+                            <p className="mt-2 text-base text-orange-100 max-w-xs">{standard.description}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+}
+
+export default QualityStandardsSection;
+
+/* ===== src\pages\Teachers\components\TeacherProfilesSection.jsx ===== */
+import React from 'react';
+import Image from 'next/image';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
+import { Facebook, Mail } from 'lucide-react';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+
+const teachersData = [
+    {
+        name: 'Ms. Minh Nguyệt',
+        role: 'Giám đốc Trung tâm',
+        nationality: 'Việt Nam',
+        qualifications: ["Giám đốc Ngoại ngữ A&U", "Cử nhân Sư phạm Tiếng Anh - ĐHQGHN"],
+        imageSrc: '/assets/images/R5AT4240.jpg',
+        fallback: 'MN',
+        email: 'minhnguyetbg78@gmail.com',
+        facebookUrl: '#'
+    },
+    {
+        name: 'Mr. Jai Kattenberg',
+        role: 'Giáo viên Tiếng Anh',
+        nationality: 'Quốc tịch Úc',
+        qualifications: ["Cử nhân Đại học Griffith", "Chứng chỉ 120 hours TEFL"],
+        imageSrc: '/assets/images/R5AT4155.jpg',
+        fallback: 'JK',
+        email: 'info@anu.edu.vn',
+        facebookUrl: '#'
+    },
+    {
+        name: 'Mr. Welsh Ilya',
+        role: 'Giáo viên Tiếng Anh',
+        nationality: 'Quốc tịch Anh',
+        qualifications: ["Thạc sĩ University College London", "Chứng chỉ TEFL"],
+        imageSrc: '/assets/images/R5AT4278.jpg',
+        fallback: 'WI',
+        email: 'info@anu.edu.vn',
+        facebookUrl: '#'
+    },
+    {
+        name: 'Ms. Emily Rose',
+        role: 'Giáo viên Tiếng Anh',
+        nationality: 'Quốc tịch Mỹ',
+        qualifications: ["Cử nhân Ngôn ngữ Anh", "Chứng chỉ TESOL"],
+        imageSrc: '/assets/images/R5AT4012.jpg',
+        fallback: 'ER',
+        email: 'info@anu.edu.vn',
+        facebookUrl: '#'
+    },
+];
+
+function TeacherProfilesSection() {
+    return (
+        <section className="py-24 bg-gray-50">
+            <div className="container mx-auto px-4">
+                <div className="text-center mb-16">
+                    <h2 className="text-base font-semibold leading-7 text-orange-500">Về Chúng Tôi</h2>
+                    <p className="mt-2 text-4xl md:text-5xl font-extrabold tracking-tight text-gray-800">
+                        Gặp Gỡ Đội Ngũ A&U
+                    </p>
+                    <p className="mt-6 text-lg leading-8 text-gray-600 max-w-3xl mx-auto">
+                        Những gương mặt tận tâm, những chuyên gia đầy nhiệt huyết đứng sau sự thành công của học viên.
+                    </p>
+                </div>
+                
+                <Carousel
+                    opts={{
+                        align: "start",
+                        loop: true,
+                    }}
+                    className="w-full max-w-6xl mx-auto"
+                >
+                    <CarouselContent className="-ml-4">
+                        {teachersData.map((teacher, index) => (
+                            <CarouselItem key={index} className="pl-4 basis-full md:basis-1/2 lg:basis-1/3">
+                                <div className="py-2 h-full">
+                                    <Card className="flex flex-col text-center p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-2 h-full">
+                                        <CardHeader className="items-center">
+                                            <Avatar className="w-32 h-32 mb-4 border-4 border-orange-200 mx-auto">
+                                                <AvatarImage src={teacher.imageSrc} alt={`Chân dung ${teacher.name}`} />
+                                                <AvatarFallback className="text-4xl bg-orange-100 text-orange-600">{teacher.fallback}</AvatarFallback>
+                                            </Avatar>
+                                            <CardTitle className="text-2xl font-bold text-gray-900">{teacher.name}</CardTitle>
+                                            <CardDescription className="text-base text-orange-600 font-medium min-h-[3rem] flex items-center justify-center">
+                                                {teacher.role} - {teacher.nationality}
+                                            </CardDescription>
+                                        </CardHeader>
+                                        <CardContent className="flex-grow mt-4 text-left text-gray-600 w-full">
+                                            <ul className="list-disc list-inside space-y-1">
+                                                {teacher.qualifications.map((q, i) => (
+                                                    <li key={i}>{q}</li>
+                                                ))}
+                                            </ul>
+                                        </CardContent>
+                                        <CardFooter className="justify-center gap-4 pt-4 mt-4 border-t border-gray-100">
+                                            <a href={teacher.facebookUrl} target="_blank" rel="noopener noreferrer" aria-label={`Facebook của ${teacher.name}`}>
+                                                <Facebook className="h-5 w-5 text-gray-400 hover:text-orange-500 transition-colors cursor-pointer" />
+                                            </a>
+                                            <a href={`mailto:${teacher.email}`} aria-label={`Gửi email cho ${teacher.name}`}>
+                                                <Mail className="h-5 w-5 text-gray-400 hover:text-orange-500 transition-colors cursor-pointer" />
+                                            </a>
+                                        </CardFooter>
+                                    </Card>
+                                </div>
+                            </CarouselItem>
+                        ))}
+                    </CarouselContent>
+                    <CarouselPrevious className="absolute left-[-50px] top-1/2 -translate-y-1/2 hidden sm:flex" />
+                    <CarouselNext className="absolute right-[-50px] top-1/2 -translate-y-1/2 hidden sm:flex" />
+                </Carousel>
+            </div>
+        </section>
+    );
+}
+
+export default TeacherProfilesSection;
+
+/* ===== src\pages\Teachers\components\TeachersHero.jsx ===== */
+import React from 'react';
+import Image from 'next/image';
+
+function TeachersHero() {
+    return (
+        <section className="relative w-full h-screen flex items-center justify-center text-white">
+            <Image
+                src="/assets/images/R5AT4246.jpg"
+                alt="Đội ngũ giáo viên tại A&U English"
+                fill
+                className="object-cover"
+                quality={90}
+                priority
+            />
+            <div className="absolute inset-0 bg-black/50 z-10" />
+            <div className="relative z-20 text-center px-4">
+                <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight drop-shadow-md">
+                    Đội Ngũ Giáo Viên Tâm Huyết
+                </h1>
+                <p className="mt-4 text-lg md:text-xl max-w-3xl mx-auto drop-shadow-md">
+                    Nền tảng cho sự thành công của mỗi học viên bắt nguồn từ những người thầy cô tận tâm và chuyên môn cao.
+                </p>
+            </div>
+        </section>
+    );
+}
+
+export default TeachersHero;
+
+/* ===== src\pages\Teachers\components\WorkPermitsSection.jsx ===== */
+"use client";
+import React, { useState } from 'react';
+import Image from 'next/image';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from '@/components/ui/dialog';
+import { AspectRatio } from "@/components/ui/aspect-ratio"
+import { Eye } from 'lucide-react';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+
+const permitImages = [
+    '/assets/images/R5AT4155.jpg',
+    '/assets/images/R5AT4278.jpg',
+    '/assets/images/R5AT3978.jpg',
+    '/assets/images/R5AT4181.jpg',
+    '/assets/images/R5AT4083.jpg',
+];
+
+function WorkPermitsSection() {
+    const [selectedImage, setSelectedImage] = useState(null);
+
+    return (
+        <section className="py-24 bg-white">
+            <div className="container mx-auto px-4">
+                <div className="text-center mb-16">
+                    <h2 className="text-base font-semibold leading-7 text-orange-500">Minh Chứng Pháp Lý</h2>
+                    <p className="mt-2 text-4xl md:text-5xl font-extrabold tracking-tight text-gray-800">
+                        Chuyên Nghiệp & Minh Bạch
+                    </p>
+                    <p className="mt-6 text-lg leading-8 text-gray-600 max-w-3xl mx-auto">
+                        A&U English cam kết tuân thủ đầy đủ các quy định pháp luật về lao động, đảm bảo tất cả giáo viên nước ngoài đều có giấy phép hợp lệ.
+                    </p>
+                </div>
+
+                <Dialog onOpenChange={(isOpen) => !isOpen && setSelectedImage(null)}>
+                    <Carousel
+                        opts={{
+                            align: "start",
+                            loop: true,
+                        }}
+                        className="w-full max-w-6xl mx-auto"
+                    >
+                        <CarouselContent className="-ml-4">
+                            {permitImages.map((src, index) => (
+                                <CarouselItem key={index} className="pl-4 basis-full md:basis-1/2 lg:basis-1/3">
+                                    <DialogTrigger asChild onClick={() => setSelectedImage(src)}>
+                                        <div className="group relative cursor-pointer overflow-hidden rounded-xl shadow-lg">
+                                            <AspectRatio ratio={3 / 4}>
+                                                <Image
+                                                    src={src}
+                                                    alt=""
+                                                    fill
+                                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                                    className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
+                                                />
+                                                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                                    <Eye className="h-10 w-10 text-white transform scale-0 group-hover:scale-100 transition-transform duration-300" />
+                                                </div>
+                                            </AspectRatio>
+                                        </div>
+                                    </DialogTrigger>
+                                </CarouselItem>
+                            ))}
+                        </CarouselContent>
+                        <CarouselPrevious className="absolute left-[-50px] top-1/2 -translate-y-1/2 hidden sm:flex" />
+                        <CarouselNext className="absolute right-[-50px] top-1/2 -translate-y-1/2 hidden sm:flex" />
+                    </Carousel>
+
+                    {selectedImage && (
+                        <DialogContent className="max-w-3xl p-0 bg-transparent border-0">
+                            <DialogHeader className="sr-only">
+                                <DialogTitle>Xem chi tiết Giấy phép lao động</DialogTitle>
+                                <DialogDescription>
+                                    Hình ảnh chi tiết giấy phép lao động của giáo viên tại A&U English.
+                                </DialogDescription>
+                            </DialogHeader>
+                            <Image
+                                src={selectedImage}
+                                alt="Xem chi tiết giấy phép lao động"
+                                width={800}
+                                height={1100}
+                                className="object-contain w-full h-full rounded-lg"
+                            />
+                        </DialogContent>
+                    )}
+                </Dialog>
+            </div>
+        </section>
+    );
+}
+
+export default WorkPermitsSection;
+
+/* ===== src\pages\Training\TrainingPage.jsx ===== */
+import React from 'react';
+import TrainingHero from './components/TrainingHero';
+import ProgramsList from './components/ProgramsList';
+
+function TrainingPage() {
+    return (
+        <main>
+            <TrainingHero />
+            <ProgramsList />
+        </main>
+    );
+}
+
+export default TrainingPage;
+
+/* ===== src\pages\Training\components\ProgramsList.jsx ===== */
+/* ===== pages\Training\components\ProgramsList.jsx ===== */
+"use client";
+
+import React, { useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { ArrowRight, Baby, BookOpen, Briefcase, School, Shield, Sun } from 'lucide-react';
+import { cn } from '@/lib/utils';
+
+const trainingPrograms = [
+    {
+        id: 'mau-giao',
+        title: 'Tiếng Anh Mẫu giáo',
+        age: '3 - 6 tuổi',
+        description: 'Bé làm quen với tiếng Anh qua các hoạt động vui nhộn, bài hát và trò chơi, tạo nền tảng phát âm chuẩn và niềm yêu thích ngôn ngữ từ sớm.',
+        imageSrc: '/assets/images/R5AT4202.jpg',
+        icon: <Baby className="h-6 w-6" />,
+    },
+    {
+        id: 'tieu-hoc',
+        title: 'Tiếng Anh Tiểu học',
+        age: '6 - 11 tuổi',
+        description: 'Phát triển toàn diện 4 kỹ năng Nghe - Nói - Đọc - Viết theo chuẩn Cambridge, giúp học sinh tự tin giao tiếp và đạt kết quả cao trong các kỳ thi.',
+        imageSrc: '/assets/images/R5AT3961.jpg',
+        icon: <School className="h-6 w-6" />,
+    },
+    {
+        id: 'thcs',
+        title: 'Tiếng Anh THCS',
+        age: '11 - 13 tuổi',
+        description: 'Nâng cao ngữ pháp, từ vựng và kỹ năng học thuật, chuẩn bị cho các kỳ thi chuyển cấp và định hướng lấy chứng chỉ quốc tế.',
+        imageSrc: '/assets/images/R5AT3931.jpg',
+        icon: <Shield className="h-6 w-6" />,
+    },
+    {
+        id: 'ielts',
+        title: 'Luyện thi IELTS',
+        age: '13 tuổi trở lên',
+        description: 'Lộ trình cá nhân hóa với các chiến thuật làm bài hiệu quả, tập trung vào việc tối đa hóa điểm số cho cả 4 kỹ năng, phục vụ mục tiêu du học và sự nghiệp.',
+        imageSrc: '/assets/images/R5AT4255.jpg',
+        icon: <BookOpen className="h-6 w-6" />,
+    },
+    {
+        id: 'summer-camp',
+        title: 'Trại Hè Tiếng Anh',
+        age: '7 - 14 tuổi',
+        description: 'Trải nghiệm mùa hè sôi động với các hoạt động dự án, dã ngoại và thực hành tiếng Anh trong môi trường thực tế, nâng cao kỹ năng mềm và sự tự tin.',
+        imageSrc: '/assets/images/R5AT3865.jpg',
+        icon: <Sun className="h-6 w-6" />,
+    },
+    {
+        id: 'business-english',
+        title: 'Tiếng Anh Doanh Nghiệp',
+        age: 'Người đi làm',
+        description: 'Chương trình thiết kế riêng cho doanh nghiệp, tập trung vào kỹ năng giao tiếp, thuyết trình, viết email và đàm phán trong môi trường công sở quốc tế.',
+        imageSrc: '/assets/images/R5AT4168.jpg',
+        icon: <Briefcase className="h-6 w-6" />,
+    },
+];
+
+const PROGRAMS_PER_PAGE = 2;
+
+function ProgramCard({ program, reverse = false }) {
+    return (
+        <div id={program.id} className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+            {/* SỬA ĐỔI: Bọc toàn bộ div chứa ảnh bằng thẻ Link và thêm cursor-pointer */}
+            <Link href={`/training/${program.id}`} className={cn(reverse && "md:order-last")}>
+                <div className="relative w-full h-80 md:h-96 rounded-xl overflow-hidden shadow-lg cursor-pointer">
+                    <Image
+                        src={program.imageSrc}
+                        alt={program.title}
+                        fill
+                        className="object-cover transition-transform duration-500 hover:scale-105"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                </div>
+            </Link>
+            <div className="prose prose-lg max-w-none">
+                <Badge variant="secondary" className="mb-2 text-base">{program.age}</Badge>
+                <h3 className="flex items-center gap-3 mt-2 text-3xl font-extrabold tracking-tight text-gray-900">
+                    <span className="text-orange-500">{program.icon}</span>
+                    {program.title}
+                </h3>
+                <p className="mt-4 leading-relaxed text-gray-600">
+                    {program.description}
+                </p>
+                <div className="mt-6">
+                    <Button asChild variant="ghost" className="text-orange-600 hover:text-orange-700 hover:bg-orange-50 text-base">
+                        <Link href={`/training/${program.id}`}>
+                            Xem chi tiết <ArrowRight className="ml-2 h-4 w-4" />
+                        </Link>
+                    </Button>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function ProgramsList() {
+    const [visibleCount, setVisibleCount] = useState(PROGRAMS_PER_PAGE);
+
+    const displayPrograms = trainingPrograms.slice(0, visibleCount);
+
+    const handleLoadMore = () => {
+        setVisibleCount(prevCount => prevCount + PROGRAMS_PER_PAGE);
+    };
+
+    return (
+        <section className="bg-white py-24 sm:py-32">
+            <div className="container mx-auto px-4">
+                <div className="text-center mb-16">
+                    <h2 className="text-base font-semibold leading-7 text-orange-500">Lộ Trình Học Tập</h2>
+                    <p className="mt-2 text-4xl md:text-5xl font-extrabold tracking-tight text-gray-800">
+                        Chương Trình Đào Tạo Nổi Bật
+                    </p>
+                </div>
+                <div className="space-y-24">
+                    {displayPrograms.map((program, index) => (
+                        <ProgramCard key={program.id} program={program} reverse={index % 2 !== 0} />
+                    ))}
+                </div>
+                <div className="text-center mt-20">
+                    {visibleCount < trainingPrograms.length && (
+                        <Button
+                            size="lg"
+                            onClick={handleLoadMore}
+                            className="bg-orange-500 hover:bg-orange-600 text-white text-lg font-semibold px-10 py-6 cursor-pointer"
+                        >
+                            Xem thêm
+                        </Button>
+                    )}
+                </div>
+            </div>
+        </section>
+    );
+}
+
+export default ProgramsList;
+
+/* ===== src\pages\Training\components\TrainingHero.jsx ===== */
+import React from 'react';
+import Image from 'next/image';
+
+function TrainingHero() {
+    return (
+        <section className="relative w-full h-screen flex items-center justify-center text-white">
+            {/* Background Image */}
+            <Image
+                src="/assets/images/R5AT4178.jpg"
+                alt="Chương trình đào tạo tại A&U English"
+                fill
+                className="object-cover"
+                quality={90}
+                priority
+            />
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-black/50 z-10" />
+
+            {/* Content */}
+            <div className="relative z-20 text-center px-4">
+                <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight drop-shadow-md">
+                    Chương Trình Đào Tạo
+                </h1>
+                <p className="mt-4 text-lg md:text-xl max-w-3xl mx-auto drop-shadow-md">
+                    A&U Bắc Giang cung cấp lộ trình học tập toàn diện, được thiết kế chuyên biệt để đáp ứng nhu cầu phát triển Anh ngữ ở mọi lứa tuổi và trình độ.
+                </p>
+            </div>
+        </section>
+    );
+}
+
+export default TrainingHero;
+
+/* ===== src\pages\Training\Detail\TrainingDetailPage.jsx ===== */
+import React from 'react';
+import CourseHero from './components/CourseHero';
+import CourseOverview from './components/CourseOverview';
+import SkillBreakdown from './components/SkillBreakdown';
+import CourseCurriculum from './components/CourseCurriculum';
+import RegistrationCta from './components/RegistrationCta';
+
+function TrainingDetailPage({ course }) {
+    if (!course) {
+        return (
+            <div className="container mx-auto py-24 text-center">
+                <h1 className="text-2xl font-bold">Khóa học không tồn tại.</h1>
+            </div>
+        );
+    }
+    
+    return (
+        <main>
+            <CourseHero 
+                title={course.title} 
+                description={course.shortDescription} 
+                imageSrc={course.imageSrc} 
+            />
+            <CourseOverview overview={course.overview} />
+            <SkillBreakdown skills={course.skills} />
+            <CourseCurriculum curriculum={course.curriculum} />
+            {/* FIX: Truyền `course.title` vào component */}
+            <RegistrationCta courseTitle={course.title} />
+        </main>
+    );
+}
+
+export default TrainingDetailPage;
+
+/* ===== src\pages\Training\Detail\components\CourseCurriculum.jsx ===== */
+import React from 'react';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { CheckCircle } from 'lucide-react';
+
+function CourseCurriculum({ curriculum }) {
+    return (
+        <section className="py-24 bg-gray-50">
+            <div className="container mx-auto px-4">
+                <div className="text-center mb-16">
+                    <h2 className="text-base font-semibold leading-7 text-orange-500">Nội Dung Chương Trình</h2>
+                    <p className="mt-2 text-4xl font-extrabold tracking-tight text-gray-800">
+                        Lộ Trình Học Tập Chi Tiết
+                    </p>
+                </div>
+                <div className="max-w-4xl mx-auto">
+                    {/* UPDATE: Thay đổi type="single" thành type="multiple" */}
+                    <Accordion type="multiple" className="w-full">
+                        {curriculum.map((item, index) => (
+                            <AccordionItem value={`item-${index}`} key={index}>
+                                <AccordionTrigger className="text-left text-xl font-medium hover:no-underline">
+                                    <div className="flex items-center gap-3">
+                                        <CheckCircle className="h-6 w-6 text-orange-500" />
+                                        {item.module}
+                                    </div>
+                                </AccordionTrigger>
+                                <AccordionContent className="prose prose-base max-w-none text-gray-700 pl-12">
+                                    {/* Dùng dangerouslySetInnerHTML để dễ tích hợp CKEditor sau này */}
+                                    {/* Cảnh báo: Cần đảm bảo nội dung HTML từ CMS là an toàn. */}
+                                    <div dangerouslySetInnerHTML={{ __html: item.content }} />
+                                </AccordionContent>
+                            </AccordionItem>
+                        ))}
+                    </Accordion>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+export default CourseCurriculum;
+
+/* ===== src\pages\Training\Detail\components\CourseHero.jsx ===== */
+import React from 'react';
+import Image from 'next/image';
+
+function CourseHero({ title, description, imageSrc }) {
+    return (
+        <section className="relative w-full h-screen flex items-center justify-center text-white">
+            <Image
+                src={imageSrc}
+                alt={title}
+                fill
+                className="object-cover"
+                quality={90}
+                priority
+            />
+            <div className="absolute inset-0 bg-black/60 z-10" />
+            <div className="relative z-20 text-center px-4">
+                <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight drop-shadow-md">
+                    {title}
+                </h1>
+                <p className="mt-4 text-lg md:text-xl max-w-3xl mx-auto drop-shadow-md">
+                    {description}
+                </p>
+            </div>
+        </section>
+    );
+}
+
+export default CourseHero;
+
+/* ===== src\pages\Training\Detail\components\CourseOverview.jsx ===== */
+import React from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Users, Clock, Target, BookOpen } from 'lucide-react';
+
+function InfoPill({ icon, title, content }) {
+    return (
+        <div className="flex flex-col items-center text-center gap-3">
+            <div className="flex-shrink-0 text-orange-500">{icon}</div>
+            <div>
+                <h4 className="font-semibold text-gray-800">{title}</h4>
+                <p className="text-gray-600 mt-1">{content}</p>
+            </div>
+        </div>
+    );
+}
+
+function CourseOverview({ overview }) {
+    return (
+        <section className="py-24 bg-gray-50">
+            <div className="container mx-auto px-4">
+                <Card className="p-8 md:p-12">
+                    <CardHeader className="p-0 mb-8 text-center">
+                        <CardTitle className="text-3xl font-bold">Tổng Quan Khóa Học</CardTitle>
+                    </CardHeader>
+                    <CardContent className="p-0">
+                        {/* FIX: Thay đổi grid layout để mặc định là 2 cột, và 4 cột trên màn hình lớn */}
+                        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+                            <InfoPill icon={<Users className="h-8 w-8" />} title="Đối tượng học viên" content={overview.age} />
+                            <InfoPill icon={<Clock className="h-8 w-8" />} title="Thời lượng" content={overview.duration} />
+                            <InfoPill icon={<Target className="h-8 w-8" />} title="Mục tiêu đầu ra" content={overview.outcome} />
+                            <InfoPill icon={<BookOpen className="h-8 w-8" />} title="Phương pháp giảng dạy" content={overview.method} />
+                        </div>
+                    </CardContent>
+                </Card>
+            </div>
+        </section>
+    );
+}
+
+export default CourseOverview;
+
+/* ===== src\pages\Training\Detail\components\RegistrationCta.jsx ===== */
+/* ===== pages\Training\Detail\components\RegistrationCta.jsx ===== */
+"use client";
+
+import React, { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { ArrowRight } from 'lucide-react';
+import Link from 'next/link';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
+import { toast } from "sonner";
+
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog";
+import {
+    Form,
+    FormControl,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Textarea } from '@/components/ui/textarea';
+
+const formSchema = z.object({
+    hoTenPhuHuynh: z.string().min(2, { message: "Vui lòng nhập tên phụ huynh." }),
+    soDienThoai: z.string().regex(/^(0[3|5|7|8|9])+([0-9]{8})$/, { message: "Số điện thoại không hợp lệ." }),
+    email: z.string().email({ message: "Địa chỉ email không hợp lệ." }),
+    hoTenHocVien: z.string().min(2, { message: "Vui lòng nhập tên học viên." }),
+    ngaySinhHocVien: z.string().min(1, { message: "Vui lòng nhập ngày sinh của học viên." }),
+    diaChi: z.string().min(5, { message: "Vui lòng nhập địa chỉ." }),
+    ghiChu: z.string().optional(),
+});
+
+function RegistrationCta({ courseTitle }) {
+    const [open, setOpen] = useState(false);
+
+    const form = useForm({
+        resolver: zodResolver(formSchema),
+        defaultValues: {
+            hoTenPhuHuynh: "",
+            soDienThoai: "",
+            email: "",
+            hoTenHocVien: "",
+            ngaySinhHocVien: "",
+            diaChi: "",
+            ghiChu: "",
+        },
+    });
+
+    function onSubmit(values) {
+        console.log("Dữ liệu đăng ký:", {
+            ...values,
+            khoaHoc: courseTitle,
+        });
+        toast.success("Đăng ký thành công!", {
+            description: "Cảm ơn bạn đã đăng ký. A&U sẽ liên hệ với bạn sớm nhất.",
+        });
+        form.reset();
+        setOpen(false);
+    }
+
+    return (
+        <Dialog open={open} onOpenChange={setOpen}>
+            <section className="bg-white py-20">
+                <div className="container mx-auto px-4">
+                    <div className="bg-orange-500 rounded-2xl p-8 md:p-12 text-center text-white">
+                        <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+                            Sẵn sàng để bắt đầu?
+                        </h2>
+                        <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-orange-100">
+                            Đăng ký ngay để nhận tư vấn chi tiết về lộ trình học và kiểm tra trình độ miễn phí tại A&U English.
+                        </p>
+                        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+                            <DialogTrigger asChild>
+                                <Button size="lg" variant="outline" className="bg-white text-orange-600 hover:bg-orange-50 transition-transform hover:scale-105 cursor-pointer">
+                                    Đăng ký khoá học
+                                </Button>
+                            </DialogTrigger>
+                            <Button asChild size="lg" className="bg-white/20 hover:bg-white/30 text-white transition-transform hover:scale-105">
+                                <Link href="/training">
+                                    Khám phá khóa học khác <ArrowRight className="ml-2 h-5 w-5" />
+                                </Link>
+                            </Button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <DialogContent className="sm:max-w-2xl bg-white p-8">
+                <DialogHeader>
+                    <DialogTitle className="text-2xl font-bold text-gray-900">Đăng ký khóa học: {courseTitle}</DialogTitle>
+                    <DialogDescription>
+                        Vui lòng điền đầy đủ thông tin bên dưới. A&U sẽ liên hệ với bạn để tư vấn chi tiết.
+                    </DialogDescription>
+                </DialogHeader>
+                <Form {...form}>
+                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 pt-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <FormField
+                                control={form.control}
+                                name="hoTenPhuHuynh"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Họ và tên phụ huynh</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="Nguyễn Văn A" {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="soDienThoai"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Số điện thoại</FormLabel>
+                                        <FormControl>
+                                            <Input type="tel" placeholder="09xxxxxxxx" {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+
+                         <FormField
+                            control={form.control}
+                            name="email"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Email</FormLabel>
+                                    <FormControl>
+                                        <Input type="email" placeholder="example@email.com" {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <FormField
+                                control={form.control}
+                                name="hoTenHocVien"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Họ và tên học viên</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="Nguyễn Thị B" {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="ngaySinhHocVien"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Ngày sinh học viên</FormLabel>
+                                        <FormControl>
+                                            <Input type="date" className="cursor-pointer" {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+
+                        <FormField
+                            control={form.control}
+                            name="diaChi"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Địa chỉ</FormLabel>
+                                    <FormControl>
+                                        <Input placeholder="Số nhà, tên đường, phường/xã, quận/huyện..." {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+
+                        <FormField
+                            control={form.control}
+                            name="ghiChu"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Ghi chú (tùy chọn)</FormLabel>
+                                    <FormControl>
+                                        <Textarea placeholder="Ví dụ: Cần tư vấn thêm về lịch học buổi tối..." {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        {/* SỬA ĐỔI: Thêm class `cursor-pointer` */}
+                        <Button type="submit" className="w-full bg-orange-500 hover:bg-orange-600 text-base text-white cursor-pointer" size="lg" disabled={form.formState.isSubmitting}>
+                            {form.formState.isSubmitting ? "Đang gửi..." : "Gửi Đăng Ký"}
+                        </Button>
+                    </form>
+                </Form>
+            </DialogContent>
+        </Dialog>
+    );
+}
+
+export default RegistrationCta;
+
+/* ===== src\pages\Training\Detail\components\SkillBreakdown.jsx ===== */
+import React from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+// UPDATE: Import các icon cần thiết
+import { Mic, Ear, BookOpen, PenLine } from 'lucide-react';
+
+const skillDetails = {
+    speaking: {
+        title: 'Kỹ năng Nói (Speaking)',
+        icon: <Mic className="h-7 w-7 text-white" />
+    },
+    listening: {
+        title: 'Kỹ năng Nghe (Listening)',
+        icon: <Ear className="h-7 w-7 text-white" />
+    },
+    reading: {
+        title: 'Kỹ năng Đọc (Reading)',
+        icon: <BookOpen className="h-7 w-7 text-white" />
+    },
+    writing: {
+        title: 'Kỹ năng Viết (Writing)',
+        icon: <PenLine className="h-7 w-7 text-white" />
+    },
+};
+
+function SkillBreakdown({ skills }) {
+    return (
+        <section className="py-24 bg-white">
+            <div className="container mx-auto px-4">
+                <div className="text-center mb-16">
+                    <h2 className="text-base font-semibold leading-7 text-orange-500">Chi Tiết Kỹ Năng</h2>
+                    <p className="mt-2 text-4xl font-extrabold tracking-tight text-gray-800">
+                        Phát Triển Toàn Diện 4 Kỹ Năng
+                    </p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {Object.entries(skills).map(([key, description]) => {
+                        const detail = skillDetails[key];
+                        return (
+                            <Card key={key} className="transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                                <CardHeader>
+                                    {/* UPDATE: Thêm icon vào CardTitle */}
+                                    <CardTitle className="text-2xl text-gray-800 flex items-center gap-4">
+                                        <span className="flex-shrink-0 bg-orange-500 p-3 rounded-full">
+                                            {detail.icon}
+                                        </span>
+                                        {detail.title}
+                                    </CardTitle>
+                                </CardHeader>
+                                <CardContent>
+                                    <p className="text-gray-700 leading-relaxed">{description}</p>
+                                </CardContent>
+                            </Card>
+                        )
+                    })}
+                </div>
+            </div>
+        </section>
+    );
+}
+
+export default SkillBreakdown;
+
+
+/* ===== BINARY FILES (PATHS ONLY) ===== */
+/* Binary file: public\assets\images\logo-au.png */
+/* Binary file: public\assets\images\R5AT3838.jpg */
+/* Binary file: public\assets\images\R5AT3841.jpg */
+/* Binary file: public\assets\images\R5AT3848.jpg */
+/* Binary file: public\assets\images\R5AT3853.jpg */
+/* Binary file: public\assets\images\R5AT3856.jpg */
+/* Binary file: public\assets\images\R5AT3860.jpg */
+/* Binary file: public\assets\images\R5AT3865.jpg */
+/* Binary file: public\assets\images\R5AT3870.jpg */
+/* Binary file: public\assets\images\R5AT3872.jpg */
+/* Binary file: public\assets\images\R5AT3875.jpg */
+/* Binary file: public\assets\images\R5AT3879.jpg */
+/* Binary file: public\assets\images\R5AT3881.jpg */
+/* Binary file: public\assets\images\R5AT3884.jpg */
+/* Binary file: public\assets\images\R5AT3893.jpg */
+/* Binary file: public\assets\images\R5AT3894.jpg */
+/* Binary file: public\assets\images\R5AT3898.jpg */
+/* Binary file: public\assets\images\R5AT3903.jpg */
+/* Binary file: public\assets\images\R5AT3907.jpg */
+/* Binary file: public\assets\images\R5AT3909.jpg */
+/* Binary file: public\assets\images\R5AT3910.jpg */
+/* Binary file: public\assets\images\R5AT3911.jpg */
+/* Binary file: public\assets\images\R5AT3914.jpg */
+/* Binary file: public\assets\images\R5AT3919.jpg */
+/* Binary file: public\assets\images\R5AT3921.jpg */
+/* Binary file: public\assets\images\R5AT3923.jpg */
+/* Binary file: public\assets\images\R5AT3931.jpg */
+/* Binary file: public\assets\images\R5AT3936.jpg */
+/* Binary file: public\assets\images\R5AT3939.jpg */
+/* Binary file: public\assets\images\R5AT3941.jpg */
+/* Binary file: public\assets\images\R5AT3943.jpg */
+/* Binary file: public\assets\images\R5AT3945.jpg */
+/* Binary file: public\assets\images\R5AT3949.jpg */
+/* Binary file: public\assets\images\R5AT3953.jpg */
+/* Binary file: public\assets\images\R5AT3957.jpg */
+/* Binary file: public\assets\images\R5AT3961.jpg */
+/* Binary file: public\assets\images\R5AT3962.jpg */
+/* Binary file: public\assets\images\R5AT3963.jpg */
+/* Binary file: public\assets\images\R5AT3967.jpg */
+/* Binary file: public\assets\images\R5AT3969.jpg */
+/* Binary file: public\assets\images\R5AT3975.jpg */
+/* Binary file: public\assets\images\R5AT3978.jpg */
+/* Binary file: public\assets\images\R5AT3979.jpg */
+/* Binary file: public\assets\images\R5AT3980.jpg */
+/* Binary file: public\assets\images\R5AT3984.jpg */
+/* Binary file: public\assets\images\R5AT3989.jpg */
+/* Binary file: public\assets\images\R5AT3990.jpg */
+/* Binary file: public\assets\images\R5AT3991.jpg */
+/* Binary file: public\assets\images\R5AT3992.jpg */
+/* Binary file: public\assets\images\R5AT3995.jpg */
+/* Binary file: public\assets\images\R5AT3998.jpg */
+/* Binary file: public\assets\images\R5AT3999.jpg */
+/* Binary file: public\assets\images\R5AT4002.jpg */
+/* Binary file: public\assets\images\R5AT4003.jpg */
+/* Binary file: public\assets\images\R5AT4007.jpg */
+/* Binary file: public\assets\images\R5AT4010.jpg */
+/* Binary file: public\assets\images\R5AT4012.jpg */
+/* Binary file: public\assets\images\R5AT4014.jpg */
+/* Binary file: public\assets\images\R5AT4016.jpg */
+/* Binary file: public\assets\images\R5AT4018.jpg */
+/* Binary file: public\assets\images\R5AT4019.jpg */
+/* Binary file: public\assets\images\R5AT4022.jpg */
+/* Binary file: public\assets\images\R5AT4027.jpg */
+/* Binary file: public\assets\images\R5AT4031.jpg */
+/* Binary file: public\assets\images\R5AT4032.jpg */
+/* Binary file: public\assets\images\R5AT4035.jpg */
+/* Binary file: public\assets\images\R5AT4037.jpg */
+/* Binary file: public\assets\images\R5AT4040.jpg */
+/* Binary file: public\assets\images\R5AT4049.jpg */
+/* Binary file: public\assets\images\R5AT4050.jpg */
+/* Binary file: public\assets\images\R5AT4053.jpg */
+/* Binary file: public\assets\images\R5AT4055.jpg */
+/* Binary file: public\assets\images\R5AT4058.jpg */
+/* Binary file: public\assets\images\R5AT4061.jpg */
+/* Binary file: public\assets\images\R5AT4063.jpg */
+/* Binary file: public\assets\images\R5AT4067.jpg */
+/* Binary file: public\assets\images\R5AT4071.jpg */
+/* Binary file: public\assets\images\R5AT4078.jpg */
+/* Binary file: public\assets\images\R5AT4080.jpg */
+/* Binary file: public\assets\images\R5AT4083.jpg */
+/* Binary file: public\assets\images\R5AT4087.jpg */
+/* Binary file: public\assets\images\R5AT4089.jpg */
+/* Binary file: public\assets\images\R5AT4092.jpg */
+/* Binary file: public\assets\images\R5AT4096.jpg */
+/* Binary file: public\assets\images\R5AT4097.jpg */
+/* Binary file: public\assets\images\R5AT4099.jpg */
+/* Binary file: public\assets\images\R5AT4103.jpg */
+/* Binary file: public\assets\images\R5AT4106.jpg */
+/* Binary file: public\assets\images\R5AT4110.jpg */
+/* Binary file: public\assets\images\R5AT4114.jpg */
+/* Binary file: public\assets\images\R5AT4116.jpg */
+/* Binary file: public\assets\images\R5AT4117.jpg */
+/* Binary file: public\assets\images\R5AT4118.jpg */
+/* Binary file: public\assets\images\R5AT4121.jpg */
+/* Binary file: public\assets\images\R5AT4123.jpg */
+/* Binary file: public\assets\images\R5AT4125.jpg */
+/* Binary file: public\assets\images\R5AT4128.jpg */
+/* Binary file: public\assets\images\R5AT4131.jpg */
+/* Binary file: public\assets\images\R5AT4133.jpg */
+/* Binary file: public\assets\images\R5AT4134.jpg */
+/* Binary file: public\assets\images\R5AT4136.jpg */
+/* Binary file: public\assets\images\R5AT4140.jpg */
+/* Binary file: public\assets\images\R5AT4145.jpg */
+/* Binary file: public\assets\images\R5AT4153.jpg */
+/* Binary file: public\assets\images\R5AT4155.jpg */
+/* Binary file: public\assets\images\R5AT4157.jpg */
+/* Binary file: public\assets\images\R5AT4159.jpg */
+/* Binary file: public\assets\images\R5AT4162.jpg */
+/* Binary file: public\assets\images\R5AT4163.jpg */
+/* Binary file: public\assets\images\R5AT4167.jpg */
+/* Binary file: public\assets\images\R5AT4168.jpg */
+/* Binary file: public\assets\images\R5AT4169.jpg */
+/* Binary file: public\assets\images\R5AT4170.jpg */
+/* Binary file: public\assets\images\R5AT4171.jpg */
+/* Binary file: public\assets\images\R5AT4174.jpg */
+/* Binary file: public\assets\images\R5AT4176.jpg */
+/* Binary file: public\assets\images\R5AT4178.jpg */
+/* Binary file: public\assets\images\R5AT4180.jpg */
+/* Binary file: public\assets\images\R5AT4181.jpg */
+/* Binary file: public\assets\images\R5AT4183.jpg */
+/* Binary file: public\assets\images\R5AT4184.jpg */
+/* Binary file: public\assets\images\R5AT4186.jpg */
+/* Binary file: public\assets\images\R5AT4191.jpg */
+/* Binary file: public\assets\images\R5AT4192.jpg */
+/* Binary file: public\assets\images\R5AT4193.jpg */
+/* Binary file: public\assets\images\R5AT4198.jpg */
+/* Binary file: public\assets\images\R5AT4200.jpg */
+/* Binary file: public\assets\images\R5AT4202.jpg */
+/* Binary file: public\assets\images\R5AT4205.jpg */
+/* Binary file: public\assets\images\R5AT4207.jpg */
+/* Binary file: public\assets\images\R5AT4208.jpg */
+/* Binary file: public\assets\images\R5AT4211.jpg */
+/* Binary file: public\assets\images\R5AT4212.jpg */
+/* Binary file: public\assets\images\R5AT4215.jpg */
+/* Binary file: public\assets\images\R5AT4219.jpg */
+/* Binary file: public\assets\images\R5AT4222.jpg */
+/* Binary file: public\assets\images\R5AT4226.jpg */
+/* Binary file: public\assets\images\R5AT4230.jpg */
+/* Binary file: public\assets\images\R5AT4240.jpg */
+/* Binary file: public\assets\images\R5AT4246.jpg */
+/* Binary file: public\assets\images\R5AT4255.jpg */
+/* Binary file: public\assets\images\R5AT4259.jpg */
+/* Binary file: public\assets\images\R5AT4262.jpg */
+/* Binary file: public\assets\images\R5AT4264.jpg */
+/* Binary file: public\assets\images\R5AT4267.jpg */
+/* Binary file: public\assets\images\R5AT4270.jpg */
+/* Binary file: public\assets\images\R5AT4273.jpg */
+/* Binary file: public\assets\images\R5AT4278.jpg */
+/* Binary file: public\assets\images\R5AT4282.jpg */
+/* Binary file: public\assets\images\R5AT4287.jpg */
+/* Binary file: public\assets\images\R5AT4290.jpg */
+/* Binary file: src\app\favicon.ico */
 
 /* ===== IGNORED FILES & DIRECTORIES ===== */
-/* The following items were excluded from the output. */
+/* The following items were excluded based on ignore rules */
 
-/* Based on .gitignore patterns: */
-/* /node_modules */
-/* /.pnp */
-/* .pnp.* */
-/* .yarn/* */
-/* !.yarn/patches */
-/* !.yarn/plugins */
-/* !.yarn/releases */
-/* !.yarn/versions */
-/* /coverage */
-/* /.next/ */
-/* /out/ */
-/* /build */
-/* .DS_Store */
-/* *.pem */
-/* npm-debug.log* */
-/* yarn-debug.log* */
-/* yarn-error.log* */
-/* .pnpm-debug.log* */
-/* .env* */
-/* .vercel */
-/* *.tsbuildinfo */
-/* next-env.d.ts */
-/* .codebase/ */
+/* .gitignore patterns: */
+/*   /node_modules */
+/*   /.pnp */
+/*   .pnp.* */
+/*   .yarn/* */
+/*   !.yarn/patches */
+/*   !.yarn/plugins */
+/*   !.yarn/releases */
+/*   !.yarn/versions */
+/*   /coverage */
+/*   /.next/ */
+/*   /out/ */
+/*   /build */
+/*   .DS_Store */
+/*   *.pem */
+/*   npm-debug.log* */
+/*   yarn-debug.log* */
+/*   yarn-error.log* */
+/*   .pnpm-debug.log* */
+/*   .env* */
+/*   .vercel */
+/*   *.tsbuildinfo */
+/*   next-env.d.ts */
+/*   .codebase/ */
 
+/* .watchignore patterns: */
+/*   .codebase/codebase.txt */
+
+/* Ignored items list: */
 /* Ignored directories: */
-/* .codebase/ */
-/* .git\hooks/ */
-/* .git\info/ */
-/* .git\logs/ */
-/* .git\objects/ */
-/* .git\refs/ */
-/* .next\build/ */
-/* .next\cache/ */
-/* .next\server/ */
-/* .next\static/ */
-/* node_modules/ */
+/*   .codebase/ */
+/*   .git\hooks/ */
+/*   .git\info/ */
+/*   .git\logs/ */
+/*   .git\objects/ */
+/*   .git\refs/ */
+/*   .next\build/ */
+/*   .next\cache/ */
+/*   .next\server/ */
+/*   .next\static/ */
+/*   node_modules/ */
 
-/* Ignored files (by rule): */
-/* .git\COMMIT_EDITMSG */
-/* .git\HEAD */
-/* .git\config */
-/* .git\description */
-/* .git\index */
-/* .next\app-build-manifest.json */
-/* .next\build-manifest.json */
-/* .next\fallback-build-manifest.json */
-/* .next\package.json */
-/* .next\trace */
-/* .next\transform.js */
-/* .next\transform.js.map */
-
-/* Ignored binary files: */
-/* public\assets\images\R5AT3838.jpg */
-/* public\assets\images\R5AT3841.jpg */
-/* public\assets\images\R5AT3848.jpg */
-/* public\assets\images\R5AT3853.jpg */
-/* public\assets\images\R5AT3856.jpg */
-/* public\assets\images\R5AT3860.jpg */
-/* public\assets\images\R5AT3865.jpg */
-/* public\assets\images\R5AT3870.jpg */
-/* public\assets\images\R5AT3872.jpg */
-/* public\assets\images\R5AT3875.jpg */
-/* public\assets\images\R5AT3879.jpg */
-/* public\assets\images\R5AT3881.jpg */
-/* public\assets\images\R5AT3884.jpg */
-/* public\assets\images\R5AT3893.jpg */
-/* public\assets\images\R5AT3894.jpg */
-/* public\assets\images\R5AT3898.jpg */
-/* public\assets\images\R5AT3903.jpg */
-/* public\assets\images\R5AT3907.jpg */
-/* public\assets\images\R5AT3909.jpg */
-/* public\assets\images\R5AT3910.jpg */
-/* public\assets\images\R5AT3911.jpg */
-/* public\assets\images\R5AT3914.jpg */
-/* public\assets\images\R5AT3919.jpg */
-/* public\assets\images\R5AT3921.jpg */
-/* public\assets\images\R5AT3923.jpg */
-/* public\assets\images\R5AT3931.jpg */
-/* public\assets\images\R5AT3936.jpg */
-/* public\assets\images\R5AT3939.jpg */
-/* public\assets\images\R5AT3941.jpg */
-/* public\assets\images\R5AT3943.jpg */
-/* public\assets\images\R5AT3945.jpg */
-/* public\assets\images\R5AT3949.jpg */
-/* public\assets\images\R5AT3953.jpg */
-/* public\assets\images\R5AT3957.jpg */
-/* public\assets\images\R5AT3961.jpg */
-/* public\assets\images\R5AT3962.jpg */
-/* public\assets\images\R5AT3963.jpg */
-/* public\assets\images\R5AT3967.jpg */
-/* public\assets\images\R5AT3969.jpg */
-/* public\assets\images\R5AT3975.jpg */
-/* public\assets\images\R5AT3978.jpg */
-/* public\assets\images\R5AT3979.jpg */
-/* public\assets\images\R5AT3980.jpg */
-/* public\assets\images\R5AT3984.jpg */
-/* public\assets\images\R5AT3989.jpg */
-/* public\assets\images\R5AT3990.jpg */
-/* public\assets\images\R5AT3991.jpg */
-/* public\assets\images\R5AT3992.jpg */
-/* public\assets\images\R5AT3995.jpg */
-/* public\assets\images\R5AT3998.jpg */
-/* public\assets\images\R5AT3999.jpg */
-/* public\assets\images\R5AT4002.jpg */
-/* public\assets\images\R5AT4003.jpg */
-/* public\assets\images\R5AT4007.jpg */
-/* public\assets\images\R5AT4010.jpg */
-/* public\assets\images\R5AT4012.jpg */
-/* public\assets\images\R5AT4014.jpg */
-/* public\assets\images\R5AT4016.jpg */
-/* public\assets\images\R5AT4018.jpg */
-/* public\assets\images\R5AT4019.jpg */
-/* public\assets\images\R5AT4022.jpg */
-/* public\assets\images\R5AT4027.jpg */
-/* public\assets\images\R5AT4031.jpg */
-/* public\assets\images\R5AT4032.jpg */
-/* public\assets\images\R5AT4035.jpg */
-/* public\assets\images\R5AT4037.jpg */
-/* public\assets\images\R5AT4040.jpg */
-/* public\assets\images\R5AT4049.jpg */
-/* public\assets\images\R5AT4050.jpg */
-/* public\assets\images\R5AT4053.jpg */
-/* public\assets\images\R5AT4055.jpg */
-/* public\assets\images\R5AT4058.jpg */
-/* public\assets\images\R5AT4061.jpg */
-/* public\assets\images\R5AT4063.jpg */
-/* public\assets\images\R5AT4067.jpg */
-/* public\assets\images\R5AT4071.jpg */
-/* public\assets\images\R5AT4078.jpg */
-/* public\assets\images\R5AT4080.jpg */
-/* public\assets\images\R5AT4083.jpg */
-/* public\assets\images\R5AT4087.jpg */
-/* public\assets\images\R5AT4089.jpg */
-/* public\assets\images\R5AT4092.jpg */
-/* public\assets\images\R5AT4096.jpg */
-/* public\assets\images\R5AT4097.jpg */
-/* public\assets\images\R5AT4099.jpg */
-/* public\assets\images\R5AT4103.jpg */
-/* public\assets\images\R5AT4106.jpg */
-/* public\assets\images\R5AT4110.jpg */
-/* public\assets\images\R5AT4114.jpg */
-/* public\assets\images\R5AT4116.jpg */
-/* public\assets\images\R5AT4117.jpg */
-/* public\assets\images\R5AT4118.jpg */
-/* public\assets\images\R5AT4121.jpg */
-/* public\assets\images\R5AT4123.jpg */
-/* public\assets\images\R5AT4125.jpg */
-/* public\assets\images\R5AT4128.jpg */
-/* public\assets\images\R5AT4131.jpg */
-/* public\assets\images\R5AT4133.jpg */
-/* public\assets\images\R5AT4134.jpg */
-/* public\assets\images\R5AT4136.jpg */
-/* public\assets\images\R5AT4140.jpg */
-/* public\assets\images\R5AT4145.jpg */
-/* public\assets\images\R5AT4153.jpg */
-/* public\assets\images\R5AT4155.jpg */
-/* public\assets\images\R5AT4157.jpg */
-/* public\assets\images\R5AT4159.jpg */
-/* public\assets\images\R5AT4162.jpg */
-/* public\assets\images\R5AT4163.jpg */
-/* public\assets\images\R5AT4167.jpg */
-/* public\assets\images\R5AT4168.jpg */
-/* public\assets\images\R5AT4169.jpg */
-/* public\assets\images\R5AT4170.jpg */
-/* public\assets\images\R5AT4171.jpg */
-/* public\assets\images\R5AT4174.jpg */
-/* public\assets\images\R5AT4176.jpg */
-/* public\assets\images\R5AT4178.jpg */
-/* public\assets\images\R5AT4180.jpg */
-/* public\assets\images\R5AT4181.jpg */
-/* public\assets\images\R5AT4183.jpg */
-/* public\assets\images\R5AT4184.jpg */
-/* public\assets\images\R5AT4186.jpg */
-/* public\assets\images\R5AT4191.jpg */
-/* public\assets\images\R5AT4192.jpg */
-/* public\assets\images\R5AT4193.jpg */
-/* public\assets\images\R5AT4198.jpg */
-/* public\assets\images\R5AT4200.jpg */
-/* public\assets\images\R5AT4202.jpg */
-/* public\assets\images\R5AT4205.jpg */
-/* public\assets\images\R5AT4207.jpg */
-/* public\assets\images\R5AT4208.jpg */
-/* public\assets\images\R5AT4211.jpg */
-/* public\assets\images\R5AT4212.jpg */
-/* public\assets\images\R5AT4215.jpg */
-/* public\assets\images\R5AT4219.jpg */
-/* public\assets\images\R5AT4222.jpg */
-/* public\assets\images\R5AT4226.jpg */
-/* public\assets\images\R5AT4230.jpg */
-/* public\assets\images\R5AT4240.jpg */
-/* public\assets\images\R5AT4246.jpg */
-/* public\assets\images\R5AT4255.jpg */
-/* public\assets\images\R5AT4259.jpg */
-/* public\assets\images\R5AT4262.jpg */
-/* public\assets\images\R5AT4264.jpg */
-/* public\assets\images\R5AT4267.jpg */
-/* public\assets\images\R5AT4270.jpg */
-/* public\assets\images\R5AT4273.jpg */
-/* public\assets\images\R5AT4278.jpg */
-/* public\assets\images\R5AT4282.jpg */
-/* public\assets\images\R5AT4287.jpg */
-/* public\assets\images\R5AT4290.jpg */
-/* public\assets\images\logo-au.png */
-/* src\app\favicon.ico */
+/* Ignored files: */
+/*   .git\COMMIT_EDITMSG */
+/*   .git\FETCH_HEAD */
+/*   .git\HEAD */
+/*   .git\ORIG_HEAD */
+/*   .git\config */
+/*   .git\description */
+/*   .git\index */
+/*   .git\packed-refs */
+/*   .next\app-build-manifest.json */
+/*   .next\build-manifest.json */
+/*   .next\fallback-build-manifest.json */
+/*   .next\package.json */
+/*   .next\trace */
+/*   .next\transform.js */
+/*   .next\transform.js.map */

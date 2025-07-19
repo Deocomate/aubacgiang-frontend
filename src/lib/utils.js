@@ -11,12 +11,21 @@ export function slugify(text) {
   return text
     .toString()
     .toLowerCase()
-    .normalize('NFD') // Chuẩn hóa Unicode
-    .replace(/[\u0300-\u036f]/g, '') // Bỏ các dấu thanh
-    .replace(/đ/g, 'd') // Thay 'đ' thành 'd'
-    .replace(/\s+/g, '-') // Thay khoảng trắng bằng gạch nối
-    .replace(/[^\w-]+/g, '') // Bỏ các ký tự không phải chữ, số, gạch nối
-    .replace(/--+/g, '-') // Thay nhiều gạch nối thành một
-    .replace(/^-+/, '') // Bỏ gạch nối ở đầu
-    .replace(/-+$/, ''); // Bỏ gạch nối ở cuối
+    .normalize('NFD') 
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/đ/g, 'd')
+    .replace(/\s+/g, '-')
+    .replace(/[^\w-]+/g, '')
+    .replace(/--+/g, '-')
+    .replace(/^-+/, '')
+    .replace(/-+$/, '');
+}
+
+// Add this new function
+export function getYoutubeEmbedUrl(url) {
+  if (!url) return '';
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+  const match = url.match(regExp);
+  const videoId = (match && match[2].length === 11) ? match[2] : null;
+  return videoId ? `https://www.youtube.com/embed/${videoId}` : '';
 }

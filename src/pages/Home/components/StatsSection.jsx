@@ -1,4 +1,3 @@
-// src/pages/Home/components/StatsSection.jsx
 "use client";
 
 import React, { useEffect, useState, useRef } from 'react';
@@ -6,7 +5,6 @@ import Image from 'next/image';
 import { HeartHandshake, GraduationCap } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-// Custom hook cho hiệu ứng số đếm tăng dần
 function useCountUp(end, duration = 2000) {
     const [count, setCount] = useState(0);
     const ref = useRef(null);
@@ -37,7 +35,6 @@ function useCountUp(end, duration = 2000) {
     return { count, ref };
 }
 
-// Custom hook để kiểm tra element có trong viewport không
 function useInView(ref) {
     const [isInView, setIsInView] = useState(false);
 
@@ -47,13 +44,14 @@ function useInView(ref) {
             { threshold: 0.1 }
         );
 
-        if (ref.current) {
-            observer.observe(ref.current);
+        const currentRef = ref.current;
+        if (currentRef) {
+            observer.observe(currentRef);
         }
 
         return () => {
-            if (ref.current) {
-                observer.unobserve(ref.current);
+            if (currentRef) {
+                observer.unobserve(currentRef);
             }
         };
     }, [ref]);
@@ -62,7 +60,6 @@ function useInView(ref) {
 }
 
 
-// Component hiển thị số đếm
 function AnimatedStat({ value, suffix, icon, description, imageSrc, altText }) {
     const { count, ref } = useCountUp(value);
     const isInView = useInView(ref);
@@ -95,28 +92,12 @@ function AnimatedStat({ value, suffix, icon, description, imageSrc, altText }) {
     );
 }
 
-// Dữ liệu cho các số liệu thống kê
-const statsData = [
-    {
-        icon: <HeartHandshake className="h-16 w-16 text-white" />,
-        value: 300,
-        suffix: '+',
-        description: 'Phụ huynh đã tin tưởng và lựa chọn A&U Bắc Giang trong năm 2022',
-        imageSrc: '/assets/images/R5AT4181.jpg',
-        altText: 'Hơn 300 phụ huynh đã chọn A&U Bắc Giang',
-    },
-    {
-        icon: <GraduationCap className="h-16 w-16 text-white" />,
-        value: 5000,
-        suffix: '+',
-        description: 'Học sinh được đào tạo liên kết tại các trường công lập trong thành phố',
-        imageSrc: '/assets/images/R5AT4083.jpg',
-        altText: 'Hơn 5000 học sinh đào tạo liên kết',
-    },
+const icons = [
+    <HeartHandshake className="h-16 w-16 text-white" />,
+    <GraduationCap className="h-16 w-16 text-white" />,
 ];
 
-
-function StatsSection() {
+function StatsSection({ stats }) {
     return (
         <section className="bg-slate-50 py-16 sm:py-24">
             <div className="container mx-auto px-4">
@@ -130,15 +111,15 @@ function StatsSection() {
                 </header>
 
                 <div className="mt-12 sm:mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-                    {statsData.map((stat, index) => (
+                    {stats.map((stat, index) => (
                         <AnimatedStat
                             key={index}
-                            value={stat.value}
-                            suffix={stat.suffix}
-                            icon={stat.icon}
+                            value={parseInt(stat.value, 10)}
+                            suffix={'+'}
+                            icon={icons[index % icons.length]}
                             description={stat.description}
-                            imageSrc={stat.imageSrc}
-                            altText={stat.altText}
+                            imageSrc={stat.images}
+                            altText={stat.description}
                         />
                     ))}
                 </div>
