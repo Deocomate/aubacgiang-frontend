@@ -1,8 +1,7 @@
 // src/pages/Training/components/ProgramsList.jsx
 "use client";
 
-// SỬA: Thêm useRef
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -10,6 +9,8 @@ import { Badge } from '@/components/ui/badge';
 import { ArrowRight, Baby, BookOpen, Briefcase, School, Shield, Sun, Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { loadMoreTrainings } from '@/app/actions/trainingActions';
+// SỬA: Import custom hook useTraining
+import { useTraining } from '@/context/TrainingProvider';
 
 // ... (phần code iconMap và ProgramCard giữ nguyên không đổi) ...
 const iconMap = {
@@ -61,57 +62,30 @@ function ProgramCard({ program, reverse = false }) {
         </div>
     );
 }
-// ... (hết phần không đổi) ...
 
 const PROGRAMS_PER_PAGE = 2;
-// THÊM: Định nghĩa một key để lưu vào storage
-const STORAGE_KEY = 'trainingPageState';
 
 function ProgramsList({ initialTrainingData }) {
-    const [programs, setPrograms] = useState(initialTrainingData.data || []);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(initialTrainingData.totalPages || 1);
+    // SỬA: Lấy state từ Context thay vì useState cục bộ
+    const {
+        programs, setPrograms,
+        currentPage, setCurrentPage,
+        totalPages, setTotalPages,
+        isInitialized, setIsInitialized
+    } = useTraining();
+
     const [isLoading, setIsLoading] = useState(false);
-    
-    // THÊM: Dùng isInitialMount để chỉ lưu state sau lần render đầu tiên
-    const isInitialMount = useRef(true);
 
-    // THÊM: useEffect để khôi phục state từ sessionStorage khi component mount
+    // SỬA: Logic khởi tạo state trong Context
     useEffect(() => {
-        try {
-            const savedState = sessionStorage.getItem(STORAGE_KEY);
-            if (savedState) {
-                const { savedPrograms, savedCurrentPage, savedTotalPages } = JSON.parse(savedState);
-                // Chỉ khôi phục nếu có nhiều hơn dữ liệu ban đầu
-                if (savedPrograms.length > initialTrainingData.data.length) {
-                    setPrograms(savedPrograms);
-                    setCurrentPage(savedCurrentPage);
-                    setTotalPages(savedTotalPages);
-                }
-            }
-        } catch (error) {
-            console.error("Could not restore state from sessionStorage:", error);
+        // Nếu context chưa được khởi tạo, dùng dữ liệu từ server để khởi tạo
+        if (!isInitialized) {
+            setPrograms(initialTrainingData.data || []);
+            setCurrentPage(initialTrainingData.currentPage || 1);
+            setTotalPages(initialTrainingData.totalPages || 1);
+            setIsInitialized(true); // Đánh dấu đã khởi tạo
         }
-    }, [initialTrainingData.data.length]); // Chỉ chạy 1 lần khi component mount
-
-    // THÊM: useEffect để lưu state vào sessionStorage khi nó thay đổi
-    useEffect(() => {
-        // Bỏ qua lần mount đầu tiên để không ghi đè state đã khôi phục
-        if (isInitialMount.current) {
-            isInitialMount.current = false;
-            return;
-        }
-        try {
-            const stateToSave = {
-                savedPrograms: programs,
-                savedCurrentPage: currentPage,
-                savedTotalPages: totalPages,
-            };
-            sessionStorage.setItem(STORAGE_KEY, JSON.stringify(stateToSave));
-        } catch (error) {
-            console.error("Could not save state to sessionStorage:", error);
-        }
-    }, [programs, currentPage, totalPages]);
+    }, [initialTrainingData, isInitialized, setPrograms, setCurrentPage, setTotalPages, setIsInitialized]);
 
 
     const handleLoadMore = async () => {
@@ -126,14 +100,21 @@ function ProgramsList({ initialTrainingData }) {
                 throw new Error(newData.error);
             }
 
+            // SỬA: Cập nhật state trong context
             setPrograms(prev => [...prev, ...newData.data]);
             setCurrentPage(nextPage);
+
         } catch (error) {
             console.error("Failed to load more programs:", error);
         } finally {
             setIsLoading(false);
         }
     };
+    
+    // Nếu chưa khởi tạo xong, không render gì cả để tránh FOUC (Flash of Unstyled Content)
+    if (!isInitialized) {
+        return null;
+    }
 
     return (
         <section className="bg-white py-24 sm:py-32">
