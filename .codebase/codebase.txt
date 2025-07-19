@@ -1,8 +1,8 @@
 /* ==========================================================
-   CODEBASE SNAPSHOT - 2025-07-19 15:29:47
+   CODEBASE SNAPSHOT - 2025-07-19 20:43:46
    Project: landing-page-english-education-center
-   Text Files Included: 135
-   Items Ignored: 179
+   Text Files Included: 132
+   Items Ignored: 34
    ========================================================== */
 
 /* PROJECT STRUCTURE
@@ -37,158 +37,6 @@
    ├── node_modules/
    ├── public/
    │   ├── assets/
-   │   │   └── images/
-   │   │       ├── logo-au.png
-   │   │       ├── R5AT3838.jpg
-   │   │       ├── R5AT3841.jpg
-   │   │       ├── R5AT3848.jpg
-   │   │       ├── R5AT3853.jpg
-   │   │       ├── R5AT3856.jpg
-   │   │       ├── R5AT3860.jpg
-   │   │       ├── R5AT3865.jpg
-   │   │       ├── R5AT3870.jpg
-   │   │       ├── R5AT3872.jpg
-   │   │       ├── R5AT3875.jpg
-   │   │       ├── R5AT3879.jpg
-   │   │       ├── R5AT3881.jpg
-   │   │       ├── R5AT3884.jpg
-   │   │       ├── R5AT3893.jpg
-   │   │       ├── R5AT3894.jpg
-   │   │       ├── R5AT3898.jpg
-   │   │       ├── R5AT3903.jpg
-   │   │       ├── R5AT3907.jpg
-   │   │       ├── R5AT3909.jpg
-   │   │       ├── R5AT3910.jpg
-   │   │       ├── R5AT3911.jpg
-   │   │       ├── R5AT3914.jpg
-   │   │       ├── R5AT3919.jpg
-   │   │       ├── R5AT3921.jpg
-   │   │       ├── R5AT3923.jpg
-   │   │       ├── R5AT3931.jpg
-   │   │       ├── R5AT3936.jpg
-   │   │       ├── R5AT3939.jpg
-   │   │       ├── R5AT3941.jpg
-   │   │       ├── R5AT3943.jpg
-   │   │       ├── R5AT3945.jpg
-   │   │       ├── R5AT3949.jpg
-   │   │       ├── R5AT3953.jpg
-   │   │       ├── R5AT3957.jpg
-   │   │       ├── R5AT3961.jpg
-   │   │       ├── R5AT3962.jpg
-   │   │       ├── R5AT3963.jpg
-   │   │       ├── R5AT3967.jpg
-   │   │       ├── R5AT3969.jpg
-   │   │       ├── R5AT3975.jpg
-   │   │       ├── R5AT3978.jpg
-   │   │       ├── R5AT3979.jpg
-   │   │       ├── R5AT3980.jpg
-   │   │       ├── R5AT3984.jpg
-   │   │       ├── R5AT3989.jpg
-   │   │       ├── R5AT3990.jpg
-   │   │       ├── R5AT3991.jpg
-   │   │       ├── R5AT3992.jpg
-   │   │       ├── R5AT3995.jpg
-   │   │       ├── R5AT3998.jpg
-   │   │       ├── R5AT3999.jpg
-   │   │       ├── R5AT4002.jpg
-   │   │       ├── R5AT4003.jpg
-   │   │       ├── R5AT4007.jpg
-   │   │       ├── R5AT4010.jpg
-   │   │       ├── R5AT4012.jpg
-   │   │       ├── R5AT4014.jpg
-   │   │       ├── R5AT4016.jpg
-   │   │       ├── R5AT4018.jpg
-   │   │       ├── R5AT4019.jpg
-   │   │       ├── R5AT4022.jpg
-   │   │       ├── R5AT4027.jpg
-   │   │       ├── R5AT4031.jpg
-   │   │       ├── R5AT4032.jpg
-   │   │       ├── R5AT4035.jpg
-   │   │       ├── R5AT4037.jpg
-   │   │       ├── R5AT4040.jpg
-   │   │       ├── R5AT4049.jpg
-   │   │       ├── R5AT4050.jpg
-   │   │       ├── R5AT4053.jpg
-   │   │       ├── R5AT4055.jpg
-   │   │       ├── R5AT4058.jpg
-   │   │       ├── R5AT4061.jpg
-   │   │       ├── R5AT4063.jpg
-   │   │       ├── R5AT4067.jpg
-   │   │       ├── R5AT4071.jpg
-   │   │       ├── R5AT4078.jpg
-   │   │       ├── R5AT4080.jpg
-   │   │       ├── R5AT4083.jpg
-   │   │       ├── R5AT4087.jpg
-   │   │       ├── R5AT4089.jpg
-   │   │       ├── R5AT4092.jpg
-   │   │       ├── R5AT4096.jpg
-   │   │       ├── R5AT4097.jpg
-   │   │       ├── R5AT4099.jpg
-   │   │       ├── R5AT4103.jpg
-   │   │       ├── R5AT4106.jpg
-   │   │       ├── R5AT4110.jpg
-   │   │       ├── R5AT4114.jpg
-   │   │       ├── R5AT4116.jpg
-   │   │       ├── R5AT4117.jpg
-   │   │       ├── R5AT4118.jpg
-   │   │       ├── R5AT4121.jpg
-   │   │       ├── R5AT4123.jpg
-   │   │       ├── R5AT4125.jpg
-   │   │       ├── R5AT4128.jpg
-   │   │       ├── R5AT4131.jpg
-   │   │       ├── R5AT4133.jpg
-   │   │       ├── R5AT4134.jpg
-   │   │       ├── R5AT4136.jpg
-   │   │       ├── R5AT4140.jpg
-   │   │       ├── R5AT4145.jpg
-   │   │       ├── R5AT4153.jpg
-   │   │       ├── R5AT4155.jpg
-   │   │       ├── R5AT4157.jpg
-   │   │       ├── R5AT4159.jpg
-   │   │       ├── R5AT4162.jpg
-   │   │       ├── R5AT4163.jpg
-   │   │       ├── R5AT4167.jpg
-   │   │       ├── R5AT4168.jpg
-   │   │       ├── R5AT4169.jpg
-   │   │       ├── R5AT4170.jpg
-   │   │       ├── R5AT4171.jpg
-   │   │       ├── R5AT4174.jpg
-   │   │       ├── R5AT4176.jpg
-   │   │       ├── R5AT4178.jpg
-   │   │       ├── R5AT4180.jpg
-   │   │       ├── R5AT4181.jpg
-   │   │       ├── R5AT4183.jpg
-   │   │       ├── R5AT4184.jpg
-   │   │       ├── R5AT4186.jpg
-   │   │       ├── R5AT4191.jpg
-   │   │       ├── R5AT4192.jpg
-   │   │       ├── R5AT4193.jpg
-   │   │       ├── R5AT4198.jpg
-   │   │       ├── R5AT4200.jpg
-   │   │       ├── R5AT4202.jpg
-   │   │       ├── R5AT4205.jpg
-   │   │       ├── R5AT4207.jpg
-   │   │       ├── R5AT4208.jpg
-   │   │       ├── R5AT4211.jpg
-   │   │       ├── R5AT4212.jpg
-   │   │       ├── R5AT4215.jpg
-   │   │       ├── R5AT4219.jpg
-   │   │       ├── R5AT4222.jpg
-   │   │       ├── R5AT4226.jpg
-   │   │       ├── R5AT4230.jpg
-   │   │       ├── R5AT4240.jpg
-   │   │       ├── R5AT4246.jpg
-   │   │       ├── R5AT4255.jpg
-   │   │       ├── R5AT4259.jpg
-   │   │       ├── R5AT4262.jpg
-   │   │       ├── R5AT4264.jpg
-   │   │       ├── R5AT4267.jpg
-   │   │       ├── R5AT4270.jpg
-   │   │       ├── R5AT4273.jpg
-   │   │       ├── R5AT4278.jpg
-   │   │       ├── R5AT4282.jpg
-   │   │       ├── R5AT4287.jpg
-   │   │       └── R5AT4290.jpg
    │   ├── file.svg
    │   ├── globe.svg
    │   ├── next.svg
@@ -199,6 +47,7 @@
    │   │   ├── (main)/
    │   │   │   ├── category/
    │   │   │   │   └── [slug]/
+   │   │   │   │       ├── loading.js
    │   │   │   │       └── page.js
    │   │   │   ├── contact/
    │   │   │   │   └── page.js
@@ -208,6 +57,7 @@
    │   │   │   │   └── page.js
    │   │   │   ├── news/
    │   │   │   │   ├── [slug]/
+   │   │   │   │   │   ├── loading.js
    │   │   │   │   │   └── page.js
    │   │   │   │   └── page.js
    │   │   │   ├── parents-corner/
@@ -4455,21 +4305,6 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
 
-/* ===== public\file.svg ===== */
-<svg fill="none" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M14.5 13.5V5.41a1 1 0 0 0-.3-.7L9.8.29A1 1 0 0 0 9.08 0H1.5v13.5A2.5 2.5 0 0 0 4 16h8a2.5 2.5 0 0 0 2.5-2.5m-1.5 0v-7H8v-5H3v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1M9.5 5V2.12L12.38 5zM5.13 5h-.62v1.25h2.12V5zm-.62 3h7.12v1.25H4.5zm.62 3h-.62v1.25h7.12V11z" clip-rule="evenodd" fill="#666" fill-rule="evenodd"/></svg>
-
-/* ===== public\globe.svg ===== */
-<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><g clip-path="url(#a)"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.27 14.1a6.5 6.5 0 0 0 3.67-3.45q-1.24.21-2.7.34-.31 1.83-.97 3.1M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.48-1.52a7 7 0 0 1-.96 0H7.5a4 4 0 0 1-.84-1.32q-.38-.89-.63-2.08a40 40 0 0 0 3.92 0q-.25 1.2-.63 2.08a4 4 0 0 1-.84 1.31zm2.94-4.76q1.66-.15 2.95-.43a7 7 0 0 0 0-2.58q-1.3-.27-2.95-.43a18 18 0 0 1 0 3.44m-1.27-3.54a17 17 0 0 1 0 3.64 39 39 0 0 1-4.3 0 17 17 0 0 1 0-3.64 39 39 0 0 1 4.3 0m1.1-1.17q1.45.13 2.69.34a6.5 6.5 0 0 0-3.67-3.44q.65 1.26.98 3.1M8.48 1.5l.01.02q.41.37.84 1.31.38.89.63 2.08a40 40 0 0 0-3.92 0q.25-1.2.63-2.08a4 4 0 0 1 .85-1.32 7 7 0 0 1 .96 0m-2.75.4a6.5 6.5 0 0 0-3.67 3.44 29 29 0 0 1 2.7-.34q.31-1.83.97-3.1M4.58 6.28q-1.66.16-2.95.43a7 7 0 0 0 0 2.58q1.3.27 2.95.43a18 18 0 0 1 0-3.44m.17 4.71q-1.45-.12-2.69-.34a6.5 6.5 0 0 0 3.67 3.44q-.65-1.27-.98-3.1" fill="#666"/></g><defs><clipPath id="a"><path fill="#fff" d="M0 0h16v16H0z"/></clipPath></defs></svg>
-
-/* ===== public\next.svg ===== */
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 394 80"><path fill="#000" d="M262 0h68.5v12.7h-27.2v66.6h-13.6V12.7H262V0ZM149 0v12.7H94v20.4h44.3v12.6H94v21h55v12.6H80.5V0h68.7zm34.3 0h-17.8l63.8 79.4h17.9l-32-39.7 32-39.6h-17.9l-23 28.6-23-28.6zm18.3 56.7-9-11-27.1 33.7h17.8l18.3-22.7z"/><path fill="#000" d="M81 79.3 17 0H0v79.3h13.6V17l50.2 62.3H81Zm252.6-.4c-1 0-1.8-.4-2.5-1s-1.1-1.6-1.1-2.6.3-1.8 1-2.5 1.6-1 2.6-1 1.8.3 2.5 1a3.4 3.4 0 0 1 .6 4.3 3.7 3.7 0 0 1-3 1.8zm23.2-33.5h6v23.3c0 2.1-.4 4-1.3 5.5a9.1 9.1 0 0 1-3.8 3.5c-1.6.8-3.5 1.3-5.7 1.3-2 0-3.7-.4-5.3-1s-2.8-1.8-3.7-3.2c-.9-1.3-1.4-3-1.4-5h6c.1.8.3 1.6.7 2.2s1 1.2 1.6 1.5c.7.4 1.5.5 2.4.5 1 0 1.8-.2 2.4-.6a4 4 0 0 0 1.6-1.8c.3-.8.5-1.8.5-3V45.5zm30.9 9.1a4.4 4.4 0 0 0-2-3.3 7.5 7.5 0 0 0-4.3-1.1c-1.3 0-2.4.2-3.3.5-.9.4-1.6 1-2 1.6a3.5 3.5 0 0 0-.3 4c.3.5.7.9 1.3 1.2l1.8 1 2 .5 3.2.8c1.3.3 2.5.7 3.7 1.2a13 13 0 0 1 3.2 1.8 8.1 8.1 0 0 1 3 6.5c0 2-.5 3.7-1.5 5.1a10 10 0 0 1-4.4 3.5c-1.8.8-4.1 1.2-6.8 1.2-2.6 0-4.9-.4-6.8-1.2-2-.8-3.4-2-4.5-3.5a10 10 0 0 1-1.7-5.6h6a5 5 0 0 0 3.5 4.6c1 .4 2.2.6 3.4.6 1.3 0 2.5-.2 3.5-.6 1-.4 1.8-1 2.4-1.7a4 4 0 0 0 .8-2.4c0-.9-.2-1.6-.7-2.2a11 11 0 0 0-2.1-1.4l-3.2-1-3.8-1c-2.8-.7-5-1.7-6.6-3.2a7.2 7.2 0 0 1-2.4-5.7 8 8 0 0 1 1.7-5 10 10 0 0 1 4.3-3.5c2-.8 4-1.2 6.4-1.2 2.3 0 4.4.4 6.2 1.2 1.8.8 3.2 2 4.3 3.4 1 1.4 1.5 3 1.5 5h-5.8z"/></svg>
-
-/* ===== public\vercel.svg ===== */
-<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1155 1000"><path d="m577.3 0 577.4 1000H0z" fill="#fff"/></svg>
-
-/* ===== public\window.svg ===== */
-<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" clip-rule="evenodd" d="M1.5 2.5h13v10a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1zM0 1h16v11.5a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 0 12.5zm3.75 4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5M7 4.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0m1.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5" fill="#666"/></svg>
-
 /* ===== src\app\layout.js ===== */
 import "@/assets/css/globals.css";
 import MainFooter from "@/components/layouts/MainFooter";
@@ -4535,57 +4370,54 @@ export default async function Home() {
   return (<HomePage data={pageData} />);
 }
 
+/* ===== src\app\(main)\category\[slug]\loading.js ===== */
+/* ===== src\app\(main)\category\[slug]\loading.js ===== */
+import { GenericDetailSkeleton } from "@/components/ui/GenericDetailSkeleton";
+
+// You can create a more specific skeleton for list pages later
+export default function Loading() {
+  return <GenericDetailSkeleton />;
+}
+
+
 /* ===== src\app\(main)\category\[slug]\page.js ===== */
-// src/app/(main)/category/[slug]/page.js
-import { NEWS_ARTICLES, NEWS_CATEGORIES } from "@/lib/news-data";
-import { slugify } from "@/lib/utils";
+/* ===== src\app\(main)\category\[slug]\page.js ===== */
+import { getNewsByCategorySlug, getNewsCategories } from "@/services/newsService";
 import NewsPage from "@/pages/News/NewsPage";
 import { notFound } from "next/navigation";
 
-// Hàm này sẽ tạo các trang tĩnh cho mỗi slug danh mục tại thời điểm build
-export async function generateStaticParams() {
-  return NEWS_CATEGORIES.map((category) => ({
-    slug: slugify(category.name),
-  }));
-}
-
-// Hàm này tạo metadata động cho mỗi trang danh mục
 export async function generateMetadata({ params }) {
-  const { slug } = await params; // SỬA: Thêm await
-  const category = NEWS_CATEGORIES.find((cat) => slugify(cat.name) === slug);
+  const { slug } = params;
+  const newsData = await getNewsByCategorySlug(slug);
 
-  if (!category) {
+  if (!newsData || !newsData.category) {
     return {
       title: "Không tìm thấy danh mục",
     };
   }
 
   return {
-    title: `${category.name} - Tin tức & Sự kiện | A&U English`,
-    description: `Các bài viết, tin tức và sự kiện thuộc danh mục ${category.name} tại Hệ thống Anh ngữ A&U.`,
+    title: `${newsData.category.name} - Tin tức & Sự kiện | A&U English`,
+    description: `Các bài viết, tin tức và sự kiện thuộc danh mục ${newsData.category.name} tại Hệ thống Anh ngữ A&U.`,
   };
 }
 
-// Component chính của trang danh mục
-export default async function CategoryPage({ params }) {
-  const { slug } = await params; // SỬA: Thêm await
+export default async function CategoryPage({ params, searchParams }) {
+  const { slug } = params;
+  const page = searchParams?.page;
+  const search = searchParams?.search;
+  const pageSize = searchParams?.pageSize;
+  
+  const [newsData, categories] = await Promise.all([
+      getNewsByCategorySlug(slug, { page, search, pageSize }),
+      getNewsCategories()
+  ]);
 
-  const filteredArticles = NEWS_ARTICLES.filter(
-    (article) => slugify(article.category) === slug
-  );
-
-  // Nếu không có bài viết nào hoặc slug không hợp lệ, có thể hiển thị trang 404
-  if (filteredArticles.length === 0) {
-    const isValidCategory = NEWS_CATEGORIES.some(
-      (cat) => slugify(cat.name) === slug
-    );
-    if (!isValidCategory) {
+  if (!newsData.category) {
       notFound();
-    }
   }
 
-  // Tái sử dụng component NewsPage và truyền vào danh sách bài viết đã được lọc
-  return <NewsPage articles={filteredArticles} />;
+  return <NewsPage newsData={newsData} categories={categories} categoryInfo={newsData.category} />;
 }
 
 /* ===== src\app\(main)\contact\page.js ===== */
@@ -4611,33 +4443,56 @@ export default function LegalPage() {
 }
 
 /* ===== src\app\(main)\news\page.js ===== */
-// src/app/(main)/news/page.js
+/* ===== src\app\(main)\news\page.js ===== */
 import NewsPage from "@/pages/News/NewsPage";
+import { getNews, getNewsCategories } from "@/services/newsService";
 
 export const metadata = {
   title: "Tin tức & Sự kiện - A & U English",
   description: "Cập nhật những tin tức, sự kiện và thông báo mới nhất từ Hệ thống Anh ngữ A&U.",
 };
 
-export default function News() {
-  return <NewsPage />;
+export default async function News({ searchParams }) {
+  // Await searchParams before using its properties
+  const params = await searchParams;
+  const page = params?.page;
+  const search = params?.search;
+  const pageSize = params?.pageSize;
+
+  const [newsData, categories] = await Promise.all([
+    getNews({
+      page,
+      search,
+      pageSize
+    }),
+    getNewsCategories()
+  ]);
+
+  return <NewsPage newsData={newsData} categories={categories} />;
 }
 
+/* ===== src\app\(main)\news\[slug]\loading.js ===== */
+/* ===== src\app\(main)\news\[slug]\loading.js ===== */
+import { GenericDetailSkeleton } from "@/components/ui/GenericDetailSkeleton";
+
+export default function Loading() {
+  return <GenericDetailSkeleton />;
+}
+
+
+/* ===== src\app\(main)\news\[slug]\page.js ===== */
 /* ===== src\app\(main)\news\[slug]\page.js ===== */
 // src/app/(main)/news/[slug]/page.js
 import { notFound } from 'next/navigation';
-import { NEWS_ARTICLES } from '@/lib/news-data';
+import { getNews, getNewsBySlug } from '@/services/newsService';
 import NewsDetailPage from '@/pages/News/Detail/NewsDetailPage';
-
-export async function generateStaticParams() {
-    return NEWS_ARTICLES.map(article => ({
-        slug: article.slug,
-    }));
-}
+import { GenericDetailSkeleton } from '@/components/ui/GenericDetailSkeleton'; // SỬA: Import đúng component
 
 export async function generateMetadata({ params }) {
-    const { slug } = await params; // SỬA: Thêm await
-    const article = NEWS_ARTICLES.find(p => p.slug === slug);
+    const awaitedParams = await params;
+    const { slug } = awaitedParams;
+
+    const article = await getNewsBySlug(slug);
 
     if (!article) {
         return {
@@ -4646,19 +4501,23 @@ export async function generateMetadata({ params }) {
     }
     return {
         title: `${article.title} - A&U English`,
-        description: article.excerpt,
+        // SỬA: Lấy description từ content nếu có
+        description: article.content ? article.content.replace(/<[^>]+>/g, '').substring(0, 160) : "Chi tiết bài viết tại A&U English",
     };
 }
 
 export default async function NewsDetail({ params }) {
-    const { slug } = await params; // SỬA: Thêm await
-    const article = NEWS_ARTICLES.find(p => p.slug === slug);
+    const awaitedParams = await params;
+    const { slug } = awaitedParams;
 
+    const article = await getNewsBySlug(slug);
+    
     if (!article) {
         notFound();
     }
     
-    const recentArticles = NEWS_ARTICLES
+    const recentNewsData = await getNews(1, 6);
+    const recentArticles = recentNewsData.data
         .filter(p => p.slug !== slug)
         .slice(0, 5);
 
@@ -4762,13 +4621,13 @@ import { getTrainings } from "@/services/trainingService";
 
 /**
  * Server Action để tải thêm các khóa đào tạo.
- * @param {number} pageIndex
+ * @param {number} page
  * @param {number} pageSize
  * @returns {Promise<Object>}
  */
-export async function loadMoreTrainings(pageIndex, pageSize) {
+export async function loadMoreTrainings(page, pageSize) {
   try {
-    const trainingData = await getTrainings(pageSize, pageIndex);
+    const trainingData = await getTrainings(pageSize, page);
     return trainingData;
   } catch (error) {
     console.error("Server Action error in loadMoreTrainings:", error);
@@ -10877,14 +10736,13 @@ function HeroSection({ banner }) {
 export default HeroSection;
 
 /* ===== src\pages\Home\components\ProgramsSection.jsx ===== */
-"use client";
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Baby, Rocket, Plane, GraduationCap, Briefcase, ArrowRight } from 'lucide-react';
+import { Baby, Rocket, Plane, GraduationCap, Briefcase, ArrowRight, BookCopy, Target, Lightbulb, PenSquare } from 'lucide-react';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 
@@ -10896,9 +10754,24 @@ const iconMap = {
     'ielts': <Briefcase className="h-8 w-8 text-red-500" />,
 };
 
+// Danh sách các icon chung để lựa chọn ngẫu nhiên
+const genericIcons = [
+    <GraduationCap className="h-8 w-8 text-purple-500" />,
+    <Briefcase className="h-8 w-8 text-red-500" />,
+    <BookCopy className="h-8 w-8 text-teal-500" />,
+    <Target className="h-8 w-8 text-indigo-500" />,
+    <Lightbulb className="h-8 w-8 text-yellow-500" />,
+    <PenSquare className="h-8 w-8 text-sky-500" />
+];
+
 const getIconForProgram = (slug) => {
     const key = Object.keys(iconMap).find(k => slug.includes(k));
-    return key ? iconMap[key] : <GraduationCap className="h-8 w-8 text-gray-500" />;
+    if (key) {
+        return iconMap[key];
+    }
+    // Nếu không tìm thấy icon cụ thể, chọn ngẫu nhiên một icon từ danh sách chung
+    const randomIndex = Math.floor(Math.random() * genericIcons.length);
+    return genericIcons[randomIndex];
 };
 
 function ProgramsSection({ trainings }) {
@@ -11371,68 +11244,67 @@ function YoutubeSection({ links }) {
 export default YoutubeSection;
 
 /* ===== src\pages\News\NewsPage.jsx ===== */
-/* src/pages/News/NewsPage.jsx */
+/* ===== src\pages\News\NewsPage.jsx ===== */
 "use client";
 
-import React, { useState } from 'react';
-import { NEWS_ARTICLES, NEWS_CATEGORIES } from '@/lib/news-data';
+import React from 'react';
+import { usePathname, useSearchParams } from 'next/navigation';
 import ArticleItem from '@/pages/News/components/ArticleItem';
 import NewsSidebar from '@/pages/News/components/NewsSidebar';
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/components/ui/pagination';
 import { cn } from '@/lib/utils';
 
-const ITEMS_PER_PAGE = 10;
+function NewsPage({ newsData, categories, categoryInfo }) {
+    const { data: articles, currentPage, totalPages } = newsData;
 
-// FIX: Nhận 'articles' như một prop, nếu không có thì dùng mặc định là NEWS_ARTICLES
-function NewsPage({ articles: initialArticles }) {
-    const [currentPage, setCurrentPage] = useState(1);
-    
-    // Sử dụng danh sách bài viết được truyền vào hoặc danh sách đầy đủ
-    const articles = initialArticles || NEWS_ARTICLES;
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
+    // SỬA: Lấy search term để hiển thị thông báo
+    const searchTerm = searchParams.get('search');
 
-    const totalPages = Math.ceil(articles.length / ITEMS_PER_PAGE);
-
-    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-    const endIndex = startIndex + ITEMS_PER_PAGE;
-    const currentArticles = articles.slice(startIndex, endIndex);
-
-    const handlePageChange = (page) => {
-        if (page >= 1 && page <= totalPages) {
-            setCurrentPage(page);
-            window.scrollTo(0, 0);
-        }
+    const createPageURL = (pageNumber) => {
+        const params = new URLSearchParams(searchParams);
+        params.set('page', pageNumber.toString());
+        return `${pathname}?${params.toString()}`;
     };
-    
+
     const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
 
     return (
         <div className="bg-white py-24 sm:py-32">
             <div className="container mx-auto px-4">
+                {categoryInfo && (
+                    <div className="mb-8 border-b pb-4">
+                        <h1 className="text-3xl font-bold">Danh mục: {categoryInfo.name}</h1>
+                    </div>
+                )}
                 <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
                     <main className="lg:col-span-3">
-                        {/* FIX: Hiển thị thông báo nếu không có bài viết nào */}
-                        {currentArticles.length > 0 ? (
+                        {articles && articles.length > 0 ? (
                             <div className="flex flex-col">
-                                {currentArticles.map(article => (
+                                {articles.map(article => (
                                     <ArticleItem key={article.id} article={article} />
                                 ))}
                             </div>
                         ) : (
                             <div className="text-center py-16">
-                                <h2 className="text-2xl font-bold text-gray-800">Không có bài viết nào.</h2>
-                                <p className="text-gray-600 mt-2">Hiện tại chưa có bài viết nào trong danh mục này. Vui lòng quay lại sau.</p>
+                                {/* SỬA: Hiển thị thông báo tùy theo có tìm kiếm hay không */}
+                                <h2 className="text-2xl font-bold text-gray-800">
+                                    {searchTerm ? `Không tìm thấy kết quả cho "${searchTerm}"` : "Không có bài viết nào."}
+                                </h2>
+                                <p className="text-gray-600 mt-2">
+                                    {searchTerm ? "Vui lòng thử với từ khóa khác." : "Hiện tại chưa có bài viết nào trong danh mục này."}
+                                </p>
                             </div>
                         )}
                         
-                        {/* Chỉ hiển thị pagination nếu có nhiều hơn 1 trang */}
                         {totalPages > 1 && (
                             <div className="mt-16">
                                 <Pagination>
                                     <PaginationContent>
                                         <PaginationItem>
                                             <PaginationPrevious 
-                                                href="#" 
-                                                onClick={(e) => { e.preventDefault(); handlePageChange(currentPage - 1); }} 
+                                                href={createPageURL(currentPage - 1)}
                                                 className={cn(
                                                     currentPage === 1 
                                                     ? 'pointer-events-none opacity-50' 
@@ -11444,8 +11316,7 @@ function NewsPage({ articles: initialArticles }) {
                                         {pageNumbers.map(number => (
                                             <PaginationItem key={number}>
                                                 <PaginationLink 
-                                                    href="#" 
-                                                    onClick={(e) => { e.preventDefault(); handlePageChange(number); }}
+                                                    href={createPageURL(number)}
                                                     isActive={currentPage === number}
                                                     className={cn(
                                                         "hover:bg-orange-500 hover:text-white",
@@ -11459,8 +11330,7 @@ function NewsPage({ articles: initialArticles }) {
 
                                         <PaginationItem>
                                             <PaginationNext 
-                                                href="#" 
-                                                onClick={(e) => { e.preventDefault(); handlePageChange(currentPage + 1); }}
+                                                href={createPageURL(currentPage + 1)}
                                                 className={cn(
                                                     currentPage === totalPages
                                                     ? 'pointer-events-none opacity-50'
@@ -11475,7 +11345,7 @@ function NewsPage({ articles: initialArticles }) {
                     </main>
 
                     <aside className="lg:col-span-1">
-                        <NewsSidebar categories={NEWS_CATEGORIES} />
+                        <NewsSidebar categories={categories} />
                     </aside>
                 </div>
             </div>
@@ -11486,33 +11356,56 @@ function NewsPage({ articles: initialArticles }) {
 export default NewsPage;
 
 /* ===== src\pages\News\components\ArticleItem.jsx ===== */
+/* ===== src\pages\News\components\ArticleItem.jsx ===== */
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Calendar, MessageSquare, User } from 'lucide-react';
+import { Calendar, User, Eye } from 'lucide-react';
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { cn } from '@/lib/utils';
+import { format } from 'date-fns';
 
-// FIX: Tạo một map để định kiểu cho từng danh mục
-const categoryStyles = {
-    'Sự kiện': 'bg-orange-500 text-white',
-    'Tin tức': 'bg-blue-500 text-white',
-    'Tuyển dụng': 'bg-green-500 text-white',
-};
+// Danh sách màu pastel tailwind (có thể thêm/bớt tuỳ thích)
+const pastelColors = [
+    { bg: 'bg-red-100', text: 'text-red-700' },
+    { bg: 'bg-orange-100', text: 'text-orange-700' },
+    { bg: 'bg-yellow-100', text: 'text-yellow-700' },
+    { bg: 'bg-green-100', text: 'text-green-700' },
+    { bg: 'bg-teal-100', text: 'text-teal-700' },
+    { bg: 'bg-blue-100', text: 'text-blue-700' },
+    { bg: 'bg-indigo-100', text: 'text-indigo-700' },
+    { bg: 'bg-purple-100', text: 'text-purple-700' },
+    { bg: 'bg-pink-100', text: 'text-pink-700' },
+    { bg: 'bg-rose-100', text: 'text-rose-700' },
+    { bg: 'bg-cyan-100', text: 'text-cyan-700' },
+    { bg: 'bg-lime-100', text: 'text-lime-700' },
+];
+
+// Hàm gán màu cho từng slug, mỗi slug luôn ra 1 màu cố định
+function getPastelColorFromSlug(slug) {
+    let hash = 0;
+    for (let i = 0; i < slug.length; i++) {
+        hash = slug.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    const idx = Math.abs(hash) % pastelColors.length;
+    return `${pastelColors[idx].bg} ${pastelColors[idx].text}`;
+}
+
 
 function ArticleItem({ article }) {
-    // FIX: Lấy lớp CSS tương ứng hoặc một lớp mặc định
-    const badgeClass = categoryStyles[article.category] || 'bg-gray-500 text-white';
+    // Gán màu cho danh mục dựa trên slug
+    const badgeClass = getPastelColorFromSlug(article.category_slug);
+    
+    const formattedDate = format(new Date(article.created_at), 'dd/MM/yyyy');
 
     return (
         <article className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start border-b pb-8 mb-8 last:border-b-0 last:mb-0 last:pb-0">
             <div className="md:col-span-1">
-                {/* FIX: Thêm class 'relative block' để định vị badge */}
                 <Link href={`/news/${article.slug}`} className="relative block group">
                     <div className="rounded-lg overflow-hidden shadow-md transition-transform duration-300 group-hover:scale-105">
                         <AspectRatio ratio={16 / 9}>
                             <Image
-                                src={article.imageSrc}
+                                src={article.thumbnail}
                                 alt={article.title}
                                 fill
                                 className="object-cover"
@@ -11520,35 +11413,37 @@ function ArticleItem({ article }) {
                             />
                         </AspectRatio>
                     </div>
-                    {/* FIX: Thêm badge danh mục */}
                     <div className={cn(
-                        "absolute top-3 left-3 z-10 rounded-md px-2 py-1 text-xs font-semibold uppercase tracking-wider",
+                        "absolute top-3 left-3 z-10 rounded-md px-2 py-1 text-xs font-semibold tracking-wider",
                         badgeClass
                     )}>
-                        {article.category}
+                        {article.category_name}
                     </div>
                 </Link>
             </div>
             
             <div className="md:col-span-2 flex flex-col h-full">
-                <h2 className="text-2xl font-bold leading-tight text-gray-900 hover:text-orange-600 transition-colors">
+                <h2 className="text-lg md:text-xl font-bold leading-tight text-gray-900 hover:text-orange-600 transition-colors">
                     <Link href={`/news/${article.slug}`}>{article.title}</Link>
                 </h2>
-                <div className="flex items-center flex-wrap gap-x-4 gap-y-2 text-sm text-gray-500 mt-2 mb-3">
+                <div className="flex items-center flex-wrap gap-x-4 gap-y-2 text-xs md:text-sm text-gray-500 mt-2 mb-3">
                     <span className="flex items-center gap-1.5">
                         <User className="w-4 h-4 text-orange-500" />
                         BY <span className="font-semibold text-orange-500 uppercase">{article.author}</span>
                     </span>
                     <span className="flex items-center gap-1.5">
-                        <Calendar className="w-4 h-4" /> {article.date}
+                        <Calendar className="w-4 h-4" /> {formattedDate}
                     </span>
                     <span className="flex items-center gap-1.5">
-                        <MessageSquare className="w-4 h-4" /> {article.comments}
+                        <Eye className="w-4 h-4" /> {article.view} Lượt xem
                     </span>
                 </div>
-                <p className="text-base text-gray-600 leading-relaxed">
-                    {article.excerpt}
-                </p>
+                {/* THÊM: Hiển thị excerpt nếu có */}
+                {article.excerpt && (
+                    <p className="mt-2 text-sm text-gray-600 leading-relaxed line-clamp-2">
+                        {article.excerpt}
+                    </p>
+                )}
             </div>
         </article>
     );
@@ -11556,28 +11451,77 @@ function ArticleItem({ article }) {
 
 export default ArticleItem;
 
+/* Ví dụ nếu có render danh mục bên phải như sau:
+<aside className="...">
+    {/* ...form tìm kiếm... *}
+    <div className="mt-6">
+        <h3 className="font-semibold mb-2 text-sm">Danh mục</h3>
+        <ul className="space-y-2">
+            {categories.map(cat => (
+                <li key={cat.slug}>
+                    <Link
+                        href={`/news/category/${cat.slug}`}
+                        className="block text-xs md:text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors"
+                    >
+                        {cat.name}
+                    </Link>
+                </li>
+            ))}
+        </ul>
+    </div>
+</aside>
+*/
+
 /* ===== src\pages\News\components\NewsSidebar.jsx ===== */
-/* src/pages/News/components/NewsSidebar.jsx */
-import React from 'react';
+/* ===== src\pages\News\components\NewsSidebar.jsx ===== */
+"use client";
+
+import React, { useState } from 'react';
+import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Search } from 'lucide-react';
 import Link from 'next/link';
-// FIX: Import hàm slugify
-import { slugify } from '@/lib/utils';
 
 function NewsSidebar({ categories }) {
+    const router = useRouter();
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
+    const [searchTerm, setSearchTerm] = useState(searchParams.get('search') || '');
+
+    const handleSearch = (e) => {
+        e.preventDefault();
+        const params = new URLSearchParams(searchParams);
+        if (searchTerm) {
+            params.set('search', searchTerm);
+        } else {
+            params.delete('search');
+        }
+        // Khi tìm kiếm, luôn quay về trang 1
+        params.delete('page'); 
+        
+        // Chỉ điều hướng đến trang /news khi tìm kiếm
+        router.push(`/news?${params.toString()}`);
+    };
+
     return (
         <aside className="sticky top-28">
             <div className="space-y-10">
-                <div>
+                {/* SỬA: Bọc trong form và thêm logic xử lý */}
+                <form onSubmit={handleSearch}>
                     <div className="flex w-full items-center">
-                        <Input type="text" placeholder="Search..." className="h-11 rounded-r-none border-gray-300 focus-visible:ring-0 focus-visible:ring-offset-0" />
+                        <Input 
+                            type="text" 
+                            placeholder="Tìm kiếm bài viết..." 
+                            className="h-11 rounded-r-none border-gray-300 focus-visible:ring-0 focus-visible:ring-offset-0" 
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                        />
                         <Button type="submit" className="h-11 rounded-l-none bg-orange-500 hover:bg-orange-600">
                             <Search className="h-5 w-5" />
                         </Button>
                     </div>
-                </div>
+                </form>
 
                 <div>
                     <h3 className="text-lg font-bold text-gray-900 mb-4 pb-2 border-b-2 border-orange-500 inline-block">
@@ -11585,10 +11529,9 @@ function NewsSidebar({ categories }) {
                     </h3>
                     <ul className="space-y-4">
                         {categories.map((category) => (
-                            <li key={category.name}>
-                                {/* FIX: Sử dụng slugify để tạo đường dẫn đúng */}
-                                <Link href={`/category/${slugify(category.name)}`} className="flex justify-between items-center text-gray-700 hover:text-orange-600 transition-colors border-b border-gray-200 pb-3 text-base">
-                                    <span className="font-semibold uppercase">{category.name}</span>
+                            <li key={category.id}>
+                                <Link href={`/category/${category.slug}`} className="flex justify-between items-center text-gray-700 hover:text-orange-600 transition-colors border-b border-gray-200 pb-3 text-base">
+                                    <span className="font-semibold">{category.name}</span>
                                     <span className="text-gray-500">({category.count})</span>
                                 </Link>
                             </li>
@@ -11603,13 +11546,43 @@ function NewsSidebar({ categories }) {
 export default NewsSidebar;
 
 /* ===== src\pages\News\components\RecentPostsSection.jsx ===== */
+/* ===== src\pages\News\components\RecentPostsSection.jsx ===== */
 /* src/pages/News/components/RecentPostsSection.jsx */
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
-import { Calendar, MessageSquare } from 'lucide-react';
+import { Calendar, Eye, User } from 'lucide-react';
+import { format } from 'date-fns';
+import { cn } from '@/lib/utils';
+
+const categoryColorMap = {
+    'hoat-dong-ngoai-khoa-1': 'bg-orange-500 text-white',
+    'su-kien-noi-bat-2': 'bg-blue-500 text-white',
+    'goc-chia-se-kinh-nghiem-3': 'bg-green-500 text-white',
+    'thong-bao-tu-trung-tam-4': 'bg-yellow-500 text-black',
+    'lich-khai-giang-5': 'bg-indigo-500 text-white',
+    'uu-dai-hoc-phi-6': 'bg-pink-500 text-white',
+    'phuong-phap-hoc-tap-hieu-qua-7': 'bg-teal-500 text-white',
+    'cam-nhan-hoc-vien-8': 'bg-rose-500 text-white',
+    'cau-chuyen-thanh-cong-9': 'bg-purple-500 text-white',
+};
+
+const fallbackColors = [
+    'bg-slate-500 text-white', 'bg-cyan-500 text-white', 'bg-lime-500 text-black',
+];
+
+const getCategoryStyle = (slug) => {
+    if (categoryColorMap[slug]) {
+        return categoryColorMap[slug];
+    }
+    let hash = 0;
+    for (let i = 0; i < slug.length; i++) {
+        hash = slug.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    return fallbackColors[Math.abs(hash % fallbackColors.length)];
+};
+
 
 function RecentPostsSection({ articles }) {
     if (!articles || articles.length === 0) {
@@ -11618,6 +11591,8 @@ function RecentPostsSection({ articles }) {
 
     const featuredArticle = articles[0];
     const otherArticles = articles.slice(1, 5);
+    const badgeClass = getCategoryStyle(featuredArticle.category_slug);
+    const formattedDate = format(new Date(featuredArticle.created_at), 'dd/MM/yyyy');
 
     return (
         <section className="py-16 sm:py-24 border-t bg-gray-50/50">
@@ -11631,14 +11606,17 @@ function RecentPostsSection({ articles }) {
                             <div className="relative rounded-lg overflow-hidden shadow-md mb-4 group">
                                 <AspectRatio ratio={16 / 9}>
                                     <Image
-                                        src={featuredArticle.imageSrc}
+                                        src={featuredArticle.thumbnail}
                                         alt={featuredArticle.title}
                                         fill
                                         className="object-cover transition-transform duration-300 group-hover:scale-105"
                                         sizes="(max-width: 1024px) 100vw, 50vw"
                                     />
-                                    <div className="absolute bottom-4 left-4 bg-orange-500 text-white text-xs font-semibold px-3 py-1 rounded-sm">
-                                        {featuredArticle.category.toUpperCase()}
+                                    <div className={cn(
+                                        "absolute bottom-4 left-4 text-xs font-semibold px-3 py-1 rounded-sm uppercase",
+                                        badgeClass
+                                    )}>
+                                        {featuredArticle.category_name}
                                     </div>
                                 </AspectRatio>
                             </div>
@@ -11648,15 +11626,14 @@ function RecentPostsSection({ articles }) {
                         </h3>
                         <div className="flex items-center gap-4 text-xs text-gray-500 mt-2 mb-3">
                             <span className="flex items-center gap-1.5">BY <span className="font-medium text-orange-500 uppercase">{featuredArticle.author}</span></span>
-                            <span className="flex items-center gap-1.5"><Calendar className="w-3 h-3" /> {featuredArticle.date}</span>
-                            <span className="flex items-center gap-1.5"><MessageSquare className="w-3 h-3" /> {featuredArticle.comments}</span>
+                            <span className="flex items-center gap-1.5"><Calendar className="w-3 h-3" /> {formattedDate}</span>
+                            <span className="flex items-center gap-1.5"><Eye className="w-3 h-3" /> {featuredArticle.view}</span>
                         </div>
-                        <p className="text-base text-gray-600 leading-relaxed mb-4 line-clamp-3">
-                            {featuredArticle.excerpt}
-                        </p>
-                        <Button asChild variant="outline" className="mt-auto self-start border-gray-300 hover:bg-orange-500 hover:text-white hover:border-orange-500">
-                            <Link href={`/news/${featuredArticle.slug}`}>READ MORE</Link>
-                        </Button>
+                        {featuredArticle.excerpt && (
+                            <p className="mt-2 text-base text-gray-600 leading-relaxed line-clamp-3">
+                                {featuredArticle.excerpt}
+                            </p>
+                        )}
                     </div>
 
                     <div className="flex flex-col space-y-6">
@@ -11664,7 +11641,7 @@ function RecentPostsSection({ articles }) {
                             <Link key={article.id} href={`/news/${article.slug}`} className="group flex items-center gap-4">
                                 <div className="flex-shrink-0 w-32 h-20 rounded-md overflow-hidden shadow-sm">
                                     <Image
-                                        src={article.imageSrc}
+                                        src={article.thumbnail}
                                         alt={article.title}
                                         width={128}
                                         height={80}
@@ -11675,9 +11652,14 @@ function RecentPostsSection({ articles }) {
                                     <h4 className="text-base font-semibold leading-tight text-gray-800 group-hover:text-orange-600 transition-colors line-clamp-2">
                                         {article.title}
                                     </h4>
-                                    <p className="text-xs text-gray-500 mt-1 flex items-center gap-1.5">
+                                    {article.excerpt && (
+                                        <p className="mt-1 text-sm text-gray-500 line-clamp-2">
+                                            {article.excerpt}
+                                        </p>
+                                    )}
+                                    <p className="text-xs text-gray-500 mt-2 flex items-center gap-1.5">
                                         <Calendar className="w-3 h-3" />
-                                        {article.date}
+                                        {format(new Date(article.created_at), 'dd/MM/yyyy')}
                                     </p>
                                 </div>
                             </Link>
@@ -11692,19 +11674,23 @@ function RecentPostsSection({ articles }) {
 export default RecentPostsSection;
 
 /* ===== src\pages\News\Detail\NewsDetailPage.jsx ===== */
+/* ===== src\pages\News\Detail\NewsDetailPage.jsx ===== */
 import React from 'react';
-import { Calendar, MessageSquare, User } from 'lucide-react';
+import { Calendar, User, Eye } from 'lucide-react';
 import RecentPostsSection from '@/pages/News/components/RecentPostsSection';
+import { format } from 'date-fns';
 
 function NewsDetailPage({ article, recentArticles }) {
+    const formattedDate = format(new Date(article.created_at), 'dd/MM/yyyy');
+
     return (
         <main>
-            {/* FIX: Tăng padding top để không bị header che, và thêm padding ngang cho mobile */}
             <div className="bg-white pt-24 pb-16 sm:pt-32 sm:pb-24">
                 <div className="container mx-auto px-4">
                     <div className="max-w-4xl mx-auto"> 
                         <header className="mb-8">
-                            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight">
+                            <p className="text-base font-semibold text-orange-600 uppercase">{article.category_name}</p>
+                            <h1 className="mt-2 text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight">
                                 {article.title}
                             </h1>
                             <div className="flex items-center flex-wrap gap-x-4 gap-y-2 text-sm text-gray-500 mt-4 border-b pb-4">
@@ -11713,16 +11699,22 @@ function NewsDetailPage({ article, recentArticles }) {
                                     BY <span className="font-semibold text-orange-500 uppercase">{article.author}</span>
                                 </span>
                                 <span className="flex items-center gap-1.5">
-                                    <Calendar className="w-4 h-4" /> {article.date}
+                                    <Calendar className="w-4 h-4" /> {formattedDate}
                                 </span>
                                 <span className="flex items-center gap-1.5">
-                                    <MessageSquare className="w-4 h-4" /> {article.comments}
+                                    <Eye className="w-4 h-4" /> {article.view} Lượt xem
                                 </span>
                             </div>
                         </header>
                         
+                        {article.excerpt && (
+                            <p className="mt-8 text-lg italic text-gray-600 border-l-4 border-orange-400 pl-4">
+                                {article.excerpt}
+                            </p>
+                        )}
+                        
                         <div
-                            className="prose prose-lg max-w-none prose-img:rounded-xl prose-h3:text-gray-800"
+                            className="prose prose-lg max-w-none prose-img:rounded-xl prose-h3:text-gray-800 mt-8"
                             dangerouslySetInnerHTML={{ __html: article.content }}
                         />
                     </div>
@@ -12542,7 +12534,6 @@ function TrainingPage({ initialTrainingData }) {
 export default TrainingPage;
 
 /* ===== src\pages\Training\components\ProgramsList.jsx ===== */
-// src/pages/Training/components/ProgramsList.jsx
 "use client";
 
 import React, { useState, useEffect } from 'react';
@@ -12550,7 +12541,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { ArrowRight, Baby, BookOpen, Briefcase, School, Shield, Sun, Loader2 } from 'lucide-react';
+import { ArrowRight, Baby, BookOpen, Briefcase, School, Shield, Sun, Loader2, Target, Lightbulb } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { loadMoreTrainings } from '@/app/actions/trainingActions';
 // SỬA: Import custom hook useTraining
@@ -12566,9 +12557,25 @@ const iconMap = {
     'business-english': <Briefcase className="h-6 w-6" />,
 };
 
+// Danh sách các icon chung để lựa chọn ngẫu nhiên
+const genericIcons = [
+    <BookOpen className="h-6 w-6" />,
+    <Briefcase className="h-6 w-6" />,
+    <School className="h-6 w-6" />,
+    <Shield className="h-6 w-6" />,
+    <Target className="h-6 w-6" />,
+    <Lightbulb className="h-6 w-6" />
+];
+
+
 const getIconForProgram = (slug) => {
     const key = Object.keys(iconMap).find(k => slug.includes(k));
-    return key ? iconMap[key] : <BookOpen className="h-6 w-6" />;
+    if (key) {
+        return iconMap[key];
+    }
+    // Nếu không tìm thấy icon cụ thể, chọn ngẫu nhiên một icon từ danh sách chung
+    const randomIndex = Math.floor(Math.random() * genericIcons.length);
+    return genericIcons[randomIndex];
 };
 
 function ProgramCard({ program, reverse = false }) {
@@ -13368,7 +13375,120 @@ export async function getHomepageData() {
 
 
 /* ===== src\services\newsService.js ===== */
+/* ===== src\services\newsService.js ===== */
+import { unstable_noStore as noStore } from "next/cache";
 
+const API_BASE_URL = process.env.API_BASE_URL;
+
+/**
+ * Fetches paginated news articles with optional search.
+ * @param {object} params - The query parameters.
+ * @param {string|Promise<string>} params.page - The page number.
+ * @param {string|Promise<string>} params.search - The search term.
+ * @param {string|Promise<string>} params.pageSize - The number of items per page.
+ * @returns {Promise<object>} A promise that resolves to the paginated news data.
+ */
+export async function getNews({ page = '1', search = '', pageSize = '10' } = {}) {
+  noStore();
+  try {
+    // Ensure all parameters are resolved in case they are promises
+    const resolvedPage = String(await page || '1');
+    const resolvedSearch = String(await search || '');
+    const resolvedPageSize = String(await pageSize || '10');
+    
+    const query = new URLSearchParams({
+      page: resolvedPage,
+      pageSize: resolvedPageSize,
+    });
+
+    if (resolvedSearch) {
+      query.append('search', resolvedSearch);
+    }
+
+    const response = await fetch(
+      `${API_BASE_URL}/news?${query.toString()}`
+    );
+    if (!response.ok) throw new Error("Failed to fetch news");
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error("Error fetching news:", error);
+    return { data: [], totalPages: 1, currentPage: 1, totalElements: 0 };
+  }
+}
+
+/**
+ * Fetches a single news article by its slug.
+ * @param {string} slug - The slug of the news article.
+ * @returns {Promise<object|null>} A promise that resolves to the article object or null if not found.
+ */
+export async function getNewsBySlug(slug) {
+  noStore();
+  try {
+    const response = await fetch(`${API_BASE_URL}/news/${slug}`);
+    if (!response.ok) return null;
+    const result = await response.json();
+    return result.data;
+  } catch (error) {
+    console.error(`Error fetching news by slug ${slug}:`, error);
+    return null;
+  }
+}
+
+/**
+ * Fetches all news categories.
+ * @returns {Promise<Array>} A promise that resolves to an array of categories.
+ */
+export async function getNewsCategories() {
+  noStore();
+  try {
+    const response = await fetch(`${API_BASE_URL}/categories`);
+    if (!response.ok) throw new Error("Failed to fetch categories");
+    const result = await response.json();
+    return result.data || [];
+  } catch (error) {
+    console.error("Error fetching news categories:", error);
+    return [];
+  }
+}
+
+/**
+ * Fetches news articles for a specific category slug with optional search.
+ * @param {string} slug - The slug of the category.
+ * @param {object} params - The query parameters.
+ * @param {string|Promise<string>} params.page - The page number.
+ * @param {string|Promise<string>} params.search - The search term.
+ * @param {string|Promise<string>} params.pageSize - The number of items per page.
+ * @returns {Promise<object>} A promise that resolves to the paginated category news data.
+ */
+export async function getNewsByCategorySlug(slug, { page = '1', search = '', pageSize = '10' } = {}) {
+  noStore();
+  try {
+    // Ensure all parameters are resolved in case they are promises
+    const resolvedPage = String(await page || '1');
+    const resolvedSearch = String(await search || '');
+    const resolvedPageSize = String(await pageSize || '10');
+    
+    const query = new URLSearchParams({
+      page: resolvedPage,
+      pageSize: resolvedPageSize,
+    });
+
+    if (resolvedSearch) {
+      query.append('search', resolvedSearch);
+    }
+    
+    const response = await fetch(
+      `${API_BASE_URL}/categories/${slug}/news?${query.toString()}`
+    );
+    if (!response.ok) throw new Error(`Failed to fetch news for category ${slug}`);
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error(`Error fetching news for category ${slug}:`, error);
+    return { category: { name: '', slug: '' }, data: [], totalPages: 1, currentPage: 1 };
+  }
+}
 
 /* ===== src\services\teacherService.js ===== */
 // src/services/teacherService.js
@@ -13534,6 +13654,11 @@ export async function getOtherTrainings(excludeSlug, pageSize = 5) {
 /* next-env.d.ts */
 /* .codebase/ */
 
+/* Based on track_ignore.txt patterns: */
+/* .next/ */
+/* node_modules/ */
+/* public/ */
+
 /* Ignored directories: */
 /* .codebase/ */
 /* .git\hooks/ */
@@ -13546,6 +13671,7 @@ export async function getOtherTrainings(excludeSlug, pageSize = 5) {
 /* .next\server/ */
 /* .next\static/ */
 /* node_modules/ */
+/* public\assets/ */
 
 /* Ignored files (by rule): */
 /* .env.local */
@@ -13564,157 +13690,11 @@ export async function getOtherTrainings(excludeSlug, pageSize = 5) {
 /* .next\trace */
 /* .next\transform.js */
 /* .next\transform.js.map */
+/* public\file.svg */
+/* public\globe.svg */
+/* public\next.svg */
+/* public\vercel.svg */
+/* public\window.svg */
 
 /* Ignored binary files: */
-/* public\assets\images\R5AT3838.jpg */
-/* public\assets\images\R5AT3841.jpg */
-/* public\assets\images\R5AT3848.jpg */
-/* public\assets\images\R5AT3853.jpg */
-/* public\assets\images\R5AT3856.jpg */
-/* public\assets\images\R5AT3860.jpg */
-/* public\assets\images\R5AT3865.jpg */
-/* public\assets\images\R5AT3870.jpg */
-/* public\assets\images\R5AT3872.jpg */
-/* public\assets\images\R5AT3875.jpg */
-/* public\assets\images\R5AT3879.jpg */
-/* public\assets\images\R5AT3881.jpg */
-/* public\assets\images\R5AT3884.jpg */
-/* public\assets\images\R5AT3893.jpg */
-/* public\assets\images\R5AT3894.jpg */
-/* public\assets\images\R5AT3898.jpg */
-/* public\assets\images\R5AT3903.jpg */
-/* public\assets\images\R5AT3907.jpg */
-/* public\assets\images\R5AT3909.jpg */
-/* public\assets\images\R5AT3910.jpg */
-/* public\assets\images\R5AT3911.jpg */
-/* public\assets\images\R5AT3914.jpg */
-/* public\assets\images\R5AT3919.jpg */
-/* public\assets\images\R5AT3921.jpg */
-/* public\assets\images\R5AT3923.jpg */
-/* public\assets\images\R5AT3931.jpg */
-/* public\assets\images\R5AT3936.jpg */
-/* public\assets\images\R5AT3939.jpg */
-/* public\assets\images\R5AT3941.jpg */
-/* public\assets\images\R5AT3943.jpg */
-/* public\assets\images\R5AT3945.jpg */
-/* public\assets\images\R5AT3949.jpg */
-/* public\assets\images\R5AT3953.jpg */
-/* public\assets\images\R5AT3957.jpg */
-/* public\assets\images\R5AT3961.jpg */
-/* public\assets\images\R5AT3962.jpg */
-/* public\assets\images\R5AT3963.jpg */
-/* public\assets\images\R5AT3967.jpg */
-/* public\assets\images\R5AT3969.jpg */
-/* public\assets\images\R5AT3975.jpg */
-/* public\assets\images\R5AT3978.jpg */
-/* public\assets\images\R5AT3979.jpg */
-/* public\assets\images\R5AT3980.jpg */
-/* public\assets\images\R5AT3984.jpg */
-/* public\assets\images\R5AT3989.jpg */
-/* public\assets\images\R5AT3990.jpg */
-/* public\assets\images\R5AT3991.jpg */
-/* public\assets\images\R5AT3992.jpg */
-/* public\assets\images\R5AT3995.jpg */
-/* public\assets\images\R5AT3998.jpg */
-/* public\assets\images\R5AT3999.jpg */
-/* public\assets\images\R5AT4002.jpg */
-/* public\assets\images\R5AT4003.jpg */
-/* public\assets\images\R5AT4007.jpg */
-/* public\assets\images\R5AT4010.jpg */
-/* public\assets\images\R5AT4012.jpg */
-/* public\assets\images\R5AT4014.jpg */
-/* public\assets\images\R5AT4016.jpg */
-/* public\assets\images\R5AT4018.jpg */
-/* public\assets\images\R5AT4019.jpg */
-/* public\assets\images\R5AT4022.jpg */
-/* public\assets\images\R5AT4027.jpg */
-/* public\assets\images\R5AT4031.jpg */
-/* public\assets\images\R5AT4032.jpg */
-/* public\assets\images\R5AT4035.jpg */
-/* public\assets\images\R5AT4037.jpg */
-/* public\assets\images\R5AT4040.jpg */
-/* public\assets\images\R5AT4049.jpg */
-/* public\assets\images\R5AT4050.jpg */
-/* public\assets\images\R5AT4053.jpg */
-/* public\assets\images\R5AT4055.jpg */
-/* public\assets\images\R5AT4058.jpg */
-/* public\assets\images\R5AT4061.jpg */
-/* public\assets\images\R5AT4063.jpg */
-/* public\assets\images\R5AT4067.jpg */
-/* public\assets\images\R5AT4071.jpg */
-/* public\assets\images\R5AT4078.jpg */
-/* public\assets\images\R5AT4080.jpg */
-/* public\assets\images\R5AT4083.jpg */
-/* public\assets\images\R5AT4087.jpg */
-/* public\assets\images\R5AT4089.jpg */
-/* public\assets\images\R5AT4092.jpg */
-/* public\assets\images\R5AT4096.jpg */
-/* public\assets\images\R5AT4097.jpg */
-/* public\assets\images\R5AT4099.jpg */
-/* public\assets\images\R5AT4103.jpg */
-/* public\assets\images\R5AT4106.jpg */
-/* public\assets\images\R5AT4110.jpg */
-/* public\assets\images\R5AT4114.jpg */
-/* public\assets\images\R5AT4116.jpg */
-/* public\assets\images\R5AT4117.jpg */
-/* public\assets\images\R5AT4118.jpg */
-/* public\assets\images\R5AT4121.jpg */
-/* public\assets\images\R5AT4123.jpg */
-/* public\assets\images\R5AT4125.jpg */
-/* public\assets\images\R5AT4128.jpg */
-/* public\assets\images\R5AT4131.jpg */
-/* public\assets\images\R5AT4133.jpg */
-/* public\assets\images\R5AT4134.jpg */
-/* public\assets\images\R5AT4136.jpg */
-/* public\assets\images\R5AT4140.jpg */
-/* public\assets\images\R5AT4145.jpg */
-/* public\assets\images\R5AT4153.jpg */
-/* public\assets\images\R5AT4155.jpg */
-/* public\assets\images\R5AT4157.jpg */
-/* public\assets\images\R5AT4159.jpg */
-/* public\assets\images\R5AT4162.jpg */
-/* public\assets\images\R5AT4163.jpg */
-/* public\assets\images\R5AT4167.jpg */
-/* public\assets\images\R5AT4168.jpg */
-/* public\assets\images\R5AT4169.jpg */
-/* public\assets\images\R5AT4170.jpg */
-/* public\assets\images\R5AT4171.jpg */
-/* public\assets\images\R5AT4174.jpg */
-/* public\assets\images\R5AT4176.jpg */
-/* public\assets\images\R5AT4178.jpg */
-/* public\assets\images\R5AT4180.jpg */
-/* public\assets\images\R5AT4181.jpg */
-/* public\assets\images\R5AT4183.jpg */
-/* public\assets\images\R5AT4184.jpg */
-/* public\assets\images\R5AT4186.jpg */
-/* public\assets\images\R5AT4191.jpg */
-/* public\assets\images\R5AT4192.jpg */
-/* public\assets\images\R5AT4193.jpg */
-/* public\assets\images\R5AT4198.jpg */
-/* public\assets\images\R5AT4200.jpg */
-/* public\assets\images\R5AT4202.jpg */
-/* public\assets\images\R5AT4205.jpg */
-/* public\assets\images\R5AT4207.jpg */
-/* public\assets\images\R5AT4208.jpg */
-/* public\assets\images\R5AT4211.jpg */
-/* public\assets\images\R5AT4212.jpg */
-/* public\assets\images\R5AT4215.jpg */
-/* public\assets\images\R5AT4219.jpg */
-/* public\assets\images\R5AT4222.jpg */
-/* public\assets\images\R5AT4226.jpg */
-/* public\assets\images\R5AT4230.jpg */
-/* public\assets\images\R5AT4240.jpg */
-/* public\assets\images\R5AT4246.jpg */
-/* public\assets\images\R5AT4255.jpg */
-/* public\assets\images\R5AT4259.jpg */
-/* public\assets\images\R5AT4262.jpg */
-/* public\assets\images\R5AT4264.jpg */
-/* public\assets\images\R5AT4267.jpg */
-/* public\assets\images\R5AT4270.jpg */
-/* public\assets\images\R5AT4273.jpg */
-/* public\assets\images\R5AT4278.jpg */
-/* public\assets\images\R5AT4282.jpg */
-/* public\assets\images\R5AT4287.jpg */
-/* public\assets\images\R5AT4290.jpg */
-/* public\assets\images\logo-au.png */
 /* src\app\favicon.ico */

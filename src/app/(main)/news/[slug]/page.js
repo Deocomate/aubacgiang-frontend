@@ -1,17 +1,15 @@
+/* ===== src\app\(main)\news\[slug]\page.js ===== */
 // src/app/(main)/news/[slug]/page.js
 import { notFound } from 'next/navigation';
-import { NEWS_ARTICLES } from '@/lib/news-data';
+import { getNews, getNewsBySlug } from '@/services/newsService';
 import NewsDetailPage from '@/pages/News/Detail/NewsDetailPage';
-
-export async function generateStaticParams() {
-    return NEWS_ARTICLES.map(article => ({
-        slug: article.slug,
-    }));
-}
+import { GenericDetailSkeleton } from '@/components/ui/GenericDetailSkeleton'; // SỬA: Import đúng component
 
 export async function generateMetadata({ params }) {
-    const { slug } = await params; // SỬA: Thêm await
-    const article = NEWS_ARTICLES.find(p => p.slug === slug);
+    const awaitedParams = await params;
+    const { slug } = awaitedParams;
+
+    const article = await getNewsBySlug(slug);
 
     if (!article) {
         return {
@@ -20,19 +18,23 @@ export async function generateMetadata({ params }) {
     }
     return {
         title: `${article.title} - A&U English`,
-        description: article.excerpt,
+        // SỬA: Lấy description từ content nếu có
+        description: article.content ? article.content.replace(/<[^>]+>/g, '').substring(0, 160) : "Chi tiết bài viết tại A&U English",
     };
 }
 
 export default async function NewsDetail({ params }) {
-    const { slug } = await params; // SỬA: Thêm await
-    const article = NEWS_ARTICLES.find(p => p.slug === slug);
+    const awaitedParams = await params;
+    const { slug } = awaitedParams;
 
+    const article = await getNewsBySlug(slug);
+    
     if (!article) {
         notFound();
     }
     
-    const recentArticles = NEWS_ARTICLES
+    const recentNewsData = await getNews(1, 6);
+    const recentArticles = recentNewsData.data
         .filter(p => p.slug !== slug)
         .slice(0, 5);
 

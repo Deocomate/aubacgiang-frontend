@@ -1,51 +1,38 @@
-// src/app/(main)/category/[slug]/page.js
-import { NEWS_ARTICLES, NEWS_CATEGORIES } from "@/lib/news-data";
-import { slugify } from "@/lib/utils";
+/* ===== src\app\(main)\category\[slug]\page.js ===== */
+import { getNewsByCategorySlug, getNewsCategories } from "@/services/newsService";
 import NewsPage from "@/pages/News/NewsPage";
 import { notFound } from "next/navigation";
 
-// Hàm này sẽ tạo các trang tĩnh cho mỗi slug danh mục tại thời điểm build
-export async function generateStaticParams() {
-  return NEWS_CATEGORIES.map((category) => ({
-    slug: slugify(category.name),
-  }));
-}
-
-// Hàm này tạo metadata động cho mỗi trang danh mục
 export async function generateMetadata({ params }) {
-  const { slug } = await params; // SỬA: Thêm await
-  const category = NEWS_CATEGORIES.find((cat) => slugify(cat.name) === slug);
+  const { slug } = params;
+  const newsData = await getNewsByCategorySlug(slug);
 
-  if (!category) {
+  if (!newsData || !newsData.category) {
     return {
       title: "Không tìm thấy danh mục",
     };
   }
 
   return {
-    title: `${category.name} - Tin tức & Sự kiện | A&U English`,
-    description: `Các bài viết, tin tức và sự kiện thuộc danh mục ${category.name} tại Hệ thống Anh ngữ A&U.`,
+    title: `${newsData.category.name} - Tin tức & Sự kiện | A&U English`,
+    description: `Các bài viết, tin tức và sự kiện thuộc danh mục ${newsData.category.name} tại Hệ thống Anh ngữ A&U.`,
   };
 }
 
-// Component chính của trang danh mục
-export default async function CategoryPage({ params }) {
-  const { slug } = await params; // SỬA: Thêm await
+export default async function CategoryPage({ params, searchParams }) {
+  const { slug } = params;
+  const page = searchParams?.page;
+  const search = searchParams?.search;
+  const pageSize = searchParams?.pageSize;
+  
+  const [newsData, categories] = await Promise.all([
+      getNewsByCategorySlug(slug, { page, search, pageSize }),
+      getNewsCategories()
+  ]);
 
-  const filteredArticles = NEWS_ARTICLES.filter(
-    (article) => slugify(article.category) === slug
-  );
-
-  // Nếu không có bài viết nào hoặc slug không hợp lệ, có thể hiển thị trang 404
-  if (filteredArticles.length === 0) {
-    const isValidCategory = NEWS_CATEGORIES.some(
-      (cat) => slugify(cat.name) === slug
-    );
-    if (!isValidCategory) {
+  if (!newsData.category) {
       notFound();
-    }
   }
 
-  // Tái sử dụng component NewsPage và truyền vào danh sách bài viết đã được lọc
-  return <NewsPage articles={filteredArticles} />;
+  return <NewsPage newsData={newsData} categories={categories} categoryInfo={newsData.category} />;
 }
