@@ -1,54 +1,79 @@
-import React from 'react';
-import Image from 'next/image';
+"use client";
+
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
-import { Facebook, Mail } from 'lucide-react';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import { Facebook, Mail, Loader2 } from 'lucide-react';
+import { useTeacher } from '@/context/TeacherProvider';
+import { loadMoreTeachers } from '@/app/actions/teacherActions';
+import { Button } from '@/components/ui/button';
 
-const teachersData = [
-    {
-        name: 'Ms. Minh Nguyệt',
-        role: 'Giám đốc Trung tâm',
-        nationality: 'Việt Nam',
-        qualifications: ["Giám đốc Ngoại ngữ A&U", "Cử nhân Sư phạm Tiếng Anh - ĐHQGHN"],
-        imageSrc: '/assets/images/R5AT4240.jpg',
-        fallback: 'MN',
-        email: 'minhnguyetbg78@gmail.com',
-        facebookUrl: '#'
-    },
-    {
-        name: 'Mr. Jai Kattenberg',
-        role: 'Giáo viên Tiếng Anh',
-        nationality: 'Quốc tịch Úc',
-        qualifications: ["Cử nhân Đại học Griffith", "Chứng chỉ 120 hours TEFL"],
-        imageSrc: '/assets/images/R5AT4155.jpg',
-        fallback: 'JK',
-        email: 'info@anu.edu.vn',
-        facebookUrl: '#'
-    },
-    {
-        name: 'Mr. Welsh Ilya',
-        role: 'Giáo viên Tiếng Anh',
-        nationality: 'Quốc tịch Anh',
-        qualifications: ["Thạc sĩ University College London", "Chứng chỉ TEFL"],
-        imageSrc: '/assets/images/R5AT4278.jpg',
-        fallback: 'WI',
-        email: 'info@anu.edu.vn',
-        facebookUrl: '#'
-    },
-    {
-        name: 'Ms. Emily Rose',
-        role: 'Giáo viên Tiếng Anh',
-        nationality: 'Quốc tịch Mỹ',
-        qualifications: ["Cử nhân Ngôn ngữ Anh", "Chứng chỉ TESOL"],
-        imageSrc: '/assets/images/R5AT4012.jpg',
-        fallback: 'ER',
-        email: 'info@anu.edu.vn',
-        facebookUrl: '#'
-    },
-];
+const TEACHERS_PER_PAGE = 3;
 
-function TeacherProfilesSection() {
+const getInitials = (name) => {
+    if (!name) return '';
+    const names = name.split(' ');
+    if (names.length === 1) return names[0].charAt(0).toUpperCase();
+    return `${names[0].charAt(0)}${names[names.length - 1].charAt(0)}`.toUpperCase();
+};
+
+function TeacherProfilesSection({ initialTeachersData }) {
+    const router = useRouter();
+    const {
+        teachers, setTeachers,
+        currentPage, setCurrentPage,
+        totalPages, setTotalPages,
+        isInitialized, setIsInitialized
+    } = useTeacher();
+
+    const [isLoading, setIsLoading] = useState(false);
+
+    useEffect(() => {
+        if (!isInitialized) {
+            setTeachers(initialTeachersData.data || []);
+            setCurrentPage(initialTeachersData.currentPage || 1);
+            setTotalPages(initialTeachersData.totalPages || 1);
+            setIsInitialized(true);
+        }
+    }, [initialTeachersData, isInitialized, setTeachers, setCurrentPage, setTotalPages, setIsInitialized]);
+
+    const handleLoadMore = async () => {
+        if (currentPage >= totalPages) return;
+        setIsLoading(true);
+        const nextPage = currentPage + 1;
+        
+        try {
+            const newData = await loadMoreTeachers(nextPage, TEACHERS_PER_PAGE);
+            if (newData.error) throw new Error(newData.error);
+
+            setTeachers(prevTeachers => {
+                const existingIds = new Set(prevTeachers.map(t => t.id));
+                const uniqueNewTeachers = newData.data.filter(t => !existingIds.has(t.id));
+                return [...prevTeachers, ...uniqueNewTeachers];
+            });
+            setCurrentPage(nextPage);
+
+        } catch (error) {
+            console.error("Failed to load more teachers:", error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+    
+    const handleCardClick = (slug) => {
+        router.push(`/teachers/${slug}`);
+    };
+
+    const handleSocialClick = (e, url) => {
+        e.stopPropagation();
+        if (url) {
+            window.open(url, '_blank', 'noopener,noreferrer');
+        }
+    };
+
+    if (!isInitialized) return null;
+
     return (
         <section className="py-24 bg-gray-50">
             <div className="container mx-auto px-4">
@@ -62,54 +87,72 @@ function TeacherProfilesSection() {
                     </p>
                 </div>
                 
-                <Carousel
-                    opts={{
-                        align: "start",
-                        loop: true,
-                    }}
-                    className="w-full max-w-6xl mx-auto"
-                >
-                    <CarouselContent className="-ml-4">
-                        {teachersData.map((teacher, index) => (
-                            <CarouselItem key={index} className="pl-4 basis-full md:basis-1/2 lg:basis-1/3">
-                                <div className="py-2 h-full">
-                                    <Card className="flex flex-col text-center p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-2 h-full">
-                                        <CardHeader className="items-center">
-                                            <Avatar className="w-32 h-32 mb-4 border-4 border-orange-200 mx-auto">
-                                                <AvatarImage src={teacher.imageSrc} alt={`Chân dung ${teacher.name}`} />
-                                                <AvatarFallback className="text-4xl bg-orange-100 text-orange-600">{teacher.fallback}</AvatarFallback>
-                                            </Avatar>
-                                            <CardTitle className="text-2xl font-bold text-gray-900">{teacher.name}</CardTitle>
-                                            <CardDescription className="text-base text-orange-600 font-medium min-h-[3rem] flex items-center justify-center">
-                                                {teacher.role} - {teacher.nationality}
-                                            </CardDescription>
-                                        </CardHeader>
-                                        <CardContent className="flex-grow mt-4 text-left text-gray-600 w-full">
-                                            <ul className="list-disc list-inside space-y-1">
-                                                {teacher.qualifications.map((q, i) => (
-                                                    <li key={i}>{q}</li>
-                                                ))}
-                                            </ul>
-                                        </CardContent>
-                                        <CardFooter className="justify-center gap-4 pt-4 mt-4 border-t border-gray-100">
-                                            <a href={teacher.facebookUrl} target="_blank" rel="noopener noreferrer" aria-label={`Facebook của ${teacher.name}`}>
-                                                <Facebook className="h-5 w-5 text-gray-400 hover:text-orange-500 transition-colors cursor-pointer" />
-                                            </a>
-                                            <a href={`mailto:${teacher.email}`} aria-label={`Gửi email cho ${teacher.name}`}>
-                                                <Mail className="h-5 w-5 text-gray-400 hover:text-orange-500 transition-colors cursor-pointer" />
-                                            </a>
-                                        </CardFooter>
-                                    </Card>
-                                </div>
-                            </CarouselItem>
-                        ))}
-                    </CarouselContent>
-                    <CarouselPrevious className="absolute left-[-50px] top-1/2 -translate-y-1/2 hidden sm:flex" />
-                    <CarouselNext className="absolute right-[-50px] top-1/2 -translate-y-1/2 hidden sm:flex" />
-                </Carousel>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {teachers.map((teacher) => (
+                        <Card 
+                            key={teacher.id} 
+                            onClick={() => handleCardClick(teacher.slug)}
+                            className="flex flex-col text-center p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-2 h-full cursor-pointer"
+                        >
+                            <CardHeader className="items-center">
+                                <Avatar className="w-32 h-32 mb-4 border-4 border-orange-200 mx-auto">
+                                    <AvatarImage src={teacher.avatar} alt={`Chân dung ${teacher.full_name}`} />
+                                    <AvatarFallback className="text-4xl bg-orange-100 text-orange-600">{getInitials(teacher.full_name)}</AvatarFallback>
+                                </Avatar>
+                                <CardTitle className="text-2xl font-bold text-gray-900">{teacher.full_name}</CardTitle>
+                                <CardDescription className="text-base text-orange-600 font-medium min-h-[3rem] flex items-center justify-center">
+                                    {teacher.role}
+                                </CardDescription>
+                            </CardHeader>
+                            <CardContent className="flex-grow mt-4 text-left text-gray-600 w-full">
+                                <ul className="list-disc list-inside space-y-1">
+                                    {teacher.qualifications.map((q, i) => (
+                                        <li key={i}>{q}</li>
+                                    ))}
+                                </ul>
+                            </CardContent>
+                            <CardFooter className="justify-center gap-4 pt-4 mt-4 border-t border-gray-100">
+                                <button
+                                    onClick={(e) => handleSocialClick(e, teacher.facebook)}
+                                    aria-label={`Facebook of ${teacher.full_name}`}
+                                    className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+                                >
+                                    <Facebook className="h-5 w-5 text-gray-400" />
+                                </button>
+                                <button
+                                    onClick={(e) => handleSocialClick(e, `mailto:${teacher.email}`)}
+                                    aria-label={`Email ${teacher.full_name}`}
+                                    className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+                                >
+                                    <Mail className="h-5 w-5 text-gray-400" />
+                                </button>
+                            </CardFooter>
+                        </Card>
+                    ))}
+                </div>
+
+                <div className="text-center mt-20">
+                    {currentPage < totalPages && (
+                        <Button
+                            size="lg"
+                            onClick={handleLoadMore}
+                            disabled={isLoading}
+                            className="bg-orange-500 hover:bg-orange-600 text-white text-lg font-semibold px-10 py-6 cursor-pointer"
+                        >
+                            {isLoading ? (
+                                <>
+                                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                                    Đang tải...
+                                </>
+                            ) : (
+                                "Xem thêm"
+                            )}
+                        </Button>
+                    )}
+                </div>
             </div>
         </section>
     );
 }
 
-export default TeacherProfilesSection;
+export default TeacherProfilesSection

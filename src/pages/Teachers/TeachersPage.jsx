@@ -6,12 +6,12 @@ import TeacherProfilesSection from './components/TeacherProfilesSection';
 import TeachersHero from './components/TeachersHero';
 import WorkPermitsSection from './components/WorkPermitsSection';
 
-function TeachersPage() {
+function TeachersPage({ initialTeachersData }) {
     return (
         <main>
             <TeachersHero />
             <PhilosophySection />
-            <TeacherProfilesSection />
+            <TeacherProfilesSection initialTeachersData={initialTeachersData} />
             <WorkPermitsSection />
             <QualityStandardsSection />
             <CtaSection />
