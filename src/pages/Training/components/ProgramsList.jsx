@@ -1,3 +1,4 @@
+// src/pages/Training/components/ProgramsList.jsx
 "use client";
 
 import React, { useState } from 'react';
@@ -7,6 +8,8 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ArrowRight, Baby, BookOpen, Briefcase, School, Shield, Sun, Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+// THÊM: Import Server Action
+import { loadMoreTrainings } from '@/app/actions/trainingActions';
 
 const iconMap = {
     'mau-giao': <Baby className="h-6 w-6" />,
@@ -72,13 +75,18 @@ function ProgramsList({ initialTrainingData }) {
         const nextPage = currentPage + 1;
         
         try {
-            const response = await fetch(`/api/training?page=${nextPage}&pageSize=${PROGRAMS_PER_PAGE}`);
-            const newData = await response.json();
+            // SỬA: Gọi trực tiếp Server Action thay vì fetch
+            const newData = await loadMoreTrainings(nextPage, PROGRAMS_PER_PAGE);
             
+            if (newData.error) {
+                throw new Error(newData.error);
+            }
+
             setPrograms(prev => [...prev, ...newData.data]);
             setCurrentPage(nextPage);
         } catch (error) {
             console.error("Failed to load more programs:", error);
+            // Có thể thêm toast thông báo lỗi ở đây
         } finally {
             setIsLoading(false);
         }
