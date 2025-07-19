@@ -1,14 +1,14 @@
-/* ===== pages\Training\Detail\components\RegistrationCta.jsx ===== */
 "use client";
 
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Loader2 } from 'lucide-react';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { toast } from "sonner";
+import { registerCustomerAction } from '@/app/actions/customerActions';
 
 import {
     Dialog,
@@ -39,7 +39,7 @@ const formSchema = z.object({
     ghiChu: z.string().optional(),
 });
 
-function RegistrationCta({ courseTitle }) {
+function RegistrationCta({ courseTitle, courseId }) {
     const [open, setOpen] = useState(false);
 
     const form = useForm({
@@ -55,16 +55,20 @@ function RegistrationCta({ courseTitle }) {
         },
     });
 
-    function onSubmit(values) {
-        console.log("Dữ liệu đăng ký:", {
-            ...values,
-            khoaHoc: courseTitle,
-        });
-        toast.success("Đăng ký thành công!", {
-            description: "Cảm ơn bạn đã đăng ký. A&U sẽ liên hệ với bạn sớm nhất.",
-        });
-        form.reset();
-        setOpen(false);
+    async function onSubmit(values) {
+        const result = await registerCustomerAction(values, courseId);
+
+        if (result.success) {
+            toast.success("Đăng ký thành công!", {
+                description: "Cảm ơn bạn đã đăng ký. A&U sẽ liên hệ với bạn sớm nhất.",
+            });
+            form.reset();
+            setOpen(false);
+        } else {
+            toast.error("Đăng ký thất bại", {
+                description: result.error || "Đã có lỗi xảy ra. Vui lòng thử lại.",
+            });
+        }
     }
 
     return (
@@ -202,9 +206,13 @@ function RegistrationCta({ courseTitle }) {
                                 </FormItem>
                             )}
                         />
-                        {/* SỬA ĐỔI: Thêm class `cursor-pointer` */}
                         <Button type="submit" className="w-full bg-orange-500 hover:bg-orange-600 text-base text-white cursor-pointer" size="lg" disabled={form.formState.isSubmitting}>
-                            {form.formState.isSubmitting ? "Đang gửi..." : "Gửi Đăng Ký"}
+                           {form.formState.isSubmitting ? (
+                                <>
+                                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                    Đang gửi...
+                                </>
+                            ) : "Gửi Đăng Ký"}
                         </Button>
                     </form>
                 </Form>
