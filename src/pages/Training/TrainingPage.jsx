@@ -2,11 +2,11 @@ import React from 'react';
 import TrainingHero from './components/TrainingHero';
 import ProgramsList from './components/ProgramsList';
 
-function TrainingPage() {
+function TrainingPage({ initialTrainingData }) {
     return (
         <main>
             <TrainingHero />
-            <ProgramsList />
+            <ProgramsList initialTrainingData={initialTrainingData} />
         </main>
     );
 }

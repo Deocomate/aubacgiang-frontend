@@ -1,35 +1,42 @@
 import TrainingDetailPage from "@/pages/Training/Detail/TrainingDetailPage";
-import { COURSE_DATA } from "@/lib/course-data";
+import { getTrainingBySlug, getAllTrainings, getOtherTrainings } from "@/services/trainingService";
 import { notFound } from "next/navigation";
 
 export async function generateMetadata({ params }) {
-  const { slug } = await params;
-  const course = COURSE_DATA[slug];
+  const course = await getTrainingBySlug(params.slug);
 
   if (!course) {
     return {
       title: "Không tìm thấy khóa học",
     };
   }
+
+  const plainDescription = course.description?.replace(/<[^>]+>/g, '').substring(0, 160) || `Chi tiết khóa học ${course.title} tại A&U English.`;
+
   return {
     title: `${course.title} - A&U Bắc Giang`,
-    description: course.shortDescription,
+    description: plainDescription,
   };
 }
 
 export async function generateStaticParams() {
-  return Object.keys(COURSE_DATA).map((slug) => ({
-    slug: slug,
+  const allTrainings = await getAllTrainings();
+  return allTrainings.map((training) => ({
+    slug: training.slug,
   }));
 }
 
 export default async function CourseDetailPage({ params }) {
-  const { slug } = await params;
-  const course = COURSE_DATA[slug];
+  const { slug } = params;
+  
+  const [course, otherCourses] = await Promise.all([
+    getTrainingBySlug(slug),
+    getOtherTrainings(slug, 5)
+  ]);
 
   if (!course) {
     notFound();
   }
 
-  return <TrainingDetailPage course={course} />;
+  return <TrainingDetailPage course={course} otherCourses={otherCourses} />;
 }

@@ -10,14 +10,14 @@ import FaqSection from './components/FaqSection';
 import YoutubeSection from './components/YoutubeSection';
 
 function HomePage({ data }) {
-    const { banners, stats, fags, images, link_youtubes, teachers } = data;
+    const { banners, stats, fags, images, link_youtubes, teachers, trainings } = data;
 
     return (
         <main>
             <HeroSection banner={banners} />
             <StatsSection stats={stats} />
             <AboutSection />
-            <ProgramsSection />
+            <ProgramsSection trainings={trainings} />
             <WhyChooseUsSection />
             <TeachersSection teachers={teachers} />
             <GallerySection images={images} />

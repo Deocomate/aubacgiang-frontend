@@ -1,11 +1,13 @@
 import HomePage from "@/pages/Home/HomePage";
 import { getHomepageData } from "@/services/homeService";
 import { getFeaturedTeachers } from "@/services/teacherService";
+import { getTrainings } from "@/services/trainingService";
 
 export default async function Home() {
-  const [homeData, featuredTeachers] = await Promise.all([
+  const [homeData, featuredTeachers, trainingData] = await Promise.all([
     getHomepageData(),
-    getFeaturedTeachers(6)
+    getFeaturedTeachers(6),
+    getTrainings(6) 
   ]);
 
   if (!homeData) {
@@ -16,7 +18,11 @@ export default async function Home() {
     );
   }
 
-  const pageData = { ...homeData, teachers: featuredTeachers };
+  const pageData = { 
+    ...homeData, 
+    teachers: featuredTeachers,
+    trainings: trainingData.data
+  };
 
   return (<HomePage data={pageData} />);
 }

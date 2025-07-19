@@ -1,8 +1,8 @@
 /* ==========================================================
-   CODEBASE SNAPSHOT - 2025-07-19 11:53:25
+   CODEBASE SNAPSHOT - 2025-07-19 13:59:14
    Project: landing-page-english-education-center
-   Files: 270 (118 text, 152 binary)
-   Ignored Items: 26
+   Files: 282 (130 text, 152 binary)
+   Ignored Items: 27
    ========================================================== */
 
 /* PROJECT STRUCTURE
@@ -213,12 +213,18 @@
    │   │   │   ├── parents-corner/
    │   │   │   │   └── page.js
    │   │   │   ├── teachers/
+   │   │   │   │   ├── [slug]/
+   │   │   │   │   │   └── page.js
    │   │   │   │   └── page.js
    │   │   │   ├── training/
    │   │   │   │   ├── [slug]/
    │   │   │   │   │   └── page.js
    │   │   │   │   └── page.js
    │   │   │   └── page.js
+   │   │   ├── api/
+   │   │   │   ├── home/
+   │   │   │   └── training/
+   │   │   │       └── route.js
    │   │   ├── favicon.ico
    │   │   └── layout.js
    │   ├── assets/
@@ -281,60 +287,75 @@
    │   │   ├── course-data.js
    │   │   ├── news-data.js
    │   │   └── utils.js
-   │   └── pages/
-   │       ├── Contact/
-   │       │   └── ContactPage.jsx
-   │       ├── Home/
-   │       │   ├── components/
-   │       │   │   ├── AboutSection.jsx
-   │       │   │   ├── FaqSection.jsx
-   │       │   │   ├── GallerySection.jsx
-   │       │   │   ├── HeroSection.jsx
-   │       │   │   ├── ProgramsSection.jsx
-   │       │   │   ├── StatsSection.jsx
-   │       │   │   ├── TeachersSection.jsx
-   │       │   │   ├── WhyChooseUsSection.jsx
-   │       │   │   └── YoutubeSection.jsx
-   │       │   └── HomePage.jsx
-   │       ├── News/
-   │       │   ├── components/
-   │       │   │   ├── ArticleItem.jsx
-   │       │   │   ├── NewsSidebar.jsx
-   │       │   │   └── RecentPostsSection.jsx
-   │       │   ├── Detail/
-   │       │   │   └── NewsDetailPage.jsx
-   │       │   └── NewsPage.jsx
-   │       ├── ParentsCorner/
-   │       │   ├── components/
-   │       │   │   ├── AnnouncementsSection.jsx
-   │       │   │   ├── DownloadsSection.jsx
-   │       │   │   ├── HandbookSection.jsx
-   │       │   │   ├── HeroSection.jsx
-   │       │   │   ├── KeyResourcesSection.jsx
-   │       │   │   └── TestimonialsSection.jsx
-   │       │   └── ParentsCornerPage.jsx
-   │       ├── Teachers/
-   │       │   ├── components/
-   │       │   │   ├── CtaSection.jsx
-   │       │   │   ├── PhilosophySection.jsx
-   │       │   │   ├── QualityStandardsSection.jsx
-   │       │   │   ├── TeacherProfilesSection.jsx
-   │       │   │   ├── TeachersHero.jsx
-   │       │   │   └── WorkPermitsSection.jsx
-   │       │   └── TeachersPage.jsx
-   │       └── Training/
-   │           ├── components/
-   │           │   ├── ProgramsList.jsx
-   │           │   └── TrainingHero.jsx
-   │           ├── Detail/
-   │           │   ├── components/
-   │           │   │   ├── CourseCurriculum.jsx
-   │           │   │   ├── CourseHero.jsx
-   │           │   │   ├── CourseOverview.jsx
-   │           │   │   ├── RegistrationCta.jsx
-   │           │   │   └── SkillBreakdown.jsx
-   │           │   └── TrainingDetailPage.jsx
-   │           └── TrainingPage.jsx
+   │   ├── pages/
+   │   │   ├── Contact/
+   │   │   │   └── ContactPage.jsx
+   │   │   ├── Home/
+   │   │   │   ├── components/
+   │   │   │   │   ├── AboutSection.jsx
+   │   │   │   │   ├── FaqSection.jsx
+   │   │   │   │   ├── GallerySection.jsx
+   │   │   │   │   ├── HeroSection.jsx
+   │   │   │   │   ├── ProgramsSection.jsx
+   │   │   │   │   ├── StatsSection.jsx
+   │   │   │   │   ├── TeachersSection.jsx
+   │   │   │   │   ├── WhyChooseUsSection.jsx
+   │   │   │   │   └── YoutubeSection.jsx
+   │   │   │   └── HomePage.jsx
+   │   │   ├── News/
+   │   │   │   ├── components/
+   │   │   │   │   ├── ArticleItem.jsx
+   │   │   │   │   ├── NewsSidebar.jsx
+   │   │   │   │   └── RecentPostsSection.jsx
+   │   │   │   ├── Detail/
+   │   │   │   │   └── NewsDetailPage.jsx
+   │   │   │   └── NewsPage.jsx
+   │   │   ├── ParentsCorner/
+   │   │   │   ├── components/
+   │   │   │   │   ├── AnnouncementsSection.jsx
+   │   │   │   │   ├── DownloadsSection.jsx
+   │   │   │   │   ├── HandbookSection.jsx
+   │   │   │   │   ├── HeroSection.jsx
+   │   │   │   │   ├── KeyResourcesSection.jsx
+   │   │   │   │   └── TestimonialsSection.jsx
+   │   │   │   └── ParentsCornerPage.jsx
+   │   │   ├── Teachers/
+   │   │   │   ├── components/
+   │   │   │   │   ├── CtaSection.jsx
+   │   │   │   │   ├── PhilosophySection.jsx
+   │   │   │   │   ├── QualityStandardsSection.jsx
+   │   │   │   │   ├── TeacherProfilesSection.jsx
+   │   │   │   │   ├── TeachersHero.jsx
+   │   │   │   │   └── WorkPermitsSection.jsx
+   │   │   │   ├── Detail/
+   │   │   │   │   ├── components/
+   │   │   │   │   │   └── OtherTeachersSection.jsx
+   │   │   │   │   └── TeacherDetailPage.jsx
+   │   │   │   └── TeachersPage.jsx
+   │   │   └── Training/
+   │   │       ├── components/
+   │   │       │   ├── ProgramsList.jsx
+   │   │       │   └── TrainingHero.jsx
+   │   │       ├── Detail/
+   │   │       │   ├── components/
+   │   │       │   │   ├── CourseCurriculum.jsx
+   │   │       │   │   ├── CourseHero.jsx
+   │   │       │   │   ├── CourseOverview.jsx
+   │   │       │   │   ├── OtherTrainingsSection.jsx
+   │   │       │   │   ├── RegistrationCta.jsx
+   │   │       │   │   └── SkillBreakdown.jsx
+   │   │       │   └── TrainingDetailPage.jsx
+   │   │       └── TrainingPage.jsx
+   │   ├── services/
+   │   │   ├── courseService.js
+   │   │   ├── homeService.js
+   │   │   ├── newsService.js
+   │   │   ├── teacherService.js
+   │   │   └── trainingService.js
+   │   └── types/
+   │       ├── index.js
+   │       └── news.types.js
+   ├── .env.local
    ├── .gitignore
    ├── components.json
    ├── GEMINI.md
@@ -430,11 +451,17 @@ Gemini CLI phải tuân thủ nghiêm ngặt các chỉ dẫn từ yêu cầu c�
 
 
 /* ===== next.config.mjs ===== */
-// next.config.mjs
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
         remotePatterns: [
+            {
+                protocol: 'http',
+                hostname: '127.0.0.1',
+                port: '8000',
+                pathname: '/userfiles/**',
+            },
             {
                 protocol: 'https',
                 hostname: 'placehold.co',
@@ -4464,9 +4491,32 @@ export default function RootLayout({ children }) {
 
 /* ===== src\app\(main)\page.js ===== */
 import HomePage from "@/pages/Home/HomePage";
+import { getHomepageData } from "@/services/homeService";
+import { getFeaturedTeachers } from "@/services/teacherService";
+import { getTrainings } from "@/services/trainingService";
 
-export default function Home() {
-  return (<HomePage />);
+export default async function Home() {
+  const [homeData, featuredTeachers, trainingData] = await Promise.all([
+    getHomepageData(),
+    getFeaturedTeachers(6),
+    getTrainings(6) 
+  ]);
+
+  if (!homeData) {
+    return (
+      <main className="flex items-center justify-center h-screen">
+        <p>Could not load homepage data. Please try again later.</p>
+      </main>
+    );
+  }
+
+  const pageData = { 
+    ...homeData, 
+    teachers: featuredTeachers,
+    trainings: trainingData.data
+  };
+
+  return (<HomePage data={pageData} />);
 }
 
 /* ===== src\app\(main)\category\[slug]\page.js ===== */
@@ -4629,48 +4679,121 @@ export default function Teachers() {
   return <TeachersPage />;
 }
 
+/* ===== src\app\(main)\teachers\[slug]\page.js ===== */
+// src/app/(main)/teachers/[slug]/page.js
+import { notFound } from 'next/navigation';
+import { getTeacherBySlug, getOtherTeachers } from '@/services/teacherService';
+import TeacherDetailPage from '@/pages/Teachers/Detail/TeacherDetailPage';
+
+export async function generateMetadata({ params }) {
+    const teacher = await getTeacherBySlug(params.slug);
+    if (!teacher) {
+        return { title: "Teacher Not Found" };
+    }
+    // Simple text extraction from description for SEO
+    const plainDescription = teacher.description?.replace(/<[^>]+>/g, '').substring(0, 160) || `Profile of ${teacher.full_name}, an instructor at A&U English.`;
+
+    return {
+        title: `${teacher.full_name} - A&U English`,
+        description: plainDescription,
+    };
+}
+
+export default async function TeacherDetail({ params }) {
+    const { slug } = params;
+    const teacher = await getTeacherBySlug(slug);
+
+    if (!teacher) {
+        notFound();
+    }
+    
+    const otherTeachers = await getOtherTeachers(teacher.id, 5);
+
+    return <TeacherDetailPage teacher={teacher} otherTeachers={otherTeachers} />;
+}
+
 /* ===== src\app\(main)\training\page.js ===== */
 import TrainingPage from "@/pages/Training/TrainingPage";
+// THÊM: Import service
+import { getTrainings } from "@/services/trainingService";
 
-export default function Training() {
-  return <TrainingPage />;
+export default async function Training() {
+  // THÊM: Lấy 2 khóa học đầu tiên bằng SSR
+  const initialTrainingData = await getTrainings(2);
+  return <TrainingPage initialTrainingData={initialTrainingData} />;
 }
 
 /* ===== src\app\(main)\training\[slug]\page.js ===== */
 import TrainingDetailPage from "@/pages/Training/Detail/TrainingDetailPage";
-import { COURSE_DATA } from "@/lib/course-data";
+import { getTrainingBySlug, getAllTrainings, getOtherTrainings } from "@/services/trainingService";
 import { notFound } from "next/navigation";
 
 export async function generateMetadata({ params }) {
-  const { slug } = await params;
-  const course = COURSE_DATA[slug];
+  const course = await getTrainingBySlug(params.slug);
 
   if (!course) {
     return {
       title: "Không tìm thấy khóa học",
     };
   }
+
+  const plainDescription = course.description?.replace(/<[^>]+>/g, '').substring(0, 160) || `Chi tiết khóa học ${course.title} tại A&U English.`;
+
   return {
     title: `${course.title} - A&U Bắc Giang`,
-    description: course.shortDescription,
+    description: plainDescription,
   };
 }
 
 export async function generateStaticParams() {
-  return Object.keys(COURSE_DATA).map((slug) => ({
-    slug: slug,
+  const allTrainings = await getAllTrainings();
+  return allTrainings.map((training) => ({
+    slug: training.slug,
   }));
 }
 
 export default async function CourseDetailPage({ params }) {
-  const { slug } = await params;
-  const course = COURSE_DATA[slug];
+  const { slug } = params;
+  
+  const [course, otherCourses] = await Promise.all([
+    getTrainingBySlug(slug),
+    getOtherTrainings(slug, 5)
+  ]);
 
   if (!course) {
     notFound();
   }
 
-  return <TrainingDetailPage course={course} />;
+  return <TrainingDetailPage course={course} otherCourses={otherCourses} />;
+}
+
+/* ===== src\app\api\training\route.js ===== */
+import { NextResponse } from "next/server";
+
+const API_BASE_URL = process.env.API_BASE_URL;
+
+export async function GET(request) {
+  const { searchParams } = new URL(request.url);
+  const page = searchParams.get("page") || 1;
+  const pageSize = searchParams.get("pageSize") || 2;
+
+  try {
+    const apiRes = await fetch(
+      `${API_BASE_URL}/training?page=${page}&pageSize=${pageSize}`
+    );
+
+    if (!apiRes.ok) {
+      throw new Error(
+        `Failed to fetch from external API: ${apiRes.statusText}`
+      );
+    }
+
+    const data = await apiRes.json();
+    return NextResponse.json(data);
+  } catch (error) {
+    console.error("[TRAINING_API_ROUTE]", error);
+    return new NextResponse("Internal Server Error", { status: 500 });
+  }
 }
 
 
@@ -10106,14 +10229,23 @@ export function slugify(text) {
   return text
     .toString()
     .toLowerCase()
-    .normalize('NFD') // Chuẩn hóa Unicode
-    .replace(/[\u0300-\u036f]/g, '') // Bỏ các dấu thanh
-    .replace(/đ/g, 'd') // Thay 'đ' thành 'd'
-    .replace(/\s+/g, '-') // Thay khoảng trắng bằng gạch nối
-    .replace(/[^\w-]+/g, '') // Bỏ các ký tự không phải chữ, số, gạch nối
-    .replace(/--+/g, '-') // Thay nhiều gạch nối thành một
-    .replace(/^-+/, '') // Bỏ gạch nối ở đầu
-    .replace(/-+$/, ''); // Bỏ gạch nối ở cuối
+    .normalize('NFD') 
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/đ/g, 'd')
+    .replace(/\s+/g, '-')
+    .replace(/[^\w-]+/g, '')
+    .replace(/--+/g, '-')
+    .replace(/^-+/, '')
+    .replace(/-+$/, '');
+}
+
+// Add this new function
+export function getYoutubeEmbedUrl(url) {
+  if (!url) return '';
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+  const match = url.match(regExp);
+  const videoId = (match && match[2].length === 11) ? match[2] : null;
+  return videoId ? `https://www.youtube.com/embed/${videoId}` : '';
 }
 
 /* ===== src\pages\Contact\ContactPage.jsx ===== */
@@ -10258,18 +10390,20 @@ import GallerySection from './components/GallerySection';
 import FaqSection from './components/FaqSection';
 import YoutubeSection from './components/YoutubeSection';
 
-function HomePage() {
+function HomePage({ data }) {
+    const { banners, stats, fags, images, link_youtubes, teachers, trainings } = data;
+
     return (
         <main>
-            <HeroSection />
-            <StatsSection />
+            <HeroSection banner={banners} />
+            <StatsSection stats={stats} />
             <AboutSection />
-            <ProgramsSection />
+            <ProgramsSection trainings={trainings} />
             <WhyChooseUsSection />
-            <TeachersSection />
-            <GallerySection />
-            <YoutubeSection />
-            <FaqSection />
+            <TeachersSection teachers={teachers} />
+            <GallerySection images={images} />
+            <YoutubeSection links={link_youtubes} />
+            <FaqSection faqs={fags} />
         </main>
     );
 }
@@ -10372,7 +10506,6 @@ function AboutSection() {
 export default AboutSection;
 
 /* ===== src\pages\Home\components\FaqSection.jsx ===== */
-// src/pages/Home/components/FaqSection.jsx
 import React from 'react';
 import {
     Accordion,
@@ -10381,27 +10514,7 @@ import {
     AccordionTrigger,
 } from "@/components/ui/accordion";
 
-// Dữ liệu cho các câu hỏi thường gặp (FAQ)
-const faqData = [
-    {
-        question: "Chất lượng đội ngũ giáo viên tại A&U English như thế nào?",
-        answer: "100% giáo viên tại A&U đạt chuẩn theo yêu cầu của Sở Giáo dục. Giáo viên nước ngoài là người bản xứ (Anh, Úc, Mỹ...) có bằng cử nhân trở lên và chứng chỉ giảng dạy quốc tế như TEFL. Triết lý của chúng tôi là 'We don't teach - We coach', giáo viên sẽ là những huấn luyện viên tâm huyết đồng hành cùng học viên."
-    },
-    {
-        question: "Trung tâm có những khóa học nào phù hợp cho các lứa tuổi khác nhau?",
-        answer: "A&U có lộ trình đào tạo toàn diện cho mọi lứa tuổi: Pre-Starters (Mẫu giáo - Lớp 2), Starters (Lớp 1-4), Movers (Lớp 2-5), Flyers (Lớp 4-7), và các khóa học cho người lớn, luyện thi IELTS, tiếng Anh doanh nghiệp."
-    },
-    {
-        question: "Quy mô lớp học và môi trường học tập tại trung tâm ra sao?",
-        answer: "Toàn bộ phòng học đều có diện tích trên 35m², trang bị màn hình cảm ứng cỡ lớn và giáo trình điện tử. Ngoài ra, trung tâm còn có thư viện, khu vui chơi trong nhà và ngoài trời để tạo môi trường học tập và khám phá tự nhiên, truyền cảm hứng nhất cho học viên."
-    },
-    {
-        question: "Làm thế nào để đăng ký một khóa học tại A&U English?",
-        answer: "Quý phụ huynh và học viên có thể đến trực tiếp trung tâm tại địa chỉ: Tầng 1, nhà B, nhà ở sinh viên, đường Hoàng Văn Thụ, Bắc Giang, hoặc liên hệ qua hotline 097 979 84 26 để được tư vấn và hỗ trợ đăng ký nhanh nhất."
-    },
-];
-
-function FaqSection() {
+function FaqSection({ faqs }) {
     return (
         <section className="py-24 bg-white">
             <div className="container mx-auto px-4">
@@ -10417,7 +10530,7 @@ function FaqSection() {
 
                 <div className="max-w-4xl mx-auto">
                     <Accordion type="single" collapsible className="w-full">
-                        {faqData.map((item, index) => (
+                        {faqs.map((item, index) => (
                             <AccordionItem value={`item-${index + 1}`} key={index}>
                                 <AccordionTrigger className="text-left text-lg font-medium hover:no-underline">
                                     {item.question}
@@ -10437,7 +10550,6 @@ function FaqSection() {
 export default FaqSection;
 
 /* ===== src\pages\Home\components\GallerySection.jsx ===== */
-/* ===== pages\Home\components\GallerySection.jsx ===== */
 "use client";
 
 import React, { useState } from 'react';
@@ -10446,25 +10558,11 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { Button } from '@/components/ui/button';
 import { Camera } from 'lucide-react';
 
-const allGalleryImages = [
-    { src: '/assets/images/R5AT3838.jpg', alt: 'Không khí lớp học sôi nổi', className: 'md:col-span-2 md:row-span-2' },
-    { src: '/assets/images/R5AT4012.jpg', alt: 'Học viên thực hành giao tiếp', className: '' },
-    { src: '/assets/images/R5AT4208.jpg', alt: 'Giáo viên hướng dẫn tận tình', className: '' },
-    { src: '/assets/images/R5AT4153.jpg', alt: 'Hoạt động ngoại khóa vui vẻ', className: 'md:row-span-2' },
-    { src: '/assets/images/R5AT4083.jpg', alt: 'Học viên thuyết trình tự tin', className: 'md:col-span-2' },
-    { src: '/assets/images/R5AT3975.jpg', alt: 'Lớp học với giáo viên bản xứ', className: '' },
-    { src: '/assets/images/R5AT4123.jpg', alt: 'Không gian học tập hiện đại', className: '' },
-    { src: '/assets/images/R5AT4178.jpg', alt: 'Giờ học tại A&U', className: '' },
-    { src: '/assets/images/R5AT3961.jpg', alt: 'Học sinh tiểu học', className: '' },
-    { src: '/assets/images/R5AT3931.jpg', alt: 'Hoạt động nhóm', className: 'md:col-span-2' },
-    { src: '/assets/images/R5AT4255.jpg', alt: 'Luyện thi IELTS', className: 'md:row-span-2' },
-    { src: '/assets/images/R5AT4202.jpg', alt: 'Lớp mẫu giáo', className: 'md:col-span-2' },
-];
+// Change the initial number of images to display
+const INITIAL_IMAGES_COUNT = 9;
+const IMAGES_TO_LOAD_MORE = 5;
 
-const INITIAL_IMAGES_COUNT = 7; 
-const IMAGES_TO_LOAD_MORE = 5;  
-
-function GallerySection() {
+function GallerySection({ images }) {
     const [selectedImage, setSelectedImage] = useState(null);
     const [visibleCount, setVisibleCount] = useState(INITIAL_IMAGES_COUNT);
 
@@ -10475,10 +10573,17 @@ function GallerySection() {
     };
 
     const handleLoadMore = () => {
-        setVisibleCount(prevCount => Math.min(prevCount + IMAGES_TO_LOAD_MORE, allGalleryImages.length));
+        setVisibleCount(prevCount => Math.min(prevCount + IMAGES_TO_LOAD_MORE, images.length));
     };
 
-    const visibleImages = allGalleryImages.slice(0, visibleCount);
+    const visibleImages = images.slice(0, visibleCount);
+    
+    // Simple logic to create some layout variation for aesthetic purposes
+    const imageObjects = visibleImages.map((src, index) => ({
+        src,
+        alt: `Gallery image ${index + 1}`,
+        className: index === 0 ? 'md:col-span-2 md:row-span-2' : ''
+    }));
 
     return (
         <section className="py-24 bg-gray-50">
@@ -10495,7 +10600,7 @@ function GallerySection() {
 
                 <Dialog onOpenChange={handleOpenChange}>
                     <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[250px] gap-4 md:grid-flow-row-dense">
-                        {visibleImages.map((image, index) => (
+                        {imageObjects.map((image, index) => (
                             <div key={index} className={`group relative cursor-pointer overflow-hidden rounded-xl shadow-lg ${image.className}`}>
                                 <DialogTrigger asChild onClick={() => setSelectedImage(image.src)}>
                                     <div>
@@ -10520,7 +10625,7 @@ function GallerySection() {
                             <DialogHeader className="sr-only">
                                 <DialogTitle>Xem ảnh chi tiết</DialogTitle>
                                 <DialogDescription>
-                                    Phóng to hình ảnh: {selectedImage}.
+                                    Phóng to hình ảnh.
                                 </DialogDescription>
                             </DialogHeader>
                             <div className="relative w-full h-auto">
@@ -10536,11 +10641,10 @@ function GallerySection() {
                     )}
                 </Dialog>
 
-                {visibleCount < allGalleryImages.length && (
+                {visibleCount < images.length && (
                     <div className="text-center mt-12">
-                        {/* SỬA ĐỔI: Thay đổi style của nút */}
-                        <Button 
-                            size="lg" 
+                        <Button
+                            size="lg"
                             onClick={handleLoadMore}
                             className="bg-orange-500 hover:bg-orange-600 text-white text-lg font-semibold px-10 py-6 cursor-pointer"
                         >
@@ -10556,7 +10660,6 @@ function GallerySection() {
 export default GallerySection;
 
 /* ===== src\pages\Home\components\HeroSection.jsx ===== */
-// src/pages/Home/components/HeroSection.jsx
 "use client";
 
 import React from 'react';
@@ -10566,23 +10669,15 @@ import { ArrowRight, Phone } from 'lucide-react';
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 
-// Danh sách các hình ảnh cho hero section slideshow
-const heroImages = [
-    { src: '/assets/images/R5AT3838.jpg', alt: 'Lớp học tương tác tại A&U English' },
-    { src: '/assets/images/R5AT4012.jpg', alt: 'Học viên thực hành tại trung tâm A&U' },
-    { src: '/assets/images/R5AT4153.jpg', alt: 'Giáo viên bản ngữ tại A&U English' },
-    { src: '/assets/images/R5AT4208.jpg', alt: 'Không gian học tập hiện đại' },
-    { src: '/assets/images/R5AT4083.jpg', alt: 'Hoạt động ngoại khóa tại A&U' },
-];
+function HeroSection({ banner }) {
+    const { title, description, images } = banner;
 
-function HeroSection() {
     const plugin = React.useRef(
         Autoplay({ delay: 5000, stopOnInteraction: true })
     );
 
     return (
         <section className="relative w-full h-screen">
-            {/* Background Carousel */}
             <Carousel
                 plugins={[plugin.current]}
                 className="absolute inset-0 z-0"
@@ -10591,12 +10686,12 @@ function HeroSection() {
                 }}
             >
                 <CarouselContent>
-                    {heroImages.map((image, index) => (
+                    {images.map((src, index) => (
                         <CarouselItem key={index}>
                             <div className="relative h-screen w-full">
                                 <Image
-                                    src={image.src}
-                                    alt={image.alt}
+                                    src={src}
+                                    alt={title}
                                     fill
                                     className="object-cover"
                                     quality={90}
@@ -10608,19 +10703,15 @@ function HeroSection() {
                 </CarouselContent>
             </Carousel>
 
-            {/* **FIX:** Sử dụng gradient overlay để làm tối nền một cách tinh tế */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent z-10" />
 
-            {/* Content */}
             <div className="relative z-20 flex flex-col items-center justify-center h-full text-center text-white px-4">
                 <div className="max-w-4xl">
-                    {/* **FIX:** Tăng cường hiệu ứng đổ bóng cho văn bản */}
                     <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight drop-shadow-lg">
-                        Think A&U - Think Successful
+                        {title}
                     </h1>
                     <p className="mt-6 text-lg md:text-xl lg:text-2xl max-w-2xl mx-auto drop-shadow-lg">
-                        Nơi chắp cánh ước mơ Anh ngữ cho mọi lứa tuổi tại Bắc Giang.
-                        Chất lượng giảng dạy quốc tế, môi trường học tập truyền cảm hứng.
+                        {description}
                     </p>
                     <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
                         <Button
@@ -10648,65 +10739,49 @@ function HeroSection() {
 export default HeroSection;
 
 /* ===== src\pages\Home\components\ProgramsSection.jsx ===== */
-// src/pages/Home/components/ProgramsSection.jsx
+"use client";
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-// FIX: Thay thế UserGraduate bằng GraduationCap
 import { Baby, Rocket, Plane, GraduationCap, Briefcase, ArrowRight } from 'lucide-react';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 
-// Dữ liệu cho các chương trình học, thêm trường imageSrc
-const programsData = [
-    {
-        icon: <Baby className="h-8 w-8 text-orange-500" />,
-        title: 'PRE-STARTERS',
-        target: 'Mẫu giáo - Lớp 2',
-        description: 'Làm quen với tiếng Anh qua các cấu trúc cơ bản, từ vựng về chủ đề gần gũi như gia đình, lớp học, màu sắc và hình dạng.',
-        href: '/training#pre-starters',
-        imageSrc: '/assets/images/R5AT4202.jpg'
-    },
-    {
-        icon: <Rocket className="h-8 w-8 text-blue-500" />,
-        title: 'STARTERS',
-        target: 'Lớp 1 - 4',
-        description: 'Bắt đầu tương tác đơn giản, hỏi và trả lời về các chủ đề quen thuộc, hiểu các từ và câu rất đơn giản trên thông báo, áp phích.',
-        href: '/training#starters',
-        imageSrc: '/assets/images/R5AT3961.jpg'
-    },
-    {
-        icon: <Plane className="h-8 w-8 text-green-500" />,
-        title: 'MOVERS',
-        target: 'Lớp 2 - 5',
-        description: 'Giao tiếp trong các hội thoại đơn giản, trao đổi thông tin trực tiếp về các chủ đề quen thuộc và viết các tin nhắn ngắn.',
-        href: '/training#movers',
-        imageSrc: '/assets/images/R5AT4178.jpg'
-    },
-    {
-        // FIX: Thay thế UserGraduate bằng GraduationCap
-        icon: <GraduationCap className="h-8 w-8 text-purple-500" />,
-        title: 'FLYERS',
-        target: 'Lớp 4 - 7',
-        description: 'Tự tin mô tả trải nghiệm, ước mơ và hy vọng; đưa ra lý do và giải thích ngắn gọn cho các ý kiến và kế hoạch.',
-        href: '/training#flyers',
-        imageSrc: '/assets/images/R5AT3931.jpg'
-    },
-    {
-        icon: <Briefcase className="h-8 w-8 text-red-500" />,
-        title: 'ADULTS',
-        target: 'Lớp 6 - Người lớn',
-        description: 'Chương trình toàn diện bao gồm luyện thi chứng chỉ quốc tế IELTS, tiếng Anh cho doanh nghiệp và tiếng Anh chuyên sâu.',
-        href: '/training#adults',
-        imageSrc: '/assets/images/R5AT4255.jpg'
-    }
-];
+const iconMap = {
+    'mau-giao': <Baby className="h-8 w-8 text-orange-500" />,
+    'tieu-hoc': <Rocket className="h-8 w-8 text-blue-500" />,
+    'thcs': <Plane className="h-8 w-8 text-green-500" />,
+    'flyers': <GraduationCap className="h-8 w-8 text-purple-500" />,
+    'ielts': <Briefcase className="h-8 w-8 text-red-500" />,
+};
 
-function ProgramsSection() {
+const getIconForProgram = (slug) => {
+    const key = Object.keys(iconMap).find(k => slug.includes(k));
+    return key ? iconMap[key] : <GraduationCap className="h-8 w-8 text-gray-500" />;
+};
+
+function ProgramsSection({ trainings }) {
+    if (!trainings || trainings.length === 0) {
+        return (
+            <section className="py-24 bg-gray-50">
+                <div className="container mx-auto px-4 text-center">
+                    <p>Không thể tải danh sách chương trình học.</p>
+                </div>
+            </section>
+        );
+    }
+
+    const stripHtml = (html) => {
+        if (typeof window !== 'undefined') {
+            const doc = new DOMParser().parseFromString(html, 'text/html');
+            return doc.body.textContent || "";
+        }
+        return html.replace(/<[^>]+>/g, '');
+    };
+
     return (
         <section className="py-24 bg-gray-50">
             <div className="container mx-auto px-4">
@@ -10728,13 +10803,13 @@ function ProgramsSection() {
                     className="w-full"
                 >
                     <CarouselContent className="-ml-4">
-                        {programsData.map((program) => (
-                            <CarouselItem key={program.title} className="pl-4 basis-full md:basis-1/2 lg:basis-1/3">
+                        {trainings.map((program) => (
+                            <CarouselItem key={program.id} className="pl-4 basis-full md:basis-1/2 lg:basis-1/3">
                                 <div className="p-1 h-full">
                                     <Card className="flex flex-col pt-0 h-full overflow-hidden transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1">
                                         <AspectRatio ratio={16 / 9}>
                                             <Image
-                                                src={program.imageSrc}
+                                                src={program.thumbnail}
                                                 alt={`Hình ảnh khóa học ${program.title}`}
                                                 fill
                                                 className="object-cover"
@@ -10742,19 +10817,19 @@ function ProgramsSection() {
                                         </AspectRatio>
                                         <CardHeader>
                                             <div className="flex items-center gap-4 mb-2">
-                                                {program.icon}
+                                                {getIconForProgram(program.slug)}
                                                 <CardTitle className="text-2xl font-bold tracking-tight text-gray-900">{program.title}</CardTitle>
                                             </div>
-                                            <Badge variant="secondary">{program.target}</Badge>
+                                            <Badge variant="secondary">{program.age}</Badge>
                                         </CardHeader>
                                         <CardContent className="flex-grow">
-                                            <CardDescription className="text-base text-gray-600">
-                                                {program.description}
+                                            <CardDescription className="text-base text-gray-600 line-clamp-3">
+                                                {stripHtml(program.description)}
                                             </CardDescription>
                                         </CardContent>
                                         <CardFooter>
                                             <Button asChild variant="ghost" className="w-full text-orange-600 hover:text-orange-700 hover:bg-orange-50">
-                                                <Link href={program.href}>
+                                                <Link href={`/training/${program.slug}`}>
                                                     Tìm hiểu thêm <ArrowRight className="ml-2 h-4 w-4" />
                                                 </Link>
                                             </Button>
@@ -10775,7 +10850,6 @@ function ProgramsSection() {
 export default ProgramsSection;
 
 /* ===== src\pages\Home\components\StatsSection.jsx ===== */
-// src/pages/Home/components/StatsSection.jsx
 "use client";
 
 import React, { useEffect, useState, useRef } from 'react';
@@ -10783,7 +10857,6 @@ import Image from 'next/image';
 import { HeartHandshake, GraduationCap } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-// Custom hook cho hiệu ứng số đếm tăng dần
 function useCountUp(end, duration = 2000) {
     const [count, setCount] = useState(0);
     const ref = useRef(null);
@@ -10814,7 +10887,6 @@ function useCountUp(end, duration = 2000) {
     return { count, ref };
 }
 
-// Custom hook để kiểm tra element có trong viewport không
 function useInView(ref) {
     const [isInView, setIsInView] = useState(false);
 
@@ -10824,13 +10896,14 @@ function useInView(ref) {
             { threshold: 0.1 }
         );
 
-        if (ref.current) {
-            observer.observe(ref.current);
+        const currentRef = ref.current;
+        if (currentRef) {
+            observer.observe(currentRef);
         }
 
         return () => {
-            if (ref.current) {
-                observer.unobserve(ref.current);
+            if (currentRef) {
+                observer.unobserve(currentRef);
             }
         };
     }, [ref]);
@@ -10839,7 +10912,6 @@ function useInView(ref) {
 }
 
 
-// Component hiển thị số đếm
 function AnimatedStat({ value, suffix, icon, description, imageSrc, altText }) {
     const { count, ref } = useCountUp(value);
     const isInView = useInView(ref);
@@ -10872,28 +10944,12 @@ function AnimatedStat({ value, suffix, icon, description, imageSrc, altText }) {
     );
 }
 
-// Dữ liệu cho các số liệu thống kê
-const statsData = [
-    {
-        icon: <HeartHandshake className="h-16 w-16 text-white" />,
-        value: 300,
-        suffix: '+',
-        description: 'Phụ huynh đã tin tưởng và lựa chọn A&U Bắc Giang trong năm 2022',
-        imageSrc: '/assets/images/R5AT4181.jpg',
-        altText: 'Hơn 300 phụ huynh đã chọn A&U Bắc Giang',
-    },
-    {
-        icon: <GraduationCap className="h-16 w-16 text-white" />,
-        value: 5000,
-        suffix: '+',
-        description: 'Học sinh được đào tạo liên kết tại các trường công lập trong thành phố',
-        imageSrc: '/assets/images/R5AT4083.jpg',
-        altText: 'Hơn 5000 học sinh đào tạo liên kết',
-    },
+const icons = [
+    <HeartHandshake className="h-16 w-16 text-white" />,
+    <GraduationCap className="h-16 w-16 text-white" />,
 ];
 
-
-function StatsSection() {
+function StatsSection({ stats }) {
     return (
         <section className="bg-slate-50 py-16 sm:py-24">
             <div className="container mx-auto px-4">
@@ -10907,15 +10963,15 @@ function StatsSection() {
                 </header>
 
                 <div className="mt-12 sm:mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-                    {statsData.map((stat, index) => (
+                    {stats.map((stat, index) => (
                         <AnimatedStat
                             key={index}
-                            value={stat.value}
-                            suffix={stat.suffix}
-                            icon={stat.icon}
+                            value={parseInt(stat.value, 10)}
+                            suffix={'+'}
+                            icon={icons[index % icons.length]}
                             description={stat.description}
-                            imageSrc={stat.imageSrc}
-                            altText={stat.altText}
+                            imageSrc={stat.images}
+                            altText={stat.description}
                         />
                     ))}
                 </div>
@@ -10927,11 +10983,15 @@ function StatsSection() {
 export default StatsSection;
 
 /* ===== src\pages\Home\components\TeachersSection.jsx ===== */
+"use client";
+
 import React from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
-import { Award, Globe, UserCheck, Linkedin, Mail } from 'lucide-react';
+import { Award, Globe, UserCheck, Facebook, Mail } from 'lucide-react';
+
 const qualityStandards = [
     {
         icon: <UserCheck className="h-8 w-8 text-white" />,
@@ -10950,61 +11010,40 @@ const qualityStandards = [
     }
 ];
 
+const getInitials = (name) => {
+    if (!name) return '';
+    const names = name.split(' ');
+    if (names.length === 1) return names[0].charAt(0).toUpperCase();
+    return `${names[0].charAt(0)}${names[names.length - 1].charAt(0)}`.toUpperCase();
+};
 
-// ... (Giữ nguyên mảng teachersData)
-const teachersData = [
-    {
-        name: 'Mr. Jai Kattenberg',
-        role: 'Giáo viên Tiếng Anh',
-        nationality: 'Quốc tịch Úc',
-        qualifications: [
-            "Cử nhân Đại học Griffith",
-            "Chứng chỉ 120 hours TEFL"
-        ],
-        imageSrc: '/assets/images/R5AT4155.jpg',
-        fallback: 'JK'
-    },
-    {
-        name: 'Ms. Minh Nguyệt',
-        role: 'Giám đốc Trung tâm',
-        nationality: 'Việt Nam',
-        qualifications: [
-            "Giám đốc Ngoại ngữ A&U",
-            "Cử nhân Sư phạm Tiếng Anh - ĐHQGHN"
-        ],
-        imageSrc: '/assets/images/R5AT4240.jpg',
-        fallback: 'MN'
-    },
-    {
-        name: 'Mr. Welsh Ilya',
-        role: 'Giáo viên Tiếng Anh',
-        nationality: 'Quốc tịch Anh',
-        qualifications: [
-            "Thạc sĩ University College London",
-            "Chứng chỉ TEFL"
-        ],
-        imageSrc: '/assets/images/R5AT4278.jpg',
-        fallback: 'WI'
-    }
-];
+function TeachersSection({ teachers }) {
+    const router = useRouter();
 
+    const handleCardClick = (slug) => {
+        router.push(`/teachers/${slug}`);
+    };
 
-function TeachersSection() {
+    const handleSocialClick = (e, url) => {
+        e.stopPropagation(); // Prevent card's onClick from firing
+        if (url) {
+            window.open(url, '_blank', 'noopener,noreferrer');
+        }
+    };
+
     return (
         <section className="py-24 bg-white">
             <div className="container mx-auto px-4">
-                {/* Phần header giữ nguyên */}
                 <div className="text-center mb-12">
                     <h2 className="text-base font-semibold leading-7 text-orange-500">Đội Ngũ Giảng Dạy</h2>
                     <p className="mt-2 text-4xl md:text-5xl font-extrabold tracking-tight text-gray-800">
                         Giáo Viên Tâm Huyết & Chuyên Môn Cao
                     </p>
                     <p className="mt-6 text-lg leading-8 text-gray-600 max-w-3xl mx-auto">
-                        Tại A&U, chúng tôi tin rằng giáo viên là người truyền cảm hứng. Với triết lý <span className="font-semibold text-orange-600">"We don't teach - We coach"</span>, đội ngũ của chúng tôi là những huấn luyện viên, những người bạn đồng hành cùng học viên trên con đường chinh phục tiếng Anh.
+                        Với triết lý <span className="font-semibold text-orange-600">"We don't teach - We coach"</span>, đội ngũ của chúng tôi là những người bạn đồng hành cùng học viên trên con đường chinh phục tiếng Anh.
                     </p>
                 </div>
 
-                {/* Phần quality standards giữ nguyên */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
                     {qualityStandards.map((standard) => (
                         <div key={standard.title} className="flex flex-col items-center text-center p-6 bg-orange-500 text-white rounded-lg shadow-md">
@@ -11015,23 +11054,23 @@ function TeachersSection() {
                     ))}
                 </div>
 
-                {/* --- PHẦN CODE ĐƯỢC CẬP NHẬT --- */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
-                    {teachersData.map((teacher, index) => (
-                        <Card key={index} className="flex flex-col text-center p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
-                            {/* CardHeader chứa ảnh, tên và chức vụ */}
+                    {teachers.map((teacher) => (
+                        <Card 
+                            key={teacher.id} 
+                            onClick={() => handleCardClick(teacher.slug)}
+                            className="flex flex-col text-center p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-2 h-full cursor-pointer"
+                        >
                             <CardHeader className="items-center">
                                 <Avatar className="w-32 h-32 mb-4 border-4 border-orange-200 mx-auto">
-                                    <AvatarImage src={teacher.imageSrc} alt={`Chân dung ${teacher.name}`} />
-                                    <AvatarFallback className="text-4xl bg-orange-100 text-orange-600">{teacher.fallback}</AvatarFallback>
+                                    <AvatarImage src={teacher.avatar} alt={`Portrait of ${teacher.full_name}`} />
+                                    <AvatarFallback className="text-4xl bg-orange-100 text-orange-600">{getInitials(teacher.full_name)}</AvatarFallback>
                                 </Avatar>
-                                <CardTitle className="text-2xl font-bold text-gray-900">{teacher.name}</CardTitle>
+                                <CardTitle className="text-2xl font-bold text-gray-900">{teacher.full_name}</CardTitle>
                                 <CardDescription className="text-base text-orange-600 font-medium min-h-[3rem] flex items-center justify-center">
-                                    {teacher.role} - {teacher.nationality}
+                                    {teacher.role}
                                 </CardDescription>
                             </CardHeader>
-
-                            {/* CardContent sẽ co giãn để lấp đầy không gian */}
                             <CardContent className="flex-grow mt-4 text-left text-gray-600 w-full">
                                 <ul className="list-disc list-inside space-y-1">
                                     {teacher.qualifications.map((q, i) => (
@@ -11039,11 +11078,21 @@ function TeachersSection() {
                                     ))}
                                 </ul>
                             </CardContent>
-
-                            {/* CardFooter luôn ở dưới cùng */}
                             <CardFooter className="justify-center gap-4 pt-4 mt-4 border-t border-gray-100">
-                                <Linkedin className="h-5 w-5 text-gray-400 hover:text-orange-500 transition-colors cursor-pointer" />
-                                <Mail className="h-5 w-5 text-gray-400 hover:text-orange-500 transition-colors cursor-pointer" />
+                                <div
+                                    onClick={(e) => handleSocialClick(e, teacher.facebook)}
+                                    aria-label={`Facebook of ${teacher.full_name}`}
+                                    className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+                                >
+                                    <Facebook className="h-5 w-5 text-gray-400 group-hover:text-orange-500" />
+                                </div>
+                                <div
+                                    onClick={(e) => handleSocialClick(e, `mailto:${teacher.email}`)}
+                                    aria-label={`Email ${teacher.full_name}`}
+                                    className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+                                >
+                                    <Mail className="h-5 w-5 text-gray-400 group-hover:text-orange-500" />
+                                </div>
                             </CardFooter>
                         </Card>
                     ))}
@@ -11135,13 +11184,15 @@ function WhyChooseUsSection() {
 export default WhyChooseUsSection;
 
 /* ===== src\pages\Home\components\YoutubeSection.jsx ===== */
-// src/pages/Home/components/YoutubeSection.jsx
 "use client";
 
 import React from 'react';
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { getYoutubeEmbedUrl } from '@/lib/utils';
 
-function YoutubeSection() {
+function YoutubeSection({ links }) {
+    const embedLinks = links.slice(0, 4).map(getYoutubeEmbedUrl).filter(Boolean);
+
     return (
         <section className="py-24 bg-gray-50">
             <div className="container mx-auto px-4">
@@ -11157,65 +11208,21 @@ function YoutubeSection() {
 
                 <div className="max-w-6xl mx-auto p-4 md:p-6 bg-white rounded-xl shadow-md border">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        {/* Video 1 */}
-                        <div className="rounded-lg overflow-hidden shadow-lg">
-                            <AspectRatio ratio={16 / 9}>
-                                <iframe
-                                    src="https://www.youtube.com/embed/fXXcJJENN9U"
-                                    title="A&U - CÙNG LẮNG NGHE CẢM NHẬN CỦA HỌC VIÊN VỀ KHÓA HỌC IELTS"
-                                    frameBorder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                    referrerPolicy="strict-origin-when-cross-origin"
-                                    allowFullScreen
-                                    className="w-full h-full"
-                                ></iframe>
-                            </AspectRatio>
-                        </div>
-
-                        {/* Video 2 */}
-                        <div className="rounded-lg overflow-hidden shadow-lg">
-                            <AspectRatio ratio={16 / 9}>
-                                <iframe
-                                    src="https://www.youtube.com/embed/BaR4iCqJFWk"
-                                    title="MỘT BUỔI HỌC TRẢI NGHIỆM TẠI A&U_A&U DEMO CLASS"
-                                    frameBorder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                    referrerPolicy="strict-origin-when-cross-origin"
-                                    allowFullScreen
-                                    className="w-full h-full"
-                                ></iframe>
-                            </AspectRatio>
-                        </div>
-
-                        {/* Video 3 */}
-                        <div className="rounded-lg overflow-hidden shadow-lg">
-                            <AspectRatio ratio={16 / 9}>
-                                <iframe
-                                    src="https://www.youtube.com/embed/KNnGaIwnI0g"
-                                    title="A&U - GIỚI THIỆU HỆ THỐNG ANH NGỮ A&U"
-                                    frameBorder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                    referrerPolicy="strict-origin-when-cross-origin"
-                                    allowFullScreen
-                                    className="w-full h-full"
-                                ></iframe>
-                            </AspectRatio>
-                        </div>
-
-                        {/* Video 4 */}
-                        <div className="rounded-lg overflow-hidden shadow-lg">
-                            <AspectRatio ratio={16 / 9}>
-                                <iframe
-                                    src="https://www.youtube.com/embed/N2KAoRPxXvc"
-                                    title="A&U - GIỚI THIỆU TRUNG TÂM ANH NGỮ A&U KIDS"
-                                    frameBorder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                    referrerPolicy="strict-origin-when-cross-origin"
-                                    allowFullScreen
-                                    className="w-full h-full"
-                                ></iframe>
-                            </AspectRatio>
-                        </div>
+                        {embedLinks.map((url, index) => (
+                            <div key={index} className="rounded-lg overflow-hidden shadow-lg">
+                                <AspectRatio ratio={16 / 9}>
+                                    <iframe
+                                        src={url}
+                                        title={`A&U YouTube Video ${index + 1}`}
+                                        frameBorder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        referrerPolicy="strict-origin-when-cross-origin"
+                                        allowFullScreen
+                                        className="w-full h-full"
+                                    ></iframe>
+                                </AspectRatio>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>
@@ -12279,16 +12286,117 @@ function WorkPermitsSection() {
 
 export default WorkPermitsSection;
 
+/* ===== src\pages\Teachers\Detail\TeacherDetailPage.jsx ===== */
+// src/pages/Teachers/Detail/TeacherDetailPage.jsx
+import React from 'react';
+import Image from 'next/image';
+import { Award } from 'lucide-react';
+import OtherTeachersSection from './components/OtherTeachersSection';
+
+function TeacherDetailPage({ teacher, otherTeachers }) {
+    return (
+        <main>
+            <div className="bg-white pt-24 pb-16 sm:pt-32 sm:pb-24">
+                <div className="container mx-auto px-4">
+                    <div className="max-w-4xl mx-auto"> 
+                        <header className="mb-8 flex flex-col sm:flex-row items-center gap-8 border-b pb-8">
+                            <div className="flex-shrink-0">
+                                <Image
+                                    src={teacher.avatar}
+                                    alt={`Portrait of ${teacher.full_name}`}
+                                    width={200}
+                                    height={200}
+                                    className="rounded-full object-cover w-48 h-48 border-4 border-orange-200 shadow-md"
+                                />
+                            </div>
+                            <div className="text-center sm:text-left">
+                                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight">
+                                    {teacher.full_name}
+                                </h1>
+                                <p className="mt-2 text-xl text-orange-600 font-semibold">{teacher.role}</p>
+                                <div className="mt-4 flex flex-wrap justify-center sm:justify-start gap-4">
+                                    {teacher.qualifications.map((q, i) => (
+                                        <span key={i} className="flex items-center gap-2 bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">
+                                            <Award className="w-4 h-4 text-orange-500" />
+                                            {q}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
+                        </header>
+                        
+                        <div
+                            className="prose prose-lg max-w-none prose-img:rounded-xl prose-h3:text-gray-800"
+                            dangerouslySetInnerHTML={{ __html: teacher.description || '<p>No detailed description available.</p>' }}
+                        />
+                    </div>
+                </div>
+            </div>
+            
+            <OtherTeachersSection teachers={otherTeachers} />
+        </main>
+    );
+}
+
+export default TeacherDetailPage;
+
+/* ===== src\pages\Teachers\Detail\components\OtherTeachersSection.jsx ===== */
+// src/pages/Teachers/Detail/components/OtherTeachersSection.jsx
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+
+function OtherTeachersSection({ teachers }) {
+    if (!teachers || teachers.length === 0) {
+        return null;
+    }
+
+    return (
+        <section className="py-16 sm:py-24 border-t bg-gray-50/50">
+            <div className="container mx-auto px-4">
+                <h2 className="text-2xl font-bold text-gray-900 mb-8 pb-2 border-b-2 border-orange-500 inline-block">
+                    Các Giáo Viên Khác
+                </h2>
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                    {teachers.map(teacher => (
+                        <Link key={teacher.id} href={`/teachers/${teacher.slug}`} className="group block text-center">
+                            <div className="relative w-32 h-32 mx-auto rounded-full overflow-hidden shadow-md border-2 border-transparent group-hover:border-orange-400 transition-all">
+                                <Image
+                                    src={teacher.avatar}
+                                    alt={teacher.full_name}
+                                    fill
+                                    className="object-cover transition-transform duration-300 group-hover:scale-110"
+                                    sizes="128px"
+                                />
+                            </div>
+                            <div className="mt-4">
+                                <h4 className="text-base font-semibold text-gray-800 group-hover:text-orange-600 transition-colors">
+                                    {teacher.full_name}
+                                </h4>
+                                <p className="text-sm text-gray-500 mt-1">
+                                    {teacher.role}
+                                </p>
+                            </div>
+                        </Link>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+}
+
+export default OtherTeachersSection;
+
 /* ===== src\pages\Training\TrainingPage.jsx ===== */
 import React from 'react';
 import TrainingHero from './components/TrainingHero';
 import ProgramsList from './components/ProgramsList';
 
-function TrainingPage() {
+function TrainingPage({ initialTrainingData }) {
     return (
         <main>
             <TrainingHero />
-            <ProgramsList />
+            <ProgramsList initialTrainingData={initialTrainingData} />
         </main>
     );
 }
@@ -12296,7 +12404,6 @@ function TrainingPage() {
 export default TrainingPage;
 
 /* ===== src\pages\Training\components\ProgramsList.jsx ===== */
-/* ===== pages\Training\components\ProgramsList.jsx ===== */
 "use client";
 
 import React, { useState } from 'react';
@@ -12304,70 +12411,32 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { ArrowRight, Baby, BookOpen, Briefcase, School, Shield, Sun } from 'lucide-react';
+import { ArrowRight, Baby, BookOpen, Briefcase, School, Shield, Sun, Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-const trainingPrograms = [
-    {
-        id: 'mau-giao',
-        title: 'Tiếng Anh Mẫu giáo',
-        age: '3 - 6 tuổi',
-        description: 'Bé làm quen với tiếng Anh qua các hoạt động vui nhộn, bài hát và trò chơi, tạo nền tảng phát âm chuẩn và niềm yêu thích ngôn ngữ từ sớm.',
-        imageSrc: '/assets/images/R5AT4202.jpg',
-        icon: <Baby className="h-6 w-6" />,
-    },
-    {
-        id: 'tieu-hoc',
-        title: 'Tiếng Anh Tiểu học',
-        age: '6 - 11 tuổi',
-        description: 'Phát triển toàn diện 4 kỹ năng Nghe - Nói - Đọc - Viết theo chuẩn Cambridge, giúp học sinh tự tin giao tiếp và đạt kết quả cao trong các kỳ thi.',
-        imageSrc: '/assets/images/R5AT3961.jpg',
-        icon: <School className="h-6 w-6" />,
-    },
-    {
-        id: 'thcs',
-        title: 'Tiếng Anh THCS',
-        age: '11 - 13 tuổi',
-        description: 'Nâng cao ngữ pháp, từ vựng và kỹ năng học thuật, chuẩn bị cho các kỳ thi chuyển cấp và định hướng lấy chứng chỉ quốc tế.',
-        imageSrc: '/assets/images/R5AT3931.jpg',
-        icon: <Shield className="h-6 w-6" />,
-    },
-    {
-        id: 'ielts',
-        title: 'Luyện thi IELTS',
-        age: '13 tuổi trở lên',
-        description: 'Lộ trình cá nhân hóa với các chiến thuật làm bài hiệu quả, tập trung vào việc tối đa hóa điểm số cho cả 4 kỹ năng, phục vụ mục tiêu du học và sự nghiệp.',
-        imageSrc: '/assets/images/R5AT4255.jpg',
-        icon: <BookOpen className="h-6 w-6" />,
-    },
-    {
-        id: 'summer-camp',
-        title: 'Trại Hè Tiếng Anh',
-        age: '7 - 14 tuổi',
-        description: 'Trải nghiệm mùa hè sôi động với các hoạt động dự án, dã ngoại và thực hành tiếng Anh trong môi trường thực tế, nâng cao kỹ năng mềm và sự tự tin.',
-        imageSrc: '/assets/images/R5AT3865.jpg',
-        icon: <Sun className="h-6 w-6" />,
-    },
-    {
-        id: 'business-english',
-        title: 'Tiếng Anh Doanh Nghiệp',
-        age: 'Người đi làm',
-        description: 'Chương trình thiết kế riêng cho doanh nghiệp, tập trung vào kỹ năng giao tiếp, thuyết trình, viết email và đàm phán trong môi trường công sở quốc tế.',
-        imageSrc: '/assets/images/R5AT4168.jpg',
-        icon: <Briefcase className="h-6 w-6" />,
-    },
-];
+const iconMap = {
+    'mau-giao': <Baby className="h-6 w-6" />,
+    'tieu-hoc': <School className="h-6 w-6" />,
+    'thcs': <Shield className="h-6 w-6" />,
+    'ielts': <BookOpen className="h-6 w-6" />,
+    'summer-camp': <Sun className="h-6 w-6" />,
+    'business-english': <Briefcase className="h-6 w-6" />,
+};
+
+const getIconForProgram = (slug) => {
+    const key = Object.keys(iconMap).find(k => slug.includes(k));
+    return key ? iconMap[key] : <BookOpen className="h-6 w-6" />;
+};
 
 const PROGRAMS_PER_PAGE = 2;
 
 function ProgramCard({ program, reverse = false }) {
     return (
-        <div id={program.id} className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
-            {/* SỬA ĐỔI: Bọc toàn bộ div chứa ảnh bằng thẻ Link và thêm cursor-pointer */}
-            <Link href={`/training/${program.id}`} className={cn(reverse && "md:order-last")}>
+        <div id={program.slug} className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+            <Link href={`/training/${program.slug}`} className={cn(reverse && "md:order-last")}>
                 <div className="relative w-full h-80 md:h-96 rounded-xl overflow-hidden shadow-lg cursor-pointer">
                     <Image
-                        src={program.imageSrc}
+                        src={program.thumbnail}
                         alt={program.title}
                         fill
                         className="object-cover transition-transform duration-500 hover:scale-105"
@@ -12378,15 +12447,16 @@ function ProgramCard({ program, reverse = false }) {
             <div className="prose prose-lg max-w-none">
                 <Badge variant="secondary" className="mb-2 text-base">{program.age}</Badge>
                 <h3 className="flex items-center gap-3 mt-2 text-3xl font-extrabold tracking-tight text-gray-900">
-                    <span className="text-orange-500">{program.icon}</span>
+                    <span className="text-orange-500">{getIconForProgram(program.slug)}</span>
                     {program.title}
                 </h3>
-                <p className="mt-4 leading-relaxed text-gray-600">
-                    {program.description}
-                </p>
+                <div 
+                    className="mt-4 leading-relaxed text-gray-600 line-clamp-3" 
+                    dangerouslySetInnerHTML={{ __html: program.description }} 
+                />
                 <div className="mt-6">
                     <Button asChild variant="ghost" className="text-orange-600 hover:text-orange-700 hover:bg-orange-50 text-base">
-                        <Link href={`/training/${program.id}`}>
+                        <Link href={`/training/${program.slug}`}>
                             Xem chi tiết <ArrowRight className="ml-2 h-4 w-4" />
                         </Link>
                     </Button>
@@ -12396,13 +12466,28 @@ function ProgramCard({ program, reverse = false }) {
     );
 }
 
-function ProgramsList() {
-    const [visibleCount, setVisibleCount] = useState(PROGRAMS_PER_PAGE);
+function ProgramsList({ initialTrainingData }) {
+    const [programs, setPrograms] = useState(initialTrainingData.data || []);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(initialTrainingData.totalPages || 1);
+    const [isLoading, setIsLoading] = useState(false);
 
-    const displayPrograms = trainingPrograms.slice(0, visibleCount);
-
-    const handleLoadMore = () => {
-        setVisibleCount(prevCount => prevCount + PROGRAMS_PER_PAGE);
+    const handleLoadMore = async () => {
+        if (currentPage >= totalPages) return;
+        setIsLoading(true);
+        const nextPage = currentPage + 1;
+        
+        try {
+            const response = await fetch(`/api/training?page=${nextPage}&pageSize=${PROGRAMS_PER_PAGE}`);
+            const newData = await response.json();
+            
+            setPrograms(prev => [...prev, ...newData.data]);
+            setCurrentPage(nextPage);
+        } catch (error) {
+            console.error("Failed to load more programs:", error);
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (
@@ -12415,18 +12500,26 @@ function ProgramsList() {
                     </p>
                 </div>
                 <div className="space-y-24">
-                    {displayPrograms.map((program, index) => (
+                    {programs.map((program, index) => (
                         <ProgramCard key={program.id} program={program} reverse={index % 2 !== 0} />
                     ))}
                 </div>
                 <div className="text-center mt-20">
-                    {visibleCount < trainingPrograms.length && (
+                    {currentPage < totalPages && (
                         <Button
                             size="lg"
                             onClick={handleLoadMore}
+                            disabled={isLoading}
                             className="bg-orange-500 hover:bg-orange-600 text-white text-lg font-semibold px-10 py-6 cursor-pointer"
                         >
-                            Xem thêm
+                            {isLoading ? (
+                                <>
+                                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                                    Đang tải...
+                                </>
+                            ) : (
+                                "Xem thêm"
+                            )}
                         </Button>
                     )}
                 </div>
@@ -12478,8 +12571,9 @@ import CourseOverview from './components/CourseOverview';
 import SkillBreakdown from './components/SkillBreakdown';
 import CourseCurriculum from './components/CourseCurriculum';
 import RegistrationCta from './components/RegistrationCta';
+import OtherTrainingsSection from './components/OtherTrainingsSection';
 
-function TrainingDetailPage({ course }) {
+function TrainingDetailPage({ course, otherCourses }) {
     if (!course) {
         return (
             <div className="container mx-auto py-24 text-center">
@@ -12487,19 +12581,41 @@ function TrainingDetailPage({ course }) {
             </div>
         );
     }
+
+    const overviewData = {
+        age: course.age,
+        duration: course.duration,
+        outcome: course.outcome,
+        method: course.method,
+    };
+    
+    const skillsData = {
+        speaking: course.speaking,
+        listening: course.listening,
+        reading: course.reading,
+        writing: course.writing,
+    };
+
+    const formatCurriculum = (curriculum) => {
+        if (!curriculum) return [];
+        return curriculum.map(item => ({
+            ...item,
+            content: `<ul>${item.content.split('\r\n').map(line => `<li>${line}</li>`).join('')}</ul>`
+        }));
+    };
     
     return (
         <main>
             <CourseHero 
                 title={course.title} 
-                description={course.shortDescription} 
-                imageSrc={course.imageSrc} 
+                description={course.description.replace(/<[^>]+>/g, '')}
+                imageSrc={course.thumbnail} 
             />
-            <CourseOverview overview={course.overview} />
-            <SkillBreakdown skills={course.skills} />
-            <CourseCurriculum curriculum={course.curriculum} />
-            {/* FIX: Truyền `course.title` vào component */}
+            <CourseOverview overview={overviewData} />
+            <SkillBreakdown skills={skillsData} />
+            <CourseCurriculum curriculum={formatCurriculum(course.curriculum)} />
             <RegistrationCta courseTitle={course.title} />
+            <OtherTrainingsSection trainings={otherCourses} />
         </main>
     );
 }
@@ -12619,6 +12735,89 @@ function CourseOverview({ overview }) {
 }
 
 export default CourseOverview;
+
+/* ===== src\pages\Training\Detail\components\OtherTrainingsSection.jsx ===== */
+"use client";
+
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Card, CardContent } from '@/components/ui/card';
+import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+
+const stripHtml = (html) => {
+    if (typeof window !== 'undefined') {
+        const doc = new DOMParser().parseFromString(html, 'text/html');
+        return doc.body.textContent || "";
+    }
+    return html.replace(/<[^>]+>/g, '');
+};
+
+function OtherTrainingsSection({ trainings }) {
+    if (!trainings || trainings.length === 0) {
+        return null;
+    }
+
+    return (
+        <section className="py-16 sm:py-24 border-t bg-gray-50/50">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-12">
+                <h2 className="text-2xl font-bold text-gray-900 mb-8 pb-2 border-b-2 border-orange-500 inline-block">
+                    Các Khóa Học Khác
+                </h2>
+                
+                <Carousel
+                    opts={{
+                        align: "start",
+                    }}
+                    className="w-full"
+                >
+                    <CarouselContent className="-ml-4">
+                        {trainings.map((training) => (
+                            <CarouselItem key={training.id} className="pl-4 basis-full sm:basis-1/2 lg:basis-1/3">
+                                <div className="p-1 h-full">
+                                    <Link href={`/training/${training.slug}`} className="block h-full group">
+                                        <Card className="flex flex-col h-full overflow-hidden p-0 transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1">
+                                            {/* Thay đổi tỷ lệ ảnh thành 4/3 (landscape) để cân đối hơn */}
+                                            <AspectRatio ratio={4 / 3} className="overflow-hidden">
+                                                <Image
+                                                    src={training.thumbnail}
+                                                    alt={training.title}
+                                                    fill
+                                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                                                />
+                                            </AspectRatio>
+                                            
+                                            <CardContent className="p-0 flex flex-col flex-grow">
+                                                <div className="px-4 pt-2 pb-1 text-sm text-gray-500 border-b border-gray-100">
+                                                    <span className="font-semibold tracking-wider">Độ tuổi: </span>
+                                                    <span>{training.age}</span>
+                                                </div>
+                                                <div className="px-4 pt-2 pb-4 flex flex-col flex-grow">
+                                                    <h4 className="text-base font-bold text-gray-900 line-clamp-2 flex-grow group-hover:text-orange-600 transition-colors leading-snug mb-2">
+                                                        {training.title}
+                                                    </h4>
+                                                    <p className="text-sm text-gray-600 line-clamp-2 leading-relaxed">
+                                                        {stripHtml(training.description)}
+                                                    </p>
+                                                </div>
+                                            </CardContent>
+                                        </Card>
+                                    </Link>
+                                </div>
+                            </CarouselItem>
+                        ))}
+                    </CarouselContent>
+                    <CarouselPrevious className="hidden sm:flex" />
+                    <CarouselNext className="hidden sm:flex" />
+                </Carousel>
+            </div>
+        </section>
+    );
+}
+
+export default OtherTrainingsSection;
 
 /* ===== src\pages\Training\Detail\components\RegistrationCta.jsx ===== */
 /* ===== pages\Training\Detail\components\RegistrationCta.jsx ===== */
@@ -12901,6 +13100,179 @@ function SkillBreakdown({ skills }) {
 
 export default SkillBreakdown;
 
+/* ===== src\services\courseService.js ===== */
+
+
+/* ===== src\services\homeService.js ===== */
+// src/services/homeService.js
+import { unstable_noStore as noStore } from "next/cache";
+
+export async function getHomepageData() {
+  // noStore() is used here to ensure fresh data on every request,
+  // similar to getServerSideProps. For static data, you can remove it
+  // or use the revalidate option in fetch.
+  noStore();
+
+  try {
+    const response = await fetch(`${process.env.API_BASE_URL}/homepage`);
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch homepage data");
+    }
+
+    const jsonResponse = await response.json();
+    return jsonResponse.data;
+  } catch (error) {
+    console.error("Error fetching homepage data:", error);
+    return null; // Return null on error to handle it gracefully in the page component.
+  }
+}
+
+
+/* ===== src\services\newsService.js ===== */
+
+
+/* ===== src\services\teacherService.js ===== */
+// src/services/teacherService.js
+import { unstable_noStore as noStore } from "next/cache";
+
+const API_BASE_URL = process.env.API_BASE_URL;
+
+/**
+ * Fetches a list of featured teachers.
+ * @param {number} pageSize The number of teachers to fetch.
+ * @returns {Promise<Array>} A promise that resolves to an array of teachers.
+ */
+export async function getFeaturedTeachers(pageSize = 6) {
+  noStore();
+  try {
+    const response = await fetch(
+      `${API_BASE_URL}/teachers?pageSize=${pageSize}`
+    );
+    if (!response.ok) throw new Error("Failed to fetch teachers");
+    const result = await response.json();
+    return result.data || [];
+  } catch (error) {
+    console.error("Error fetching featured teachers:", error);
+    return [];
+  }
+}
+
+/**
+ * Fetches a single teacher by their slug.
+ * @param {string} slug The slug of the teacher.
+ * @returns {Promise<Object|null>} A promise that resolves to the teacher object or null if not found.
+ */
+export async function getTeacherBySlug(slug) {
+  noStore();
+  try {
+    const response = await fetch(`${API_BASE_URL}/teachers/${slug}`);
+    if (!response.ok) return null;
+    const result = await response.json();
+    return result.data;
+  } catch (error) {
+    console.error(`Error fetching teacher by slug ${slug}:`, error);
+    return null;
+  }
+}
+
+/**
+ * Fetches other teachers, excluding the current one.
+ * @param {number} excludeId The ID of the current teacher to exclude.
+ * @param {number} pageSize The number of other teachers to fetch.
+ * @returns {Promise<Array>} A promise that resolves to an array of other teachers.
+ */
+export async function getOtherTeachers(excludeId, pageSize = 5) {
+  noStore();
+  try {
+    // Fetches a list and filters out the current teacher.
+    const response = await fetch(
+      `${API_BASE_URL}/teachers?pageSize=${pageSize + 1}`
+    );
+    if (!response.ok) throw new Error("Failed to fetch other teachers");
+    const result = await response.json();
+    const teachers = result.data || [];
+    return teachers
+      .filter((teacher) => teacher.id !== excludeId)
+      .slice(0, pageSize);
+  } catch (error) {
+    console.error("Error fetching other teachers:", error);
+    return [];
+  }
+}
+
+
+/* ===== src\services\trainingService.js ===== */
+import { unstable_noStore as noStore } from "next/cache";
+
+const API_BASE_URL = process.env.API_BASE_URL;
+
+export async function getTrainings(pageSize = 2, page = 1) {
+  noStore();
+  try {
+    const response = await fetch(
+      `${API_BASE_URL}/training?pageSize=${pageSize}&page=${page}`
+    );
+    if (!response.ok) throw new Error("Failed to fetch trainings");
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error("Error fetching trainings:", error);
+    return { data: [], totalPages: 1, currentPage: 1 };
+  }
+}
+
+export async function getAllTrainings() {
+  noStore();
+  try {
+    const response = await fetch(`${API_BASE_URL}/training`);
+    if (!response.ok) throw new Error("Failed to fetch all trainings");
+    const result = await response.json();
+    return result.data || [];
+  } catch (error) {
+    console.error("Error fetching all trainings:", error);
+    return [];
+  }
+}
+
+export async function getTrainingBySlug(slug) {
+  noStore();
+  try {
+    const response = await fetch(`${API_BASE_URL}/training/${slug}`);
+    if (!response.ok) return null;
+    const result = await response.json();
+    return result.data;
+  } catch (error) {
+    console.error(`Error fetching training by slug ${slug}:`, error);
+    return null;
+  }
+}
+
+export async function getOtherTrainings(excludeSlug, pageSize = 5) {
+  noStore();
+  try {
+    const response = await fetch(
+      `${API_BASE_URL}/training?pageSize=${pageSize + 1}`
+    );
+    if (!response.ok) throw new Error("Failed to fetch other trainings");
+    const result = await response.json();
+    const trainings = result.data || [];
+    return trainings
+      .filter((training) => training.slug !== excludeSlug)
+      .slice(0, pageSize);
+  } catch (error) {
+    console.error("Error fetching other trainings:", error);
+    return [];
+  }
+}
+
+
+/* ===== src\types\index.js ===== */
+
+
+/* ===== src\types\news.types.js ===== */
+
+
 
 /* ===== BINARY FILES (PATHS ONLY) ===== */
 /* Binary file: public\assets\images\logo-au.png */
@@ -13102,6 +13474,7 @@ export default SkillBreakdown;
 /*   node_modules/ */
 
 /* Ignored files: */
+/*   .env.local */
 /*   .git\COMMIT_EDITMSG */
 /*   .git\FETCH_HEAD */
 /*   .git\HEAD */

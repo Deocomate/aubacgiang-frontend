@@ -4,8 +4,9 @@ import CourseOverview from './components/CourseOverview';
 import SkillBreakdown from './components/SkillBreakdown';
 import CourseCurriculum from './components/CourseCurriculum';
 import RegistrationCta from './components/RegistrationCta';
+import OtherTrainingsSection from './components/OtherTrainingsSection';
 
-function TrainingDetailPage({ course }) {
+function TrainingDetailPage({ course, otherCourses }) {
     if (!course) {
         return (
             <div className="container mx-auto py-24 text-center">
@@ -13,19 +14,41 @@ function TrainingDetailPage({ course }) {
             </div>
         );
     }
+
+    const overviewData = {
+        age: course.age,
+        duration: course.duration,
+        outcome: course.outcome,
+        method: course.method,
+    };
+    
+    const skillsData = {
+        speaking: course.speaking,
+        listening: course.listening,
+        reading: course.reading,
+        writing: course.writing,
+    };
+
+    const formatCurriculum = (curriculum) => {
+        if (!curriculum) return [];
+        return curriculum.map(item => ({
+            ...item,
+            content: `<ul>${item.content.split('\r\n').map(line => `<li>${line}</li>`).join('')}</ul>`
+        }));
+    };
     
     return (
         <main>
             <CourseHero 
                 title={course.title} 
-                description={course.shortDescription} 
-                imageSrc={course.imageSrc} 
+                description={course.description.replace(/<[^>]+>/g, '')}
+                imageSrc={course.thumbnail} 
             />
-            <CourseOverview overview={course.overview} />
-            <SkillBreakdown skills={course.skills} />
-            <CourseCurriculum curriculum={course.curriculum} />
-            {/* FIX: Truyền `course.title` vào component */}
+            <CourseOverview overview={overviewData} />
+            <SkillBreakdown skills={skillsData} />
+            <CourseCurriculum curriculum={formatCurriculum(course.curriculum)} />
             <RegistrationCta courseTitle={course.title} />
+            <OtherTrainingsSection trainings={otherCourses} />
         </main>
     );
 }
