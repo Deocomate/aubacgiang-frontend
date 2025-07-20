@@ -18,21 +18,21 @@ function TestimonialsSection({ testimonials }) {
 
     return (
         <section id='testimonials' className="bg-gray-50 py-24">
-            <div className="container mx-auto px-4">
+            <div className="container mx-auto lg:px-4 px-9">
                 <div className="text-center mb-16">
                     <h2 className="text-base font-semibold leading-7 text-orange-500">Phụ Huynh Nói Về Chúng Tôi</h2>
                     <p className="mt-2 text-4xl md:text-5xl font-extrabold tracking-tight text-gray-800">
                         Câu Chuyện Thành Công
                     </p>
                 </div>
-                
-                <Carousel 
-                    opts={{ align: "start", loop: true }} 
+
+                <Carousel
+                    opts={{ align: "start", loop: true }}
                     className="w-full max-w-7xl mx-auto"
                 >
                     <CarouselContent className="-ml-4">
                         {testimonials.map((item, index) => (
-                            <CarouselItem key={index} className="pl-4 basis-full md:basis-1/2 lg:basis-1/4">
+                            <CarouselItem key={index} className="pl-4 basis-full md:basis-1/2 lg:basis-1/3 lg:pl-6">
                                 <Link href={`/parents-corner/${item.slug}`} className="block h-full group py-2">
                                     <Card className="flex flex-col h-full cursor-pointer transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
                                         <CardContent className="p-6 text-center flex flex-col flex-grow items-center">
@@ -49,11 +49,12 @@ function TestimonialsSection({ testimonials }) {
                                             </div>
                                         </CardContent>
                                     </Card>
+                                    <CarouselDots />
                                 </Link>
                             </CarouselItem>
                         ))}
                     </CarouselContent>
-                    
+
                     <CarouselPrevious className="hidden md:flex" />
                     <CarouselNext className="hidden md:flex" />
                     <CarouselDots className="md:hidden" />

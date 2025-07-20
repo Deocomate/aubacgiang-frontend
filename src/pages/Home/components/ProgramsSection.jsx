@@ -57,7 +57,7 @@ function ProgramsSection({ trainings }) {
 
     return (
         <section className="py-24 bg-gray-50">
-            <div className="container mx-auto px-4">
+            <div className="container mx-auto lg:px-4 px-9">
                 <div className="text-center mb-16">
                     <h2 className="text-base font-semibold leading-7 text-orange-500">Lộ Trình Học Tập</h2>
                     <p className="mt-2 text-4xl md:text-5xl font-extrabold tracking-tight text-gray-800">
