@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Award, Globe, UserCheck, Facebook, Mail } from 'lucide-react';
+import { Carousel, CarouselContent, CarouselItem, CarouselDots } from "@/components/ui/carousel";
 
 const qualityStandards = [
     {
@@ -32,6 +33,47 @@ const getInitials = (name) => {
     return `${names[0].charAt(0)}${names[names.length - 1].charAt(0)}`.toUpperCase();
 };
 
+const TeacherCard = ({ teacher, onClick, onSocialClick }) => (
+    <Card
+        onClick={() => onClick(teacher.slug)}
+        className="flex flex-col text-center p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-2 h-full cursor-pointer"
+    >
+        <CardHeader className="items-center">
+            <Avatar className="w-32 h-32 mb-4 border-4 border-orange-200 mx-auto">
+                <AvatarImage src={teacher.avatar} alt={`Portrait of ${teacher.full_name}`} />
+                <AvatarFallback className="text-4xl bg-orange-100 text-orange-600">{getInitials(teacher.full_name)}</AvatarFallback>
+            </Avatar>
+            <CardTitle className="text-2xl font-bold text-gray-900">{teacher.full_name}</CardTitle>
+            <CardDescription className="text-base text-orange-600 font-medium min-h-[3rem] flex items-center justify-center">
+                {teacher.role}
+            </CardDescription>
+        </CardHeader>
+        <CardContent className="flex-grow mt-4 text-left text-gray-600 w-full">
+            <ul className="list-disc list-inside space-y-1">
+                {teacher.qualifications.map((q, i) => (
+                    <li key={i}>{q}</li>
+                ))}
+            </ul>
+        </CardContent>
+        <CardFooter className="justify-center gap-4 pt-4 mt-4 border-t border-gray-100">
+            <div
+                onClick={(e) => onSocialClick(e, teacher.facebook)}
+                aria-label={`Facebook of ${teacher.full_name}`}
+                className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+            >
+                <Facebook className="h-5 w-5 text-gray-400 group-hover:text-orange-500" />
+            </div>
+            <div
+                onClick={(e) => onSocialClick(e, `mailto:${teacher.email}`)}
+                aria-label={`Email ${teacher.full_name}`}
+                className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+            >
+                <Mail className="h-5 w-5 text-gray-400 group-hover:text-orange-500" />
+            </div>
+        </CardFooter>
+    </Card>
+);
+
 function TeachersSection({ teachers }) {
     const router = useRouter();
 
@@ -40,7 +82,7 @@ function TeachersSection({ teachers }) {
     };
 
     const handleSocialClick = (e, url) => {
-        e.stopPropagation(); // Prevent card's onClick from firing
+        e.stopPropagation();
         if (url) {
             window.open(url, '_blank', 'noopener,noreferrer');
         }
@@ -69,48 +111,25 @@ function TeachersSection({ teachers }) {
                     ))}
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+                <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
                     {teachers.map((teacher) => (
-                        <Card 
-                            key={teacher.id} 
-                            onClick={() => handleCardClick(teacher.slug)}
-                            className="flex flex-col text-center p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-2 h-full cursor-pointer"
-                        >
-                            <CardHeader className="items-center">
-                                <Avatar className="w-32 h-32 mb-4 border-4 border-orange-200 mx-auto">
-                                    <AvatarImage src={teacher.avatar} alt={`Portrait of ${teacher.full_name}`} />
-                                    <AvatarFallback className="text-4xl bg-orange-100 text-orange-600">{getInitials(teacher.full_name)}</AvatarFallback>
-                                </Avatar>
-                                <CardTitle className="text-2xl font-bold text-gray-900">{teacher.full_name}</CardTitle>
-                                <CardDescription className="text-base text-orange-600 font-medium min-h-[3rem] flex items-center justify-center">
-                                    {teacher.role}
-                                </CardDescription>
-                            </CardHeader>
-                            <CardContent className="flex-grow mt-4 text-left text-gray-600 w-full">
-                                <ul className="list-disc list-inside space-y-1">
-                                    {teacher.qualifications.map((q, i) => (
-                                        <li key={i}>{q}</li>
-                                    ))}
-                                </ul>
-                            </CardContent>
-                            <CardFooter className="justify-center gap-4 pt-4 mt-4 border-t border-gray-100">
-                                <div
-                                    onClick={(e) => handleSocialClick(e, teacher.facebook)}
-                                    aria-label={`Facebook of ${teacher.full_name}`}
-                                    className="p-2 rounded-full hover:bg-gray-100 transition-colors"
-                                >
-                                    <Facebook className="h-5 w-5 text-gray-400 group-hover:text-orange-500" />
-                                </div>
-                                <div
-                                    onClick={(e) => handleSocialClick(e, `mailto:${teacher.email}`)}
-                                    aria-label={`Email ${teacher.full_name}`}
-                                    className="p-2 rounded-full hover:bg-gray-100 transition-colors"
-                                >
-                                    <Mail className="h-5 w-5 text-gray-400 group-hover:text-orange-500" />
-                                </div>
-                            </CardFooter>
-                        </Card>
+                        <TeacherCard key={teacher.id} teacher={teacher} onClick={handleCardClick} onSocialClick={handleSocialClick} />
                     ))}
+                </div>
+                
+                <div className="md:hidden">
+                    <Carousel opts={{ loop: true }} className="w-full mx-auto">
+                        <CarouselContent>
+                            {teachers.map((teacher) => (
+                                <CarouselItem key={teacher.id}>
+                                    <div className="p-1 h-full">
+                                        <TeacherCard teacher={teacher} onClick={handleCardClick} onSocialClick={handleSocialClick} />
+                                    </div>
+                                </CarouselItem>
+                            ))}
+                        </CarouselContent>
+                        <CarouselDots />
+                    </Carousel>
                 </div>
             </div>
         </section>

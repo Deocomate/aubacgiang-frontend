@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 function CourseHero({ title, description, imageSrc }) {
     return (
-        <section className="relative w-full h-screen flex items-center justify-center text-white">
+        <section className="relative w-full h-[70vh] sm:h-screen flex items-center justify-center text-white">
             <Image
                 src={imageSrc}
                 alt={title}

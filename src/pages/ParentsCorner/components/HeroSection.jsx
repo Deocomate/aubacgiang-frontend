@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 function HeroSection() {
     return (
-        <section className="relative w-full h-screen flex items-center justify-center text-white">
+        <section className="relative w-full h-[70vh] sm:h-screen flex items-center justify-center text-white">
             <Image
                 src="/assets/images/R5AT3907.jpg" // Chọn ảnh phụ huynh và con hoặc giáo viên và phụ huynh
                 alt="Phụ huynh và học viên tại A&U English"

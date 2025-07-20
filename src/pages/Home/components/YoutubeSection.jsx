@@ -3,9 +3,26 @@
 import React from 'react';
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { getYoutubeEmbedUrl } from '@/lib/utils';
+import { Carousel, CarouselContent, CarouselItem, CarouselDots } from "@/components/ui/carousel";
 
 function YoutubeSection({ links }) {
     const embedLinks = links.slice(0, 4).map(getYoutubeEmbedUrl).filter(Boolean);
+
+    const YoutubeVideo = ({ url, index }) => (
+        <div className="rounded-lg overflow-hidden shadow-lg">
+            <AspectRatio ratio={16 / 9}>
+                <iframe
+                    src={url}
+                    title={`A&U YouTube Video ${index + 1}`}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                    className="w-full h-full"
+                ></iframe>
+            </AspectRatio>
+        </div>
+    );
 
     return (
         <section className="py-24 bg-gray-50">
@@ -20,23 +37,26 @@ function YoutubeSection({ links }) {
                     </p>
                 </div>
 
-                <div className="max-w-6xl mx-auto p-4 md:p-6 bg-white rounded-xl shadow-md border">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="max-w-6xl mx-auto p-2 pt-4 md:p-6 bg-white rounded-xl shadow-md border">
+                    <div className="hidden sm:grid grid-cols-2 gap-4">
                         {embedLinks.map((url, index) => (
-                            <div key={index} className="rounded-lg overflow-hidden shadow-lg">
-                                <AspectRatio ratio={16 / 9}>
-                                    <iframe
-                                        src={url}
-                                        title={`A&U YouTube Video ${index + 1}`}
-                                        frameBorder="0"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                        referrerPolicy="strict-origin-when-cross-origin"
-                                        allowFullScreen
-                                        className="w-full h-full"
-                                    ></iframe>
-                                </AspectRatio>
-                            </div>
+                            <YoutubeVideo key={index} url={url} index={index} />
                         ))}
+                    </div>
+
+                    <div className="sm:hidden">
+                        <Carousel opts={{ loop: true }} className="w-full max-w-lg mx-auto">
+                            <CarouselContent>
+                                {embedLinks.map((url, index) => (
+                                    <CarouselItem key={index}>
+                                        <div className="p-1">
+                                            <YoutubeVideo url={url} index={index} />
+                                        </div>
+                                    </CarouselItem>
+                                ))}
+                            </CarouselContent>
+                            <CarouselDots />
+                        </Carousel>
                     </div>
                 </div>
             </div>

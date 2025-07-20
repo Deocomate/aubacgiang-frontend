@@ -10,11 +10,9 @@ const CarouselContext = React.createContext(null)
 
 function useCarousel() {
   const context = React.useContext(CarouselContext)
-
   if (!context) {
     throw new Error("useCarousel must be used within a <Carousel />")
   }
-
   return context
 }
 
@@ -33,9 +31,17 @@ function Carousel({
   }, plugins)
   const [canScrollPrev, setCanScrollPrev] = React.useState(false)
   const [canScrollNext, setCanScrollNext] = React.useState(false)
+  const [selectedIndex, setSelectedIndex] = React.useState(0)
+  const [scrollSnaps, setScrollSnaps] = React.useState([])
+
+  const onInit = React.useCallback((api) => {
+    if (!api) return
+    setScrollSnaps(api.scrollSnapList())
+  }, [])
 
   const onSelect = React.useCallback((api) => {
     if (!api) return
+    setSelectedIndex(api.selectedScrollSnap())
     setCanScrollPrev(api.canScrollPrev())
     setCanScrollNext(api.canScrollNext())
   }, [])
@@ -46,6 +52,10 @@ function Carousel({
 
   const scrollNext = React.useCallback(() => {
     api?.scrollNext()
+  }, [api])
+  
+  const scrollTo = React.useCallback((index) => {
+    api?.scrollTo(index)
   }, [api])
 
   const handleKeyDown = React.useCallback((event) => {
@@ -65,14 +75,15 @@ function Carousel({
 
   React.useEffect(() => {
     if (!api) return
+    onInit(api)
     onSelect(api)
+    api.on("reInit", onInit)
     api.on("reInit", onSelect)
     api.on("select", onSelect)
-
     return () => {
       api?.off("select", onSelect)
     };
-  }, [api, onSelect])
+  }, [api, onInit, onSelect])
 
   return (
     <CarouselContext.Provider
@@ -86,6 +97,9 @@ function Carousel({
         scrollNext,
         canScrollPrev,
         canScrollNext,
+        scrollTo,
+        scrollSnaps,
+        selectedIndex,
       }}>
       <div
         onKeyDownCapture={handleKeyDown}
@@ -100,12 +114,8 @@ function Carousel({
   );
 }
 
-function CarouselContent({
-  className,
-  ...props
-}) {
+function CarouselContent({ className, ...props }) {
   const { carouselRef, orientation } = useCarousel()
-
   return (
     <div
       ref={carouselRef}
@@ -122,12 +132,8 @@ function CarouselContent({
   );
 }
 
-function CarouselItem({
-  className,
-  ...props
-}) {
+function CarouselItem({ className, ...props }) {
   const { orientation } = useCarousel()
-
   return (
     <div
       role="group"
@@ -142,14 +148,8 @@ function CarouselItem({
   );
 }
 
-function CarouselPrevious({
-  className,
-  variant = "outline",
-  size = "icon",
-  ...props
-}) {
+function CarouselPrevious({ className, variant = "outline", size = "icon", ...props }) {
   const { orientation, scrollPrev, canScrollPrev } = useCarousel()
-
   return (
     <Button
       data-slot="carousel-previous"
@@ -167,14 +167,8 @@ function CarouselPrevious({
   );
 }
 
-function CarouselNext({
-  className,
-  variant = "outline",
-  size = "icon",
-  ...props
-}) {
+function CarouselNext({ className, variant = "outline", size = "icon", ...props }) {
   const { orientation, scrollNext, canScrollNext } = useCarousel()
-
   return (
     <Button
       data-slot="carousel-next"
@@ -192,4 +186,49 @@ function CarouselNext({
   );
 }
 
-export { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext };
+function CarouselDots({ className, ...props }) {
+  const { scrollSnaps, selectedIndex, scrollTo } = useCarousel()
+  return (
+    <div
+      data-slot="carousel-dots"
+      className={cn("mt-4 flex items-center justify-center gap-2", className)}
+      {...props}
+    >
+      {scrollSnaps.map((_, index) => (
+        <CarouselDot
+          key={index}
+          onClick={() => scrollTo(index)}
+          data-active={index === selectedIndex}
+          aria-current={index === selectedIndex ? "true" : "false"}
+          aria-label={`Go to slide ${index + 1}`}
+        />
+      ))}
+    </div>
+  );
+}
+
+function CarouselDot({ className, ...props }) {
+  return (
+    <button
+      data-slot="carousel-dot"
+      className={cn(
+        "h-2 w-2 rounded-full border border-primary/50 transition-colors",
+        "data-[active=true]:bg-black data-[active=true]:border-black",
+        "bg-transparent",
+        className
+      )}
+      {...props}
+    />
+  );
+}
+
+
+export {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+  CarouselDots,
+  CarouselDot,
+};

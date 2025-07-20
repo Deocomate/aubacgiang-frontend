@@ -84,11 +84,11 @@ function RegistrationCta({ courseTitle, courseId }) {
                         </p>
                         <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
                             <DialogTrigger asChild>
-                                <Button size="lg" variant="outline" className="bg-white text-orange-600 hover:bg-orange-50 transition-transform hover:scale-105 cursor-pointer">
+                                <Button size="lg" variant="outline" className="bg-white text-orange-600 hover:bg-orange-50 transition-transform hover:scale-105 cursor-pointer w-full sm:w-auto sm:min-w-[280px]">
                                     Đăng ký khoá học
                                 </Button>
                             </DialogTrigger>
-                            <Button asChild size="lg" className="bg-white/20 hover:bg-white/30 text-white transition-transform hover:scale-105">
+                            <Button asChild size="lg" className="bg-white/20 hover:bg-white/30 text-white transition-transform hover:scale-105 w-full sm:w-auto sm:min-w-[280px]">
                                 <Link href="/training">
                                     Khám phá khóa học khác <ArrowRight className="ml-2 h-5 w-5" />
                                 </Link>
@@ -136,7 +136,7 @@ function RegistrationCta({ courseTitle, courseId }) {
                             />
                         </div>
 
-                         <FormField
+                        <FormField
                             control={form.control}
                             name="email"
                             render={({ field }) => (
@@ -149,7 +149,7 @@ function RegistrationCta({ courseTitle, courseId }) {
                                 </FormItem>
                             )}
                         />
-                        
+
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <FormField
                                 control={form.control}
@@ -207,7 +207,7 @@ function RegistrationCta({ courseTitle, courseId }) {
                             )}
                         />
                         <Button type="submit" className="w-full bg-orange-500 hover:bg-orange-600 text-base text-white cursor-pointer" size="lg" disabled={form.formState.isSubmitting}>
-                           {form.formState.isSubmitting ? (
+                            {form.formState.isSubmitting ? (
                                 <>
                                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                                     Đang gửi...

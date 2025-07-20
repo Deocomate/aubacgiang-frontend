@@ -4,6 +4,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import Image from 'next/image';
 import { HeartHandshake, GraduationCap } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Carousel, CarouselContent, CarouselItem, CarouselDots } from "@/components/ui/carousel";
 
 function useCountUp(end, duration = 2000) {
     const [count, setCount] = useState(0);
@@ -110,18 +111,42 @@ function StatsSection({ stats }) {
                     </p>
                 </header>
 
-                <div className="mt-12 sm:mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-                    {stats.map((stat, index) => (
-                        <AnimatedStat
-                            key={index}
-                            value={parseInt(stat.value, 10)}
-                            suffix={'+'}
-                            icon={icons[index % icons.length]}
-                            description={stat.description}
-                            imageSrc={stat.images}
-                            altText={stat.description}
-                        />
-                    ))}
+                <div className="mt-12 sm:mt-16">
+                    <div className="hidden md:grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+                        {stats.map((stat, index) => (
+                            <AnimatedStat
+                                key={index}
+                                value={parseInt(stat.value, 10)}
+                                suffix={'+'}
+                                icon={icons[index % icons.length]}
+                                description={stat.description}
+                                imageSrc={stat.images}
+                                altText={stat.description}
+                            />
+                        ))}
+                    </div>
+
+                    <div className="md:hidden">
+                        <Carousel opts={{ loop: true }} className="w-full max-w-lg mx-auto">
+                            <CarouselContent>
+                                {stats.map((stat, index) => (
+                                    <CarouselItem key={index}>
+                                        <div className="p-1">
+                                            <AnimatedStat
+                                                value={parseInt(stat.value, 10)}
+                                                suffix={'+'}
+                                                icon={icons[index % icons.length]}
+                                                description={stat.description}
+                                                imageSrc={stat.images}
+                                                altText={stat.description}
+                                            />
+                                        </div>
+                                    </CarouselItem>
+                                ))}
+                            </CarouselContent>
+                            <CarouselDots />
+                        </Carousel>
+                    </div>
                 </div>
             </div>
         </section>

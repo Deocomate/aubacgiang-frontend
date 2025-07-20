@@ -8,10 +8,8 @@ import { Badge } from '@/components/ui/badge';
 import { ArrowRight, Baby, BookOpen, Briefcase, School, Shield, Sun, Loader2, Target, Lightbulb } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { loadMoreTrainings } from '@/app/actions/trainingActions';
-// SỬA: Import custom hook useTraining
 import { useTraining } from '@/context/TrainingProvider';
 
-// ... (phần code iconMap và ProgramCard giữ nguyên không đổi) ...
 const iconMap = {
     'mau-giao': <Baby className="h-6 w-6" />,
     'tieu-hoc': <School className="h-6 w-6" />,
@@ -21,7 +19,6 @@ const iconMap = {
     'business-english': <Briefcase className="h-6 w-6" />,
 };
 
-// Danh sách các icon chung để lựa chọn ngẫu nhiên
 const genericIcons = [
     <BookOpen className="h-6 w-6" />,
     <Briefcase className="h-6 w-6" />,
@@ -37,7 +34,6 @@ const getIconForProgram = (slug) => {
     if (key) {
         return iconMap[key];
     }
-    // Nếu không tìm thấy icon cụ thể, chọn ngẫu nhiên một icon từ danh sách chung
     const randomIndex = Math.floor(Math.random() * genericIcons.length);
     return genericIcons[randomIndex];
 };
@@ -66,10 +62,10 @@ function ProgramCard({ program, reverse = false }) {
                     className="mt-4 leading-relaxed text-gray-600 line-clamp-3" 
                     dangerouslySetInnerHTML={{ __html: program.description }} 
                 />
-                <div className="mt-6">
-                    <Button asChild variant="ghost" className="text-orange-600 hover:text-orange-700 hover:bg-orange-50 text-base">
+                <div className="mt-6 flex justify-center md:justify-start">
+                    <Button asChild variant="ghost" className="text-white bg-orange-500 hover:bg-orange-600 text-base ">
                         <Link href={`/training/${program.slug}`}>
-                            Xem chi tiết <ArrowRight className="ml-2 h-4 w-4" />
+                            Xem chi tiết <ArrowRight className="ml-1 h-4 w-4" />
                         </Link>
                     </Button>
                 </div>
@@ -81,7 +77,6 @@ function ProgramCard({ program, reverse = false }) {
 const PROGRAMS_PER_PAGE = 2;
 
 function ProgramsList({ initialTrainingData }) {
-    // SỬA: Lấy state từ Context thay vì useState cục bộ
     const {
         programs, setPrograms,
         currentPage, setCurrentPage,
@@ -91,14 +86,12 @@ function ProgramsList({ initialTrainingData }) {
 
     const [isLoading, setIsLoading] = useState(false);
 
-    // SỬA: Logic khởi tạo state trong Context
     useEffect(() => {
-        // Nếu context chưa được khởi tạo, dùng dữ liệu từ server để khởi tạo
         if (!isInitialized) {
             setPrograms(initialTrainingData.data || []);
             setCurrentPage(initialTrainingData.currentPage || 1);
             setTotalPages(initialTrainingData.totalPages || 1);
-            setIsInitialized(true); // Đánh dấu đã khởi tạo
+            setIsInitialized(true);
         }
     }, [initialTrainingData, isInitialized, setPrograms, setCurrentPage, setTotalPages, setIsInitialized]);
 
@@ -115,7 +108,6 @@ function ProgramsList({ initialTrainingData }) {
                 throw new Error(newData.error);
             }
 
-            // SỬA: Cập nhật state trong context
             setPrograms(prev => [...prev, ...newData.data]);
             setCurrentPage(nextPage);
 
@@ -126,7 +118,6 @@ function ProgramsList({ initialTrainingData }) {
         }
     };
     
-    // Nếu chưa khởi tạo xong, không render gì cả để tránh FOUC (Flash of Unstyled Content)
     if (!isInitialized) {
         return null;
     }

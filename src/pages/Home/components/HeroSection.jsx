@@ -3,9 +3,10 @@
 import React from 'react';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Phone } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
+import Link from 'next/link';
 
 function HeroSection({ banner }) {
     const { title, description, images } = banner;
@@ -15,7 +16,7 @@ function HeroSection({ banner }) {
     );
 
     return (
-        <section className="relative w-full h-screen">
+        <section className="relative w-full h-[70vh] sm:h-screen">
             <Carousel
                 plugins={[plugin.current]}
                 className="absolute inset-0 z-0"
@@ -26,7 +27,7 @@ function HeroSection({ banner }) {
                 <CarouselContent>
                     {images.map((src, index) => (
                         <CarouselItem key={index}>
-                            <div className="relative h-screen w-full">
+                            <div className="relative h-[70vh] sm:h-screen w-full">
                                 <Image
                                     src={src}
                                     alt={title}
@@ -52,20 +53,11 @@ function HeroSection({ banner }) {
                         {description}
                     </p>
                     <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <Button
-                            size="lg"
-                            className="bg-orange-500 hover:bg-orange-600 text-white font-bold text-lg w-full sm:w-auto transition-transform hover:scale-105"
-                        >
-                            Khám phá các khóa học
-                            <ArrowRight className="ml-2 h-5 w-5" />
-                        </Button>
-                        <Button
-                            size="lg"
-                            variant="outline"
-                            className="border-white text-white hover:bg-white hover:text-orange-500 font-bold text-lg w-full sm:w-auto transition-transform hover:scale-105"
-                        >
-                            <Phone className="mr-2 h-5 w-5" />
-                            Đăng ký tư vấn
+                        <Button asChild size="lg" className="cursor-pointer bg-orange-500 hover:bg-orange-600 text-white font-bold text-lg w-full sm:w-auto transition-transform hover:scale-105">
+                            <Link href="/training">
+                                Khám phá các khóa học
+                                <ArrowRight className="ml-2 h-5 w-5" />
+                            </Link>
                         </Button>
                     </div>
                 </div>

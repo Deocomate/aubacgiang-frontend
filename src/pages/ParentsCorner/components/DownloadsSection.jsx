@@ -3,9 +3,8 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Download, FileText } from 'lucide-react';
 import Link from 'next/link';
-import { cn } from '@/lib/utils'; // THÊM: Import cn utility
+import { cn } from '@/lib/utils';
 
-// THÊM: Mảng màu sắc cho icon
 const iconColors = [
     'text-orange-500',
     'text-blue-500',
@@ -15,9 +14,7 @@ const iconColors = [
     'text-teal-500',
 ];
 
-// SỬA: Component nhận props `documents`
 function DownloadsSection({ documents }) {
-    // THÊM: Xử lý trường hợp không có tài liệu
     if (!documents || documents.length === 0) {
         return null;
     }
@@ -33,17 +30,15 @@ function DownloadsSection({ documents }) {
                 </div>
                 <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md">
                     <ul className="space-y-4">
-                        {/* SỬA: Map qua dữ liệu động từ API */}
                         {documents.map((item, index) => (
-                            <li key={item.id} className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 border rounded-md transition-colors hover:bg-gray-50">
+                            <li key={item.id} className="flex flex-col sm:flex-row items-center justify-between p-4 border rounded-md transition-colors hover:bg-gray-50">
                                 <div className="flex items-center gap-4 mb-3 sm:mb-0">
                                     <FileText className={cn("h-5 w-5", iconColors[index % iconColors.length])} />
-                                    <span className="font-medium text-gray-800">{item.name}</span>
+                                    <span className="font-medium text-gray-800 text-center sm:text-left">{item.name}</span>
                                 </div>
-                                <Button asChild>
-                                    {/* SỬA: Link tải về trỏ đến `item.src` */}
+                                <Button asChild className={"bg-orange-500 hover:bg-orange-600 text-white"}>
                                     <Link href={item.src} target="_blank" rel="noopener noreferrer" download>
-                                        <Download className="mr-2 h-4 w-4" /> Tải về
+                                        <Download className="h-4 w-4" /> Tải về
                                     </Link>
                                 </Button>
                             </li>

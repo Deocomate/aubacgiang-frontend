@@ -79,7 +79,7 @@ function ArticleItem({ article, categoryInfo }) {
                         <Calendar className="w-4 h-4" /> {formattedDate}
                     </span>
                     <span className="flex items-center gap-1.5">
-                        <Eye className="w-4 h-4" /> {article.view} Lượt xem
+                        <Eye className="w-4 h-4" /> {article.view}
                     </span>
                 </div>
                 {article.excerpt && (

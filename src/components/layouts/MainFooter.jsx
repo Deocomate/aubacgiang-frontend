@@ -6,11 +6,11 @@ import Image from 'next/image';
 
 const quickLinks = [
     { label: 'Trang chủ', href: '/' },
-    { label: 'Giới thiệu', href: '/about' },
-    { label: 'Chương trình học', href: '/programs' },
+    { label: 'Tin tức và sự kiện', href: '/news' },
+    { label: 'Chương trình học', href: '/training' },
+    { label: 'Đội ngũ giáo viên', href: '/teachers' },
+    { label: 'Góc phụ huynh', href: '/parents-corner' },
     { label: 'Liên hệ', href: '/contact' },
-    { label: 'Điều khoản dịch vụ', href: '/terms' },
-    { label: 'Chính sách bảo mật', href: '/privacy' },
 ];
 
 

@@ -6,14 +6,15 @@ import HandbookSection from './components/HandbookSection';
 import DownloadsSection from './components/DownloadsSection';
 import TestimonialsSection from './components/TestimonialsSection';
 
-function ParentsCornerPage({ handbookArticles, documents }) {
+// SỬA: Nhận thêm prop `testimonials`
+function ParentsCornerPage({ handbookArticles, documents, testimonials }) {
     return (
         <main>
             <HeroSection />
             <KeyResourcesSection />
             <HandbookSection articles={handbookArticles} />
             <DownloadsSection documents={documents} />
-            <TestimonialsSection />
+            <TestimonialsSection testimonials={testimonials} />
         </main>
     );
 }

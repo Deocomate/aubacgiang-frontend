@@ -20,11 +20,6 @@ function CtaSection() {
                             Khám phá các khóa học <ArrowRight className="ml-2 h-5 w-5" />
                         </Link>
                     </Button>
-                    <Button asChild size="lg" variant="outline" className="transition-transform hover:scale-105">
-                        <Link href="/contact">
-                            <Phone className="mr-2 h-5 w-5" /> Liên hệ tư vấn
-                        </Link>
-                    </Button>
                 </div>
             </div>
         </section>

@@ -1,7 +1,8 @@
 /* src/app/(main)/parents-corner/page.js */
 import ParentsCornerPage from "@/pages/ParentsCorner/ParentsCornerPage";
 import { getKnowledgeNews } from "@/services/newsService";
-import { getDocuments } from "@/services/documentService"; // THÊM MỚI
+import { getDocuments } from "@/services/documentService";
+import { getTestimonials } from "@/services/parentsCornerService"; // THÊM MỚI
 
 export const metadata = {
   title: "Góc phụ huynh - Đồng hành cùng con | A&U English",
@@ -10,12 +11,11 @@ export const metadata = {
 };
 
 export default async function ParentsCorner() {
-  // SỬA: Dùng Promise.all để fetch song song
-  const [handbookArticles, documents] = await Promise.all([
+  const [handbookArticles, documents, testimonials] = await Promise.all([
     getKnowledgeNews(6),
-    getDocuments(4)
+    getDocuments(4),
+    getTestimonials(6)
   ]);
   
-  // SỬA: Truyền thêm prop `documents`
-  return <ParentsCornerPage handbookArticles={handbookArticles} documents={documents} />;
+  return <ParentsCornerPage handbookArticles={handbookArticles} documents={documents} testimonials={testimonials} />;
 }

@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 function TeachersHero() {
     return (
-        <section className="relative w-full h-screen flex items-center justify-center text-white">
+        <section className="relative w-full h-[70vh] sm:h-screen flex items-center justify-center text-white">
             <Image
                 src="/assets/images/R5AT4246.jpg"
                 alt="Đội ngũ giáo viên tại A&U English"
