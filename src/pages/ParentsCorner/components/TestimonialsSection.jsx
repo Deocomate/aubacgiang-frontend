@@ -2,7 +2,7 @@
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Carousel, CarouselContent, CarouselItem, CarouselDots } from '@/components/ui/carousel';
+import { Carousel, CarouselContent, CarouselItem, CarouselDots, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import Link from 'next/link';
 
 const extractQuote = (htmlString) => {
@@ -53,7 +53,10 @@ function TestimonialsSection({ testimonials }) {
                             </CarouselItem>
                         ))}
                     </CarouselContent>
-                    <CarouselDots />
+                    
+                    <CarouselPrevious className="hidden md:flex" />
+                    <CarouselNext className="hidden md:flex" />
+                    <CarouselDots className="md:hidden" />
                 </Carousel>
             </div>
         </section>
