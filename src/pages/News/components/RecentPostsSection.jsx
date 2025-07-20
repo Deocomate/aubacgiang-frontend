@@ -1,4 +1,3 @@
-/* ===== src\pages\News\components\RecentPostsSection.jsx ===== */
 /* src/pages/News/components/RecentPostsSection.jsx */
 import React from 'react';
 import Image from 'next/image';
@@ -24,7 +23,12 @@ const fallbackColors = [
     'bg-slate-500 text-white', 'bg-cyan-500 text-white', 'bg-lime-500 text-black',
 ];
 
+// SỬA: Thêm kiểm tra null/undefined cho slug
 const getCategoryStyle = (slug) => {
+    // Nếu slug không tồn tại hoặc không phải là chuỗi, trả về màu mặc định
+    if (!slug || typeof slug !== 'string' || slug.length === 0) {
+        return fallbackColors[0];
+    }
     if (categoryColorMap[slug]) {
         return categoryColorMap[slug];
     }
@@ -64,12 +68,15 @@ function RecentPostsSection({ articles }) {
                                         className="object-cover transition-transform duration-300 group-hover:scale-105"
                                         sizes="(max-width: 1024px) 100vw, 50vw"
                                     />
-                                    <div className={cn(
-                                        "absolute bottom-4 left-4 text-xs font-semibold px-3 py-1 rounded-sm uppercase",
-                                        badgeClass
-                                    )}>
-                                        {featuredArticle.category_name}
-                                    </div>
+                                    {/* SỬA: Chỉ hiển thị category name nếu nó tồn tại */}
+                                    {featuredArticle.category_name && (
+                                        <div className={cn(
+                                            "absolute bottom-4 left-4 text-xs font-semibold px-3 py-1 rounded-sm uppercase",
+                                            badgeClass
+                                        )}>
+                                            {featuredArticle.category_name}
+                                        </div>
+                                    )}
                                 </AspectRatio>
                             </div>
                         </Link>

@@ -11,26 +11,28 @@ const API_BASE_URL = process.env.API_BASE_URL;
  * @param {string|Promise<string>} params.pageSize - The number of items per page.
  * @returns {Promise<object>} A promise that resolves to the paginated news data.
  */
-export async function getNews({ page = '1', search = '', pageSize = '10' } = {}) {
+export async function getNews({
+  page = "1",
+  search = "",
+  pageSize = "10",
+} = {}) {
   noStore();
   try {
     // Ensure all parameters are resolved in case they are promises
-    const resolvedPage = String(await page || '1');
-    const resolvedSearch = String(await search || '');
-    const resolvedPageSize = String(await pageSize || '10');
-    
+    const resolvedPage = String((await page) || "1");
+    const resolvedSearch = String((await search) || "");
+    const resolvedPageSize = String((await pageSize) || "10");
+
     const query = new URLSearchParams({
       page: resolvedPage,
       pageSize: resolvedPageSize,
     });
 
     if (resolvedSearch) {
-      query.append('search', resolvedSearch);
+      query.append("search", resolvedSearch);
     }
 
-    const response = await fetch(
-      `${API_BASE_URL}/news?${query.toString()}`
-    );
+    const response = await fetch(`${API_BASE_URL}/news?${query.toString()}`);
     if (!response.ok) throw new Error("Failed to fetch news");
     const result = await response.json();
     return result;
@@ -84,31 +86,66 @@ export async function getNewsCategories() {
  * @param {string|Promise<string>} params.pageSize - The number of items per page.
  * @returns {Promise<object>} A promise that resolves to the paginated category news data.
  */
-export async function getNewsByCategorySlug(slug, { page = '1', search = '', pageSize = '10' } = {}) {
+export async function getNewsByCategorySlug(
+  slug,
+  { page = "1", search = "", pageSize = "10" } = {}
+) {
   noStore();
   try {
     // Ensure all parameters are resolved in case they are promises
-    const resolvedPage = String(await page || '1');
-    const resolvedSearch = String(await search || '');
-    const resolvedPageSize = String(await pageSize || '10');
-    
+    const resolvedPage = String((await page) || "1");
+    const resolvedSearch = String((await search) || "");
+    const resolvedPageSize = String((await pageSize) || "10");
+
     const query = new URLSearchParams({
       page: resolvedPage,
       pageSize: resolvedPageSize,
     });
 
     if (resolvedSearch) {
-      query.append('search', resolvedSearch);
+      query.append("search", resolvedSearch);
     }
-    
+
     const response = await fetch(
       `${API_BASE_URL}/categories/${slug}/news?${query.toString()}`
     );
-    if (!response.ok) throw new Error(`Failed to fetch news for category ${slug}`);
+    if (!response.ok)
+      throw new Error(`Failed to fetch news for category ${slug}`);
     const result = await response.json();
     return result;
   } catch (error) {
     console.error(`Error fetching news for category ${slug}:`, error);
-    return { category: { name: '', slug: '' }, data: [], totalPages: 1, currentPage: 1 };
+    return {
+      category: { name: "", slug: "" },
+      data: [],
+      totalPages: 1,
+      currentPage: 1,
+    };
+  }
+
+  /**
+   * Fetches knowledge & experience articles.
+   * @param {number} pageSize - The number of items to fetch.
+   * @returns {Promise<Array>} A promise that resolves to an array of articles.
+   */
+}
+
+/**
+ * Fetches knowledge & experience articles.
+ * @param {number} pageSize - The number of items to fetch.
+ * @returns {Promise<Array>} A promise that resolves to an array of articles.
+ */
+export async function getKnowledgeNews(pageSize = 6) {
+  noStore();
+  try {
+    const response = await fetch(
+      `${API_BASE_URL}/knowledge-news?pageSize=${pageSize}`
+    );
+    if (!response.ok) throw new Error("Failed to fetch knowledge news");
+    const result = await response.json();
+    return result.data || [];
+  } catch (error) {
+    console.error("Error fetching knowledge news:", error);
+    return [];
   }
 }

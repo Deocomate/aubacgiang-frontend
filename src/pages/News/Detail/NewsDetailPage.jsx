@@ -1,9 +1,10 @@
-/* ===== src\pages\News\Detail\NewsDetailPage.jsx ===== */
+/* src/pages/News/Detail/NewsDetailPage.jsx */
 import React from 'react';
 import { Calendar, User, Eye } from 'lucide-react';
 import RecentPostsSection from '@/pages/News/components/RecentPostsSection';
 import { format } from 'date-fns';
 
+// CHỈNH SỬA: Nhận props chung từ pageFactory
 function NewsDetailPage({ article, recentArticles }) {
     const formattedDate = format(new Date(article.created_at), 'dd/MM/yyyy');
 

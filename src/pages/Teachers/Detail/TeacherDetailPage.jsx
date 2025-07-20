@@ -1,10 +1,11 @@
-// src/pages/Teachers/Detail/TeacherDetailPage.jsx
+/* src/pages/Teachers/Detail/TeacherDetailPage.jsx */
 import React from 'react';
 import Image from 'next/image';
 import { Award } from 'lucide-react';
 import OtherTeachersSection from './components/OtherTeachersSection';
 
-function TeacherDetailPage({ data: teacher, otherData: otherTeachers }) { // SỬA: Thay đổi tên props
+// CHỈNH SỬA: Nhận props chung từ pageFactory
+function TeacherDetailPage({ teacher, otherTeachers }) {
     return (
         <main>
             <div className="bg-white pt-24 pb-16 sm:pt-32 sm:pb-24">

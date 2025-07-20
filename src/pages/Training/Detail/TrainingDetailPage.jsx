@@ -1,3 +1,4 @@
+/* src/pages/Training/Detail/TrainingDetailPage.jsx */
 import React from 'react';
 import CourseHero from './components/CourseHero';
 import CourseOverview from './components/CourseOverview';
@@ -6,7 +7,8 @@ import CourseCurriculum from './components/CourseCurriculum';
 import RegistrationCta from './components/RegistrationCta';
 import OtherTrainingsSection from './components/OtherTrainingsSection';
 
-function TrainingDetailPage({ data: course, otherData: otherCourses }) {
+// CHỈNH SỬA: Nhận props chung từ pageFactory
+function TrainingDetailPage({ course, otherCourses }) {
     if (!course) {
         return (
             <div className="container mx-auto py-24 text-center">
@@ -14,7 +16,7 @@ function TrainingDetailPage({ data: course, otherData: otherCourses }) {
             </div>
         );
     }
-
+    // ... (phần còn lại của component không đổi) ...
     const overviewData = {
         age: course.age,
         duration: course.duration,

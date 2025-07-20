@@ -1,3 +1,4 @@
+/* src/lib/pageFactory.js */
 // src/lib/pageFactory.js
 import { notFound } from "next/navigation";
 
@@ -42,15 +43,28 @@ export function createDetailPage({
     // Dùng Promise.all để tải song song nếu có thể
     const [data, otherData] = await Promise.all([
       getDataBySlug(slug),
-      getOtherData ? getOtherData(slug) : Promise.resolve([]), // Dùng slug để get other data
+      getOtherData ? getOtherData(slug) : Promise.resolve([]),
     ]);
 
     if (!data) {
       notFound();
     }
+    
+    // CHỈNH SỬA: Đổi tên props để phù hợp với component NewsDetailPage và TeacherDetailPage
+    const componentProps = {
+        article: data, // Cho News, Knowledge
+        teacher: data, // Cho Teacher
+        course: data, // Cho Training
+        data: data, // Prop chung
+        recentArticles: otherData, // Cho News, Knowledge
+        otherTeachers: otherData, // Cho Teacher
+        otherCourses: otherData, // Cho Training
+        otherData: otherData, // Prop chung
+    };
+
 
     // Truyền dữ liệu vào component với props nhất quán
-    return <DetailPageComponent data={data} otherData={otherData} />;
+    return <DetailPageComponent {...componentProps} />;
   };
 
   return { generateMetadata, Page };
