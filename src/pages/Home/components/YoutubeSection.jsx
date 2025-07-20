@@ -37,27 +37,29 @@ function YoutubeSection({ links }) {
                     </p>
                 </div>
 
-                <div className="max-w-6xl mx-auto p-2 pt-4 md:p-6 bg-white rounded-xl shadow-md border">
-                    <div className="hidden sm:grid grid-cols-2 gap-4">
+                {/* Container cho màn hình lớn */}
+                <div className="hidden sm:block max-w-6xl mx-auto p-2 pt-4 md:p-6 bg-white rounded-xl shadow-md border">
+                    <div className="grid grid-cols-2 gap-4">
                         {embedLinks.map((url, index) => (
                             <YoutubeVideo key={index} url={url} index={index} />
                         ))}
                     </div>
+                </div>
 
-                    <div className="sm:hidden">
-                        <Carousel opts={{ loop: true }} className="w-full max-w-lg mx-auto">
-                            <CarouselContent>
-                                {embedLinks.map((url, index) => (
-                                    <CarouselItem key={index}>
-                                        <div className="p-1">
-                                            <YoutubeVideo url={url} index={index} />
-                                        </div>
-                                    </CarouselItem>
-                                ))}
-                            </CarouselContent>
-                            <CarouselDots />
-                        </Carousel>
-                    </div>
+                {/* Carousel cho màn hình nhỏ */}
+                <div className="sm:hidden">
+                    <Carousel opts={{ loop: true }} className="w-full max-w-lg mx-auto">
+                        <CarouselContent>
+                            {embedLinks.map((url, index) => (
+                                <CarouselItem key={index}>
+                                    <div className="p-1">
+                                        <YoutubeVideo url={url} index={index} />
+                                    </div>
+                                </CarouselItem>
+                            ))}
+                        </CarouselContent>
+                        <CarouselDots />
+                    </Carousel>
                 </div>
             </div>
         </section>

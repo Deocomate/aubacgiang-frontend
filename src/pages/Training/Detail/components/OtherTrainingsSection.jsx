@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Card, CardContent } from '@/components/ui/card';
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, CarouselDots } from "@/components/ui/carousel";
 
 const stripHtml = (html) => {
     if (typeof window !== 'undefined') {
@@ -26,7 +26,7 @@ function OtherTrainingsSection({ trainings }) {
                 <h2 className="text-2xl font-bold text-gray-900 mb-8 pb-2 border-b-2 border-orange-500 inline-block">
                     Các Khóa Học Khác
                 </h2>
-                
+
                 <Carousel
                     opts={{
                         align: "start",
@@ -49,7 +49,7 @@ function OtherTrainingsSection({ trainings }) {
                                                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                                                 />
                                             </AspectRatio>
-                                            
+
                                             <CardContent className="p-0 flex flex-col flex-grow">
                                                 <div className="px-4 pb-1 text-sm text-gray-500 border-b border-gray-100">
                                                     <span className="font-semibold tracking-wider">Độ tuổi: </span>
@@ -72,6 +72,7 @@ function OtherTrainingsSection({ trainings }) {
                     </CarouselContent>
                     <CarouselPrevious className="hidden sm:flex" />
                     <CarouselNext className="hidden sm:flex" />
+                    <CarouselDots />
                 </Carousel>
             </div>
         </section>

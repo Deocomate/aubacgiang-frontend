@@ -5,7 +5,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Baby, Rocket, Plane, GraduationCap, Briefcase, ArrowRight, BookCopy, Target, Lightbulb, PenSquare } from 'lucide-react';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, CarouselDots } from '@/components/ui/carousel';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 
 const iconMap = {
@@ -57,7 +57,7 @@ function ProgramsSection({ trainings }) {
 
     return (
         <section className="py-24 bg-gray-50">
-            <div className="container mx-auto lg:px-4 px-9">
+            <div className="container mx-auto lg:px-4 px-4 md:px-9">
                 <div className="text-center mb-16">
                     <h2 className="text-base font-semibold leading-7 text-orange-500">Lộ Trình Học Tập</h2>
                     <p className="mt-2 text-4xl md:text-5xl font-extrabold tracking-tight text-gray-800">
@@ -114,6 +114,7 @@ function ProgramsSection({ trainings }) {
                     </CarouselContent>
                     <CarouselPrevious className="hidden sm:flex" />
                     <CarouselNext className="hidden sm:flex" />
+                    <CarouselDots />
                 </Carousel>
             </div>
         </section>

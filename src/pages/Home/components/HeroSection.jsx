@@ -4,7 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
-import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
+import { Carousel, CarouselContent, CarouselItem, CarouselDots } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import Link from 'next/link';
 
@@ -40,6 +40,9 @@ function HeroSection({ banner }) {
                         </CarouselItem>
                     ))}
                 </CarouselContent>
+                <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20">
+                    <CarouselDots />
+                </div>
             </Carousel>
 
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent z-10" />

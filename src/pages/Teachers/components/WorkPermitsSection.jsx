@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from '@/components/ui/dialog';
 import { AspectRatio } from "@/components/ui/aspect-ratio"
 import { Eye } from 'lucide-react';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, CarouselDots } from "@/components/ui/carousel";
 
 const permitImages = [
     '/assets/images/R5AT4155.jpg',
@@ -19,7 +19,7 @@ function WorkPermitsSection() {
 
     return (
         <section className="py-24 bg-white">
-            <div className="container mx-auto lg:px-4 px-9">
+            <div className="container mx-auto lg:px-9 px-4">
                 <div className="text-center mb-16">
                     <h2 className="text-base font-semibold leading-7 text-orange-500">Minh Chứng Pháp Lý</h2>
                     <p className="mt-2 text-4xl md:text-5xl font-extrabold tracking-tight text-gray-800">
@@ -62,6 +62,7 @@ function WorkPermitsSection() {
                         </CarouselContent>
                         <CarouselPrevious className="absolute left-[-50px] top-1/2 -translate-y-1/2 hidden sm:flex" />
                         <CarouselNext className="absolute right-[-50px] top-1/2 -translate-y-1/2 hidden sm:flex" />
+                        <CarouselDots />
                     </Carousel>
 
                     {selectedImage && (
