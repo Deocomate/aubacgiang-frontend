@@ -137,7 +137,7 @@ function ProgramsList({ initialTrainingData }) {
                 <div className="text-center mb-16">
                     <h2 className="text-base font-semibold leading-7 text-orange-500">Lộ Trình Học Tập</h2>
                     <p className="mt-2 text-4xl md:text-5xl font-extrabold tracking-tight text-gray-800">
-                        Chương Trình Đào Tạo Nổi Bật
+                        Chương Trình Đào Tạo
                     </p>
                 </div>
                 <div className="space-y-24">

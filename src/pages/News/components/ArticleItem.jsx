@@ -1,4 +1,3 @@
-/* ===== src\pages\News\components\ArticleItem.jsx ===== */
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -7,7 +6,6 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
 
-// Danh sách màu pastel tailwind (có thể thêm/bớt tuỳ thích)
 const pastelColors = [
     { bg: 'bg-red-100', text: 'text-red-700' },
     { bg: 'bg-orange-100', text: 'text-orange-700' },
@@ -23,8 +21,10 @@ const pastelColors = [
     { bg: 'bg-lime-100', text: 'text-lime-700' },
 ];
 
-// Hàm gán màu cho từng slug, mỗi slug luôn ra 1 màu cố định
 function getPastelColorFromSlug(slug) {
+    if (!slug || typeof slug !== 'string' || slug.length === 0) {
+        return 'bg-gray-100 text-gray-700';
+    }
     let hash = 0;
     for (let i = 0; i < slug.length; i++) {
         hash = slug.charCodeAt(i) + ((hash << 5) - hash);
@@ -33,11 +33,11 @@ function getPastelColorFromSlug(slug) {
     return `${pastelColors[idx].bg} ${pastelColors[idx].text}`;
 }
 
-
-function ArticleItem({ article }) {
-    // Gán màu cho danh mục dựa trên slug
-    const badgeClass = getPastelColorFromSlug(article.category_slug);
+function ArticleItem({ article, categoryInfo }) {
+    const categoryName = article.category_name || categoryInfo?.name;
+    const categorySlug = article.category_slug || categoryInfo?.slug;
     
+    const badgeClass = getPastelColorFromSlug(categorySlug);
     const formattedDate = format(new Date(article.created_at), 'dd/MM/yyyy');
 
     return (
@@ -55,12 +55,14 @@ function ArticleItem({ article }) {
                             />
                         </AspectRatio>
                     </div>
-                    <div className={cn(
-                        "absolute top-3 left-3 z-10 rounded-md px-2 py-1 text-xs font-semibold tracking-wider",
-                        badgeClass
-                    )}>
-                        {article.category_name}
-                    </div>
+                    {categoryName && (
+                        <div className={cn(
+                            "absolute top-3 left-3 z-10 rounded-md px-2 py-1 text-xs font-semibold tracking-wider",
+                            badgeClass
+                        )}>
+                            {categoryName}
+                        </div>
+                    )}
                 </Link>
             </div>
             
@@ -80,7 +82,6 @@ function ArticleItem({ article }) {
                         <Eye className="w-4 h-4" /> {article.view} Lượt xem
                     </span>
                 </div>
-                {/* THÊM: Hiển thị excerpt nếu có */}
                 {article.excerpt && (
                     <p className="mt-2 text-sm text-gray-600 leading-relaxed line-clamp-2">
                         {article.excerpt}
@@ -92,24 +93,3 @@ function ArticleItem({ article }) {
 }
 
 export default ArticleItem;
-
-/* Ví dụ nếu có render danh mục bên phải như sau:
-<aside className="...">
-    {/* ...form tìm kiếm... *}
-    <div className="mt-6">
-        <h3 className="font-semibold mb-2 text-sm">Danh mục</h3>
-        <ul className="space-y-2">
-            {categories.map(cat => (
-                <li key={cat.slug}>
-                    <Link
-                        href={`/news/category/${cat.slug}`}
-                        className="block text-xs md:text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors"
-                    >
-                        {cat.name}
-                    </Link>
-                </li>
-            ))}
-        </ul>
-    </div>
-</aside>
-*/

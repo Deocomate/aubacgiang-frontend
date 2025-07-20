@@ -61,7 +61,7 @@ function ProgramsSection({ trainings }) {
                 <div className="text-center mb-16">
                     <h2 className="text-base font-semibold leading-7 text-orange-500">Lộ Trình Học Tập</h2>
                     <p className="mt-2 text-4xl md:text-5xl font-extrabold tracking-tight text-gray-800">
-                        Chương Trình Đào Tạo Toàn Diện
+                        Chương Trình Đào Tạo Nổi Bật
                     </p>
                     <p className="mt-6 text-lg leading-8 text-gray-600 max-w-3xl mx-auto">
                         A&U Bắc Giang cung cấp các khóa học đa dạng, được thiết kế chuyên biệt để đáp ứng nhu cầu học tập ở mọi lứa tuổi và trình độ.

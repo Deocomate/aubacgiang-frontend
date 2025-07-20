@@ -51,15 +51,15 @@ function OtherTrainingsSection({ trainings }) {
                                             </AspectRatio>
                                             
                                             <CardContent className="p-0 flex flex-col flex-grow">
-                                                <div className="px-4 pt-2 pb-1 text-sm text-gray-500 border-b border-gray-100">
+                                                <div className="px-4 pb-1 text-sm text-gray-500 border-b border-gray-100">
                                                     <span className="font-semibold tracking-wider">Độ tuổi: </span>
                                                     <span>{training.age}</span>
                                                 </div>
-                                                <div className="px-4 pt-2 pb-4 flex flex-col flex-grow">
+                                                <div className="px-4 pt-3 pb-4 flex flex-col flex-grow">
                                                     <h4 className="text-base font-bold text-gray-900 line-clamp-2 flex-grow group-hover:text-orange-600 transition-colors leading-snug mb-2">
                                                         {training.title}
                                                     </h4>
-                                                    <p className="text-sm text-gray-600 line-clamp-2 leading-relaxed">
+                                                    <p className="text-sm text-gray-600 line-clamp-4 leading-relaxed">
                                                         {stripHtml(training.description)}
                                                     </p>
                                                 </div>

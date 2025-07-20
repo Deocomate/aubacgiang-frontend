@@ -1,10 +1,10 @@
-/* ===== src\app\(main)\category\[slug]\page.js ===== */
 import { getNewsByCategorySlug, getNewsCategories } from "@/services/newsService";
 import NewsPage from "@/pages/News/NewsPage";
 import { notFound } from "next/navigation";
 
 export async function generateMetadata({ params }) {
-  const { slug } = params;
+  const awaitedParams = await params;
+  const { slug } = awaitedParams;
   const newsData = await getNewsByCategorySlug(slug);
 
   if (!newsData || !newsData.category) {
@@ -20,10 +20,13 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function CategoryPage({ params, searchParams }) {
-  const { slug } = params;
-  const page = searchParams?.page;
-  const search = searchParams?.search;
-  const pageSize = searchParams?.pageSize;
+  const awaitedParams = await params;
+  const awaitedSearchParams = await searchParams;
+  
+  const { slug } = awaitedParams;
+  const page = awaitedSearchParams?.page;
+  const search = awaitedSearchParams?.search;
+  const pageSize = awaitedSearchParams?.pageSize;
   
   const [newsData, categories] = await Promise.all([
       getNewsByCategorySlug(slug, { page, search, pageSize }),

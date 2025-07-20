@@ -12,7 +12,7 @@ const testimonials = [
 
 function TestimonialsSection() {
     return (
-        <section className="bg-gray-50 py-24">
+        <section id='testimonials' className="bg-gray-50 py-24">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-16">
                     <h2 className="text-base font-semibold leading-7 text-orange-500">Phụ Huynh Nói Về Chúng Tôi</h2>
