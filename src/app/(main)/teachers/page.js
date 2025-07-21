@@ -1,4 +1,4 @@
-import TeachersPage from "@/pages/Teachers/TeachersPage";
+import TeachersPage from "@/pages_jsx/Teachers/TeachersPage";
 import { getTeachers } from "@/services/teacherService";
 
 export const metadata = {

@@ -1,4 +1,4 @@
-import TrainingPage from "@/pages/Training/TrainingPage";
+import TrainingPage from "@/pages_jsx/Training/TrainingPage";
 // THÊM: Import service
 import { getTrainings } from "@/services/trainingService";
 

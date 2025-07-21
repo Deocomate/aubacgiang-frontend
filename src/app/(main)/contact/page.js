@@ -1,4 +1,4 @@
-import ContactPage from '@/pages/Contact/ContactPage';
+import ContactPage from '@/pages_jsx/Contact/ContactPage';
 import { getContactInfo } from '@/services/contactService';
 
 export const metadata = {
