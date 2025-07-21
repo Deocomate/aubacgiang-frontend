@@ -14,7 +14,7 @@ function AboutSection() {
                                 Chào mừng đến với A&U English
                             </h3>
                             <p className="mt-6 leading-8 text-gray-600">
-                                Với niềm đam mê và cam kết không ngừng, TRUNG TÂM NGOẠI NGỮ A&U BẮC GIANG đã và đang nỗ lực hết mình để trở thành điểm đến hàng đầu cho việc học và hoàn thiện kỹ năng ngôn ngữ. Chúng tôi tin rằng việc học không chỉ là tiếp thu kiến thức, mà còn là hành trình khám phá và truyền cảm hứng.
+                                "Trung tâm Ngoại ngữ A&U là đơn vị đào tạo tiếng Anh uy tín tại Bắc Giang, chuyên cung cấp các chương trình học chất lượng cao dành cho mọi lứa tuổi. Với đội ngũ giáo viên giàu kinh nghiệm, cơ sở vật chất hiện đại và giáo trình chuẩn quốc tế, AU cam kết mang đến môi trường học tập chuyên nghiệp, hiệu quả và truyền cảm hứng. Chúng tôi thiết kế các khóa học đa dạng, bao gồm tiếng Anh trẻ em, giao tiếp, luyện thi IELTS, TOEIC, và chương trình tiếng Anh tích hợp theo sách giáo khoa. AU không chỉ chú trọng phát triển kỹ năng ngôn ngữ toàn diện mà còn đồng hành cùng học viên trên hành trình hội nhập và phát triển bản thân trong môi trường quốc tế."
                             </p>
                             <p className="mt-4 leading-8 text-gray-600">
                                 Tại A&U, chúng tôi tự hào có đội ngũ giáo viên giàu kinh nghiệm, tâm huyết và sáng tạo, luôn sẵn sàng tạo ra môi trường học tập thú vị. A&U không chỉ đơn thuần là nơi học, mà còn là một cộng đồng, nơi mọi người có cơ hội giao lưu, trao đổi kiến thức và trải nghiệm văn hóa đa dạng.
@@ -49,29 +49,22 @@ function AboutSection() {
                                 Tầm Nhìn & Sứ Mệnh
                             </h3>
                             <p className="mt-6 leading-8 text-gray-600">
-                                Chúng tôi mơ ước về một thế giới nơi mọi cá nhân đều có khả năng giao tiếp một cách tự tin và hiệu quả, và ngôn ngữ là cầu nối gắn kết con người.
+                                Chúng tôi mơ ước về một thế giới nơi mà mọi cá nhân đều có khả năng giao tiếp một cách tự tin, hiệu quả và chân thành qua ngôn ngữ.
                             </p>
                             <dl className="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none">
                                 <div className="relative pl-9">
                                     <dt className="inline font-semibold text-gray-900">
                                         <Rocket className="absolute left-1 top-1 h-5 w-5 text-orange-500" />
-                                        Nâng cao kỹ năng.
+                                        Tầm nhìn.
                                     </dt>
-                                    <dd className="inline"> Cung cấp các khóa học chất lượng để giúp học viên phát triển kỹ năng ngôn ngữ và giao tiếp hiệu quả.</dd>
+                                    <dd className="inline"> Chúng tôi hình dung một cộng đồng toàn cầu đan xen với sự đa dạng về ngôn ngữ và văn hóa, nơi mà ngôn ngữ không chỉ là công cụ truyền đạt thông tin mà còn là cầu nối gắn kết con người  </dd>
                                 </div>
                                 <div className="relative pl-9">
                                     <dt className="inline font-semibold text-gray-900">
                                         <Eye className="absolute left-1 top-1 h-5 w-5 text-orange-500" />
-                                        Khám phá văn hóa.
+                                        Sứ mệnh.
                                     </dt>
-                                    <dd className="inline"> Khuyến khích học viên tìm hiểu và trải nghiệm văn hóa đa dạng qua ngôn ngữ.</dd>
-                                </div>
-                                <div className="relative pl-9">
-                                    <dt className="inline font-semibold text-gray-900">
-                                        <Users className="absolute left-1 top-1 h-5 w-5 text-orange-500" />
-                                        Xây dựng cộng đồng.
-                                    </dt>
-                                    <dd className="inline"> Tạo môi trường tương tác, nơi mọi người có cơ hội hợp tác, giao lưu và học hỏi lẫn nhau.</dd>
+                                    <dd className="inline"> Nâng tầm chất lượng đào tạo Ngoại Ngữ , A&U  luôn hướng tới mục tiêu giúp sức học viên hình thành và phát triển năng lực tiếng Anh một cách toàn diện, từ đó sẵn sàng và tự tin vươn tới những thành công mới, không chỉ trên con đường học tập, sự nghiệp mà còn trong tất cả các lĩnh vực trong cuộc sống và tại bất cứ nơi đâu.</dd>
                                 </div>
                             </dl>
                         </div>

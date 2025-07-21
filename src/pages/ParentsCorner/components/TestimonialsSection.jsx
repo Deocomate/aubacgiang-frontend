@@ -41,7 +41,7 @@ function TestimonialsSection({ testimonials }) {
                                                 <AvatarFallback>{item.name.charAt(0)}</AvatarFallback>
                                             </Avatar>
                                             <blockquote className="text-base text-gray-700 italic flex-grow my-4">
-                                                "{extractQuote(item.content)}"
+                                                "{extractQuote(item.rate)}"
                                             </blockquote>
                                             <div>
                                                 <p className="font-bold text-gray-900">{item.name}</p>

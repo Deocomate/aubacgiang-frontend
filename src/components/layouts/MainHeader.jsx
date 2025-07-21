@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Menu as MenuIcon, X } from 'lucide-react';
 import { usePathname } from 'next/navigation';
+import RegistrationDialog from '@/components/shared/RegistrationDialog';
 
 const navigation = [
     { label: 'Trang chủ', href: '/' },
@@ -27,9 +28,8 @@ function MainHeader() {
         <header
             className="fixed top-0 left-0 w-full z-30 bg-white/90 backdrop-blur-sm shadow-md transition-all duration-300"
         >
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="container mx-auto px-4">
                 <div className="flex items-center justify-between h-20">
-                    {/* Logo */}
                     <Link href="/" className="flex items-center gap-3">
                         <Image
                             src="/assets/images/logo-au.png"
@@ -43,37 +43,42 @@ function MainHeader() {
                         </span>
                     </Link>
 
-                    {/* Desktop Navigation */}
-                    <nav className="hidden md:flex items-center gap-1 xl:gap-2">
-                        {navigation.map((item) => (
-                            <Link
-                                key={item.href}
-                                href={item.href}
-                                // FIX: Dùng breakpoint 'xl' để phân biệt tablet và desktop
-                                className={`relative px-2 xl:px-4 py-2 text-sm xl:text-base font-medium transition-colors duration-300 rounded-md ${pathname === item.href
-                                    ? 'text-orange-500'
-                                    : 'text-gray-700 hover:text-orange-500'
-                                    }`}
-                            >
-                                {item.label}
-                                {pathname === item.href && (
-                                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2/3 h-0.5 bg-orange-500 rounded-full" />
-                                )}
-                            </Link>
-                        ))}
-                    </nav>
+                    <div className="hidden md:flex items-center">
+                        <nav className="flex items-center gap-1 xl:gap-2">
+                            {navigation.map((item) => (
+                                <Link
+                                    key={item.href}
+                                    href={item.href}
+                                    className={`relative px-2 py-2 text-sm xl:text-base font-medium transition-colors duration-300 rounded-md ${pathname === item.href
+                                        ? 'text-orange-500'
+                                        : 'text-gray-700 hover:text-orange-500'
+                                        }`}
+                                >
+                                    {item.label}
+                                    {pathname === item.href && (
+                                        <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2/3 h-0.5 bg-orange-500 rounded-full" />
+                                    )}
+                                </Link>
+                            ))}
+                        </nav>
+                        <div className="ml-4">
+                            <RegistrationDialog>
+                                <Button className="bg-orange-500 hover:bg-orange-600 text-white font-semibold">
+                                    Đăng ký tư vấn
+                                </Button>
+                            </RegistrationDialog>
+                        </div>
+                    </div>
 
-                    {/* Mobile Navigation Button */}
                     <button onClick={toggleMobileMenu} className="md:hidden text-gray-800">
                         {isMobileMenuOpen ? <X className="h-7 w-7" /> : <MenuIcon className="h-7 w-7" />}
                     </button>
                 </div>
             </div>
 
-            {/* Mobile Navigation Menu */}
             {isMobileMenuOpen && (
                 <div className="md:hidden bg-white shadow-lg absolute top-full left-0 w-full">
-                    <nav className="flex flex-col items-center space-y-4 py-6">
+                    <nav className="flex flex-col items-center space-y-4 py-6 px-4">
                         {navigation.map((item) => (
                             <Link
                                 key={item.href}
@@ -85,6 +90,13 @@ function MainHeader() {
                                 {item.label}
                             </Link>
                         ))}
+                        <div className="mt-6 w-full pt-4 border-t">
+                            <RegistrationDialog triggerProps={{ onClick: toggleMobileMenu }}>
+                                <Button className="bg-orange-500 hover:bg-orange-600 w-full text-white font-semibold">
+                                    Đăng ký tư vấn
+                                </Button>
+                            </RegistrationDialog>
+                        </div>
                     </nav>
                 </div>
             )}
