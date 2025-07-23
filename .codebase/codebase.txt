@@ -1,8 +1,8 @@
 /* ==========================================================
-   CODEBASE SNAPSHOT - 2025-07-21 22:39:39
+   CODEBASE SNAPSHOT - 2025-07-24 01:53:31
    Project: landing-page-english-education-center
-   Text Files Included: 154
-   Items Ignored: 184
+   Text Files Included: 149
+   Items Ignored: 42
    ========================================================== */
 
 /* PROJECT STRUCTURE
@@ -20,186 +20,39 @@
    │   ├── FETCH_HEAD
    │   ├── HEAD
    │   ├── index
-   │   └── ORIG_HEAD
+   │   ├── ORIG_HEAD
+   │   └── packed-refs
+   ├── .idea/
+   │   ├── .gitignore
+   │   ├── landing-page-english-education-center.iml
+   │   ├── modules.xml
+   │   └── vcs.xml
    ├── .next/
+   │   ├── build/
    │   ├── cache/
-   │   ├── diagnostics/
-   │   ├── export/
    │   ├── server/
    │   ├── static/
-   │   ├── types/
    │   ├── app-build-manifest.json
-   │   ├── app-path-routes-manifest.json
    │   ├── build-manifest.json
-   │   ├── BUILD_ID
-   │   ├── dynamic-css-manifest.json
-   │   ├── export-detail.json
+   │   ├── fallback-build-manifest.json
    │   ├── package.json
-   │   ├── react-loadable-manifest.json
-   │   ├── required-server-files.json
-   │   ├── routes-manifest.json
-   │   └── trace
+   │   ├── trace
+   │   ├── transform.js
+   │   └── transform.js.map
    ├── node_modules/
    ├── public/
    │   ├── assets/
-   │   │   └── images/
-   │   │       ├── logo-au.png
-   │   │       ├── R5AT3838.jpg
-   │   │       ├── R5AT3841.jpg
-   │   │       ├── R5AT3848.jpg
-   │   │       ├── R5AT3853.jpg
-   │   │       ├── R5AT3856.jpg
-   │   │       ├── R5AT3860.jpg
-   │   │       ├── R5AT3865.jpg
-   │   │       ├── R5AT3870.jpg
-   │   │       ├── R5AT3872.jpg
-   │   │       ├── R5AT3875.jpg
-   │   │       ├── R5AT3879.jpg
-   │   │       ├── R5AT3881.jpg
-   │   │       ├── R5AT3884.jpg
-   │   │       ├── R5AT3893.jpg
-   │   │       ├── R5AT3894.jpg
-   │   │       ├── R5AT3898.jpg
-   │   │       ├── R5AT3903.jpg
-   │   │       ├── R5AT3907.jpg
-   │   │       ├── R5AT3909.jpg
-   │   │       ├── R5AT3910.jpg
-   │   │       ├── R5AT3911.jpg
-   │   │       ├── R5AT3914.jpg
-   │   │       ├── R5AT3919.jpg
-   │   │       ├── R5AT3921.jpg
-   │   │       ├── R5AT3923.jpg
-   │   │       ├── R5AT3931.jpg
-   │   │       ├── R5AT3936.jpg
-   │   │       ├── R5AT3939.jpg
-   │   │       ├── R5AT3941.jpg
-   │   │       ├── R5AT3943.jpg
-   │   │       ├── R5AT3945.jpg
-   │   │       ├── R5AT3949.jpg
-   │   │       ├── R5AT3953.jpg
-   │   │       ├── R5AT3957.jpg
-   │   │       ├── R5AT3961.jpg
-   │   │       ├── R5AT3962.jpg
-   │   │       ├── R5AT3963.jpg
-   │   │       ├── R5AT3967.jpg
-   │   │       ├── R5AT3969.jpg
-   │   │       ├── R5AT3975.jpg
-   │   │       ├── R5AT3978.jpg
-   │   │       ├── R5AT3979.jpg
-   │   │       ├── R5AT3980.jpg
-   │   │       ├── R5AT3984.jpg
-   │   │       ├── R5AT3989.jpg
-   │   │       ├── R5AT3990.jpg
-   │   │       ├── R5AT3991.jpg
-   │   │       ├── R5AT3992.jpg
-   │   │       ├── R5AT3995.jpg
-   │   │       ├── R5AT3998.jpg
-   │   │       ├── R5AT3999.jpg
-   │   │       ├── R5AT4002.jpg
-   │   │       ├── R5AT4003.jpg
-   │   │       ├── R5AT4007.jpg
-   │   │       ├── R5AT4010.jpg
-   │   │       ├── R5AT4012.jpg
-   │   │       ├── R5AT4014.jpg
-   │   │       ├── R5AT4016.jpg
-   │   │       ├── R5AT4018.jpg
-   │   │       ├── R5AT4019.jpg
-   │   │       ├── R5AT4022.jpg
-   │   │       ├── R5AT4027.jpg
-   │   │       ├── R5AT4031.jpg
-   │   │       ├── R5AT4032.jpg
-   │   │       ├── R5AT4035.jpg
-   │   │       ├── R5AT4037.jpg
-   │   │       ├── R5AT4040.jpg
-   │   │       ├── R5AT4049.jpg
-   │   │       ├── R5AT4050.jpg
-   │   │       ├── R5AT4053.jpg
-   │   │       ├── R5AT4055.jpg
-   │   │       ├── R5AT4058.jpg
-   │   │       ├── R5AT4061.jpg
-   │   │       ├── R5AT4063.jpg
-   │   │       ├── R5AT4067.jpg
-   │   │       ├── R5AT4071.jpg
-   │   │       ├── R5AT4078.jpg
-   │   │       ├── R5AT4080.jpg
-   │   │       ├── R5AT4083.jpg
-   │   │       ├── R5AT4087.jpg
-   │   │       ├── R5AT4089.jpg
-   │   │       ├── R5AT4092.jpg
-   │   │       ├── R5AT4096.jpg
-   │   │       ├── R5AT4097.jpg
-   │   │       ├── R5AT4099.jpg
-   │   │       ├── R5AT4103.jpg
-   │   │       ├── R5AT4106.jpg
-   │   │       ├── R5AT4110.jpg
-   │   │       ├── R5AT4114.jpg
-   │   │       ├── R5AT4116.jpg
-   │   │       ├── R5AT4117.jpg
-   │   │       ├── R5AT4118.jpg
-   │   │       ├── R5AT4121.jpg
-   │   │       ├── R5AT4123.jpg
-   │   │       ├── R5AT4125.jpg
-   │   │       ├── R5AT4128.jpg
-   │   │       ├── R5AT4131.jpg
-   │   │       ├── R5AT4133.jpg
-   │   │       ├── R5AT4134.jpg
-   │   │       ├── R5AT4136.jpg
-   │   │       ├── R5AT4140.jpg
-   │   │       ├── R5AT4145.jpg
-   │   │       ├── R5AT4153.jpg
-   │   │       ├── R5AT4155.jpg
-   │   │       ├── R5AT4157.jpg
-   │   │       ├── R5AT4159.jpg
-   │   │       ├── R5AT4162.jpg
-   │   │       ├── R5AT4163.jpg
-   │   │       ├── R5AT4167.jpg
-   │   │       ├── R5AT4168.jpg
-   │   │       ├── R5AT4169.jpg
-   │   │       ├── R5AT4170.jpg
-   │   │       ├── R5AT4171.jpg
-   │   │       ├── R5AT4174.jpg
-   │   │       ├── R5AT4176.jpg
-   │   │       ├── R5AT4178.jpg
-   │   │       ├── R5AT4180.jpg
-   │   │       ├── R5AT4181.jpg
-   │   │       ├── R5AT4183.jpg
-   │   │       ├── R5AT4184.jpg
-   │   │       ├── R5AT4186.jpg
-   │   │       ├── R5AT4191.jpg
-   │   │       ├── R5AT4192.jpg
-   │   │       ├── R5AT4193.jpg
-   │   │       ├── R5AT4198.jpg
-   │   │       ├── R5AT4200.jpg
-   │   │       ├── R5AT4202.jpg
-   │   │       ├── R5AT4205.jpg
-   │   │       ├── R5AT4207.jpg
-   │   │       ├── R5AT4208.jpg
-   │   │       ├── R5AT4211.jpg
-   │   │       ├── R5AT4212.jpg
-   │   │       ├── R5AT4215.jpg
-   │   │       ├── R5AT4219.jpg
-   │   │       ├── R5AT4222.jpg
-   │   │       ├── R5AT4226.jpg
-   │   │       ├── R5AT4230.jpg
-   │   │       ├── R5AT4240.jpg
-   │   │       ├── R5AT4246.jpg
-   │   │       ├── R5AT4255.jpg
-   │   │       ├── R5AT4259.jpg
-   │   │       ├── R5AT4262.jpg
-   │   │       ├── R5AT4264.jpg
-   │   │       ├── R5AT4267.jpg
-   │   │       ├── R5AT4270.jpg
-   │   │       ├── R5AT4273.jpg
-   │   │       ├── R5AT4278.jpg
-   │   │       ├── R5AT4282.jpg
-   │   │       ├── R5AT4287.jpg
-   │   │       └── R5AT4290.jpg
    │   ├── file.svg
    │   ├── globe.svg
    │   ├── next.svg
    │   ├── vercel.svg
    │   └── window.svg
    ├── src/
+   │   ├── .idea/
+   │   │   ├── inspectionProfiles/
+   │   │   ├── modules.xml
+   │   │   ├── src.iml
+   │   │   └── workspace.xml
    │   ├── app/
    │   │   ├── (main)/
    │   │   │   ├── category/
@@ -311,7 +164,7 @@
    │   │   ├── news-data.js
    │   │   ├── pageFactory.js
    │   │   └── utils.js
-   │   ├── pages/
+   │   ├── pages_jsx/
    │   │   ├── Contact/
    │   │   │   └── ContactPage.jsx
    │   │   ├── Home/
@@ -4490,21 +4343,6 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
 
-/* ===== public\file.svg ===== */
-<svg fill="none" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M14.5 13.5V5.41a1 1 0 0 0-.3-.7L9.8.29A1 1 0 0 0 9.08 0H1.5v13.5A2.5 2.5 0 0 0 4 16h8a2.5 2.5 0 0 0 2.5-2.5m-1.5 0v-7H8v-5H3v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1M9.5 5V2.12L12.38 5zM5.13 5h-.62v1.25h2.12V5zm-.62 3h7.12v1.25H4.5zm.62 3h-.62v1.25h7.12V11z" clip-rule="evenodd" fill="#666" fill-rule="evenodd"/></svg>
-
-/* ===== public\globe.svg ===== */
-<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><g clip-path="url(#a)"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.27 14.1a6.5 6.5 0 0 0 3.67-3.45q-1.24.21-2.7.34-.31 1.83-.97 3.1M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.48-1.52a7 7 0 0 1-.96 0H7.5a4 4 0 0 1-.84-1.32q-.38-.89-.63-2.08a40 40 0 0 0 3.92 0q-.25 1.2-.63 2.08a4 4 0 0 1-.84 1.31zm2.94-4.76q1.66-.15 2.95-.43a7 7 0 0 0 0-2.58q-1.3-.27-2.95-.43a18 18 0 0 1 0 3.44m-1.27-3.54a17 17 0 0 1 0 3.64 39 39 0 0 1-4.3 0 17 17 0 0 1 0-3.64 39 39 0 0 1 4.3 0m1.1-1.17q1.45.13 2.69.34a6.5 6.5 0 0 0-3.67-3.44q.65 1.26.98 3.1M8.48 1.5l.01.02q.41.37.84 1.31.38.89.63 2.08a40 40 0 0 0-3.92 0q.25-1.2.63-2.08a4 4 0 0 1 .85-1.32 7 7 0 0 1 .96 0m-2.75.4a6.5 6.5 0 0 0-3.67 3.44 29 29 0 0 1 2.7-.34q.31-1.83.97-3.1M4.58 6.28q-1.66.16-2.95.43a7 7 0 0 0 0 2.58q1.3.27 2.95.43a18 18 0 0 1 0-3.44m.17 4.71q-1.45-.12-2.69-.34a6.5 6.5 0 0 0 3.67 3.44q-.65-1.27-.98-3.1" fill="#666"/></g><defs><clipPath id="a"><path fill="#fff" d="M0 0h16v16H0z"/></clipPath></defs></svg>
-
-/* ===== public\next.svg ===== */
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 394 80"><path fill="#000" d="M262 0h68.5v12.7h-27.2v66.6h-13.6V12.7H262V0ZM149 0v12.7H94v20.4h44.3v12.6H94v21h55v12.6H80.5V0h68.7zm34.3 0h-17.8l63.8 79.4h17.9l-32-39.7 32-39.6h-17.9l-23 28.6-23-28.6zm18.3 56.7-9-11-27.1 33.7h17.8l18.3-22.7z"/><path fill="#000" d="M81 79.3 17 0H0v79.3h13.6V17l50.2 62.3H81Zm252.6-.4c-1 0-1.8-.4-2.5-1s-1.1-1.6-1.1-2.6.3-1.8 1-2.5 1.6-1 2.6-1 1.8.3 2.5 1a3.4 3.4 0 0 1 .6 4.3 3.7 3.7 0 0 1-3 1.8zm23.2-33.5h6v23.3c0 2.1-.4 4-1.3 5.5a9.1 9.1 0 0 1-3.8 3.5c-1.6.8-3.5 1.3-5.7 1.3-2 0-3.7-.4-5.3-1s-2.8-1.8-3.7-3.2c-.9-1.3-1.4-3-1.4-5h6c.1.8.3 1.6.7 2.2s1 1.2 1.6 1.5c.7.4 1.5.5 2.4.5 1 0 1.8-.2 2.4-.6a4 4 0 0 0 1.6-1.8c.3-.8.5-1.8.5-3V45.5zm30.9 9.1a4.4 4.4 0 0 0-2-3.3 7.5 7.5 0 0 0-4.3-1.1c-1.3 0-2.4.2-3.3.5-.9.4-1.6 1-2 1.6a3.5 3.5 0 0 0-.3 4c.3.5.7.9 1.3 1.2l1.8 1 2 .5 3.2.8c1.3.3 2.5.7 3.7 1.2a13 13 0 0 1 3.2 1.8 8.1 8.1 0 0 1 3 6.5c0 2-.5 3.7-1.5 5.1a10 10 0 0 1-4.4 3.5c-1.8.8-4.1 1.2-6.8 1.2-2.6 0-4.9-.4-6.8-1.2-2-.8-3.4-2-4.5-3.5a10 10 0 0 1-1.7-5.6h6a5 5 0 0 0 3.5 4.6c1 .4 2.2.6 3.4.6 1.3 0 2.5-.2 3.5-.6 1-.4 1.8-1 2.4-1.7a4 4 0 0 0 .8-2.4c0-.9-.2-1.6-.7-2.2a11 11 0 0 0-2.1-1.4l-3.2-1-3.8-1c-2.8-.7-5-1.7-6.6-3.2a7.2 7.2 0 0 1-2.4-5.7 8 8 0 0 1 1.7-5 10 10 0 0 1 4.3-3.5c2-.8 4-1.2 6.4-1.2 2.3 0 4.4.4 6.2 1.2 1.8.8 3.2 2 4.3 3.4 1 1.4 1.5 3 1.5 5h-5.8z"/></svg>
-
-/* ===== public\vercel.svg ===== */
-<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1155 1000"><path d="m577.3 0 577.4 1000H0z" fill="#fff"/></svg>
-
-/* ===== public\window.svg ===== */
-<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" clip-rule="evenodd" d="M1.5 2.5h13v10a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1zM0 1h16v11.5a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 0 12.5zm3.75 4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5M7 4.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0m1.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5" fill="#666"/></svg>
-
 /* ===== src\app\layout.js ===== */
 import "@/assets/css/globals.css";
 import MainFooter from "@/components/layouts/MainFooter";
@@ -4544,7 +4382,7 @@ export default function MainLayout({ children }) {
 }
 
 /* ===== src\app\(main)\page.js ===== */
-import HomePage from "@/pages/Home/HomePage";
+import HomePage from "@/pages_jsx/Home/HomePage";
 import { getHomepageData } from "@/services/homeService";
 import { getFeaturedTeachers } from "@/services/teacherService";
 import { getTrainings } from "@/services/trainingService";
@@ -4577,7 +4415,7 @@ export default async function Home() {
 /* ===== src\app\(main)\category\[slug]\loading.js ===== */
 import { GenericDetailSkeleton } from "@/components/ui/GenericDetailSkeleton";
 
-// You can create a more specific skeleton for list pages later
+// You can create a more specific skeleton for list pages_jsx later
 export default function Loading() {
   return <GenericDetailSkeleton />;
 }
@@ -4585,7 +4423,7 @@ export default function Loading() {
 
 /* ===== src\app\(main)\category\[slug]\page.js ===== */
 import { getNewsByCategorySlug, getNewsCategories } from "@/services/newsService";
-import NewsPage from "@/pages/News/NewsPage";
+import NewsPage from "@/pages_jsx/News/NewsPage";
 import { notFound } from "next/navigation";
 
 export async function generateMetadata({ params }) {
@@ -4627,7 +4465,7 @@ export default async function CategoryPage({ params, searchParams }) {
 }
 
 /* ===== src\app\(main)\contact\page.js ===== */
-import ContactPage from '@/pages/Contact/ContactPage';
+import ContactPage from '@/pages_jsx/Contact/ContactPage';
 import { getContactInfo } from '@/services/contactService';
 
 export const metadata = {
@@ -4667,7 +4505,7 @@ export default function Loading() {
 /* src/app/(main)/knowledge/[slug]/page.js */
 import { createDetailPage } from "@/lib/pageFactory";
 import { getNewsBySlug, getKnowledgeNews } from "@/services/newsService";
-import NewsDetailPage from "@/pages/News/Detail/NewsDetailPage";
+import NewsDetailPage from "@/pages_jsx/News/Detail/NewsDetailPage";
 
 const { generateMetadata, Page } = createDetailPage({
   entityName: "Bài viết",
@@ -4693,7 +4531,7 @@ export default function LegalPage() {
 
 /* ===== src\app\(main)\news\page.js ===== */
 /* ===== src\app\(main)\news\page.js ===== */
-import NewsPage from "@/pages/News/NewsPage";
+import NewsPage from "@/pages_jsx/News/NewsPage";
 import { getNews, getNewsCategories } from "@/services/newsService";
 
 export const metadata = {
@@ -4734,7 +4572,7 @@ export default function Loading() {
 // src/app/(main)/news/[slug]/page.js
 import { notFound } from 'next/navigation';
 import { getNews, getNewsBySlug } from '@/services/newsService';
-import NewsDetailPage from '@/pages/News/Detail/NewsDetailPage';
+import NewsDetailPage from '@/pages_jsx/News/Detail/NewsDetailPage';
 import { GenericDetailSkeleton } from '@/components/ui/GenericDetailSkeleton'; // SỬA: Import đúng component
 
 export async function generateMetadata({ params }) {
@@ -4775,7 +4613,7 @@ export default async function NewsDetail({ params }) {
 
 /* ===== src\app\(main)\parents-corner\page.js ===== */
 /* src/app/(main)/parents-corner/page.js */
-import ParentsCornerPage from "@/pages/ParentsCorner/ParentsCornerPage";
+import ParentsCornerPage from "@/pages_jsx/ParentsCorner/ParentsCornerPage";
 import { getKnowledgeNews } from "@/services/newsService";
 import { getDocuments } from "@/services/documentService";
 import { getTestimonials } from "@/services/parentsCornerService"; // THÊM MỚI
@@ -4812,7 +4650,7 @@ import {
   getTestimonialBySlug,
   getTestimonials,
 } from "@/services/parentsCornerService";
-import TestimonialDetailPage from "@/pages/ParentsCorner/Detail/TestimonialDetailPage";
+import TestimonialDetailPage from "@/pages_jsx/ParentsCorner/Detail/TestimonialDetailPage";
 
 const { generateMetadata, Page } = createDetailPage({
   entityName: "Chia sẻ của phụ huynh",
@@ -4834,7 +4672,7 @@ export default Page;
 
 
 /* ===== src\app\(main)\teachers\page.js ===== */
-import TeachersPage from "@/pages/Teachers/TeachersPage";
+import TeachersPage from "@/pages_jsx/Teachers/TeachersPage";
 import { getTeachers } from "@/services/teacherService";
 
 export const metadata = {
@@ -4860,7 +4698,7 @@ export default function Loading() {
 // src/app/(main)/teachers/[slug]/page.js
 import { createDetailPage } from "@/lib/pageFactory";
 import { getTeacherBySlug, getOtherTeachers } from "@/services/teacherService";
-import TeacherDetailPage from "@/pages/Teachers/Detail/TeacherDetailPage";
+import TeacherDetailPage from "@/pages_jsx/Teachers/Detail/TeacherDetailPage";
 
 const { generateMetadata, Page } = createDetailPage({
   entityName: "Giáo viên",
@@ -4883,7 +4721,7 @@ export default Page;
 
 
 /* ===== src\app\(main)\training\page.js ===== */
-import TrainingPage from "@/pages/Training/TrainingPage";
+import TrainingPage from "@/pages_jsx/Training/TrainingPage";
 // THÊM: Import service
 import { getTrainings } from "@/services/trainingService";
 
@@ -4905,7 +4743,7 @@ export default function Loading() {
 // src/app/(main)/training/[slug]/page.js
 import { createDetailPage } from "@/lib/pageFactory";
 import { getTrainingBySlug, getOtherTrainings } from "@/services/trainingService";
-import TrainingDetailPage from "@/pages/Training/Detail/TrainingDetailPage";
+import TrainingDetailPage from "@/pages_jsx/Training/Detail/TrainingDetailPage";
 
 const { generateMetadata, Page } = createDetailPage({
   entityName: "Khóa học",
@@ -10885,7 +10723,7 @@ export function getYoutubeEmbedUrl(url) {
   return videoId ? `https://www.youtube.com/embed/${videoId}` : '';
 }
 
-/* ===== src\pages\Contact\ContactPage.jsx ===== */
+/* ===== src\pages_jsx\Contact\ContactPage.jsx ===== */
 "use client";
 
 import React from 'react';
@@ -10994,7 +10832,7 @@ function ContactPage({ contactData = {} }) {
 export default ContactPage;
 
 
-/* ===== src\pages\Home\HomePage.jsx ===== */
+/* ===== src\pages_jsx\Home\HomePage.jsx ===== */
 import React from 'react';
 import HeroSection from './components/HeroSection';
 import StatsSection from './components/StatsSection';
@@ -11036,7 +10874,7 @@ function HomePage({ data = {} }) {
 export default HomePage;
 
 
-/* ===== src\pages\Home\components\AboutSection.jsx ===== */
+/* ===== src\pages_jsx\Home\components\AboutSection.jsx ===== */
 import React from 'react';
 import Image from 'next/image';
 import {Eye, Rocket, Users } from 'lucide-react';
@@ -11116,7 +10954,7 @@ function AboutSection() {
 
 export default AboutSection;
 
-/* ===== src\pages\Home\components\FaqSection.jsx ===== */
+/* ===== src\pages_jsx\Home\components\FaqSection.jsx ===== */
 import React from 'react';
 import {
     Accordion,
@@ -11160,7 +10998,7 @@ function FaqSection({ faqs }) {
 
 export default FaqSection;
 
-/* ===== src\pages\Home\components\GallerySection.jsx ===== */
+/* ===== src\pages_jsx\Home\components\GallerySection.jsx ===== */
 "use client";
 
 import React, { useState } from 'react';
@@ -11270,7 +11108,7 @@ function GallerySection({ images }) {
 
 export default GallerySection;
 
-/* ===== src\pages\Home\components\HeroSection.jsx ===== */
+/* ===== src\pages_jsx\Home\components\HeroSection.jsx ===== */
 "use client";
 
 import React from 'react';
@@ -11349,7 +11187,7 @@ function HeroSection({ banner = { title: 'Welcome to A&U English', description: 
 export default HeroSection;
 
 
-/* ===== src\pages\Home\components\ProgramsSection.jsx ===== */
+/* ===== src\pages_jsx\Home\components\ProgramsSection.jsx ===== */
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -11475,7 +11313,7 @@ function ProgramsSection({ trainings }) {
 
 export default ProgramsSection;
 
-/* ===== src\pages\Home\components\StatsSection.jsx ===== */
+/* ===== src\pages_jsx\Home\components\StatsSection.jsx ===== */
 "use client";
 
 import React, { useEffect, useState, useRef } from 'react';
@@ -11635,7 +11473,7 @@ function StatsSection({ stats = [] }) {
 export default StatsSection;
 
 
-/* ===== src\pages\Home\components\TeachersSection.jsx ===== */
+/* ===== src\pages_jsx\Home\components\TeachersSection.jsx ===== */
 "use client";
 
 import React from 'react';
@@ -11779,8 +11617,8 @@ function TeachersSection({ teachers = [] }) {
 export default TeachersSection;
 
 
-/* ===== src\pages\Home\components\WhyChooseUsSection.jsx ===== */
-// src/pages/Home/components/WhyChooseUsSection.jsx
+/* ===== src\pages_jsx\Home\components\WhyChooseUsSection.jsx ===== */
+// src/pages_jsx/Home/components/WhyChooseUsSection.jsx
 import React from 'react';
 import { Users, BookOpen, Sparkles, ShieldCheck, TrendingUp, Home } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
@@ -11858,7 +11696,7 @@ function WhyChooseUsSection() {
 
 export default WhyChooseUsSection;
 
-/* ===== src\pages\Home\components\YoutubeSection.jsx ===== */
+/* ===== src\pages_jsx\Home\components\YoutubeSection.jsx ===== */
 "use client";
 
 import React from 'react';
@@ -11936,7 +11774,7 @@ function YoutubeSection({ links = [] }) {
 export default YoutubeSection;
 
 
-/* ===== src\pages\News\NewsPage.jsx ===== */
+/* ===== src\pages_jsx\News\NewsPage.jsx ===== */
 "use client";
 
 import React from 'react';
@@ -11960,7 +11798,7 @@ function NewsPage({ newsData, categories, categoryInfo }) {
 
 export default NewsPage;
 
-/* ===== src\pages\News\components\ArticleItem.jsx ===== */
+/* ===== src\pages_jsx\News\components\ArticleItem.jsx ===== */
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -12065,7 +11903,7 @@ function ArticleItem({ article = {}, categoryInfo }) {
 export default ArticleItem;
 
 
-/* ===== src\pages\News\components\NewsContentLayout.jsx ===== */
+/* ===== src\pages_jsx\News\components\NewsContentLayout.jsx ===== */
 "use client";
 
 import React from 'react';
@@ -12166,7 +12004,7 @@ function NewsContentLayout({ newsData = { data: [], currentPage: 1, totalPages: 
 export default NewsContentLayout;
 
 
-/* ===== src\pages\News\components\NewsHeader.jsx ===== */
+/* ===== src\pages_jsx\News\components\NewsHeader.jsx ===== */
 import React from 'react';
 
 function NewsHeader({ categoryInfo }) {
@@ -12189,7 +12027,7 @@ function NewsHeader({ categoryInfo }) {
 
 export default NewsHeader;
 
-/* ===== src\pages\News\components\NewsSidebar.jsx ===== */
+/* ===== src\pages_jsx\News\components\NewsSidebar.jsx ===== */
 "use client";
 
 import React, { useState } from 'react';
@@ -12262,8 +12100,8 @@ function NewsSidebar({ categories = [] }) {
 export default NewsSidebar;
 
 
-/* ===== src\pages\News\components\RecentPostsSection.jsx ===== */
-/* src/pages/News/components/RecentPostsSection.jsx */
+/* ===== src\pages_jsx\News\components\RecentPostsSection.jsx ===== */
+/* src/pages_jsx/News/components/RecentPostsSection.jsx */
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -12397,10 +12235,10 @@ function RecentPostsSection({ articles }) {
 
 export default RecentPostsSection;
 
-/* ===== src\pages\News\Detail\NewsDetailPage.jsx ===== */
+/* ===== src\pages_jsx\News\Detail\NewsDetailPage.jsx ===== */
 import React from 'react';
 import { Calendar, User, Eye } from 'lucide-react';
-import RecentPostsSection from '@/pages/News/components/RecentPostsSection';
+import RecentPostsSection from '@/pages_jsx/News/components/RecentPostsSection';
 import { format } from 'date-fns';
 
 // SỬA: Thêm giá trị mặc định cho props
@@ -12462,8 +12300,8 @@ function NewsDetailPage({ article = {}, recentArticles = [] }) {
 export default NewsDetailPage;
 
 
-/* ===== src\pages\ParentsCorner\ParentsCornerPage.jsx ===== */
-/* src/pages/ParentsCorner/ParentsCornerPage.jsx */
+/* ===== src\pages_jsx\ParentsCorner\ParentsCornerPage.jsx ===== */
+/* src/pages_jsx/ParentsCorner/ParentsCornerPage.jsx */
 import React from 'react';
 import HeroSection from './components/HeroSection';
 import KeyResourcesSection from './components/KeyResourcesSection';
@@ -12486,8 +12324,8 @@ function ParentsCornerPage({ handbookArticles, documents, testimonials }) {
 
 export default ParentsCornerPage;
 
-/* ===== src\pages\ParentsCorner\components\DownloadsSection.jsx ===== */
-/* src/pages/ParentsCorner/components/DownloadsSection.jsx */
+/* ===== src\pages_jsx\ParentsCorner\components\DownloadsSection.jsx ===== */
+/* src/pages_jsx/ParentsCorner/components/DownloadsSection.jsx */
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Download, FileText } from 'lucide-react';
@@ -12541,8 +12379,8 @@ function DownloadsSection({ documents }) {
 
 export default DownloadsSection;
 
-/* ===== src\pages\ParentsCorner\components\HandbookSection.jsx ===== */
-/* src/pages/ParentsCorner/components/HandbookSection.jsx */
+/* ===== src\pages_jsx\ParentsCorner\components\HandbookSection.jsx ===== */
+/* src/pages_jsx/ParentsCorner/components/HandbookSection.jsx */
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { ArrowRight } from 'lucide-react';
@@ -12615,7 +12453,7 @@ function HandbookSection({ articles }) {
 
 export default HandbookSection;
 
-/* ===== src\pages\ParentsCorner\components\HeroSection.jsx ===== */
+/* ===== src\pages_jsx\ParentsCorner\components\HeroSection.jsx ===== */
 import React from 'react';
 import Image from 'next/image';
 
@@ -12645,7 +12483,7 @@ function HeroSection() {
 
 export default HeroSection;
 
-/* ===== src\pages\ParentsCorner\components\KeyResourcesSection.jsx ===== */
+/* ===== src\pages_jsx\ParentsCorner\components\KeyResourcesSection.jsx ===== */
 import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { BookOpen, Download, CalendarDays, MessageSquare, Milestone, Award  } from 'lucide-react';
@@ -12684,8 +12522,8 @@ function KeyResourcesSection() {
 
 export default KeyResourcesSection;
 
-/* ===== src\pages\ParentsCorner\components\TestimonialsSection.jsx ===== */
-/* src/pages/ParentsCorner/components/TestimonialsSection.jsx */
+/* ===== src\pages_jsx\ParentsCorner\components\TestimonialsSection.jsx ===== */
+/* src/pages_jsx/ParentsCorner/components/TestimonialsSection.jsx */
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -12753,13 +12591,20 @@ function TestimonialsSection({ testimonials }) {
 
 export default TestimonialsSection;
 
-/* ===== src\pages\ParentsCorner\Detail\TestimonialDetailPage.jsx ===== */
-/* src/pages/ParentsCorner/Detail/TestimonialDetailPage.jsx */
+/* ===== src\pages_jsx\ParentsCorner\Detail\TestimonialDetailPage.jsx ===== */
+/*
+* src/pages_jsx/ParentsCorner/Detail/TestimonialDetailPage.jsx
+*/
 import React from 'react';
 import Image from 'next/image';
 import OtherTestimonialsSection from './components/OtherTestimonialsSection';
 
 function TestimonialDetailPage({ data: testimonial, otherData: otherTestimonials }) {
+    // THÊM: Guard clause để ngăn lỗi khi build nếu prop `testimonial` không tồn tại
+    if (!testimonial) {
+        return null;
+    }
+
     return (
         <main>
             <div className="bg-white pt-24 pb-16 sm:pt-32 sm:pb-24">
@@ -12796,8 +12641,9 @@ function TestimonialDetailPage({ data: testimonial, otherData: otherTestimonials
 
 export default TestimonialDetailPage;
 
-/* ===== src\pages\ParentsCorner\Detail\components\OtherTestimonialsSection.jsx ===== */
-/* src/pages/ParentsCorner/Detail/components/OtherTestimonialsSection.jsx */
+
+/* ===== src\pages_jsx\ParentsCorner\Detail\components\OtherTestimonialsSection.jsx ===== */
+/* src/pages_jsx/ParentsCorner/Detail/components/OtherTestimonialsSection.jsx */
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -12847,7 +12693,7 @@ function OtherTestimonialsSection({ testimonials }) {
 
 export default OtherTestimonialsSection;
 
-/* ===== src\pages\Teachers\TeachersPage.jsx ===== */
+/* ===== src\pages_jsx\Teachers\TeachersPage.jsx ===== */
 import React from 'react';
 import CtaSection from './components/CtaSection';
 import PhilosophySection from './components/PhilosophySection';
@@ -12871,8 +12717,8 @@ function TeachersPage({ initialTeachersData }) {
 
 export default TeachersPage;
 
-/* ===== src\pages\Teachers\components\CtaSection.jsx ===== */
-// src/pages/Teachers/components/CtaSection.jsx
+/* ===== src\pages_jsx\Teachers\components\CtaSection.jsx ===== */
+// src/pages_jsx/Teachers/components/CtaSection.jsx
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -12902,7 +12748,7 @@ function CtaSection() {
 
 export default CtaSection;
 
-/* ===== src\pages\Teachers\components\PhilosophySection.jsx ===== */
+/* ===== src\pages_jsx\Teachers\components\PhilosophySection.jsx ===== */
 import React from 'react';
 import Image from 'next/image';
 
@@ -12939,8 +12785,8 @@ function PhilosophySection() {
 
 export default PhilosophySection;
 
-/* ===== src\pages\Teachers\components\QualityStandardsSection.jsx ===== */
-// src/pages/Teachers/components/QualityStandardsSection.jsx
+/* ===== src\pages_jsx\Teachers\components\QualityStandardsSection.jsx ===== */
+// src/pages_jsx/Teachers/components/QualityStandardsSection.jsx
 import React from 'react';
 import { Award, Globe, UserCheck } from 'lucide-react';
 
@@ -12982,7 +12828,7 @@ function QualityStandardsSection() {
 
 export default QualityStandardsSection;
 
-/* ===== src\pages\Teachers\components\TeacherProfilesSection.jsx ===== */
+/* ===== src\pages_jsx\Teachers\components\TeacherProfilesSection.jsx ===== */
 "use client";
 
 import React, { useState, useEffect } from 'react';
@@ -13142,7 +12988,7 @@ function TeacherProfilesSection({ initialTeachersData }) {
 
 export default TeacherProfilesSection
 
-/* ===== src\pages\Teachers\components\TeachersHero.jsx ===== */
+/* ===== src\pages_jsx\Teachers\components\TeachersHero.jsx ===== */
 import React from 'react';
 import Image from 'next/image';
 
@@ -13172,7 +13018,7 @@ function TeachersHero() {
 
 export default TeachersHero;
 
-/* ===== src\pages\Teachers\components\WorkPermitsSection.jsx ===== */
+/* ===== src\pages_jsx\Teachers\components\WorkPermitsSection.jsx ===== */
 "use client";
 import React, { useState } from 'react';
 import Image from 'next/image';
@@ -13265,15 +13111,22 @@ function WorkPermitsSection() {
 
 export default WorkPermitsSection;
 
-/* ===== src\pages\Teachers\Detail\TeacherDetailPage.jsx ===== */
-/* src/pages/Teachers/Detail/TeacherDetailPage.jsx */
+/* ===== src\pages_jsx\Teachers\Detail\TeacherDetailPage.jsx ===== */
+/*
+* src/pages_jsx/Teachers/Detail/TeacherDetailPage.jsx
+*/
 import React from 'react';
 import Image from 'next/image';
 import { Award } from 'lucide-react';
 import OtherTeachersSection from './components/OtherTeachersSection';
 
-// CHỈNH SỬA: Nhận props chung từ pageFactory
 function TeacherDetailPage({ teacher, otherTeachers }) {
+    // THÊM: Guard clause để ngăn lỗi khi build nếu prop `teacher` không tồn tại
+    if (!teacher) {
+        // Có thể trả về một component loading hoặc null để không render gì cả
+        return null; 
+    }
+
     return (
         <main>
             <div className="bg-white pt-24 pb-16 sm:pt-32 sm:pb-24">
@@ -13295,7 +13148,8 @@ function TeacherDetailPage({ teacher, otherTeachers }) {
                                 </h1>
                                 <p className="mt-2 text-xl text-orange-600 font-semibold">{teacher.role}</p>
                                 <div className="mt-4 flex flex-wrap justify-center sm:justify-start gap-4">
-                                    {teacher.qualifications.map((q, i) => (
+                                    {/* THÊM: Kiểm tra `qualifications` tồn tại trước khi map */}
+                                    {teacher.qualifications && teacher.qualifications.map((q, i) => (
                                         <span key={i} className="flex items-center gap-2 bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">
                                             <Award className="w-4 h-4 text-orange-500" />
                                             {q}
@@ -13307,7 +13161,7 @@ function TeacherDetailPage({ teacher, otherTeachers }) {
                         
                         <div
                             className="prose prose-lg max-w-none prose-img:rounded-xl prose-h3:text-gray-800"
-                            dangerouslySetInnerHTML={{ __html: teacher.description || '<p>No detailed description available.</p>' }}
+                            dangerouslySetInnerHTML={{ __html: teacher.description || '<p>Không có mô tả chi tiết.</p>' }}
                         />
                     </div>
                 </div>
@@ -13320,8 +13174,9 @@ function TeacherDetailPage({ teacher, otherTeachers }) {
 
 export default TeacherDetailPage;
 
-/* ===== src\pages\Teachers\Detail\components\OtherTeachersSection.jsx ===== */
-// src/pages/Teachers/Detail/components/OtherTeachersSection.jsx
+
+/* ===== src\pages_jsx\Teachers\Detail\components\OtherTeachersSection.jsx ===== */
+// src/pages_jsx/Teachers/Detail/components/OtherTeachersSection.jsx
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -13367,7 +13222,7 @@ function OtherTeachersSection({ teachers }) {
 
 export default OtherTeachersSection;
 
-/* ===== src\pages\Training\TrainingPage.jsx ===== */
+/* ===== src\pages_jsx\Training\TrainingPage.jsx ===== */
 import React from 'react';
 import TrainingHero from './components/TrainingHero';
 import ProgramsList from './components/ProgramsList';
@@ -13383,7 +13238,7 @@ function TrainingPage({ initialTrainingData }) {
 
 export default TrainingPage;
 
-/* ===== src\pages\Training\components\ProgramsList.jsx ===== */
+/* ===== src\pages_jsx\Training\components\ProgramsList.jsx ===== */
 "use client";
 
 import React, { useState, useEffect } from 'react';
@@ -13548,7 +13403,7 @@ function ProgramsList({ initialTrainingData }) {
 
 export default ProgramsList;
 
-/* ===== src\pages\Training\components\TrainingHero.jsx ===== */
+/* ===== src\pages_jsx\Training\components\TrainingHero.jsx ===== */
 import React from 'react';
 import Image from 'next/image';
 
@@ -13582,7 +13437,7 @@ function TrainingHero() {
 
 export default TrainingHero;
 
-/* ===== src\pages\Training\Detail\TrainingDetailPage.jsx ===== */
+/* ===== src\pages_jsx\Training\Detail\TrainingDetailPage.jsx ===== */
 import React from 'react';
 import CourseHero from './components/CourseHero';
 import CourseOverview from './components/CourseOverview';
@@ -13644,7 +13499,7 @@ function TrainingDetailPage({ course, otherCourses }) {
 
 export default TrainingDetailPage;
 
-/* ===== src\pages\Training\Detail\components\CourseContentSection.jsx ===== */
+/* ===== src\pages_jsx\Training\Detail\components\CourseContentSection.jsx ===== */
 import React from 'react';
 
 function CourseContentSection({ content }) {
@@ -13674,7 +13529,7 @@ function CourseContentSection({ content }) {
 
 export default CourseContentSection;
 
-/* ===== src\pages\Training\Detail\components\CourseCurriculum.jsx ===== */
+/* ===== src\pages_jsx\Training\Detail\components\CourseCurriculum.jsx ===== */
 import React from 'react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { CheckCircle } from 'lucide-react';
@@ -13716,8 +13571,8 @@ function CourseCurriculum({ curriculum }) {
 
 export default CourseCurriculum;
 
-/* ===== src\pages\Training\Detail\components\CourseDetailSkeleton.jsx ===== */
-// src/pages/Training/Detail/components/CourseDetailSkeleton.jsx
+/* ===== src\pages_jsx\Training\Detail\components\CourseDetailSkeleton.jsx ===== */
+// src/pages_jsx/Training/Detail/components/CourseDetailSkeleton.jsx
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
@@ -13783,7 +13638,7 @@ export default function CourseDetailSkeleton() {
     );
 }
 
-/* ===== src\pages\Training\Detail\components\CourseGallery.jsx ===== */
+/* ===== src\pages_jsx\Training\Detail\components\CourseGallery.jsx ===== */
 "use client";
 
 import React, { useState } from 'react';
@@ -13871,7 +13726,7 @@ function CourseGallery({ images }) {
 
 export default CourseGallery;
 
-/* ===== src\pages\Training\Detail\components\CourseHero.jsx ===== */
+/* ===== src\pages_jsx\Training\Detail\components\CourseHero.jsx ===== */
 import React from 'react';
 import Image from 'next/image';
 
@@ -13901,7 +13756,7 @@ function CourseHero({ title, description, imageSrc }) {
 
 export default CourseHero;
 
-/* ===== src\pages\Training\Detail\components\CourseOverview.jsx ===== */
+/* ===== src\pages_jsx\Training\Detail\components\CourseOverview.jsx ===== */
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Users, Clock, Target, BookOpen } from 'lucide-react';
@@ -13943,7 +13798,7 @@ function CourseOverview({ overview }) {
 
 export default CourseOverview;
 
-/* ===== src\pages\Training\Detail\components\OtherTrainingsSection.jsx ===== */
+/* ===== src\pages_jsx\Training\Detail\components\OtherTrainingsSection.jsx ===== */
 "use client";
 
 import React from 'react';
@@ -14027,7 +13882,7 @@ function OtherTrainingsSection({ trainings }) {
 
 export default OtherTrainingsSection;
 
-/* ===== src\pages\Training\Detail\components\RegistrationCta.jsx ===== */
+/* ===== src\pages_jsx\Training\Detail\components\RegistrationCta.jsx ===== */
 "use client";
 
 import React, { useState } from 'react';
@@ -14081,7 +13936,7 @@ function RegistrationCta({ courseTitle, courseId }) {
 
 export default RegistrationCta;
 
-/* ===== src\pages\Training\Detail\components\SkillBreakdown.jsx ===== */
+/* ===== src\pages_jsx\Training\Detail\components\SkillBreakdown.jsx ===== */
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 // UPDATE: Import các icon cần thiết
@@ -14594,6 +14449,11 @@ export async function getOtherTrainings(excludeSlug, pageSize = 5) {
 /* next-env.d.ts */
 /* .codebase/ */
 
+/* Based on track_ignore.txt patterns: */
+/* .next/ */
+/* node_modules/ */
+/* public/ */
+
 /* Ignored directories: */
 /* .codebase/ */
 /* .git\hooks/ */
@@ -14601,13 +14461,13 @@ export async function getOtherTrainings(excludeSlug, pageSize = 5) {
 /* .git\logs/ */
 /* .git\objects/ */
 /* .git\refs/ */
+/* .next\build/ */
 /* .next\cache/ */
-/* .next\diagnostics/ */
-/* .next\export/ */
 /* .next\server/ */
 /* .next\static/ */
-/* .next\types/ */
 /* node_modules/ */
+/* public\assets/ */
+/* src\.idea\inspectionProfiles/ */
 
 /* Ignored files (by rule): */
 /* .env.local */
@@ -14618,168 +14478,26 @@ export async function getOtherTrainings(excludeSlug, pageSize = 5) {
 /* .git\config */
 /* .git\description */
 /* .git\index */
-/* .next\BUILD_ID */
+/* .git\packed-refs */
+/* .idea\.gitignore */
+/* .idea\landing-page-english-education-center.iml */
+/* .idea\modules.xml */
+/* .idea\vcs.xml */
 /* .next\app-build-manifest.json */
-/* .next\app-path-routes-manifest.json */
 /* .next\build-manifest.json */
-/* .next\dynamic-css-manifest.json */
-/* .next\export-detail.json */
+/* .next\fallback-build-manifest.json */
 /* .next\package.json */
-/* .next\react-loadable-manifest.json */
-/* .next\required-server-files.json */
-/* .next\routes-manifest.json */
 /* .next\trace */
+/* .next\transform.js */
+/* .next\transform.js.map */
+/* public\file.svg */
+/* public\globe.svg */
+/* public\next.svg */
+/* public\vercel.svg */
+/* public\window.svg */
+/* src\.idea\modules.xml */
+/* src\.idea\src.iml */
+/* src\.idea\workspace.xml */
 
 /* Ignored binary files: */
-/* public\assets\images\R5AT3838.jpg */
-/* public\assets\images\R5AT3841.jpg */
-/* public\assets\images\R5AT3848.jpg */
-/* public\assets\images\R5AT3853.jpg */
-/* public\assets\images\R5AT3856.jpg */
-/* public\assets\images\R5AT3860.jpg */
-/* public\assets\images\R5AT3865.jpg */
-/* public\assets\images\R5AT3870.jpg */
-/* public\assets\images\R5AT3872.jpg */
-/* public\assets\images\R5AT3875.jpg */
-/* public\assets\images\R5AT3879.jpg */
-/* public\assets\images\R5AT3881.jpg */
-/* public\assets\images\R5AT3884.jpg */
-/* public\assets\images\R5AT3893.jpg */
-/* public\assets\images\R5AT3894.jpg */
-/* public\assets\images\R5AT3898.jpg */
-/* public\assets\images\R5AT3903.jpg */
-/* public\assets\images\R5AT3907.jpg */
-/* public\assets\images\R5AT3909.jpg */
-/* public\assets\images\R5AT3910.jpg */
-/* public\assets\images\R5AT3911.jpg */
-/* public\assets\images\R5AT3914.jpg */
-/* public\assets\images\R5AT3919.jpg */
-/* public\assets\images\R5AT3921.jpg */
-/* public\assets\images\R5AT3923.jpg */
-/* public\assets\images\R5AT3931.jpg */
-/* public\assets\images\R5AT3936.jpg */
-/* public\assets\images\R5AT3939.jpg */
-/* public\assets\images\R5AT3941.jpg */
-/* public\assets\images\R5AT3943.jpg */
-/* public\assets\images\R5AT3945.jpg */
-/* public\assets\images\R5AT3949.jpg */
-/* public\assets\images\R5AT3953.jpg */
-/* public\assets\images\R5AT3957.jpg */
-/* public\assets\images\R5AT3961.jpg */
-/* public\assets\images\R5AT3962.jpg */
-/* public\assets\images\R5AT3963.jpg */
-/* public\assets\images\R5AT3967.jpg */
-/* public\assets\images\R5AT3969.jpg */
-/* public\assets\images\R5AT3975.jpg */
-/* public\assets\images\R5AT3978.jpg */
-/* public\assets\images\R5AT3979.jpg */
-/* public\assets\images\R5AT3980.jpg */
-/* public\assets\images\R5AT3984.jpg */
-/* public\assets\images\R5AT3989.jpg */
-/* public\assets\images\R5AT3990.jpg */
-/* public\assets\images\R5AT3991.jpg */
-/* public\assets\images\R5AT3992.jpg */
-/* public\assets\images\R5AT3995.jpg */
-/* public\assets\images\R5AT3998.jpg */
-/* public\assets\images\R5AT3999.jpg */
-/* public\assets\images\R5AT4002.jpg */
-/* public\assets\images\R5AT4003.jpg */
-/* public\assets\images\R5AT4007.jpg */
-/* public\assets\images\R5AT4010.jpg */
-/* public\assets\images\R5AT4012.jpg */
-/* public\assets\images\R5AT4014.jpg */
-/* public\assets\images\R5AT4016.jpg */
-/* public\assets\images\R5AT4018.jpg */
-/* public\assets\images\R5AT4019.jpg */
-/* public\assets\images\R5AT4022.jpg */
-/* public\assets\images\R5AT4027.jpg */
-/* public\assets\images\R5AT4031.jpg */
-/* public\assets\images\R5AT4032.jpg */
-/* public\assets\images\R5AT4035.jpg */
-/* public\assets\images\R5AT4037.jpg */
-/* public\assets\images\R5AT4040.jpg */
-/* public\assets\images\R5AT4049.jpg */
-/* public\assets\images\R5AT4050.jpg */
-/* public\assets\images\R5AT4053.jpg */
-/* public\assets\images\R5AT4055.jpg */
-/* public\assets\images\R5AT4058.jpg */
-/* public\assets\images\R5AT4061.jpg */
-/* public\assets\images\R5AT4063.jpg */
-/* public\assets\images\R5AT4067.jpg */
-/* public\assets\images\R5AT4071.jpg */
-/* public\assets\images\R5AT4078.jpg */
-/* public\assets\images\R5AT4080.jpg */
-/* public\assets\images\R5AT4083.jpg */
-/* public\assets\images\R5AT4087.jpg */
-/* public\assets\images\R5AT4089.jpg */
-/* public\assets\images\R5AT4092.jpg */
-/* public\assets\images\R5AT4096.jpg */
-/* public\assets\images\R5AT4097.jpg */
-/* public\assets\images\R5AT4099.jpg */
-/* public\assets\images\R5AT4103.jpg */
-/* public\assets\images\R5AT4106.jpg */
-/* public\assets\images\R5AT4110.jpg */
-/* public\assets\images\R5AT4114.jpg */
-/* public\assets\images\R5AT4116.jpg */
-/* public\assets\images\R5AT4117.jpg */
-/* public\assets\images\R5AT4118.jpg */
-/* public\assets\images\R5AT4121.jpg */
-/* public\assets\images\R5AT4123.jpg */
-/* public\assets\images\R5AT4125.jpg */
-/* public\assets\images\R5AT4128.jpg */
-/* public\assets\images\R5AT4131.jpg */
-/* public\assets\images\R5AT4133.jpg */
-/* public\assets\images\R5AT4134.jpg */
-/* public\assets\images\R5AT4136.jpg */
-/* public\assets\images\R5AT4140.jpg */
-/* public\assets\images\R5AT4145.jpg */
-/* public\assets\images\R5AT4153.jpg */
-/* public\assets\images\R5AT4155.jpg */
-/* public\assets\images\R5AT4157.jpg */
-/* public\assets\images\R5AT4159.jpg */
-/* public\assets\images\R5AT4162.jpg */
-/* public\assets\images\R5AT4163.jpg */
-/* public\assets\images\R5AT4167.jpg */
-/* public\assets\images\R5AT4168.jpg */
-/* public\assets\images\R5AT4169.jpg */
-/* public\assets\images\R5AT4170.jpg */
-/* public\assets\images\R5AT4171.jpg */
-/* public\assets\images\R5AT4174.jpg */
-/* public\assets\images\R5AT4176.jpg */
-/* public\assets\images\R5AT4178.jpg */
-/* public\assets\images\R5AT4180.jpg */
-/* public\assets\images\R5AT4181.jpg */
-/* public\assets\images\R5AT4183.jpg */
-/* public\assets\images\R5AT4184.jpg */
-/* public\assets\images\R5AT4186.jpg */
-/* public\assets\images\R5AT4191.jpg */
-/* public\assets\images\R5AT4192.jpg */
-/* public\assets\images\R5AT4193.jpg */
-/* public\assets\images\R5AT4198.jpg */
-/* public\assets\images\R5AT4200.jpg */
-/* public\assets\images\R5AT4202.jpg */
-/* public\assets\images\R5AT4205.jpg */
-/* public\assets\images\R5AT4207.jpg */
-/* public\assets\images\R5AT4208.jpg */
-/* public\assets\images\R5AT4211.jpg */
-/* public\assets\images\R5AT4212.jpg */
-/* public\assets\images\R5AT4215.jpg */
-/* public\assets\images\R5AT4219.jpg */
-/* public\assets\images\R5AT4222.jpg */
-/* public\assets\images\R5AT4226.jpg */
-/* public\assets\images\R5AT4230.jpg */
-/* public\assets\images\R5AT4240.jpg */
-/* public\assets\images\R5AT4246.jpg */
-/* public\assets\images\R5AT4255.jpg */
-/* public\assets\images\R5AT4259.jpg */
-/* public\assets\images\R5AT4262.jpg */
-/* public\assets\images\R5AT4264.jpg */
-/* public\assets\images\R5AT4267.jpg */
-/* public\assets\images\R5AT4270.jpg */
-/* public\assets\images\R5AT4273.jpg */
-/* public\assets\images\R5AT4278.jpg */
-/* public\assets\images\R5AT4282.jpg */
-/* public\assets\images\R5AT4287.jpg */
-/* public\assets\images\R5AT4290.jpg */
-/* public\assets\images\logo-au.png */
 /* src\app\favicon.ico */

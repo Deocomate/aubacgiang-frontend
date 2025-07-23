@@ -9,6 +9,7 @@ import { ArrowRight, Baby, BookOpen, Briefcase, School, Shield, Sun, Loader2, Ta
 import { cn } from '@/lib/utils';
 import { loadMoreTrainings } from '@/app/actions/trainingActions';
 import { useTraining } from '@/context/TrainingProvider';
+import { getYoutubeEmbedUrl } from '@/lib/utils';
 
 const iconMap = {
     'mau-giao': <Baby className="h-6 w-6" />,
@@ -39,19 +40,36 @@ const getIconForProgram = (slug) => {
 };
 
 function ProgramCard({ program, reverse = false }) {
+    const youtubeEmbedUrl = program.youtube_review_link ? getYoutubeEmbedUrl(program.youtube_review_link) : null;
+
     return (
         <div id={program.slug} className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
-            <Link href={`/training/${program.slug}`} className={cn(reverse && "md:order-last")}>
-                <div className="relative w-full h-80 md:h-96 rounded-xl overflow-hidden shadow-lg cursor-pointer">
-                    <Image
-                        src={program.thumbnail}
-                        alt={program.title}
-                        fill
-                        className="object-cover transition-transform duration-500 hover:scale-105"
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                    />
-                </div>
-            </Link>
+            <div className={cn(reverse && "md:order-last")}>
+                {youtubeEmbedUrl ? (
+                    <div className="relative w-full h-80 md:h-96 rounded-xl overflow-hidden shadow-lg">
+                        <iframe
+                            src={youtubeEmbedUrl}
+                            title={`Review: ${program.title}`}
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowFullScreen
+                            className="w-full h-full"
+                        ></iframe>
+                    </div>
+                ) : (
+                    <Link href={`/training/${program.slug}`}>
+                        <div className="relative w-full h-80 md:h-96 rounded-xl overflow-hidden shadow-lg cursor-pointer">
+                            <Image
+                                src={program.thumbnail}
+                                alt={program.title}
+                                fill
+                                className="object-cover transition-transform duration-500 hover:scale-105"
+                                sizes="(max-width: 768px) 100vw, 50vw"
+                            />
+                        </div>
+                    </Link>
+                )}
+            </div>
             <div className="prose prose-lg max-w-none">
                 <Badge variant="secondary" className="mb-2 text-base">{program.age}</Badge>
                 <h3 className="flex items-center gap-3 mt-2 text-3xl font-extrabold tracking-tight text-gray-900">

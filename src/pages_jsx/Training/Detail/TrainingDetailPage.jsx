@@ -1,5 +1,6 @@
 import React from 'react';
 import CourseHero from './components/CourseHero';
+import CourseReviewVideo from './components/CourseReviewVideo';
 import CourseOverview from './components/CourseOverview';
 import CourseGallery from './components/CourseGallery';
 import SkillBreakdown from './components/SkillBreakdown';
@@ -48,6 +49,10 @@ function TrainingDetailPage({ course, otherCourses }) {
             />
             <CourseOverview overview={overviewData} />
             <CourseGallery images={course.images} />
+            
+            {course.youtube_review_link && (
+                <CourseReviewVideo youtubeUrl={course.youtube_review_link} />
+            )}
             <SkillBreakdown skills={skillsData} />
             <CourseContentSection content={course.content} />
             <CourseCurriculum curriculum={formatCurriculum(course.curriculum)} />
