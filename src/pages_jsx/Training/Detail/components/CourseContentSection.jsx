@@ -16,7 +16,7 @@ function CourseContentSection({ content }) {
                         </p>
                     </div>
                     <div
-                        className="prose prose-lg max-w-none prose-img:rounded-xl prose-h3:text-gray-800"
+                        className="prose prose-lg max-w-none prose-p:font-medium prose-li:font-medium prose-p:text-gray-700 prose-li:text-gray-700 prose-img:rounded-xl prose-h3:text-gray-800"
                         dangerouslySetInnerHTML={{ __html: content }}
                     />
                 </div>

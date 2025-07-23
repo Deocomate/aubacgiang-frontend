@@ -6,7 +6,7 @@ function PhilosophySection() {
         <section className="bg-white py-24 sm:py-32">
             <div className="container mx-auto px-4">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-                    <div className="prose prose-lg max-w-none text-center lg:text-left">
+                    <div className="prose prose-lg max-w-none text-center lg:text-left prose-p:font-medium">
                         <h2 className="text-base font-semibold leading-7 text-orange-500">Triết Lý Giảng Dạy</h2>
                         <p className="mt-2 text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">
                             Không Chỉ Dạy, Mà Là Huấn Luyện
@@ -20,7 +20,7 @@ function PhilosophySection() {
                     </div>
                     <div className="w-full h-[500px] relative">
                         <Image
-                            src="/assets/images/R5AT4240.jpg" // Ảnh bà Minh Nguyệt
+                            src="/assets/images/R5AT4240.jpg"
                             alt="Giáo viên A&U - người bạn đồng hành"
                             fill
                             className="rounded-xl shadow-2xl object-cover transform hover:scale-105 transition-transform duration-500"

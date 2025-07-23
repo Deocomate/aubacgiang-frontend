@@ -13,19 +13,16 @@ function CourseCurriculum({ curriculum }) {
                     </p>
                 </div>
                 <div className="max-w-4xl mx-auto">
-                    {/* UPDATE: Thay đổi type="single" thành type="multiple" */}
                     <Accordion type="multiple" className="w-full">
                         {curriculum.map((item, index) => (
                             <AccordionItem value={`item-${index}`} key={index}>
-                                <AccordionTrigger className="text-left text-xl font-medium hover:no-underline">
+                                <AccordionTrigger className="text-left text-xl font-bold hover:no-underline">
                                     <div className="flex items-center gap-3">
                                         <CheckCircle className="h-6 w-6 text-orange-500" />
                                         {item.module}
                                     </div>
                                 </AccordionTrigger>
-                                <AccordionContent className="prose prose-base max-w-none text-gray-700 pl-12">
-                                    {/* Dùng dangerouslySetInnerHTML để dễ tích hợp CKEditor sau này */}
-                                    {/* Cảnh báo: Cần đảm bảo nội dung HTML từ CMS là an toàn. */}
+                                <AccordionContent className="prose prose-base max-w-none text-gray-700 pl-12 prose-li:font-medium">
                                     <div dangerouslySetInnerHTML={{ __html: item.content }} />
                                 </AccordionContent>
                             </AccordionItem>

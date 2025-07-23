@@ -1,6 +1,5 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-// UPDATE: Import các icon cần thiết
 import { Mic, Ear, BookOpen, PenLine } from 'lucide-react';
 
 const skillDetails = {
@@ -38,7 +37,6 @@ function SkillBreakdown({ skills }) {
                         return (
                             <Card key={key} className="transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
                                 <CardHeader>
-                                    {/* UPDATE: Thêm icon vào CardTitle */}
                                     <CardTitle className="text-2xl text-gray-800 flex items-center gap-4">
                                         <span className="flex-shrink-0 bg-orange-500 p-3 rounded-full">
                                             {detail.icon}
@@ -47,7 +45,7 @@ function SkillBreakdown({ skills }) {
                                     </CardTitle>
                                 </CardHeader>
                                 <CardContent>
-                                    <p className="text-gray-700 leading-relaxed">{description}</p>
+                                    <p className="text-gray-700 leading-relaxed font-medium">{description}</p>
                                 </CardContent>
                             </Card>
                         )

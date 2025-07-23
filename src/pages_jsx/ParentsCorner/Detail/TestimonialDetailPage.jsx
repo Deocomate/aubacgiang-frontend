@@ -1,12 +1,8 @@
-/*
-* src/pages_jsx/ParentsCorner/Detail/TestimonialDetailPage.jsx
-*/
 import React from 'react';
 import Image from 'next/image';
 import OtherTestimonialsSection from './components/OtherTestimonialsSection';
 
 function TestimonialDetailPage({ data: testimonial, otherData: otherTestimonials }) {
-    // THÊM: Guard clause để ngăn lỗi khi build nếu prop `testimonial` không tồn tại
     if (!testimonial) {
         return null;
     }
@@ -29,11 +25,11 @@ function TestimonialDetailPage({ data: testimonial, otherData: otherTestimonials
                             <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight">
                                 {testimonial.name}
                             </h1>
-                            <p className="mt-2 text-lg text-gray-500">{testimonial.describe}</p>
+                            <p className="mt-2 text-lg text-gray-500 font-medium">{testimonial.describe}</p>
                         </header>
 
                         <div
-                            className="prose prose-lg max-w-none prose-blockquote:border-orange-500 prose-blockquote:text-gray-700 prose-blockquote:font-normal prose-img:rounded-xl mt-8"
+                            className="prose prose-lg max-w-none prose-blockquote:border-orange-500 prose-blockquote:text-gray-700 prose-blockquote:font-medium prose-p:font-medium prose-li:font-medium prose-img:rounded-xl mt-8"
                             dangerouslySetInnerHTML={{ __html: testimonial.content || '' }}
                         />
                     </div>

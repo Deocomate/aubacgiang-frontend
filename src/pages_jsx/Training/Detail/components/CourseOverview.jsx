@@ -8,7 +8,7 @@ function InfoPill({ icon, title, content }) {
             <div className="flex-shrink-0 text-orange-500">{icon}</div>
             <div>
                 <h4 className="font-semibold text-gray-800">{title}</h4>
-                <p className="text-gray-600 mt-1">{content}</p>
+                <p className="text-gray-700 mt-1 font-medium">{content}</p>
             </div>
         </div>
     );
@@ -23,7 +23,6 @@ function CourseOverview({ overview }) {
                         <CardTitle className="text-3xl font-bold">Tổng Quan Khóa Học</CardTitle>
                     </CardHeader>
                     <CardContent className="p-0">
-                        {/* FIX: Thay đổi grid layout để mặc định là 2 cột, và 4 cột trên màn hình lớn */}
                         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
                             <InfoPill icon={<Users className="h-8 w-8" />} title="Đối tượng học viên" content={overview.age} />
                             <InfoPill icon={<Clock className="h-8 w-8" />} title="Thời lượng" content={overview.duration} />

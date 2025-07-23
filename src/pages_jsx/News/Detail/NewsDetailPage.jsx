@@ -3,9 +3,7 @@ import { Calendar, User, Eye } from 'lucide-react';
 import RecentPostsSection from '@/pages_jsx/News/components/RecentPostsSection';
 import { format } from 'date-fns';
 
-// SỬA: Thêm giá trị mặc định cho props
 function NewsDetailPage({ article = {}, recentArticles = [] }) {
-    // SỬA: Thêm guard clause để xử lý trường hợp không có article
     if (!article.id) {
         return (
             <main className="flex items-center justify-center h-screen">
@@ -41,13 +39,13 @@ function NewsDetailPage({ article = {}, recentArticles = [] }) {
                         </header>
                         
                         {article.excerpt && (
-                            <p className="mt-8 text-lg italic text-gray-600 border-l-4 border-orange-400 pl-4">
+                            <p className="mt-8 text-lg italic text-gray-600 border-l-4 border-orange-400 pl-4 font-medium">
                                 {article.excerpt}
                             </p>
                         )}
                         
                         <div
-                            className="prose prose-lg max-w-none prose-img:rounded-xl prose-h3:text-gray-800 mt-8"
+                            className="prose prose-lg max-w-none prose-img:rounded-xl prose-h3:text-gray-800 mt-8 prose-p:font-medium prose-li:font-medium"
                             dangerouslySetInnerHTML={{ __html: article.content }}
                         />
                     </div>

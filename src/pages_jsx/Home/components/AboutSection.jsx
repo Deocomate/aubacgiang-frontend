@@ -7,7 +7,7 @@ function AboutSection() {
         <section className="bg-white py-24 sm:py-32">
             <div className="container mx-auto px-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 mb-24">
-                    <div className="prose prose-lg max-w-none h-auto md:h-[600px] flex flex-col justify-center">
+                    <div className="prose prose-lg max-w-none h-auto md:h-[600px] flex flex-col justify-center prose-p:font-medium">
                         <div className="text-center md:text-left">
                             <h2 className="text-base font-semibold leading-7 text-orange-500">Về Chúng Tôi</h2>
                             <h3 className="mt-2 text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">
@@ -42,7 +42,7 @@ function AboutSection() {
                             className="rounded-xl shadow-2xl object-cover w-full h-full md:h-[480px] transform hover:scale-105 transition-transform duration-500"
                         />
                     </div>
-                    <div className="prose prose-lg max-w-none h-auto md:h-[500px] flex flex-col justify-center">
+                    <div className="prose prose-lg max-w-none h-auto md:h-[500px] flex flex-col justify-center prose-p:font-medium prose-dd:font-medium">
                         <div className="text-center md:text-left">
                             <h2 className="text-base font-semibold leading-7 text-orange-500">Định Hướng Phát Triển</h2>
                             <h3 className="mt-2 text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">

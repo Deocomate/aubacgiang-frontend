@@ -1,15 +1,10 @@
-/*
-* src/pages_jsx/Teachers/Detail/TeacherDetailPage.jsx
-*/
 import React from 'react';
 import Image from 'next/image';
 import { Award } from 'lucide-react';
 import OtherTeachersSection from './components/OtherTeachersSection';
 
 function TeacherDetailPage({ teacher, otherTeachers }) {
-    // THÊM: Guard clause để ngăn lỗi khi build nếu prop `teacher` không tồn tại
     if (!teacher) {
-        // Có thể trả về một component loading hoặc null để không render gì cả
         return null; 
     }
 
@@ -32,11 +27,10 @@ function TeacherDetailPage({ teacher, otherTeachers }) {
                                 <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight">
                                     {teacher.full_name}
                                 </h1>
-                                <p className="mt-2 text-xl text-orange-600 font-semibold">{teacher.role}</p>
+                                <p className="mt-2 text-xl text-orange-600 font-bold">{teacher.role}</p>
                                 <div className="mt-4 flex flex-wrap justify-center sm:justify-start gap-4">
-                                    {/* THÊM: Kiểm tra `qualifications` tồn tại trước khi map */}
                                     {teacher.qualifications && teacher.qualifications.map((q, i) => (
-                                        <span key={i} className="flex items-center gap-2 bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">
+                                        <span key={i} className="flex items-center gap-2 bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium">
                                             <Award className="w-4 h-4 text-orange-500" />
                                             {q}
                                         </span>
@@ -46,7 +40,7 @@ function TeacherDetailPage({ teacher, otherTeachers }) {
                         </header>
                         
                         <div
-                            className="prose prose-lg max-w-none prose-img:rounded-xl prose-h3:text-gray-800"
+                            className="prose prose-lg max-w-none prose-img:rounded-xl prose-h3:text-gray-800 prose-p:font-medium prose-li:font-medium"
                             dangerouslySetInnerHTML={{ __html: teacher.description || '<p>Không có mô tả chi tiết.</p>' }}
                         />
                     </div>

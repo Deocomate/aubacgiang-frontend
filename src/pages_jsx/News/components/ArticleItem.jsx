@@ -33,9 +33,7 @@ function getPastelColorFromSlug(slug) {
     return `${pastelColors[idx].bg} ${pastelColors[idx].text}`;
 }
 
-// SỬA: Thêm giá trị mặc định cho prop `article`
 function ArticleItem({ article = {}, categoryInfo }) {
-    // SỬA: Thêm kiểm tra nếu article không có slug thì không render gì cả
     if (!article.slug) {
         return null;
     }
@@ -44,7 +42,6 @@ function ArticleItem({ article = {}, categoryInfo }) {
     const categorySlug = article.category_slug || categoryInfo?.slug;
     
     const badgeClass = getPastelColorFromSlug(categorySlug);
-    // SỬA: Thêm kiểm tra `created_at` trước khi format
     const formattedDate = article.created_at ? format(new Date(article.created_at), 'dd/MM/yyyy') : 'N/A';
 
     return (
@@ -90,7 +87,7 @@ function ArticleItem({ article = {}, categoryInfo }) {
                     </span>
                 </div>
                 {article.excerpt && (
-                    <p className="mt-2 text-sm text-gray-600 leading-relaxed line-clamp-2">
+                    <p className="mt-2 text-sm text-gray-600 leading-relaxed line-clamp-2 font-medium">
                         {article.excerpt}
                     </p>
                 )}

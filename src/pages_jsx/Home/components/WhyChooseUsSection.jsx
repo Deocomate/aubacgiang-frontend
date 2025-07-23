@@ -1,4 +1,3 @@
-// src/pages_jsx/Home/components/WhyChooseUsSection.jsx
 import React from 'react';
 import { Users, BookOpen, Sparkles, ShieldCheck, TrendingUp, Home } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
@@ -6,7 +5,7 @@ import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/ca
 const features = [
     {
         icon: <Users className="h-10 w-10 text-orange-500" />,
-        title: 'Đội Ngũ Giáo Viên Tâm Huyết',
+        title: 'Đội Ngũ Giáo Viên',
         description: '100% giáo viên bản xứ (Anh, Úc, Mỹ) và Việt Nam đạt chuẩn, có chứng chỉ giảng dạy quốc tế, giàu kinh nghiệm và áp dụng phương pháp "Coach" thay vì "Teach".'
     },
     {
@@ -26,7 +25,7 @@ const features = [
     },
     {
         icon: <Sparkles className="h-10 w-10 text-yellow-500" />,
-        title: 'Môi Trường Truyền Cảm Hứng',
+        title: 'Môi Trường Học Tập',
         description: 'A&U không chỉ là nơi học, mà là một cộng đồng nơi học viên được giao lưu, trao đổi kiến thức và trải nghiệm văn hóa đa dạng trong một môi trường đầy cảm hứng.'
     },
     {
@@ -44,7 +43,7 @@ function WhyChooseUsSection() {
                     <h2 className="text-4xl md:text-5xl font-extrabold text-gray-800 tracking-tight">
                         Tại sao chọn A&U English?
                     </h2>
-                    <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
+                    <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto font-medium">
                         Chúng tôi tự hào mang đến một môi trường học tập Anh ngữ toàn diện, nơi chất lượng và sự tận tâm luôn được đặt lên hàng đầu.
                     </p>
                 </div>
@@ -63,7 +62,7 @@ function WhyChooseUsSection() {
                                     {feature.title}
                                 </CardTitle>
                             </CardHeader>
-                            <CardDescription className="text-gray-600 text-base">
+                            <CardDescription className="text-gray-600 text-base font-medium">
                                 {feature.description}
                             </CardDescription>
                         </Card>

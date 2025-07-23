@@ -8,7 +8,6 @@ import { Carousel, CarouselContent, CarouselItem, CarouselDots } from "@/compone
 import Autoplay from "embla-carousel-autoplay";
 import Link from 'next/link';
 
-// SỬA: Thêm giá trị mặc định cho prop `banner` với cấu trúc đầy đủ
 function HeroSection({ banner = { title: 'Welcome to A&U English', description: 'Your journey to fluency starts here.', images: [] } }) {
     const { title, description, images } = banner;
 
@@ -16,7 +15,6 @@ function HeroSection({ banner = { title: 'Welcome to A&U English', description: 
         Autoplay({ delay: 5000, stopOnInteraction: true })
     );
 
-    // SỬA: Thêm ảnh fallback nếu mảng `images` rỗng
     const displayImages = images.length > 0 ? images : ['https://placehold.co/1920x1080/EEE/31343C?text=A%26U+English'];
 
     return (

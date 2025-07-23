@@ -23,7 +23,7 @@ function KeyResourcesSection() {
                                     <CardTitle className="mt-4">{resource.title}</CardTitle>
                                 </CardHeader>
                                 <CardContent>
-                                    <p className="text-sm text-gray-500">{resource.description}</p>
+                                    <p className="text-sm text-gray-500 font-medium">{resource.description}</p>
                                 </CardContent>
                             </Card>
                         </Link>

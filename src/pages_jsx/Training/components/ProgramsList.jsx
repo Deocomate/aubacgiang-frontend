@@ -77,7 +77,7 @@ function ProgramCard({ program, reverse = false }) {
                     {program.title}
                 </h3>
                 <div 
-                    className="mt-4 leading-relaxed text-gray-600 line-clamp-3" 
+                    className="mt-4 leading-relaxed text-gray-700 font-medium line-clamp-3" 
                     dangerouslySetInnerHTML={{ __html: program.description }} 
                 />
                 <div className="mt-6 flex justify-center md:justify-start">

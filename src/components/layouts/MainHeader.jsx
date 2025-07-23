@@ -41,7 +41,7 @@ function MainHeader() {
                                 height={50}
                                 className="object-contain"
                             />
-                            <span className="font-bold text-2xl xl:text-3xl text-gray-800">
+                            <span className="font-extrabold text-2xl xl:text-3xl text-gray-800">
                                 A&U English
                             </span>
                         </Link>
@@ -52,7 +52,7 @@ function MainHeader() {
                                     <Link
                                         key={item.href}
                                         href={item.href}
-                                        className={`relative px-2 py-2 text-sm xl:text-base font-medium transition-colors duration-300 rounded-md ${pathname === item.href
+                                        className={`relative px-2 py-2 text-sm xl:text-base font-semibold transition-colors duration-300 rounded-md ${pathname === item.href
                                             ? 'text-orange-500'
                                             : 'text-gray-700 hover:text-orange-500'
                                             }`}
@@ -66,7 +66,7 @@ function MainHeader() {
                             </nav>
                             <div className="ml-4">
                                 <DialogTrigger asChild>
-                                    <Button className="bg-orange-500 hover:bg-orange-600 text-white font-semibold">
+                                    <Button className="bg-orange-500 hover:bg-orange-600 text-white font-bold">
                                         Đăng ký tư vấn
                                     </Button>
                                 </DialogTrigger>
@@ -86,7 +86,7 @@ function MainHeader() {
                                 <Link
                                     key={item.href}
                                     href={item.href}
-                                    className={`text-lg font-medium transition-colors duration-200 ${pathname === item.href ? 'text-orange-500' : 'text-gray-700 hover:text-orange-500'
+                                    className={`text-lg font-semibold transition-colors duration-200 ${pathname === item.href ? 'text-orange-500' : 'text-gray-700 hover:text-orange-500'
                                         }`}
                                     onClick={toggleMobileMenu}
                                 >
@@ -95,7 +95,7 @@ function MainHeader() {
                             ))}
                             <div className="mt-6 w-full pt-4 border-t">
                                 <DialogTrigger asChild>
-                                    <Button onClick={() => setIsMobileMenuOpen(false)} className="bg-orange-500 hover:bg-orange-600 w-full text-white font-semibold">
+                                    <Button onClick={() => setIsMobileMenuOpen(false)} className="bg-orange-500 hover:bg-orange-600 w-full text-white font-bold">
                                         Đăng ký tư vấn
                                     </Button>
                                 </DialogTrigger>

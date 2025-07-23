@@ -1,8 +1,15 @@
+import { Raleway } from 'next/font/google';
 import "@/assets/css/globals.css";
 import MainFooter from "@/components/layouts/MainFooter";
 import MainHeader from "@/components/layouts/MainHeader";
-// THÊM: Import Toaster
 import { Toaster } from "@/components/ui/sonner";
+
+const raleway = Raleway({
+  subsets: ['latin', 'vietnamese'],
+  weight: ['300', '400', '500', '600', '700', '800', '900'],
+  display: 'swap',
+  variable: '--font-raleway',
+});
 
 export const metadata = {
   title: "A & U Bắc Giang",
@@ -11,12 +18,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="vi">
+    <html lang="vi" className={raleway.variable}>
       <body>
         <MainHeader />
         {children}
         <MainFooter />
-        {/* THÊM: Component Toaster để hiển thị thông báo */}
         <Toaster richColors position="top-center" />
       </body>
     </html>
