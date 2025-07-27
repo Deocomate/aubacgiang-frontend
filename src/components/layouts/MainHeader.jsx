@@ -1,3 +1,4 @@
+/* FILE: src/components/layouts/MainHeader.jsx */
 "use client"
 import React, { useState } from 'react';
 import Link from 'next/link';
@@ -5,19 +6,48 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Menu as MenuIcon, X } from 'lucide-react';
 import { usePathname } from 'next/navigation';
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger
+} from "@/components/ui/dialog";
 import RegistrationForm from '@/components/shared/RegistrationForm';
+import {
+    NavigationMenu,
+    NavigationMenuContent,
+    NavigationMenuItem,
+    NavigationMenuLink,
+    NavigationMenuList,
+    NavigationMenuTrigger,
+    navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu";
+import { cn } from "@/lib/utils";
 
-const navigation = [
-    { label: 'Trang chủ', href: '/' },
-    { label: 'Tin tức & Sự kiện', href: '/news' },
-    { label: 'Chương trình học', href: '/training' },
-    { label: 'Đội ngũ giáo viên', href: '/teachers' },
-    { label: 'Góc phụ huynh', href: '/parents-corner' },
-    { label: 'Liên hệ', href: '/contact' },
-];
+const ListItem = React.forwardRef(({ className, title, href, ...props }, ref) => {
+    return (
+        <li>
+            <NavigationMenuLink asChild>
+                <Link
+                    href={href || '#'}
+                    ref={ref}
+                    className={cn(
+                        "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-orange-50 hover:text-orange-600 focus:bg-accent focus:text-accent-foreground",
+                        className
+                    )}
+                    {...props}
+                >
+                    <div className="text-sm font-medium leading-none">{title}</div>
+                </Link>
+            </NavigationMenuLink>
+        </li>
+    );
+});
+ListItem.displayName = "ListItem"
 
-function MainHeader() {
+function MainHeader({ navigation = [] }) {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isRegisterDialogOpen, setIsRegisterDialogOpen] = useState(false);
     const pathname = usePathname();
@@ -25,6 +55,21 @@ function MainHeader() {
     const toggleMobileMenu = () => {
         setIsMobileMenuOpen(!isMobileMenuOpen);
     };
+
+    const getLinkHref = (item, parentUrl = '') => {
+        if (!item.url) return '/';
+
+        if (parentUrl) {
+            if (parentUrl === 'news') {
+                return `/category/${item.url}`;
+            }
+            if (parentUrl === 'training') {
+                return `/training/${item.url}`;
+            }
+        }
+
+        return `/${item.url}`;
+    }
 
     return (
         <Dialog open={isRegisterDialogOpen} onOpenChange={setIsRegisterDialogOpen}>
@@ -47,23 +92,52 @@ function MainHeader() {
                         </Link>
 
                         <div className="hidden md:flex items-center">
-                            <nav className="flex items-center gap-1 xl:gap-2">
-                                {navigation.map((item) => (
-                                    <Link
-                                        key={item.href}
-                                        href={item.href}
-                                        className={`relative px-2 py-2 text-sm xl:text-base font-semibold transition-colors duration-300 rounded-md ${pathname === item.href
-                                            ? 'text-orange-500'
-                                            : 'text-gray-700 hover:text-orange-500'
-                                            }`}
-                                    >
-                                        {item.label}
-                                        {pathname === item.href && (
-                                            <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2/3 h-0.5 bg-orange-500 rounded-full" />
-                                        )}
-                                    </Link>
-                                ))}
-                            </nav>
+                            <NavigationMenu>
+                                <NavigationMenuList className="gap-1 xl:gap-2">
+                                    {navigation.map((item) => (
+                                        <NavigationMenuItem key={item.id}>
+                                            {item.children && item.children.length > 0 ? (
+                                                <>
+                                                    <NavigationMenuTrigger
+                                                        className={cn("bg-transparent px-2 py-2 text-sm xl:text-base font-semibold data-[state=open]:text-orange-500", {
+                                                            "text-orange-500": pathname.startsWith(getLinkHref(item)) && item.url !== null,
+                                                            "text-gray-700 hover:text-orange-500": !pathname.startsWith(getLinkHref(item))
+                                                        })}
+                                                    >
+                                                        <Link href={getLinkHref(item)} className="flex items-center">
+                                                            {item.name}
+                                                        </Link>
+                                                    </NavigationMenuTrigger>
+                                                    <NavigationMenuContent className="bg-white">
+                                                        <ul className="grid gap-1 p-2 md:w-[200px] lg:w-[250px]">
+                                                            {item.children.map((child) => (
+                                                                <ListItem
+                                                                    key={child.id}
+                                                                    title={child.name}
+                                                                    href={getLinkHref(child, item.url)}
+                                                                />
+                                                            ))}
+                                                        </ul>
+                                                    </NavigationMenuContent>
+                                                </>
+                                            ) : (
+                                                <NavigationMenuLink asChild>
+                                                    <Link
+                                                        href={getLinkHref(item)}
+                                                        className={cn(navigationMenuTriggerStyle(), "bg-transparent px-2 py-2 text-sm xl:text-base font-semibold", {
+                                                            "text-orange-500": pathname === getLinkHref(item),
+                                                            "text-gray-700 hover:text-orange-500": pathname !== getLinkHref(item)
+                                                        })}
+                                                    >
+                                                        {item.name}
+                                                    </Link>
+                                                </NavigationMenuLink>
+                                            )}
+                                        </NavigationMenuItem>
+                                    ))}
+                                </NavigationMenuList>
+                            </NavigationMenu>
+
                             <div className="ml-4">
                                 <DialogTrigger asChild>
                                     <Button className="bg-orange-500 hover:bg-orange-600 text-white font-bold">
@@ -84,13 +158,12 @@ function MainHeader() {
                         <nav className="flex flex-col items-center space-y-4 py-6 px-4">
                             {navigation.map((item) => (
                                 <Link
-                                    key={item.href}
-                                    href={item.href}
-                                    className={`text-lg font-semibold transition-colors duration-200 ${pathname === item.href ? 'text-orange-500' : 'text-gray-700 hover:text-orange-500'
-                                        }`}
+                                    key={item.id}
+                                    href={getLinkHref(item)}
+                                    className={`text-lg font-semibold transition-colors duration-200 ${pathname === getLinkHref(item) ? 'text-orange-500' : 'text-gray-700 hover:text-orange-500'}`}
                                     onClick={toggleMobileMenu}
                                 >
-                                    {item.label}
+                                    {item.name}
                                 </Link>
                             ))}
                             <div className="mt-6 w-full pt-4 border-t">

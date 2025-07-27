@@ -1,8 +1,10 @@
+// src/app/layout.js
 import { Raleway } from 'next/font/google';
 import "@/assets/css/globals.css";
 import MainFooter from "@/components/layouts/MainFooter";
 import MainHeader from "@/components/layouts/MainHeader";
 import { Toaster } from "@/components/ui/sonner";
+import { getMenus } from '@/services/menuService';
 
 const raleway = Raleway({
   subsets: ['latin', 'vietnamese'],
@@ -16,15 +18,17 @@ export const metadata = {
   description: "A & U Bắc Giang",
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const menuData = await getMenus();
+
   return (
-    <html lang="vi" className={raleway.variable}>
+      <html lang="vi" className={raleway.variable}>
       <body>
-        <MainHeader />
-        {children}
-        <MainFooter />
-        <Toaster richColors position="top-center" />
+      <MainHeader navigation={menuData} />
+      {children}
+      <MainFooter />
+      <Toaster richColors position="top-center" />
       </body>
-    </html>
+      </html>
   );
 }
