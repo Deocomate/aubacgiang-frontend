@@ -1,3 +1,4 @@
+/* FILE: src/pages_jsx/Home/components/TeachersSection.jsx */
 "use client";
 
 import React from 'react';
@@ -50,7 +51,6 @@ const TeacherCard = ({ teacher, onClick, onSocialClick }) => (
         </CardHeader>
         <CardContent className="flex-grow mt-4 text-left text-gray-600 w-full">
             <ul className="list-disc list-inside space-y-1">
-                {/* SỬA: Thêm kiểm tra teacher.qualifications tồn tại trước khi map */}
                 {teacher.qualifications && teacher.qualifications.map((q, i) => (
                     <li key={i}>{q}</li>
                 ))}
@@ -75,7 +75,6 @@ const TeacherCard = ({ teacher, onClick, onSocialClick }) => (
     </Card>
 );
 
-// SỬA: Thêm giá trị mặc định cho prop `teachers`
 function TeachersSection({ teachers = [] }) {
     const router = useRouter();
 
@@ -114,15 +113,15 @@ function TeachersSection({ teachers = [] }) {
                 </div>
 
                 <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
-                    {teachers.map((teacher) => (
+                    {teachers.slice(0, 3).map((teacher) => (
                         <TeacherCard key={teacher.id} teacher={teacher} onClick={handleCardClick} onSocialClick={handleSocialClick} />
                     ))}
                 </div>
-                
+
                 <div className="md:hidden">
                     <Carousel opts={{ loop: true }} className="w-full mx-auto">
                         <CarouselContent>
-                            {teachers.map((teacher) => (
+                            {teachers.slice(0, 3).map((teacher) => (
                                 <CarouselItem key={teacher.id}>
                                     <div className="p-1 h-full">
                                         <TeacherCard teacher={teacher} onClick={handleCardClick} onSocialClick={handleSocialClick} />

@@ -7,15 +7,15 @@ function PhilosophySection() {
             <div className="container mx-auto px-4">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
                     <div className="prose prose-lg max-w-none text-center lg:text-left prose-p:font-medium">
-                        <h2 className="text-base font-semibold leading-7 text-orange-500">Triết Lý Giảng Dạy</h2>
-                        <p className="mt-2 text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">
-                            Không Chỉ Dạy, Mà Là Huấn Luyện
+                        <h2 className="text-base font-semibold leading-7 text-orange-500">Đội ngũ giáo viên chất lượng</h2>
+                        <p className="mt-2 text-4xl font-extrabold tracking-tight text-gray-900">
+                            Yếu tố cốt lõi tạo nên sự khác biệt tại AU
                         </p>
                         <p className="mt-6 leading-8 text-gray-600">
-                            Một trong những yếu tố quan trọng nhất - quyết định thành công của người học tiếng Anh, chính là đội ngũ Giáo Viên. Tại A&U Bắc Giang, triết lý giảng dạy của đội ngũ Giáo Viên chính là <strong className="text-orange-600">"We don't teach - We coach"</strong>.
+                            AU đặc biệt chú trọng đến chất lượng nhân sự trong công tác giảng dạy. Giáo viên nước ngoài tại trung tâm là người bản ngữ đến từ các quốc gia như Anh, Mỹ, sở hữu đầy đủ bằng cấp và chứng chỉ giảng dạy tiếng Anh quốc tế. Giáo viên  được tuyển chọn kỹ lưỡng, đào tạo bài bản và cam kết làm việc lâu dài tại AU, góp phần tạo nên sự ổn định và hiệu quả trong quá trình học tập của học viên.
                         </p>
                         <p className="mt-4 leading-8 text-gray-600">
-                            Với triết lý đó, Giáo Viên của A&U Bắc Giang không phải những người thầy, người cô như bình thường, mà là những huấn luyện viên tâm huyết, những người bạn sẵn sàng đồng hành bất kể ngày đêm trên con đường chinh phục tiếng Anh của học viên.
+                            Bên cạnh đó, đội ngũ giáo viên Việt Nam đều tốt nghiệp chuyên ngành Sư phạm tiếng Anh, có chuyên môn vững vàng, đồng thời luôn mang đến nguồn năng lượng tích cực và tâm huyết với nghề – trở thành người bạn đồng hành đáng tin cậy của học sinh trong mỗi giờ học
                         </p>
                     </div>
                     <div className="w-full h-[500px] relative">

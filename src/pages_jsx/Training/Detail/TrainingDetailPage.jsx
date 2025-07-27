@@ -3,7 +3,6 @@ import CourseHero from './components/CourseHero';
 import CourseReviewVideo from './components/CourseReviewVideo';
 import CourseOverview from './components/CourseOverview';
 import CourseGallery from './components/CourseGallery';
-import SkillBreakdown from './components/SkillBreakdown';
 import CourseContentSection from './components/CourseContentSection';
 import CourseCurriculum from './components/CourseCurriculum';
 import RegistrationCta from './components/RegistrationCta';
@@ -53,7 +52,6 @@ function TrainingDetailPage({ course, otherCourses }) {
             {course.youtube_review_link && (
                 <CourseReviewVideo youtubeUrl={course.youtube_review_link} />
             )}
-            <SkillBreakdown skills={skillsData} />
             <CourseContentSection content={course.content} />
             <CourseCurriculum curriculum={formatCurriculum(course.curriculum)} />
             <RegistrationCta courseTitle={course.title} courseId={course.id} />

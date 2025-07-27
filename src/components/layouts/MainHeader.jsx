@@ -91,7 +91,7 @@ function MainHeader({ navigation = [] }) {
                                             {item.children && item.children.length > 0 ? (
                                                 <>
                                                     <NavigationMenuTrigger
-                                                        className={cn("bg-transparent px-2 xl:px-3 py-2 text-sm font-semibold data-[state=open]:text-orange-500", {
+                                                        className={cn("bg-transparent px-2 xl:px-3 py-2 text-sm xl:text-base font-semibold data-[state=open]:text-orange-500", {
                                                             "text-orange-500": pathname.startsWith(getLinkHref(item)) && item.url !== null,
                                                             "text-gray-700 hover:text-orange-500": !pathname.startsWith(getLinkHref(item))
                                                         })}
@@ -116,7 +116,7 @@ function MainHeader({ navigation = [] }) {
                                                 <NavigationMenuLink asChild>
                                                     <Link
                                                         href={getLinkHref(item)}
-                                                        className={cn(navigationMenuTriggerStyle(), "bg-transparent px-2 xl:px-3 py-2 text-sm font-semibold", {
+                                                        className={cn(navigationMenuTriggerStyle(), "bg-transparent px-2 xl:px-3 py-2 text-sm xl:text-base font-semibold", {
                                                             "text-orange-500": pathname === getLinkHref(item),
                                                             "text-gray-700 hover:text-orange-500": pathname !== getLinkHref(item)
                                                         })}
@@ -132,7 +132,7 @@ function MainHeader({ navigation = [] }) {
 
                             <div className="ml-2 xl:ml-4">
                                 <DialogTrigger asChild>
-                                    <Button size="sm" className="bg-orange-500 hover:bg-orange-600 text-white font-bold px-3 lg:px-4">
+                                    <Button className="bg-orange-500 hover:bg-orange-600 text-white font-bold px-3 lg:px-4 text-sm xl:text-base">
                                         Đăng ký tư vấn
                                     </Button>
                                 </DialogTrigger>
