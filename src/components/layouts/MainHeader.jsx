@@ -58,48 +58,40 @@ function MainHeader({ navigation = [] }) {
 
     const getLinkHref = (item, parentUrl = '') => {
         if (!item.url) return '/';
-
         if (parentUrl) {
-            if (parentUrl === 'news') {
-                return `/category/${item.url}`;
-            }
-            if (parentUrl === 'training') {
-                return `/training/${item.url}`;
-            }
+            if (parentUrl === 'news') return `/category/${item.url}`;
+            if (parentUrl === 'training') return `/training/${item.url}`;
         }
-
         return `/${item.url}`;
     }
 
     return (
         <Dialog open={isRegisterDialogOpen} onOpenChange={setIsRegisterDialogOpen}>
-            <header
-                className="fixed top-0 left-0 w-full z-30 bg-white/90 backdrop-blur-sm shadow-md transition-all duration-300"
-            >
+            <header className="fixed top-0 left-0 w-full z-30 bg-white/90 backdrop-blur-sm shadow-md transition-all duration-300">
                 <div className="container mx-auto px-4">
                     <div className="flex items-center justify-between h-20">
-                        <Link href="/" className="flex items-center gap-3">
+                        <Link href="/" className="flex items-center gap-2">
                             <Image
                                 src="/assets/images/logo-au.png"
                                 alt="Trung tâm Anh ngữ A&U"
-                                width={50}
-                                height={50}
+                                width={45}
+                                height={45}
                                 className="object-contain"
                             />
-                            <span className="font-extrabold text-2xl xl:text-3xl text-gray-800">
+                            <span className="font-extrabold text-xl lg:text-2xl text-gray-800">
                                 A&U English
                             </span>
                         </Link>
 
-                        <div className="hidden md:flex items-center">
+                        <div className="hidden lg:flex items-center flex-1 justify-end">
                             <NavigationMenu viewport={false}>
-                                <NavigationMenuList className="gap-1 xl:gap-2">
+                                <NavigationMenuList className="gap-1">
                                     {navigation.map((item) => (
                                         <NavigationMenuItem key={item.id}>
                                             {item.children && item.children.length > 0 ? (
                                                 <>
                                                     <NavigationMenuTrigger
-                                                        className={cn("bg-transparent px-2 py-2 text-sm xl:text-base font-semibold data-[state=open]:text-orange-500", {
+                                                        className={cn("bg-transparent px-2 xl:px-3 py-2 text-sm font-semibold data-[state=open]:text-orange-500", {
                                                             "text-orange-500": pathname.startsWith(getLinkHref(item)) && item.url !== null,
                                                             "text-gray-700 hover:text-orange-500": !pathname.startsWith(getLinkHref(item))
                                                         })}
@@ -109,7 +101,7 @@ function MainHeader({ navigation = [] }) {
                                                         </Link>
                                                     </NavigationMenuTrigger>
                                                     <NavigationMenuContent className="bg-white">
-                                                        <ul className="grid gap-1 p-2 md:w-[170px] lg:w-[220px]">
+                                                        <ul className="grid gap-1 p-2 w-[200px] lg:w-[220px]">
                                                             {item.children.map((child) => (
                                                                 <ListItem
                                                                     key={child.id}
@@ -124,7 +116,7 @@ function MainHeader({ navigation = [] }) {
                                                 <NavigationMenuLink asChild>
                                                     <Link
                                                         href={getLinkHref(item)}
-                                                        className={cn(navigationMenuTriggerStyle(), "bg-transparent px-2 py-2 text-sm xl:text-base font-semibold", {
+                                                        className={cn(navigationMenuTriggerStyle(), "bg-transparent px-2 xl:px-3 py-2 text-sm font-semibold", {
                                                             "text-orange-500": pathname === getLinkHref(item),
                                                             "text-gray-700 hover:text-orange-500": pathname !== getLinkHref(item)
                                                         })}
@@ -138,23 +130,23 @@ function MainHeader({ navigation = [] }) {
                                 </NavigationMenuList>
                             </NavigationMenu>
 
-                            <div className="ml-4">
+                            <div className="ml-2 xl:ml-4">
                                 <DialogTrigger asChild>
-                                    <Button className="bg-orange-500 hover:bg-orange-600 text-white font-bold">
+                                    <Button size="sm" className="bg-orange-500 hover:bg-orange-600 text-white font-bold px-3 lg:px-4">
                                         Đăng ký tư vấn
                                     </Button>
                                 </DialogTrigger>
                             </div>
                         </div>
 
-                        <button onClick={toggleMobileMenu} className="md:hidden text-gray-800">
+                        <button onClick={toggleMobileMenu} className="lg:hidden text-gray-800">
                             {isMobileMenuOpen ? <X className="h-7 w-7" /> : <MenuIcon className="h-7 w-7" />}
                         </button>
                     </div>
                 </div>
 
                 {isMobileMenuOpen && (
-                    <div className="md:hidden bg-white shadow-lg absolute top-full left-0 w-full">
+                    <div className="lg:hidden bg-white shadow-lg absolute top-full left-0 w-full">
                         <nav className="flex flex-col items-center space-y-4 py-6 px-4">
                             {navigation.map((item) => (
                                 <Link
