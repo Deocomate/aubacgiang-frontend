@@ -92,7 +92,7 @@ function MainHeader({ navigation = [] }) {
                         </Link>
 
                         <div className="hidden md:flex items-center">
-                            <NavigationMenu>
+                            <NavigationMenu viewport={false}>
                                 <NavigationMenuList className="gap-1 xl:gap-2">
                                     {navigation.map((item) => (
                                         <NavigationMenuItem key={item.id}>
@@ -109,7 +109,7 @@ function MainHeader({ navigation = [] }) {
                                                         </Link>
                                                     </NavigationMenuTrigger>
                                                     <NavigationMenuContent className="bg-white">
-                                                        <ul className="grid gap-1 p-2 md:w-[200px] lg:w-[250px]">
+                                                        <ul className="grid gap-1 p-2 md:w-[170px] lg:w-[220px]">
                                                             {item.children.map((child) => (
                                                                 <ListItem
                                                                     key={child.id}
