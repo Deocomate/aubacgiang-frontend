@@ -9,7 +9,7 @@ const quickLinks = [
     { label: 'Tin tức và sự kiện', href: '/news' },
     { label: 'Chương trình học', href: '/training' },
     { label: 'Đội ngũ giáo viên', href: '/teachers' },
-    { label: 'Góc phụ huynh', href: '/parents-corner' },
+    { label: 'Thư viện AU', href: '/parents-corner' },
     { label: 'Liên hệ', href: '/contact' },
 ];
 
@@ -23,7 +23,7 @@ const socialLinks = [
 
 const contactInfo = {
     address: 'AU Lạng Giang: Số 50.51 khu HDB, tổ dân phố Toàn Mỹ, xã Lạng Giang, tỉnh Bắc Giang.',
-    phone: '1900 1234',
+    phone: '0979 798 426',
     email: 'info@auenglish.edu.vn',
 };
 
