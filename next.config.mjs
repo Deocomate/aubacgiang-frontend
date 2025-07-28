@@ -16,6 +16,11 @@ const nextConfig = {
             },
             {
                 protocol: 'https',
+                hostname: 'demo.ytyhomestaydaingan.vn',
+                pathname: '/userfiles/**',
+            },
+            {
+                protocol: 'https',
                 hostname: 'placehold.co',
                 port: '',
                 pathname: '/**',
