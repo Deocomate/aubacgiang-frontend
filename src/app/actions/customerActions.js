@@ -15,15 +15,13 @@ export async function registerCustomerAction(formData, trainingId) {
             note: formData.ghiChu || "",
         };
 
-        console.log(apiData)
-
         const result = await registerCustomer(apiData);
 
         return {success: true, data: result};
+
     } catch (error) {
 
-        console.log(error)
+        return {success: false, error: error};
 
-        return {success: false, error: error.message};
     }
 }
