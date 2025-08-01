@@ -36,6 +36,8 @@ function RegistrationForm({courseId, onFormSubmitSuccess}) {
     });
 
     async function onSubmit(values) {
+
+        console.log(values, courseId)
         const result = await registerCustomerAction(values, courseId);
 
         if (result.success) {
@@ -55,98 +57,98 @@ function RegistrationForm({courseId, onFormSubmitSuccess}) {
     }
 
     return (<Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 pt-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <FormField
-                        control={form.control}
-                        name="hoTenPhuHuynh"
-                        render={({field}) => (<FormItem>
-                                <FormLabel>Họ và tên phụ huynh</FormLabel>
-                                <FormControl>
-                                    <Input placeholder="Nguyễn Văn A" {...field} />
-                                </FormControl>
-                                <FormMessage/>
-                            </FormItem>)}
-                    />
-                    <FormField
-                        control={form.control}
-                        name="soDienThoai"
-                        render={({field}) => (<FormItem>
-                                <FormLabel>Số điện thoại</FormLabel>
-                                <FormControl>
-                                    <Input type="tel" placeholder="09xxxxxxxx" {...field} />
-                                </FormControl>
-                                <FormMessage/>
-                            </FormItem>)}
-                    />
-                </div>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 pt-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <FormField
                     control={form.control}
-                    name="email"
+                    name="hoTenPhuHuynh"
                     render={({field}) => (<FormItem>
-                            <FormLabel>Email</FormLabel>
-                            <FormControl>
-                                <Input type="email" placeholder="example@email.com" {...field} />
-                            </FormControl>
-                            <FormMessage/>
-                        </FormItem>)}
-                />
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <FormField
-                        control={form.control}
-                        name="hoTenHocVien"
-                        render={({field}) => (<FormItem>
-                                <FormLabel>Họ và tên học viên</FormLabel>
-                                <FormControl>
-                                    <Input placeholder="Nguyễn Thị B" {...field} />
-                                </FormControl>
-                                <FormMessage/>
-                            </FormItem>)}
-                    />
-                    <FormField
-                        control={form.control}
-                        name="ngaySinhHocVien"
-                        render={({field}) => (<FormItem>
-                                <FormLabel>Ngày sinh học viên</FormLabel>
-                                <FormControl>
-                                    <Input type="date" className="cursor-pointer" {...field} />
-                                </FormControl>
-                                <FormMessage/>
-                            </FormItem>)}
-                    />
-                </div>
-                <FormField
-                    control={form.control}
-                    name="diaChi"
-                    render={({field}) => (<FormItem>
-                            <FormLabel>Địa chỉ</FormLabel>
-                            <FormControl>
-                                <Input placeholder="Số nhà, tên đường, phường/xã..." {...field} />
-                            </FormControl>
-                            <FormMessage/>
-                        </FormItem>)}
+                        <FormLabel>Họ và tên phụ huynh</FormLabel>
+                        <FormControl>
+                            <Input placeholder="Nguyễn Văn A" {...field} />
+                        </FormControl>
+                        <FormMessage/>
+                    </FormItem>)}
                 />
                 <FormField
                     control={form.control}
-                    name="ghiChu"
+                    name="soDienThoai"
                     render={({field}) => (<FormItem>
-                            <FormLabel>Ghi chú (tùy chọn)</FormLabel>
-                            <FormControl>
-                                <Textarea placeholder="Ví dụ: Cần tư vấn thêm về lịch học..." {...field} />
-                            </FormControl>
-                            <FormMessage/>
-                        </FormItem>)}
+                        <FormLabel>Số điện thoại</FormLabel>
+                        <FormControl>
+                            <Input type="tel" placeholder="09xxxxxxxx" {...field} />
+                        </FormControl>
+                        <FormMessage/>
+                    </FormItem>)}
                 />
-                <Button type="submit"
-                        className="w-full bg-orange-500 hover:bg-orange-600 text-base text-white cursor-pointer"
-                        size="lg" disabled={form.formState.isSubmitting}>
-                    {form.formState.isSubmitting ? (<>
-                            <Loader2 className="mr-2 h-4 w-4 animate-spin"/>
-                            Đang gửi...
-                        </>) : "Gửi thông tin"}
-                </Button>
-            </form>
-        </Form>);
+            </div>
+            <FormField
+                control={form.control}
+                name="email"
+                render={({field}) => (<FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                        <Input type="email" placeholder="example@email.com" {...field} />
+                    </FormControl>
+                    <FormMessage/>
+                </FormItem>)}
+            />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <FormField
+                    control={form.control}
+                    name="hoTenHocVien"
+                    render={({field}) => (<FormItem>
+                        <FormLabel>Họ và tên học viên</FormLabel>
+                        <FormControl>
+                            <Input placeholder="Nguyễn Thị B" {...field} />
+                        </FormControl>
+                        <FormMessage/>
+                    </FormItem>)}
+                />
+                <FormField
+                    control={form.control}
+                    name="ngaySinhHocVien"
+                    render={({field}) => (<FormItem>
+                        <FormLabel>Ngày sinh học viên</FormLabel>
+                        <FormControl>
+                            <Input type="date" className="cursor-pointer" {...field} />
+                        </FormControl>
+                        <FormMessage/>
+                    </FormItem>)}
+                />
+            </div>
+            <FormField
+                control={form.control}
+                name="diaChi"
+                render={({field}) => (<FormItem>
+                    <FormLabel>Địa chỉ</FormLabel>
+                    <FormControl>
+                        <Input placeholder="Số nhà, tên đường, phường/xã..." {...field} />
+                    </FormControl>
+                    <FormMessage/>
+                </FormItem>)}
+            />
+            <FormField
+                control={form.control}
+                name="ghiChu"
+                render={({field}) => (<FormItem>
+                    <FormLabel>Ghi chú (tùy chọn)</FormLabel>
+                    <FormControl>
+                        <Textarea placeholder="Ví dụ: Cần tư vấn thêm về lịch học..." {...field} />
+                    </FormControl>
+                    <FormMessage/>
+                </FormItem>)}
+            />
+            <Button type="submit"
+                    className="w-full bg-orange-500 hover:bg-orange-600 text-base text-white cursor-pointer"
+                    size="lg" disabled={form.formState.isSubmitting}>
+                {form.formState.isSubmitting ? (<>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin"/>
+                    Đang gửi...
+                </>) : "Gửi thông tin"}
+            </Button>
+        </form>
+    </Form>);
 }
 
 export default RegistrationForm;
