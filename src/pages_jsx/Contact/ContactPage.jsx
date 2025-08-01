@@ -1,8 +1,8 @@
 "use client";
 
 import React from 'react';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { MapPin, Phone, Mail, Facebook } from 'lucide-react';
+import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
+import {MapPin, Phone, Mail, Facebook} from 'lucide-react';
 import Link from 'next/link';
 
 const extractMapSrc = (iframeString) => {
@@ -12,9 +12,13 @@ const extractMapSrc = (iframeString) => {
 };
 
 // SỬA: Thêm giá trị mặc định cho contactData và các thuộc tính của nó
-function ContactPage({ contactData = {} }) {
-    const { address: locations = [], phone = '', email = '', facebook = '' } = contactData;
-    
+function ContactPage({contactData = {}}) {
+    const {address: locations = [], phone = '', email = '', facebook = ''} = contactData;
+
+    console.log(contactData)
+
+    console.log(facebook)
+
     const fanpageName = facebook ? facebook.split('/').pop() : 'A&U Language';
 
     const branches = locations.map((loc, index) => ({
@@ -35,28 +39,31 @@ function ContactPage({ contactData = {} }) {
                         <div className="mt-8 space-y-4">
                             {locations.map((location, index) => (
                                 <div key={index} className="flex items-start">
-                                    <MapPin className="h-6 w-6 mr-3 mt-1 flex-shrink-0 text-orange-500" />
+                                    <MapPin className="h-6 w-6 mr-3 mt-1 flex-shrink-0 text-orange-500"/>
                                     <p className="text-gray-700 not-prose my-0">{location.address}</p>
                                 </div>
                             ))}
                         </div>
                         <div className="mt-10 pt-8 border-t border-gray-200 space-y-4">
                             <div className="flex items-center">
-                                <Phone className="h-6 w-6 mr-3 flex-shrink-0 text-orange-500" />
-                                <a href={`tel:${phone}`} className="text-gray-700 not-prose no-underline hover:text-orange-600">
+                                <Phone className="h-6 w-6 mr-3 flex-shrink-0 text-orange-500"/>
+                                <a href={`tel:${phone}`}
+                                   className="text-gray-700 not-prose no-underline hover:text-orange-600">
                                     {phone}
                                 </a>
                             </div>
                             <div className="flex items-center">
-                                <Mail className="h-6 w-6 mr-3 flex-shrink-0 text-orange-500" />
-                                <a href={`mailto:${email}`} className="text-orange-600 not-prose no-underline hover:text-orange-800">
+                                <Mail className="h-6 w-6 mr-3 flex-shrink-0 text-orange-500"/>
+                                <a href={`mailto:${email}`}
+                                   className="text-orange-600 not-prose no-underline hover:text-orange-800">
                                     {email}
                                 </a>
                             </div>
                             <div className="flex items-center">
-                                <Facebook className="h-6 w-6 mr-3 flex-shrink-0 text-orange-500" />
-                                <Link href={facebook || '#'} target="_blank" rel="noopener noreferrer" className="text-orange-600 not-prose no-underline hover:text-orange-800">
-                                    {fanpageName}
+                                <Facebook className="h-6 w-6 mr-3 flex-shrink-0 text-orange-500"/>
+                                <Link href={facebook || '#'} target="_blank" rel="noopener noreferrer"
+                                      className="text-orange-600 not-prose no-underline hover:text-orange-800">
+                                    {facebook}
                                 </Link>
                             </div>
                         </div>
@@ -65,9 +72,9 @@ function ContactPage({ contactData = {} }) {
                     <div className="rounded-lg shadow-2xl overflow-hidden">
                         {branches.length > 0 && (
                             <Tabs defaultValue={branches[0].id} className="w-full flex flex-col h-full">
-                                <TabsList 
+                                <TabsList
                                     className="grid w-full rounded-b-none h-auto p-2 bg-gray-100"
-                                    style={{ gridTemplateColumns: `repeat(${branches.length}, 1fr)` }}
+                                    style={{gridTemplateColumns: `repeat(${branches.length}, 1fr)`}}
                                 >
                                     {branches.map((branch) => (
                                         <TabsTrigger
@@ -86,7 +93,7 @@ function ContactPage({ contactData = {} }) {
                                                 src={branch.mapUrl}
                                                 width="100%"
                                                 height="100%"
-                                                style={{ border: 0, minHeight: '500px' }}
+                                                style={{border: 0, minHeight: '500px'}}
                                                 allowFullScreen=""
                                                 loading="lazy"
                                                 referrerPolicy="no-referrer-when-downgrade"

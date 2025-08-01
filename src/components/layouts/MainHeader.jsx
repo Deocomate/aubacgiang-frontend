@@ -58,13 +58,9 @@ function MainHeader({navigation = []}) {
 
     // Các liên kết tĩnh
     const staticLinks = [{id: 'home', name: 'Trang chủ', url: '/'}, {
-        id: 'teachers',
-        name: 'Đội ngũ giáo viên',
-        url: '/teachers'
-    }, {id: 'parents-corner', name: 'Góc phụ huynh', url: '/parents-corner'}, {
-        id: 'contact',
-        name: 'Liên hệ',
-        url: '/contact'
+        id: 'teachers', name: 'Đội ngũ giáo viên', url: '/teachers'
+    }, {id: 'parents-corner', name: 'Thư viện AU', url: '/parents-corner'}, {
+        id: 'contact', name: 'Liên hệ', url: '/contact'
     },];
 
     // Lọc ra các menu items từ API có children hoặc name cụ thể mà bạn muốn hiện động

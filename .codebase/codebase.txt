@@ -1,8 +1,8 @@
 /* ==========================================================
-   CODEBASE SNAPSHOT - 2025-08-01 10:49:33
+   CODEBASE SNAPSHOT - 2025-08-01 13:28:30
    Project: aubacgiang-frontend
    Text Files Included: 155
-   Items Ignored: 189
+   Items Ignored: 191
    ========================================================== */
 
 /* PROJECT STRUCTURE
@@ -44,158 +44,161 @@
    ├── node_modules/
    ├── public/
    │   ├── assets/
-   │   │   └── images/
-   │   │       ├── logo-au.png
-   │   │       ├── R5AT3838.jpg
-   │   │       ├── R5AT3841.jpg
-   │   │       ├── R5AT3848.jpg
-   │   │       ├── R5AT3853.jpg
-   │   │       ├── R5AT3856.jpg
-   │   │       ├── R5AT3860.jpg
-   │   │       ├── R5AT3865.jpg
-   │   │       ├── R5AT3870.jpg
-   │   │       ├── R5AT3872.jpg
-   │   │       ├── R5AT3875.jpg
-   │   │       ├── R5AT3879.jpg
-   │   │       ├── R5AT3881.jpg
-   │   │       ├── R5AT3884.jpg
-   │   │       ├── R5AT3893.jpg
-   │   │       ├── R5AT3894.jpg
-   │   │       ├── R5AT3898.jpg
-   │   │       ├── R5AT3903.jpg
-   │   │       ├── R5AT3907.jpg
-   │   │       ├── R5AT3909.jpg
-   │   │       ├── R5AT3910.jpg
-   │   │       ├── R5AT3911.jpg
-   │   │       ├── R5AT3914.jpg
-   │   │       ├── R5AT3919.jpg
-   │   │       ├── R5AT3921.jpg
-   │   │       ├── R5AT3923.jpg
-   │   │       ├── R5AT3931.jpg
-   │   │       ├── R5AT3936.jpg
-   │   │       ├── R5AT3939.jpg
-   │   │       ├── R5AT3941.jpg
-   │   │       ├── R5AT3943.jpg
-   │   │       ├── R5AT3945.jpg
-   │   │       ├── R5AT3949.jpg
-   │   │       ├── R5AT3953.jpg
-   │   │       ├── R5AT3957.jpg
-   │   │       ├── R5AT3961.jpg
-   │   │       ├── R5AT3962.jpg
-   │   │       ├── R5AT3963.jpg
-   │   │       ├── R5AT3967.jpg
-   │   │       ├── R5AT3969.jpg
-   │   │       ├── R5AT3975.jpg
-   │   │       ├── R5AT3978.jpg
-   │   │       ├── R5AT3979.jpg
-   │   │       ├── R5AT3980.jpg
-   │   │       ├── R5AT3984.jpg
-   │   │       ├── R5AT3989.jpg
-   │   │       ├── R5AT3990.jpg
-   │   │       ├── R5AT3991.jpg
-   │   │       ├── R5AT3992.jpg
-   │   │       ├── R5AT3995.jpg
-   │   │       ├── R5AT3998.jpg
-   │   │       ├── R5AT3999.jpg
-   │   │       ├── R5AT4002.jpg
-   │   │       ├── R5AT4003.jpg
-   │   │       ├── R5AT4007.jpg
-   │   │       ├── R5AT4010.jpg
-   │   │       ├── R5AT4012.jpg
-   │   │       ├── R5AT4014.jpg
-   │   │       ├── R5AT4016.jpg
-   │   │       ├── R5AT4018.jpg
-   │   │       ├── R5AT4019.jpg
-   │   │       ├── R5AT4022.jpg
-   │   │       ├── R5AT4027.jpg
-   │   │       ├── R5AT4031.jpg
-   │   │       ├── R5AT4032.jpg
-   │   │       ├── R5AT4035.jpg
-   │   │       ├── R5AT4037.jpg
-   │   │       ├── R5AT4040.jpg
-   │   │       ├── R5AT4049.jpg
-   │   │       ├── R5AT4050.jpg
-   │   │       ├── R5AT4053.jpg
-   │   │       ├── R5AT4055.jpg
-   │   │       ├── R5AT4058.jpg
-   │   │       ├── R5AT4061.jpg
-   │   │       ├── R5AT4063.jpg
-   │   │       ├── R5AT4067.jpg
-   │   │       ├── R5AT4071.jpg
-   │   │       ├── R5AT4078.jpg
-   │   │       ├── R5AT4080.jpg
-   │   │       ├── R5AT4083.jpg
-   │   │       ├── R5AT4087.jpg
-   │   │       ├── R5AT4089.jpg
-   │   │       ├── R5AT4092.jpg
-   │   │       ├── R5AT4096.jpg
-   │   │       ├── R5AT4097.jpg
-   │   │       ├── R5AT4099.jpg
-   │   │       ├── R5AT4103.jpg
-   │   │       ├── R5AT4106.jpg
-   │   │       ├── R5AT4110.jpg
-   │   │       ├── R5AT4114.jpg
-   │   │       ├── R5AT4116.jpg
-   │   │       ├── R5AT4117.jpg
-   │   │       ├── R5AT4118.jpg
-   │   │       ├── R5AT4121.jpg
-   │   │       ├── R5AT4123.jpg
-   │   │       ├── R5AT4125.jpg
-   │   │       ├── R5AT4128.jpg
-   │   │       ├── R5AT4131.jpg
-   │   │       ├── R5AT4133.jpg
-   │   │       ├── R5AT4134.jpg
-   │   │       ├── R5AT4136.jpg
-   │   │       ├── R5AT4140.jpg
-   │   │       ├── R5AT4145.jpg
-   │   │       ├── R5AT4153.jpg
-   │   │       ├── R5AT4155.jpg
-   │   │       ├── R5AT4157.jpg
-   │   │       ├── R5AT4159.jpg
-   │   │       ├── R5AT4162.jpg
-   │   │       ├── R5AT4163.jpg
-   │   │       ├── R5AT4167.jpg
-   │   │       ├── R5AT4168.jpg
-   │   │       ├── R5AT4169.jpg
-   │   │       ├── R5AT4170.jpg
-   │   │       ├── R5AT4171.jpg
-   │   │       ├── R5AT4174.jpg
-   │   │       ├── R5AT4176.jpg
-   │   │       ├── R5AT4178.jpg
-   │   │       ├── R5AT4180.jpg
-   │   │       ├── R5AT4181.jpg
-   │   │       ├── R5AT4183.jpg
-   │   │       ├── R5AT4184.jpg
-   │   │       ├── R5AT4186.jpg
-   │   │       ├── R5AT4191.jpg
-   │   │       ├── R5AT4192.jpg
-   │   │       ├── R5AT4193.jpg
-   │   │       ├── R5AT4198.jpg
-   │   │       ├── R5AT4200.jpg
-   │   │       ├── R5AT4202.jpg
-   │   │       ├── R5AT4205.jpg
-   │   │       ├── R5AT4207.jpg
-   │   │       ├── R5AT4208.jpg
-   │   │       ├── R5AT4211.jpg
-   │   │       ├── R5AT4212.jpg
-   │   │       ├── R5AT4215.jpg
-   │   │       ├── R5AT4219.jpg
-   │   │       ├── R5AT4222.jpg
-   │   │       ├── R5AT4226.jpg
-   │   │       ├── R5AT4230.jpg
-   │   │       ├── R5AT4240.jpg
-   │   │       ├── R5AT4246.jpg
-   │   │       ├── R5AT4255.jpg
-   │   │       ├── R5AT4259.jpg
-   │   │       ├── R5AT4262.jpg
-   │   │       ├── R5AT4264.jpg
-   │   │       ├── R5AT4267.jpg
-   │   │       ├── R5AT4270.jpg
-   │   │       ├── R5AT4273.jpg
-   │   │       ├── R5AT4278.jpg
-   │   │       ├── R5AT4282.jpg
-   │   │       ├── R5AT4287.jpg
-   │   │       └── R5AT4290.jpg
+   │   │   ├── images/
+   │   │   │   ├── logo-au.png
+   │   │   │   ├── R5AT3838.jpg
+   │   │   │   ├── R5AT3841.jpg
+   │   │   │   ├── R5AT3848.jpg
+   │   │   │   ├── R5AT3853.jpg
+   │   │   │   ├── R5AT3856.jpg
+   │   │   │   ├── R5AT3860.jpg
+   │   │   │   ├── R5AT3865.jpg
+   │   │   │   ├── R5AT3870.jpg
+   │   │   │   ├── R5AT3872.jpg
+   │   │   │   ├── R5AT3875.jpg
+   │   │   │   ├── R5AT3879.jpg
+   │   │   │   ├── R5AT3881.jpg
+   │   │   │   ├── R5AT3884.jpg
+   │   │   │   ├── R5AT3893.jpg
+   │   │   │   ├── R5AT3894.jpg
+   │   │   │   ├── R5AT3898.jpg
+   │   │   │   ├── R5AT3903.jpg
+   │   │   │   ├── R5AT3907.jpg
+   │   │   │   ├── R5AT3909.jpg
+   │   │   │   ├── R5AT3910.jpg
+   │   │   │   ├── R5AT3911.jpg
+   │   │   │   ├── R5AT3914.jpg
+   │   │   │   ├── R5AT3919.jpg
+   │   │   │   ├── R5AT3921.jpg
+   │   │   │   ├── R5AT3923.jpg
+   │   │   │   ├── R5AT3931.jpg
+   │   │   │   ├── R5AT3936.jpg
+   │   │   │   ├── R5AT3939.jpg
+   │   │   │   ├── R5AT3941.jpg
+   │   │   │   ├── R5AT3943.jpg
+   │   │   │   ├── R5AT3945.jpg
+   │   │   │   ├── R5AT3949.jpg
+   │   │   │   ├── R5AT3953.jpg
+   │   │   │   ├── R5AT3957.jpg
+   │   │   │   ├── R5AT3961.jpg
+   │   │   │   ├── R5AT3962.jpg
+   │   │   │   ├── R5AT3963.jpg
+   │   │   │   ├── R5AT3967.jpg
+   │   │   │   ├── R5AT3969.jpg
+   │   │   │   ├── R5AT3975.jpg
+   │   │   │   ├── R5AT3978.jpg
+   │   │   │   ├── R5AT3979.jpg
+   │   │   │   ├── R5AT3980.jpg
+   │   │   │   ├── R5AT3984.jpg
+   │   │   │   ├── R5AT3989.jpg
+   │   │   │   ├── R5AT3990.jpg
+   │   │   │   ├── R5AT3991.jpg
+   │   │   │   ├── R5AT3992.jpg
+   │   │   │   ├── R5AT3995.jpg
+   │   │   │   ├── R5AT3998.jpg
+   │   │   │   ├── R5AT3999.jpg
+   │   │   │   ├── R5AT4002.jpg
+   │   │   │   ├── R5AT4003.jpg
+   │   │   │   ├── R5AT4007.jpg
+   │   │   │   ├── R5AT4010.jpg
+   │   │   │   ├── R5AT4012.jpg
+   │   │   │   ├── R5AT4014.jpg
+   │   │   │   ├── R5AT4016.jpg
+   │   │   │   ├── R5AT4018.jpg
+   │   │   │   ├── R5AT4019.jpg
+   │   │   │   ├── R5AT4022.jpg
+   │   │   │   ├── R5AT4027.jpg
+   │   │   │   ├── R5AT4031.jpg
+   │   │   │   ├── R5AT4032.jpg
+   │   │   │   ├── R5AT4035.jpg
+   │   │   │   ├── R5AT4037.jpg
+   │   │   │   ├── R5AT4040.jpg
+   │   │   │   ├── R5AT4049.jpg
+   │   │   │   ├── R5AT4050.jpg
+   │   │   │   ├── R5AT4053.jpg
+   │   │   │   ├── R5AT4055.jpg
+   │   │   │   ├── R5AT4058.jpg
+   │   │   │   ├── R5AT4061.jpg
+   │   │   │   ├── R5AT4063.jpg
+   │   │   │   ├── R5AT4067.jpg
+   │   │   │   ├── R5AT4071.jpg
+   │   │   │   ├── R5AT4078.jpg
+   │   │   │   ├── R5AT4080.jpg
+   │   │   │   ├── R5AT4083.jpg
+   │   │   │   ├── R5AT4087.jpg
+   │   │   │   ├── R5AT4089.jpg
+   │   │   │   ├── R5AT4092.jpg
+   │   │   │   ├── R5AT4096.jpg
+   │   │   │   ├── R5AT4097.jpg
+   │   │   │   ├── R5AT4099.jpg
+   │   │   │   ├── R5AT4103.jpg
+   │   │   │   ├── R5AT4106.jpg
+   │   │   │   ├── R5AT4110.jpg
+   │   │   │   ├── R5AT4114.jpg
+   │   │   │   ├── R5AT4116.jpg
+   │   │   │   ├── R5AT4117.jpg
+   │   │   │   ├── R5AT4118.jpg
+   │   │   │   ├── R5AT4121.jpg
+   │   │   │   ├── R5AT4123.jpg
+   │   │   │   ├── R5AT4125.jpg
+   │   │   │   ├── R5AT4128.jpg
+   │   │   │   ├── R5AT4131.jpg
+   │   │   │   ├── R5AT4133.jpg
+   │   │   │   ├── R5AT4134.jpg
+   │   │   │   ├── R5AT4136.jpg
+   │   │   │   ├── R5AT4140.jpg
+   │   │   │   ├── R5AT4145.jpg
+   │   │   │   ├── R5AT4153.jpg
+   │   │   │   ├── R5AT4155.jpg
+   │   │   │   ├── R5AT4157.jpg
+   │   │   │   ├── R5AT4159.jpg
+   │   │   │   ├── R5AT4162.jpg
+   │   │   │   ├── R5AT4163.jpg
+   │   │   │   ├── R5AT4167.jpg
+   │   │   │   ├── R5AT4168.jpg
+   │   │   │   ├── R5AT4169.jpg
+   │   │   │   ├── R5AT4170.jpg
+   │   │   │   ├── R5AT4171.jpg
+   │   │   │   ├── R5AT4174.jpg
+   │   │   │   ├── R5AT4176.jpg
+   │   │   │   ├── R5AT4178.jpg
+   │   │   │   ├── R5AT4180.jpg
+   │   │   │   ├── R5AT4181.jpg
+   │   │   │   ├── R5AT4183.jpg
+   │   │   │   ├── R5AT4184.jpg
+   │   │   │   ├── R5AT4186.jpg
+   │   │   │   ├── R5AT4191.jpg
+   │   │   │   ├── R5AT4192.jpg
+   │   │   │   ├── R5AT4193.jpg
+   │   │   │   ├── R5AT4198.jpg
+   │   │   │   ├── R5AT4200.jpg
+   │   │   │   ├── R5AT4202.jpg
+   │   │   │   ├── R5AT4205.jpg
+   │   │   │   ├── R5AT4207.jpg
+   │   │   │   ├── R5AT4208.jpg
+   │   │   │   ├── R5AT4211.jpg
+   │   │   │   ├── R5AT4212.jpg
+   │   │   │   ├── R5AT4215.jpg
+   │   │   │   ├── R5AT4219.jpg
+   │   │   │   ├── R5AT4222.jpg
+   │   │   │   ├── R5AT4226.jpg
+   │   │   │   ├── R5AT4230.jpg
+   │   │   │   ├── R5AT4240.jpg
+   │   │   │   ├── R5AT4246.jpg
+   │   │   │   ├── R5AT4255.jpg
+   │   │   │   ├── R5AT4259.jpg
+   │   │   │   ├── R5AT4262.jpg
+   │   │   │   ├── R5AT4264.jpg
+   │   │   │   ├── R5AT4267.jpg
+   │   │   │   ├── R5AT4270.jpg
+   │   │   │   ├── R5AT4273.jpg
+   │   │   │   ├── R5AT4278.jpg
+   │   │   │   ├── R5AT4282.jpg
+   │   │   │   ├── R5AT4287.jpg
+   │   │   │   └── R5AT4290.jpg
+   │   │   └── logos/
+   │   │       ├── facebook-logo.png
+   │   │       └── zalo-logo.png
    │   ├── file.svg
    │   ├── globe.svg
    │   ├── next.svg
@@ -410,6 +413,7 @@
 
 /* ===== .env ===== */
 API_BASE_URL="http://127.0.0.1:8000/api"
+NEXT_PUBLIC_API_BASE_URL="http://127.0.0.1:8000/api"
 NEXT_PUBLIC_APP_URL="http://localhost:3000"
 
 /* ===== .env.local-example ===== */
@@ -1344,13 +1348,9 @@ function MainHeader({navigation = []}) {
 
     // Các liên kết tĩnh
     const staticLinks = [{id: 'home', name: 'Trang chủ', url: '/'}, {
-        id: 'teachers',
-        name: 'Đội ngũ giáo viên',
-        url: '/teachers'
-    }, {id: 'parents-corner', name: 'Góc phụ huynh', url: '/parents-corner'}, {
-        id: 'contact',
-        name: 'Liên hệ',
-        url: '/contact'
+        id: 'teachers', name: 'Đội ngũ giáo viên', url: '/teachers'
+    }, {id: 'parents-corner', name: 'Thư viện AU', url: '/parents-corner'}, {
+        id: 'contact', name: 'Liên hệ', url: '/contact'
     },];
 
     // Lọc ra các menu items từ API có children hoặc name cụ thể mà bạn muốn hiện động
@@ -1524,6 +1524,8 @@ function MainHeader({navigation = []}) {
 export default MainHeader;
 
 /* ===== src\components\shared\RegistrationForm.jsx ===== */
+// src/components/shared/RegistrationForm.jsx
+
 "use client";
 
 import React from 'react';
@@ -1531,7 +1533,8 @@ import {useForm} from 'react-hook-form';
 import {zodResolver} from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import {toast} from "sonner";
-import {registerCustomerAction} from '@/app/actions/customerActions';
+// SỬA: Bỏ import Server Action và import service trực tiếp
+import {registerCustomer} from '@/services/customerService';
 import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
 import {Input} from "@/components/ui/input";
 import {Textarea} from '@/components/ui/textarea';
@@ -1561,12 +1564,22 @@ function RegistrationForm({courseId, onFormSubmitSuccess}) {
         },
     });
 
+    // SỬA: Cập nhật hàm onSubmit để gọi API từ client
     async function onSubmit(values) {
+        try {
+            const apiData = {
+                training_id: courseId,
+                full_name_parent: values.hoTenPhuHuynh,
+                phone: values.soDienThoai,
+                email: values.email,
+                full_name_children: values.hoTenHocVien,
+                date_of_birth: values.ngaySinhHocVien,
+                address: values.diaChi,
+                note: values.ghiChu || "",
+            };
 
-        console.log(values, courseId)
-        const result = await registerCustomerAction(values, courseId);
+            await registerCustomer(apiData);
 
-        if (result.success) {
             toast.success("Gửi thông tin thành công!", {
                 description: "Cảm ơn bạn đã quan tâm. A&U sẽ liên hệ với bạn sớm nhất.",
             });
@@ -1574,107 +1587,110 @@ function RegistrationForm({courseId, onFormSubmitSuccess}) {
             if (onFormSubmitSuccess) {
                 onFormSubmitSuccess();
             }
-        } else {
-            console.log(result)
+        } catch (error) {
+            console.error(error);
             toast.error("Gửi thông tin thất bại", {
-                description: result.error || "Đã có lỗi xảy ra. Vui lòng thử lại.",
+                description: error.message || "Đã có lỗi xảy ra. Vui lòng thử lại.",
             });
         }
     }
 
     return (<Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 pt-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 pt-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <FormField
+                        control={form.control}
+                        name="hoTenPhuHuynh"
+                        render={({field}) => (<FormItem>
+                                <FormLabel>Họ và tên phụ huynh</FormLabel>
+                                <FormControl>
+                                    <Input placeholder="Nguyễn Văn A" {...field} />
+                                </FormControl>
+                                <FormMessage/>
+                            </FormItem>)}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="soDienThoai"
+                        render={({field}) => (<FormItem>
+                                <FormLabel>Số điện thoại</FormLabel>
+                                <FormControl>
+                                    <Input type="tel" placeholder="09xxxxxxxx" {...field} />
+                                </FormControl>
+                                <FormMessage/>
+                            </FormItem>)}
+                    />
+                </div>
                 <FormField
                     control={form.control}
-                    name="hoTenPhuHuynh"
+                    name="email"
                     render={({field}) => (<FormItem>
-                        <FormLabel>Họ và tên phụ huynh</FormLabel>
-                        <FormControl>
-                            <Input placeholder="Nguyễn Văn A" {...field} />
-                        </FormControl>
-                        <FormMessage/>
-                    </FormItem>)}
+                            <FormLabel>Email</FormLabel>
+                            <FormControl>
+                                <Input type="email" placeholder="example@email.com" {...field} />
+                            </FormControl>
+                            <FormMessage/>
+                        </FormItem>)}
+                />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <FormField
+                        control={form.control}
+                        name="hoTenHocVien"
+                        render={({field}) => (<FormItem>
+                                <FormLabel>Họ và tên học viên</FormLabel>
+                                <FormControl>
+                                    <Input placeholder="Nguyễn Thị B" {...field} />
+                                </FormControl>
+                                <FormMessage/>
+                            </FormItem>)}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="ngaySinhHocVien"
+                        render={({field}) => (<FormItem>
+                                <FormLabel>Ngày sinh học viên</FormLabel>
+                                <FormControl>
+                                    <Input type="date" className="cursor-pointer" {...field} />
+                                </FormControl>
+                                <FormMessage/>
+                            </FormItem>)}
+                    />
+                </div>
+                <FormField
+                    control={form.control}
+                    name="diaChi"
+                    render={({field}) => (<FormItem>
+                            <FormLabel>Địa chỉ</FormLabel>
+                            <FormControl>
+                                <Input placeholder="Số nhà, tên đường, phường/xã..." {...field} />
+                            </FormControl>
+                            <FormMessage/>
+                        </FormItem>)}
                 />
                 <FormField
                     control={form.control}
-                    name="soDienThoai"
+                    name="ghiChu"
                     render={({field}) => (<FormItem>
-                        <FormLabel>Số điện thoại</FormLabel>
-                        <FormControl>
-                            <Input type="tel" placeholder="09xxxxxxxx" {...field} />
-                        </FormControl>
-                        <FormMessage/>
-                    </FormItem>)}
+                            <FormLabel>Ghi chú (tùy chọn)</FormLabel>
+                            <FormControl>
+                                <Textarea placeholder="Ví dụ: Cần tư vấn thêm về lịch học..." {...field} />
+                            </FormControl>
+                            <FormMessage/>
+                        </FormItem>)}
                 />
-            </div>
-            <FormField
-                control={form.control}
-                name="email"
-                render={({field}) => (<FormItem>
-                    <FormLabel>Email</FormLabel>
-                    <FormControl>
-                        <Input type="email" placeholder="example@email.com" {...field} />
-                    </FormControl>
-                    <FormMessage/>
-                </FormItem>)}
-            />
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <FormField
-                    control={form.control}
-                    name="hoTenHocVien"
-                    render={({field}) => (<FormItem>
-                        <FormLabel>Họ và tên học viên</FormLabel>
-                        <FormControl>
-                            <Input placeholder="Nguyễn Thị B" {...field} />
-                        </FormControl>
-                        <FormMessage/>
-                    </FormItem>)}
-                />
-                <FormField
-                    control={form.control}
-                    name="ngaySinhHocVien"
-                    render={({field}) => (<FormItem>
-                        <FormLabel>Ngày sinh học viên</FormLabel>
-                        <FormControl>
-                            <Input type="date" className="cursor-pointer" {...field} />
-                        </FormControl>
-                        <FormMessage/>
-                    </FormItem>)}
-                />
-            </div>
-            <FormField
-                control={form.control}
-                name="diaChi"
-                render={({field}) => (<FormItem>
-                    <FormLabel>Địa chỉ</FormLabel>
-                    <FormControl>
-                        <Input placeholder="Số nhà, tên đường, phường/xã..." {...field} />
-                    </FormControl>
-                    <FormMessage/>
-                </FormItem>)}
-            />
-            <FormField
-                control={form.control}
-                name="ghiChu"
-                render={({field}) => (<FormItem>
-                    <FormLabel>Ghi chú (tùy chọn)</FormLabel>
-                    <FormControl>
-                        <Textarea placeholder="Ví dụ: Cần tư vấn thêm về lịch học..." {...field} />
-                    </FormControl>
-                    <FormMessage/>
-                </FormItem>)}
-            />
-            <Button type="submit"
+                <Button
+                    type="submit"
                     className="w-full bg-orange-500 hover:bg-orange-600 text-base text-white cursor-pointer"
-                    size="lg" disabled={form.formState.isSubmitting}>
-                {form.formState.isSubmitting ? (<>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin"/>
-                    Đang gửi...
-                </>) : "Gửi thông tin"}
-            </Button>
-        </form>
-    </Form>);
+                    size="lg"
+                    disabled={form.formState.isSubmitting}
+                >
+                    {form.formState.isSubmitting ? (<>
+                            <Loader2 className="mr-2 h-4 w-4 animate-spin"/>
+                            Đang gửi...
+                        </>) : ("Gửi thông tin")}
+                </Button>
+            </form>
+        </Form>);
 }
 
 export default RegistrationForm;
@@ -10467,30 +10483,32 @@ export async function getContactInfo() {
 
 
 /* ===== src\services\customerService.js ===== */
-const API_BASE_URL = process.env.API_BASE_URL;
+// src/services/customerService.js
+
+// SỬA: Thay đổi biến môi trường để client có thể truy cập
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export async function registerCustomer(customerData) {
-  try {
-    const response = await fetch(`${API_BASE_URL}/customers`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(customerData),
-    });
+    try {
+        const response = await fetch(`${API_BASE_URL}/customers`, {
+            method: "POST", headers: {
+                "Content-Type": "application/json",
+            }, body: JSON.stringify(customerData),
+        });
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.message || "Failed to register customer");
+        if (!response.ok) {
+            const errorData = await response.json();
+            // Ném ra lỗi với thông điệp từ API để component có thể bắt và hiển thị
+            throw new Error(errorData.message || "Gửi thông tin đăng ký thất bại.");
+        }
+
+        return await response.json();
+    } catch (error) {
+        // Log lỗi và ném lại để hàm gọi nó có thể xử lý
+        console.error("Lỗi khi đăng ký khách hàng:", error);
+        throw error;
     }
-
-    return await response.json();
-  } catch (error) {
-    console.error("Error registering customer:", error);
-    throw error;
-  }
 }
-
 
 /* ===== src\services\documentService.js ===== */
 /* src/services/documentService.js */
@@ -11143,4 +11161,6 @@ export async function getOtherTrainings(excludeSlug, pageSize = 5) {
 /* public\assets\images\R5AT4287.jpg */
 /* public\assets\images\R5AT4290.jpg */
 /* public\assets\images\logo-au.png */
+/* public\assets\logos\facebook-logo.png */
+/* public\assets\logos\zalo-logo.png */
 /* src\app\favicon.ico */
