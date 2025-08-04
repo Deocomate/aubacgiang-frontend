@@ -3,7 +3,6 @@ import ParentsCornerPage from "@/pages_jsx/ParentsCorner/ParentsCornerPage";
 import {getKnowledgeNews} from "@/services/newsService";
 import {getDocuments} from "@/services/documentService";
 import {getTestimonials} from "@/services/parentsCornerService";
-// THÊM: Import service để lấy dữ liệu homepage (chứa fags)
 import {getHomepageData} from "@/services/homeService";
 
 export const metadata = {
@@ -12,8 +11,7 @@ export const metadata = {
 };
 
 export default async function ParentsCorner() {
-    // SỬA: Thêm getHomepageData vào Promise.all
-    const [handbookArticles, documents, testimonials, homeData] = await Promise.all([getKnowledgeNews(6), getDocuments(4), getTestimonials(6), getHomepageData() // Lấy cả dữ liệu trang chủ
+    const [handbookArticles, documents, testimonials, homeData] = await Promise.all([getKnowledgeNews(6), getDocuments(4), getTestimonials(6), getHomepageData()
     ]);
 
     // SỬA: Truyền thêm prop `faqs` vào component

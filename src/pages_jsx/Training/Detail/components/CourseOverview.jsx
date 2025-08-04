@@ -25,7 +25,7 @@ function CourseOverview({ overview }) {
                     <CardContent className="p-0">
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                             <InfoPill icon={<Users className="h-8 w-8" />} title="Đối tượng học viên" content={overview.age} />
-                            <InfoPill icon={<Target className="h-8 w-8" />} title="Mục tiêu đầu ra" content={overview.outcome} />
+                            <InfoPill icon={<Target className="h-8 w-8" />} title="Mục tiêu" content={overview.outcome} />
                             <InfoPill icon={<BookOpen className="h-8 w-8" />} title="Phương pháp giảng dạy" content={overview.method} />
                         </div>
                     </CardContent>

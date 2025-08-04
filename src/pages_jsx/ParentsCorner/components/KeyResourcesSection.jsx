@@ -1,15 +1,14 @@
+/* src/pages_jsx/ParentsCorner/components/KeyResourcesSection.jsx */
 import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { BookOpen, Download, CalendarDays, MessageSquare, Milestone, Award  } from 'lucide-react';
 import Link from 'next/link';
-
 const resources = [
-    { title: 'Cẩm nang cho cha mẹ', description: 'Bài viết và lời khuyên hữu ích dành cho cha, mẹ để giúp con có hành trang học tập tốt hơn', icon: <BookOpen className="h-8 w-8 text-orange-500" />, href: '#handbook' },
+    { title: 'Góc luyện tập online', description: 'Luyện đọc tiếng Anh online cùng con với Oxford Reading Club.', icon: <BookOpen className="h-8 w-8 text-orange-500" />, href: 'https://dashboard.oxfordreadingclub.com/' },
     { title: 'Tài liệu học tập', description: 'Tải về flashcards, bài tập giúp bé học tiếng Anh hiệu quả hơn', icon: <Download className="h-8 w-8 text-blue-500" />, href: '#downloads' },
     { title: 'Câu chuyện thành công', description: 'Những đánh giá tích cực của quý phụ huynh đã từng cho con theo học tại A&U', icon: <Award  className="h-8 w-8 text-green-500" />, href: '#testimonials' },
-    { title: 'Liên hệ trung tâm', description: 'Trao đổi trực tiếp về tình hình kết quả học tập của con em mình', icon: <MessageSquare className="h-8 w-8 text-purple-500" />, href: '/contact' },
+    { title: 'Làm bài tập tại nhà', description: 'Truy cập hệ thống bài tập về nhà online English Hub của Oxford.', icon: <MessageSquare className="h-8 w-8 text-purple-500" />, href: 'https://englishhub.oup.com/' },
 ];
-
 function KeyResourcesSection() {
     return (
         <section className="bg-gray-50 py-20 px-4 md:px-0">

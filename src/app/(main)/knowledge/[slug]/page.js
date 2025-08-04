@@ -1,6 +1,6 @@
 /* src/app/(main)/knowledge/[slug]/page.js */
 import { createDetailPage } from "@/lib/pageFactory";
-import { getNewsBySlug, getKnowledgeNews } from "@/services/newsService";
+import { getNewsBySlug } from "@/services/newsService";
 import NewsDetailPage from "@/pages_jsx/News/Detail/NewsDetailPage";
 
 const { generateMetadata, Page } = createDetailPage({
