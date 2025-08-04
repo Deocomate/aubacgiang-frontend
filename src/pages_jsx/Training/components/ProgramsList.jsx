@@ -19,7 +19,6 @@ const iconMap = {
     'summer-camp': <Sun className="h-6 w-6" />,
     'business-english': <Briefcase className="h-6 w-6" />,
 };
-
 const genericIcons = [
     <BookOpen className="h-6 w-6" />,
     <Briefcase className="h-6 w-6" />,
@@ -28,8 +27,6 @@ const genericIcons = [
     <Target className="h-6 w-6" />,
     <Lightbulb className="h-6 w-6" />
 ];
-
-
 const getIconForProgram = (slug) => {
     const key = Object.keys(iconMap).find(k => slug.includes(k));
     if (key) {
@@ -38,10 +35,8 @@ const getIconForProgram = (slug) => {
     const randomIndex = Math.floor(Math.random() * genericIcons.length);
     return genericIcons[randomIndex];
 };
-
 function ProgramCard({ program, reverse = false }) {
     const youtubeEmbedUrl = program.youtube_review_link ? getYoutubeEmbedUrl(program.youtube_review_link) : null;
-
     return (
         <div id={program.slug} className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div className={cn(reverse && "md:order-last")}>
@@ -76,9 +71,9 @@ function ProgramCard({ program, reverse = false }) {
                     <span className="text-orange-500">{getIconForProgram(program.slug)}</span>
                     {program.title}
                 </h3>
-                <div 
-                    className="mt-4 leading-relaxed text-gray-700 font-medium line-clamp-3" 
-                    dangerouslySetInnerHTML={{ __html: program.description }} 
+                <div
+                    className="mt-4 leading-relaxed text-gray-700 font-medium line-clamp-3"
+                    dangerouslySetInnerHTML={{ __html: program.description }}
                 />
                 <div className="mt-6 flex justify-center md:justify-start">
                     <Button asChild variant="ghost" className="text-white bg-orange-500 hover:bg-orange-600 text-base ">
@@ -101,7 +96,6 @@ function ProgramsList({ initialTrainingData }) {
         totalPages, setTotalPages,
         isInitialized, setIsInitialized
     } = useTraining();
-
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
@@ -112,30 +106,25 @@ function ProgramsList({ initialTrainingData }) {
             setIsInitialized(true);
         }
     }, [initialTrainingData, isInitialized, setPrograms, setCurrentPage, setTotalPages, setIsInitialized]);
-
-
     const handleLoadMore = async () => {
         if (currentPage >= totalPages) return;
         setIsLoading(true);
         const nextPage = currentPage + 1;
-        
+
         try {
             const newData = await loadMoreTrainings(nextPage, PROGRAMS_PER_PAGE);
-            
             if (newData.error) {
                 throw new Error(newData.error);
             }
 
             setPrograms(prev => [...prev, ...newData.data]);
             setCurrentPage(nextPage);
-
         } catch (error) {
             console.error("Failed to load more programs:", error);
         } finally {
             setIsLoading(false);
         }
     };
-    
     if (!isInitialized) {
         return null;
     }
@@ -162,14 +151,15 @@ function ProgramsList({ initialTrainingData }) {
                             disabled={isLoading}
                             className="bg-orange-500 hover:bg-orange-600 text-white text-lg font-semibold px-10 py-6 cursor-pointer"
                         >
-                            {isLoading ? (
-                                <>
-                                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                                    Đang tải...
-                                </>
-                            ) : (
-                                "Xem thêm"
-                            )}
+                            {isLoading ?
+                                (
+                                    <>
+                                        <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                                        Đang tải...
+                                    </>
+                                ) : (
+                                    "Xem thêm"
+                                )}
                         </Button>
                     )}
                 </div>

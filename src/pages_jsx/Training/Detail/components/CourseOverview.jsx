@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Users, Clock, Target, BookOpen } from 'lucide-react';
+import { Users, Target, BookOpen } from 'lucide-react';
 
 function InfoPill({ icon, title, content }) {
     return (
@@ -23,9 +23,8 @@ function CourseOverview({ overview }) {
                         <CardTitle className="text-3xl font-bold">Tổng Quan Khóa Học</CardTitle>
                     </CardHeader>
                     <CardContent className="p-0">
-                        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                             <InfoPill icon={<Users className="h-8 w-8" />} title="Đối tượng học viên" content={overview.age} />
-                            <InfoPill icon={<Clock className="h-8 w-8" />} title="Thời lượng" content={overview.duration} />
                             <InfoPill icon={<Target className="h-8 w-8" />} title="Mục tiêu đầu ra" content={overview.outcome} />
                             <InfoPill icon={<BookOpen className="h-8 w-8" />} title="Phương pháp giảng dạy" content={overview.method} />
                         </div>
