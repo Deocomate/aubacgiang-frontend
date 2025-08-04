@@ -1,8 +1,8 @@
+// src/components/layouts/MainFooter.jsx
 import React from 'react';
 import Link from 'next/link';
 import { MapPin, Phone, Mail, Facebook, Instagram, Youtube } from 'lucide-react';
 import Image from 'next/image';
-
 
 const quickLinks = [
     { label: 'Trang chủ', href: '/' },
@@ -13,22 +13,15 @@ const quickLinks = [
     { label: 'Liên hệ', href: '/contact' },
 ];
 
+function MainFooter({ contactInfo = {} }) {
+    const { address = [], phone = '', email = '', facebook = '' } = contactInfo;
 
-const socialLinks = [
-    { icon: <Facebook className="h-5 w-5" />, href: '#' },
-    { icon: <Instagram className="h-5 w-5" />, href: '#' },
-    { icon: <Youtube className="h-5 w-5" />, href: '#' },
-];
+    const socialLinks = [
+        { icon: <Facebook className="h-5 w-5" />, href: facebook || '#' },
+        { icon: <Instagram className="h-5 w-5" />, href: '#' },
+        { icon: <Youtube className="h-5 w-5" />, href: '#' },
+    ];
 
-
-const contactInfo = {
-    address: 'AU Lạng Giang: Số 50.51 khu HDB, tổ dân phố Toàn Mỹ, xã Lạng Giang, tỉnh Bắc Giang.',
-    phone: '0979 798 426',
-    email: 'info@auenglish.edu.vn',
-};
-
-
-function MainFooter() {
     return (
         <footer className="bg-gray-100 py-12">
             <div className="container mx-auto px-4">
@@ -67,22 +60,28 @@ function MainFooter() {
 
                     <div>
                         <h3 className="font-bold text-gray-700 mb-3">Thông tin liên hệ</h3>
-                        <p className="text-gray-600 text-sm font-medium flex items-start mb-2">
-                            <MapPin className="h-4 w-4 mr-2 mt-0.5 flex-shrink-0" /> {contactInfo.address}
-                        </p>
-                        <p className="text-gray-600 text-sm font-medium flex items-center mb-2">
-                            <Phone className="h-4 w-4 mr-2" /> {contactInfo.phone}
-                        </p>
-                        <p className="text-gray-600 text-sm font-medium flex items-center">
-                            <Mail className="h-4 w-4 mr-2" /> {contactInfo.email}
-                        </p>
+                        {address[0]?.address && (
+                            <p className="text-gray-600 text-sm font-medium flex items-start mb-2">
+                                <MapPin className="h-4 w-4 mr-2 mt-0.5 flex-shrink-0" /> {address[0].address}
+                            </p>
+                        )}
+                        {phone && (
+                            <p className="text-gray-600 text-sm font-medium flex items-center mb-2">
+                                <Phone className="h-4 w-4 mr-2" /> {phone}
+                            </p>
+                        )}
+                        {email && (
+                            <p className="text-gray-600 text-sm font-medium flex items-center">
+                                <Mail className="h-4 w-4 mr-2" /> {email}
+                            </p>
+                        )}
                     </div>
 
                     <div>
                         <h3 className="font-bold text-gray-700 mb-3">Mạng xã hội</h3>
                         <div className="flex space-x-4">
                             {socialLinks.map((social, index) => (
-                                <Link key={index} href={social.href} className="text-gray-600 hover:text-orange-500 transition-colors duration-200">
+                                <Link key={index} href={social.href} className="text-gray-600 hover:text-orange-500 transition-colors duration-200" target="_blank" rel="noopener noreferrer">
                                     {social.icon}
                                 </Link>
                             ))}
@@ -97,6 +96,5 @@ function MainFooter() {
         </footer>
     );
 }
-
 
 export default MainFooter;
