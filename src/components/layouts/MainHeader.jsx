@@ -86,7 +86,7 @@ function MainHeader({navigation = []}) {
                             className="object-contain"
                         />
                         <span className="font-extrabold text-xl lg:text-2xl text-gray-800">
-                                A&U English
+                                A&U Bắc Giang
                             </span>
                     </Link>
 
