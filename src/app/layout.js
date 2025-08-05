@@ -5,7 +5,6 @@ import MainFooter from "@/components/layouts/MainFooter";
 import MainHeader from "@/components/layouts/MainHeader";
 import {Toaster} from "@/components/ui/sonner";
 import {getMenus} from '@/services/menuService';
-// THÊM: Import service và component mới
 import {getContactInfo} from '@/services/contactService';
 import FloatingSocials from '@/components/shared/FloatingSocials';
 
@@ -21,14 +20,13 @@ export const metadata = {
 };
 
 export default async function RootLayout({children}) {
-    // SỬA: Lấy đồng thời cả menu và thông tin liên hệ
     const [menuData, contactData] = await Promise.all([getMenus(), getContactInfo()]);
 
     return (<html lang="vi" className={raleway.variable}>
     <body>
     <MainHeader navigation={menuData}/>
     {children}
-    <MainFooter/>
+    <MainFooter contactInfo={contactData}/>
     <FloatingSocials contactInfo={contactData}/>
     <Toaster richColors position="top-center"/>
     </body>

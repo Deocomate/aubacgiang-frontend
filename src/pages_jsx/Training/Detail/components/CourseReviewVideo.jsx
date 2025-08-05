@@ -4,7 +4,6 @@ import React, { useRef, useEffect, useState } from 'react';
 import { getYoutubeEmbedUrl } from '@/lib/utils';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { Skeleton } from '@/components/ui/skeleton';
-
 function CourseReviewVideo({ youtubeUrl }) {
     const videoRef = useRef(null);
     const [isInView, setIsInView] = useState(false);
@@ -16,7 +15,6 @@ function CourseReviewVideo({ youtubeUrl }) {
     }
 
     const videoSrc = isInView ? `${embedUrl}?autoplay=1&mute=1&playsinline=1` : embedUrl;
-
     useEffect(() => {
         const observer = new IntersectionObserver(
             ([entry]) => {
@@ -26,7 +24,7 @@ function CourseReviewVideo({ youtubeUrl }) {
                 }
             },
             {
-                threshold: 0.5 
+                threshold: 0.5
             }
         );
 
@@ -41,7 +39,6 @@ function CourseReviewVideo({ youtubeUrl }) {
             }
         };
     }, []);
-
     return (
         <section ref={videoRef} className="py-24 bg-white">
             <div className="container mx-auto">

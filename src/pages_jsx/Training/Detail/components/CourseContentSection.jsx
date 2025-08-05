@@ -10,7 +10,7 @@ function CourseContentSection({ content }) {
             <div className="container mx-auto px-4">
                 <div className="max-w-4xl mx-auto">
                     <div className="text-center mb-12">
-                        <h2 className="text-base font-semibold leading-7 text-orange-500">Chi Tiết Chương Trình</h2>
+                        <h2 className="text-base font-semibold leading-7 text-orange-500">Tổng quan</h2>
                         <p className="mt-2 text-4xl font-extrabold tracking-tight text-gray-800">
                             Nội Dung Khóa Học
                         </p>

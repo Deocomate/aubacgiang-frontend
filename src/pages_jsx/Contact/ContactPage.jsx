@@ -1,3 +1,4 @@
+// src/pages_jsx/Contact/ContactPage.jsx
 "use client";
 
 import React from 'react';
@@ -11,15 +12,8 @@ const extractMapSrc = (iframeString) => {
     return srcMatch ? srcMatch[1] : "";
 };
 
-// SỬA: Thêm giá trị mặc định cho contactData và các thuộc tính của nó
 function ContactPage({contactData = {}}) {
-    const {address: locations = [], phone = '', email = '', facebook = ''} = contactData;
-
-    console.log(contactData)
-
-    console.log(facebook)
-
-    const fanpageName = facebook ? facebook.split('/').pop() : 'A&U Language';
+    const {address: locations = [], phone = '', hotline = '', email = '', facebook = ''} = contactData;
 
     const branches = locations.map((loc, index) => ({
         id: `cs${index + 1}`,
@@ -52,6 +46,15 @@ function ContactPage({contactData = {}}) {
                                     {phone}
                                 </a>
                             </div>
+                            {hotline && (
+                                <div className="flex items-center">
+                                    <Phone className="h-6 w-6 mr-3 flex-shrink-0 text-orange-500"/>
+                                    <a href={`tel:${hotline.replace(/\s|-/g, '')}`}
+                                       className="text-gray-700 not-prose no-underline hover:text-orange-600">
+                                        Hotline: {hotline}
+                                    </a>
+                                </div>
+                            )}
                             <div className="flex items-center">
                                 <Mail className="h-6 w-6 mr-3 flex-shrink-0 text-orange-500"/>
                                 <a href={`mailto:${email}`}
