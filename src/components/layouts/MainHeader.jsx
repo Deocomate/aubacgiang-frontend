@@ -85,7 +85,7 @@ function MainHeader({navigation = []}) {
                             height={45}
                             className="object-contain"
                         />
-                        <span className="font-extrabold text-xl lg:text-2xl text-gray-800">
+                        <span className="font-extrabold text-xl lg:text-xl text-gray-800">
                                 AU Language Institute
                             </span>
                     </Link>
