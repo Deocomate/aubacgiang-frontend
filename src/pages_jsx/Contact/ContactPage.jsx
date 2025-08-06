@@ -28,7 +28,7 @@ function ContactPage({contactData = {}}) {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
                     <div className="prose prose-lg max-w-none">
                         <h1 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-                            Hệ thống Anh ngữ A&U
+                            HỆ THỐNG TRUNG TÂM NGOẠI NGỮ A&U
                         </h1>
                         <div className="mt-8 space-y-4">
                             {locations.map((location, index) => (

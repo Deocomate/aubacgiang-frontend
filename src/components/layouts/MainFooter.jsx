@@ -18,7 +18,6 @@ function MainFooter({ contactInfo = {} }) {
 
     const socialLinks = [
         { icon: <Facebook className="h-5 w-5" />, href: facebook || '#' },
-        { icon: <Instagram className="h-5 w-5" />, href: '#' },
         { icon: <Youtube className="h-5 w-5" />, href: '#' },
     ];
 
@@ -35,10 +34,10 @@ function MainFooter({ contactInfo = {} }) {
                                 height={50}
                                 className="mr-2"
                             />
-                            <span className="font-extrabold text-xl text-gray-800">A&U English</span>
+                            <span className="font-extrabold text-xl text-gray-800">AU Language Institute</span>
                         </Link>
                         <p className="text-gray-600 text-sm font-medium">
-                            Trung tâm Anh ngữ hàng đầu tại Bắc Giang, mang đến môi trường học tập chuyên nghiệp và hiệu quả.
+                            Trung tâm Anh ngữ hàng đầu tại Bắc Ninh, mang đến môi trường học tập chuyên nghiệp và hiệu quả.
                         </p>
                     </div>
 
