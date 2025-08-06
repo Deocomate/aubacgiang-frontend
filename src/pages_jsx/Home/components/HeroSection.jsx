@@ -51,10 +51,10 @@ function HeroSection({ banner = { title: 'Welcome to A&U English', description: 
 
             <div className="relative z-20 flex flex-col items-center justify-center h-full text-center text-white px-4">
                 <div className="max-w-4xl">
-                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight drop-shadow-lg">
+                    <h1 className="text-4xl md:text-5xl lg:text-5xl font-extrabold leading-tight tracking-tight drop-shadow-lg">
                         {title}
                     </h1>
-                    <p className="mt-6 text-lg md:text-xl lg:text-2xl max-w-2xl mx-auto drop-shadow-lg">
+                    <p className="mt-6 text-lg md:text-xl lg:text-xl max-w-2xl mx-auto drop-shadow-lg">
                         {description}
                     </p>
                     <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">

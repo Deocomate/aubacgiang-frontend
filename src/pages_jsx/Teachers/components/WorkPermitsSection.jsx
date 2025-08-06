@@ -7,11 +7,17 @@ import { Eye } from 'lucide-react';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, CarouselDots } from "@/components/ui/carousel";
 
 const permitImages = [
-    '/assets/images/R5AT4155.jpg',
+    '/assets/images/z5798380368149_cb881287e02763d6d60a2dea7c0595f8.jpg',
+    '/assets/images/R5AT3909.jpg',
+    '/assets/images/R5AT4058.jpg',
     '/assets/images/R5AT4278.jpg',
-    '/assets/images/R5AT3978.jpg',
-    '/assets/images/R5AT4181.jpg',
-    '/assets/images/R5AT4083.jpg',
+    '/assets/images/z5798533858547_7c1662a74d1e4d5a6debc83a8e2a37ce.jpg',
+    '/assets/images/z5798533866742_05a3e10479f0b4a8c84f1b15b8f42a67.jpg',
+    '/assets/images/z5798544278049_6d170750b048d5905221bcafee516739.jpg',
+    '/assets/images/z5798739279967_1bade81be2a92783424e059b21cd51ad.jpg',
+    '/assets/images/z5798793807148_684baf049c5fcc8f37c0e84cd1fc035f.jpg',
+    '/assets/images/z5800266619350_eb482d7999ef58156e49fa5cdeecad45.jpg',
+    '/assets/images/z5800292999705_b22504d7e7eea09fa66a99ad405a5b34.jpg',
 ];
 
 function WorkPermitsSection() {

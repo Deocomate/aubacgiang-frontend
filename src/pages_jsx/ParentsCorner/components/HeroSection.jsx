@@ -14,10 +14,10 @@ function HeroSection() {
             />
             <div className="absolute inset-0 bg-black/50 z-10" />
             <div className="relative z-20 text-center px-4">
-                <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight drop-shadow-md">
+                <h1 className="text-4xl md:text-5xl lg:text-5xl font-extrabold tracking-tight drop-shadow-md">
                     Đồng hành cùng con chinh phục tiếng Anh
                 </h1>
-                <p className="mt-4 text-lg md:text-xl max-w-3xl mx-auto drop-shadow-md">
+                <p className="mt-4 text-lg md:text-xl lg:text-xl max-w-3xl mx-auto drop-shadow-md">
                     A&U tin rằng sự hợp tác chặt chẽ giữa gia đình và nhà trường là chìa khóa cho sự thành công của trẻ.
                 </p>
             </div>

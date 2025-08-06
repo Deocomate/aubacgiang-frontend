@@ -1,5 +1,5 @@
 /* ==========================================================
-   CODEBASE SNAPSHOT - 2025-08-04 17:23:41
+   CODEBASE SNAPSHOT - 2025-08-06 21:45:48
    Project: aubacgiang-frontend
    Text Files Included: 150
    Items Ignored: 38
@@ -4361,7 +4361,6 @@ import MainFooter from "@/components/layouts/MainFooter";
 import MainHeader from "@/components/layouts/MainHeader";
 import {Toaster} from "@/components/ui/sonner";
 import {getMenus} from '@/services/menuService';
-// THÊM: Import service và component mới
 import {getContactInfo} from '@/services/contactService';
 import FloatingSocials from '@/components/shared/FloatingSocials';
 
@@ -4377,14 +4376,13 @@ export const metadata = {
 };
 
 export default async function RootLayout({children}) {
-    // SỬA: Lấy đồng thời cả menu và thông tin liên hệ
     const [menuData, contactData] = await Promise.all([getMenus(), getContactInfo()]);
 
     return (<html lang="vi" className={raleway.variable}>
     <body>
     <MainHeader navigation={menuData}/>
     {children}
-    <MainFooter/>
+    <MainFooter contactInfo={contactData}/>
     <FloatingSocials contactInfo={contactData}/>
     <Toaster richColors position="top-center"/>
     </body>
@@ -4867,11 +4865,11 @@ body {
 }
 
 /* ===== src/components/layouts/MainFooter.jsx ===== */
+// src/components/layouts/MainFooter.jsx
 import React from 'react';
 import Link from 'next/link';
 import { MapPin, Phone, Mail, Facebook, Instagram, Youtube } from 'lucide-react';
 import Image from 'next/image';
-
 
 const quickLinks = [
     { label: 'Trang chủ', href: '/' },
@@ -4882,22 +4880,14 @@ const quickLinks = [
     { label: 'Liên hệ', href: '/contact' },
 ];
 
+function MainFooter({ contactInfo = {} }) {
+    const { address = [], phone = '', email = '', facebook = '' } = contactInfo;
 
-const socialLinks = [
-    { icon: <Facebook className="h-5 w-5" />, href: '#' },
-    { icon: <Instagram className="h-5 w-5" />, href: '#' },
-    { icon: <Youtube className="h-5 w-5" />, href: '#' },
-];
+    const socialLinks = [
+        { icon: <Facebook className="h-5 w-5" />, href: facebook || '#' },
+        { icon: <Youtube className="h-5 w-5" />, href: '#' },
+    ];
 
-
-const contactInfo = {
-    address: 'AU Lạng Giang: Số 50.51 khu HDB, tổ dân phố Toàn Mỹ, xã Lạng Giang, tỉnh Bắc Giang.',
-    phone: '0979 798 426',
-    email: 'info@auenglish.edu.vn',
-};
-
-
-function MainFooter() {
     return (
         <footer className="bg-gray-100 py-12">
             <div className="container mx-auto px-4">
@@ -4911,10 +4901,10 @@ function MainFooter() {
                                 height={50}
                                 className="mr-2"
                             />
-                            <span className="font-extrabold text-xl text-gray-800">A&U English</span>
+                            <span className="font-extrabold text-xl text-gray-800">AU Language Institute</span>
                         </Link>
                         <p className="text-gray-600 text-sm font-medium">
-                            Trung tâm Anh ngữ hàng đầu tại Bắc Giang, mang đến môi trường học tập chuyên nghiệp và hiệu quả.
+                            Trung tâm Anh ngữ hàng đầu tại Bắc Ninh, mang đến môi trường học tập chuyên nghiệp và hiệu quả.
                         </p>
                     </div>
 
@@ -4936,22 +4926,28 @@ function MainFooter() {
 
                     <div>
                         <h3 className="font-bold text-gray-700 mb-3">Thông tin liên hệ</h3>
-                        <p className="text-gray-600 text-sm font-medium flex items-start mb-2">
-                            <MapPin className="h-4 w-4 mr-2 mt-0.5 flex-shrink-0" /> {contactInfo.address}
-                        </p>
-                        <p className="text-gray-600 text-sm font-medium flex items-center mb-2">
-                            <Phone className="h-4 w-4 mr-2" /> {contactInfo.phone}
-                        </p>
-                        <p className="text-gray-600 text-sm font-medium flex items-center">
-                            <Mail className="h-4 w-4 mr-2" /> {contactInfo.email}
-                        </p>
+                        {address[0]?.address && (
+                            <p className="text-gray-600 text-sm font-medium flex items-start mb-2">
+                                <MapPin className="h-4 w-4 mr-2 mt-0.5 flex-shrink-0" /> {address[0].address}
+                            </p>
+                        )}
+                        {phone && (
+                            <p className="text-gray-600 text-sm font-medium flex items-center mb-2">
+                                <Phone className="h-4 w-4 mr-2" /> {phone}
+                            </p>
+                        )}
+                        {email && (
+                            <p className="text-gray-600 text-sm font-medium flex items-center">
+                                <Mail className="h-4 w-4 mr-2" /> {email}
+                            </p>
+                        )}
                     </div>
 
                     <div>
                         <h3 className="font-bold text-gray-700 mb-3">Mạng xã hội</h3>
                         <div className="flex space-x-4">
                             {socialLinks.map((social, index) => (
-                                <Link key={index} href={social.href} className="text-gray-600 hover:text-orange-500 transition-colors duration-200">
+                                <Link key={index} href={social.href} className="text-gray-600 hover:text-orange-500 transition-colors duration-200" target="_blank" rel="noopener noreferrer">
                                     {social.icon}
                                 </Link>
                             ))}
@@ -4966,7 +4962,6 @@ function MainFooter() {
         </footer>
     );
 }
-
 
 export default MainFooter;
 
@@ -5059,7 +5054,7 @@ function MainHeader({navigation = []}) {
                             className="object-contain"
                         />
                         <span className="font-extrabold text-xl lg:text-2xl text-gray-800">
-                                A&U English
+                                AU Language Institute
                             </span>
                     </Link>
 
@@ -10918,6 +10913,7 @@ export function getYoutubeEmbedUrl(url) {
 }
 
 /* ===== src/pages_jsx/Contact/ContactPage.jsx ===== */
+// src/pages_jsx/Contact/ContactPage.jsx
 "use client";
 
 import React from 'react';
@@ -10931,15 +10927,8 @@ const extractMapSrc = (iframeString) => {
     return srcMatch ? srcMatch[1] : "";
 };
 
-// SỬA: Thêm giá trị mặc định cho contactData và các thuộc tính của nó
 function ContactPage({contactData = {}}) {
-    const {address: locations = [], phone = '', email = '', facebook = ''} = contactData;
-
-    console.log(contactData)
-
-    console.log(facebook)
-
-    const fanpageName = facebook ? facebook.split('/').pop() : 'A&U Language';
+    const {address: locations = [], phone = '', hotline = '', email = '', facebook = ''} = contactData;
 
     const branches = locations.map((loc, index) => ({
         id: `cs${index + 1}`,
@@ -10954,7 +10943,7 @@ function ContactPage({contactData = {}}) {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
                     <div className="prose prose-lg max-w-none">
                         <h1 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-                            Hệ thống Anh ngữ A&U
+                            HỆ THỐNG TRUNG TÂM NGOẠI NGỮ A&U
                         </h1>
                         <div className="mt-8 space-y-4">
                             {locations.map((location, index) => (
@@ -10972,6 +10961,15 @@ function ContactPage({contactData = {}}) {
                                     {phone}
                                 </a>
                             </div>
+                            {hotline && (
+                                <div className="flex items-center">
+                                    <Phone className="h-6 w-6 mr-3 flex-shrink-0 text-orange-500"/>
+                                    <a href={`tel:${hotline.replace(/\s|-/g, '')}`}
+                                       className="text-gray-700 not-prose no-underline hover:text-orange-600">
+                                        Hotline: {hotline}
+                                    </a>
+                                </div>
+                            )}
                             <div className="flex items-center">
                                 <Mail className="h-6 w-6 mr-3 flex-shrink-0 text-orange-500"/>
                                 <a href={`mailto:${email}`}
@@ -11031,7 +11029,6 @@ function ContactPage({contactData = {}}) {
 }
 
 export default ContactPage;
-
 
 /* ===== src/pages_jsx/Home/HomePage.jsx ===== */
 import React from 'react';

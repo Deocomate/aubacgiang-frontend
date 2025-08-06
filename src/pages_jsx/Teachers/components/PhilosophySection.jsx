@@ -20,7 +20,7 @@ function PhilosophySection() {
                     </div>
                     <div className="w-full h-[500px] relative">
                         <Image
-                            src="/assets/images/R5AT4240.jpg"
+                            src="/assets/images/z5798533858547_7c1662a74d1e4d5a6debc83a8e2a37ce.jpg"
                             alt="Giáo viên A&U - người bạn đồng hành"
                             fill
                             className="rounded-xl shadow-2xl object-cover transform hover:scale-105 transition-transform duration-500"

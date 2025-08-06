@@ -18,10 +18,10 @@ function TrainingHero() {
 
             {/* Content */}
             <div className="relative z-20 text-center px-4">
-                <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight drop-shadow-md">
+                <h1 className="text-4xl md:text-5xl lg:text-5xl font-extrabold tracking-tight drop-shadow-md">
                     Chương Trình Đào Tạo
                 </h1>
-                <p className="mt-4 text-lg md:text-xl max-w-3xl mx-auto drop-shadow-md">
+                <p className="mt-4 text-lg md:text-xl lg:text-xl max-w-3xl mx-auto drop-shadow-md">
                     A&U Bắc Giang cung cấp lộ trình học tập toàn diện, được thiết kế chuyên biệt để đáp ứng nhu cầu phát triển Anh ngữ ở mọi lứa tuổi và trình độ.
                 </p>
             </div>
