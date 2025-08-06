@@ -16,7 +16,7 @@ const raleway = Raleway({
 });
 
 export const metadata = {
-    title: "A & U Bắc Giang", description: "A & U Bắc Giang",
+    title: "A & U Bắc Ninh", description: "A & U Bắc Ninh",
 };
 
 export default async function RootLayout({children}) {

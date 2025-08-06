@@ -4372,7 +4372,7 @@ const raleway = Raleway({
 });
 
 export const metadata = {
-    title: "A & U Bắc Giang", description: "A & U Bắc Giang",
+    title: "A & U Bắc Ninh", description: "A & U Bắc Ninh",
 };
 
 export default async function RootLayout({children}) {
@@ -4699,8 +4699,8 @@ import TeachersPage from "@/pages_jsx/Teachers/TeachersPage";
 import { getTeachers } from "@/services/teacherService";
 
 export const metadata = {
-  title: "Đội ngũ giáo viên - A & U Bắc Giang",
-  description: "Gặp gỡ đội ngũ giáo viên bản xứ và Việt Nam tâm huyết, chuyên môn cao tại A&U Bắc Giang. Chúng tôi cam kết chất lượng giảng dạy theo chuẩn quốc tế.",
+  title: "Đội ngũ giáo viên - A & U Bắc Ninh",
+  description: "Gặp gỡ đội ngũ giáo viên bản xứ và Việt Nam tâm huyết, chuyên môn cao tại A&U Bắc Ninh. Chúng tôi cam kết chất lượng giảng dạy theo chuẩn quốc tế.",
 };
 
 export default async function Teachers() {
@@ -4773,7 +4773,7 @@ const { generateMetadata, Page } = createDetailPage({
   getDataBySlug: getTrainingBySlug,
   getOtherData: getOtherTrainings,
   DetailPageComponent: TrainingDetailPage,
-  generateTitle: (course) => `${course.title} - A&U Bắc Giang`,
+  generateTitle: (course) => `${course.title} - A&U Bắc Ninh`,
   generateDescription: (course) => 
     course.description?.replace(/<[^>]+>/g, '').substring(0, 160) || `Chi tiết khóa học ${course.title} tại A&U English.`,
 });
@@ -11083,7 +11083,7 @@ function AboutSection() {
                                 Chào mừng đến với A&U English
                             </h3>
                             <p className="mt-6 leading-8 text-gray-600">
-                                "Trung tâm Ngoại ngữ A&U là đơn vị đào tạo tiếng Anh uy tín tại Bắc Giang, chuyên cung cấp các chương trình học chất lượng cao dành cho mọi lứa tuổi. Với đội ngũ giáo viên giàu kinh nghiệm, cơ sở vật chất hiện đại và giáo trình chuẩn quốc tế, AU cam kết mang đến môi trường học tập chuyên nghiệp, hiệu quả và truyền cảm hứng. Chúng tôi thiết kế các khóa học đa dạng, bao gồm tiếng Anh trẻ em, giao tiếp, luyện thi IELTS, TOEIC, và chương trình tiếng Anh tích hợp theo sách giáo khoa. AU không chỉ chú trọng phát triển kỹ năng ngôn ngữ toàn diện mà còn đồng hành cùng học viên trên hành trình hội nhập và phát triển bản thân trong môi trường quốc tế."
+                                "Trung tâm Ngoại ngữ A&U là đơn vị đào tạo tiếng Anh uy tín tại Bắc Ninh, chuyên cung cấp các chương trình học chất lượng cao dành cho mọi lứa tuổi. Với đội ngũ giáo viên giàu kinh nghiệm, cơ sở vật chất hiện đại và giáo trình chuẩn quốc tế, AU cam kết mang đến môi trường học tập chuyên nghiệp, hiệu quả và truyền cảm hứng. Chúng tôi thiết kế các khóa học đa dạng, bao gồm tiếng Anh trẻ em, giao tiếp, luyện thi IELTS, TOEIC, và chương trình tiếng Anh tích hợp theo sách giáo khoa. AU không chỉ chú trọng phát triển kỹ năng ngôn ngữ toàn diện mà còn đồng hành cùng học viên trên hành trình hội nhập và phát triển bản thân trong môi trường quốc tế."
                             </p>
                             <p className="mt-4 leading-8 text-gray-600">
                                 Tại A&U, chúng tôi tự hào có đội ngũ giáo viên giàu kinh nghiệm, tâm huyết và sáng tạo, luôn sẵn sàng tạo ra môi trường học tập thú vị. A&U không chỉ đơn thuần là nơi học, mà còn là một cộng đồng, nơi mọi người có cơ hội giao lưu, trao đổi kiến thức và trải nghiệm văn hóa đa dạng.
@@ -11443,7 +11443,7 @@ function ProgramsSection({ trainings }) {
                         Chương Trình Đào Tạo Nổi Bật
                     </p>
                     <p className="mt-6 text-lg leading-8 text-gray-600 max-w-3xl mx-auto">
-                        A&U Bắc Giang cung cấp các khóa học đa dạng, được thiết kế chuyên biệt để đáp ứng nhu cầu học tập ở mọi lứa tuổi và trình độ.
+                        A&U Bắc Ninh cung cấp các khóa học đa dạng, được thiết kế chuyên biệt để đáp ứng nhu cầu học tập ở mọi lứa tuổi và trình độ.
                     </p>
                 </div>
 
@@ -11613,7 +11613,7 @@ function StatsSection({ stats = [] }) {
                         Những con số biết nói
                     </h2>
                     <p className="mt-4 text-lg leading-8 text-slate-600">
-                        Đây là minh chứng cho sự tin tưởng của phụ huynh và học viên, cũng như nỗ lực không ngừng của đội ngũ A&U Bắc Giang.
+                        Đây là minh chứng cho sự tin tưởng của phụ huynh và học viên, cũng như nỗ lực không ngừng của đội ngũ A&U Bắc Ninh.
                     </p>
                 </header>
 
@@ -12828,7 +12828,7 @@ function CtaSection() {
                     Sẵn sàng đồng hành cùng đội ngũ chuyên gia của chúng tôi?
                 </h2>
                 <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-gray-600">
-                    Hãy để A&U Bắc Giang chắp cánh cho hành trình chinh phục Anh ngữ của bạn.
+                    Hãy để A&U Bắc Ninh chắp cánh cho hành trình chinh phục Anh ngữ của bạn.
                 </p>
                 <div className="mt-10 flex items-center justify-center gap-x-6">
                     <Button asChild size="lg" className="bg-orange-500 hover:bg-orange-600 text-white transition-transform hover:scale-105">
@@ -13525,7 +13525,7 @@ function TrainingHero() {
                     Chương Trình Đào Tạo
                 </h1>
                 <p className="mt-4 text-lg md:text-xl max-w-3xl mx-auto drop-shadow-md">
-                    A&U Bắc Giang cung cấp lộ trình học tập toàn diện, được thiết kế chuyên biệt để đáp ứng nhu cầu phát triển Anh ngữ ở mọi lứa tuổi và trình độ.
+                    A&U Bắc Ninh cung cấp lộ trình học tập toàn diện, được thiết kế chuyên biệt để đáp ứng nhu cầu phát triển Anh ngữ ở mọi lứa tuổi và trình độ.
                 </p>
             </div>
         </section>

@@ -108,7 +108,7 @@ function StatsSection({ stats = [] }) {
                         Những con số biết nói
                     </h2>
                     <p className="mt-4 text-lg leading-8 text-slate-600">
-                        Đây là minh chứng cho sự tin tưởng của phụ huynh và học viên, cũng như nỗ lực không ngừng của đội ngũ A&U Bắc Giang.
+                        Đây là minh chứng cho sự tin tưởng của phụ huynh và học viên, cũng như nỗ lực không ngừng của đội ngũ A&U Bắc Ninh.
                     </p>
                 </header>
 

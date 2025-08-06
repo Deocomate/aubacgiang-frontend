@@ -8,7 +8,7 @@ const { generateMetadata, Page } = createDetailPage({
   getDataBySlug: getTrainingBySlug,
   getOtherData: getOtherTrainings,
   DetailPageComponent: TrainingDetailPage,
-  generateTitle: (course) => `${course.title} - A&U Bắc Giang`,
+  generateTitle: (course) => `${course.title} - A&U Bắc Ninh`,
   generateDescription: (course) => 
     course.description?.replace(/<[^>]+>/g, '').substring(0, 160) || `Chi tiết khóa học ${course.title} tại A&U English.`,
 });

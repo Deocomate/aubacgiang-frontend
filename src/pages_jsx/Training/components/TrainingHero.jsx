@@ -22,7 +22,7 @@ function TrainingHero() {
                     Chương Trình Đào Tạo
                 </h1>
                 <p className="mt-4 text-lg md:text-xl lg:text-xl max-w-3xl mx-auto drop-shadow-md">
-                    A&U Bắc Giang cung cấp lộ trình học tập toàn diện, được thiết kế chuyên biệt để đáp ứng nhu cầu phát triển Anh ngữ ở mọi lứa tuổi và trình độ.
+                    A&U Bắc Ninh cung cấp lộ trình học tập toàn diện, được thiết kế chuyên biệt để đáp ứng nhu cầu phát triển Anh ngữ ở mọi lứa tuổi và trình độ.
                 </p>
             </div>
         </section>

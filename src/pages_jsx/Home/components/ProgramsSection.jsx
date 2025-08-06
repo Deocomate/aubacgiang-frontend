@@ -64,7 +64,7 @@ function ProgramsSection({ trainings }) {
                         Chương Trình Đào Tạo Nổi Bật
                     </p>
                     <p className="mt-6 text-lg leading-8 text-gray-600 max-w-3xl mx-auto">
-                        A&U Bắc Giang cung cấp các khóa học đa dạng, được thiết kế chuyên biệt để đáp ứng nhu cầu học tập ở mọi lứa tuổi và trình độ.
+                        A&U Bắc Ninh cung cấp các khóa học đa dạng, được thiết kế chuyên biệt để đáp ứng nhu cầu học tập ở mọi lứa tuổi và trình độ.
                     </p>
                 </div>
 

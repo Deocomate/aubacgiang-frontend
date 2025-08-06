@@ -12,7 +12,7 @@ function CtaSection() {
                     Sẵn sàng đồng hành cùng đội ngũ chuyên gia của chúng tôi?
                 </h2>
                 <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-gray-600">
-                    Hãy để A&U Bắc Giang chắp cánh cho hành trình chinh phục Anh ngữ của bạn.
+                    Hãy để A&U Bắc Ninh chắp cánh cho hành trình chinh phục Anh ngữ của bạn.
                 </p>
                 <div className="mt-10 flex items-center justify-center gap-x-6">
                     <Button asChild size="lg" className="bg-orange-500 hover:bg-orange-600 text-white transition-transform hover:scale-105">
