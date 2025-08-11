@@ -85,12 +85,12 @@ function MainHeader({navigation = []}) {
                             height={45}
                             className="object-contain"
                         />
-                        <span className="font-extrabold text-xl lg:text-xl text-gray-800">
-                                AU Language Institute
+                        <span className="font-extrabold text-xl lg:text-xl text-gray-800 text-nowrap">
+                                Language Institute
                             </span>
                     </Link>
 
-                    <div className="hidden lg:flex items-center flex-1 justify-end">
+                    <div className="hidden xl:flex items-center flex-1 justify-end">
                         <NavigationMenu viewport={false}>
                             <NavigationMenuList className="gap-1">
                                 {/* Render Trang chủ link */}
@@ -176,7 +176,7 @@ function MainHeader({navigation = []}) {
                 </div>
             </div>
 
-            {isMobileMenuOpen && (<div className="lg:hidden bg-white shadow-lg absolute top-full left-0 w-full">
+            {isMobileMenuOpen && (<div className="xl:hidden bg-white shadow-lg absolute top-full left-0 w-full">
                 <nav className="flex flex-col items-center space-y-4 py-6 px-4">
                     {/* Render Trang chủ link for Mobile */}
                     {homeLink && (<Link
