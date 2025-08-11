@@ -1,8 +1,7 @@
-// src/components/layouts/MainFooter.jsx
 import React from 'react';
 import Link from 'next/link';
-import {MapPin, Phone, Mail, Facebook, Instagram, Youtube} from 'lucide-react';
-import Image from 'next/image';
+import {MapPin, Phone, Mail, Facebook, Youtube} from 'lucide-react';
+import BrandLogo from '@/components/shared/BrandLogo';
 
 const quickLinks = [{label: 'Trang chủ', href: '/'}, {
     label: 'Tin tức và sự kiện', href: '/news'
@@ -21,15 +20,8 @@ function MainFooter({contactInfo = {}}) {
         <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 mb-8">
                 <div>
-                    <Link href="/" className="mb-4 flex items-start">
-                        <Image
-                            src="/assets/images/logo-au.png"
-                            alt="Trung tâm Anh ngữ A&U"
-                            width={40}
-                            height={40}
-                            className="mr-2"
-                        />
-                        <span className="font-extrabold text-xl text-gray-800 text-nowrap">Language Institute</span>
+                    <Link href="/" className="mb-4 inline-flex" aria-label="Trung tâm Anh ngữ A&U - Language Institute">
+                        <BrandLogo imageSize={40}/>
                     </Link>
                     <p className="text-gray-600 text-sm font-medium">
                         Trung tâm Anh ngữ hàng đầu tại Bắc Ninh, mang đến môi trường học tập chuyên nghiệp và hiệu

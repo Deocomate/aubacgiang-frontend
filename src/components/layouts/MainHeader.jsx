@@ -1,4 +1,3 @@
-// src/components/layouts/MainHeader.jsx
 "use client"
 import React, {useState} from 'react';
 import Link from 'next/link';
@@ -20,6 +19,7 @@ import {
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import {cn} from "@/lib/utils";
+import BrandLogo from "@/components/shared/BrandLogo";
 
 const ListItem = React.forwardRef(({className, title, href, ...props}, ref) => {
     return (<li>
@@ -55,7 +55,6 @@ function MainHeader({navigation = []}) {
         }
     };
 
-
     // Các liên kết tĩnh
     const staticLinks = [{id: 'home', name: 'Trang chủ', url: '/'}, {
         id: 'teachers', name: 'Đội ngũ giáo viên', url: '/teachers'
@@ -71,23 +70,17 @@ function MainHeader({navigation = []}) {
     // Lấy các link tĩnh còn lại
     const remainingStaticLinks = staticLinks.filter(link => link.id !== 'home');
 
-
     return (<Dialog open={isRegisterDialogOpen} onOpenChange={setIsRegisterDialogOpen}>
         <header
             className="fixed top-0 left-0 w-full z-30 bg-white/90 backdrop-blur-sm shadow-md transition-all duration-300">
             <div className="container mx-auto px-4">
                 <div className="flex items-center justify-between h-20">
-                    <Link href="/" className="flex items-center gap-2">
-                        <Image
-                            src="/assets/images/logo-au.png"
-                            alt="Trung tâm Anh ngữ A&U"
-                            width={45}
-                            height={45}
-                            className="object-contain"
-                        />
-                        <span className="font-extrabold text-xl lg:text-xl text-gray-800 text-nowrap">
-                                Language Institute
-                            </span>
+                    <Link
+                        href="/"
+                        className="flex items-center gap-2"
+                        aria-label="Trung tâm Anh ngữ A&U - Language Institute"
+                    >
+                        <BrandLogo imageSize={45} />
                     </Link>
 
                     <div className="hidden xl:flex items-center flex-1 justify-end">
