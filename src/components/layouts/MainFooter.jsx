@@ -1,19 +1,19 @@
 import React from 'react';
 import Link from 'next/link';
-import {MapPin, Phone, Mail, Facebook, Youtube} from 'lucide-react';
+import { MapPin, Phone, Mail, Facebook, Youtube } from 'lucide-react';
 import BrandLogo from '@/components/shared/BrandLogo';
 
-const quickLinks = [{label: 'Trang chủ', href: '/'}, {
+const quickLinks = [{ label: 'Trang chủ', href: '/' }, {
     label: 'Tin tức và sự kiện', href: '/news'
-}, {label: 'Chương trình học', href: '/training'}, {
+}, { label: 'Chương trình học', href: '/training' }, {
     label: 'Đội ngũ giáo viên', href: '/teachers'
-}, {label: 'Thư viện AU', href: '/parents-corner'}, {label: 'Liên hệ', href: '/contact'},];
+}, { label: 'Thư viện AU', href: '/parents-corner' }, { label: 'Liên hệ', href: '/contact' },];
 
-function MainFooter({contactInfo = {}}) {
-    const {address = [], phone = '', email = '', facebook = ''} = contactInfo;
+function MainFooter({ contactInfo = {} }) {
+    const { address = [], phone = '', email = '', facebook = '' } = contactInfo;
 
-    const socialLinks = [{icon: <Facebook className="h-5 w-5"/>, href: facebook || '#'}, {
-        icon: <Youtube className="h-5 w-5"/>, href: 'https://www.youtube.com/@nguyenminhnguyet3478'
+    const socialLinks = [{ icon: <Facebook className="h-5 w-5" />, href: facebook || '#' }, {
+        icon: <Youtube className="h-5 w-5" />, href: 'https://www.youtube.com/@nguyenminhnguyet3478'
     },];
 
     return (<footer className="bg-gray-100 py-12">
@@ -21,7 +21,7 @@ function MainFooter({contactInfo = {}}) {
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 mb-8">
                 <div>
                     <Link href="/" className="mb-4 inline-flex" aria-label="Trung tâm Anh ngữ A&U - Language Institute">
-                        <BrandLogo imageSize={40}/>
+                        <BrandLogo imageSize={40} />
                     </Link>
                     <p className="text-gray-600 text-sm font-medium">
                         Trung tâm Anh ngữ hàng đầu tại Bắc Ninh, mang đến môi trường học tập chuyên nghiệp và hiệu
@@ -46,13 +46,16 @@ function MainFooter({contactInfo = {}}) {
                 <div>
                     <h3 className="font-bold text-gray-700 mb-3">Thông tin liên hệ</h3>
                     {address[0]?.address && (<p className="text-gray-600 text-sm font-medium flex items-start mb-2">
-                        <MapPin className="h-4 w-4 mr-2 mt-0.5 flex-shrink-0"/> {address[0].address}
+                        <MapPin className="h-4 w-4 mr-2 mt-0.5 flex-shrink-0" /> {address[0].address}
+                    </p>)}
+                    {address[1]?.address && (<p className="text-gray-600 text-sm font-medium flex items-start mb-2">
+                        <MapPin className="h-4 w-4 mr-2 mt-0.5 flex-shrink-0" /> {address[1].address}
                     </p>)}
                     {phone && (<p className="text-gray-600 text-sm font-medium flex items-center mb-2">
-                        <Phone className="h-4 w-4 mr-2"/> {phone}
+                        <Phone className="h-4 w-4 mr-2" /> {phone}
                     </p>)}
                     {email && (<p className="text-gray-600 text-sm font-medium flex items-center">
-                        <Mail className="h-4 w-4 mr-2"/> {email}
+                        <Mail className="h-4 w-4 mr-2" /> {email}
                     </p>)}
                 </div>
 
@@ -60,8 +63,8 @@ function MainFooter({contactInfo = {}}) {
                     <h3 className="font-bold text-gray-700 mb-3">Mạng xã hội</h3>
                     <div className="flex space-x-4">
                         {socialLinks.map((social, index) => (<Link key={index} href={social.href}
-                                                                   className="text-gray-600 hover:text-orange-500 transition-colors duration-200"
-                                                                   target="_blank" rel="noopener noreferrer">
+                            className="text-gray-600 hover:text-orange-500 transition-colors duration-200"
+                            target="_blank" rel="noopener noreferrer">
                             {social.icon}
                         </Link>))}
                     </div>

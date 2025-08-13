@@ -9,9 +9,9 @@ import GallerySection from './components/GallerySection';
 import YoutubeSection from './components/YoutubeSection';
 
 // SỬA: Xóa `fags` khỏi destructuring và xóa import `FaqSection`
-function HomePage({data = {}}) {
+function HomePage({ data = {} }) {
     const {
-        banners = {title: '', description: '', images: []},
+        banners = { title: '', description: '', images: [] },
         stats = [],
         images = [],
         link_youtubes = [],
@@ -20,14 +20,14 @@ function HomePage({data = {}}) {
     } = data;
 
     return (<main>
-        <HeroSection banner={banners}/>
-        <StatsSection stats={stats}/>
-        <AboutSection/>
-        <ProgramsSection trainings={trainings}/>
-        <WhyChooseUsSection/>
-        <TeachersSection teachers={teachers}/>
-        <GallerySection images={images}/>
-        <YoutubeSection links={link_youtubes}/>
+        <HeroSection banner={banners} />
+        <StatsSection stats={stats} />
+        <AboutSection />
+        <ProgramsSection trainings={trainings} />
+        <WhyChooseUsSection />
+        <TeachersSection teachers={teachers} />
+        <GallerySection images={images} />
+        <YoutubeSection links={link_youtubes} />
     </main>);
 }
 
