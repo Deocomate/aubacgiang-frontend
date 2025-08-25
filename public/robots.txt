@@ -1,0 +1,13 @@
+# See https://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file
+#
+# Allow all crawlers to access the site.
+#
+User-agent: *
+Allow: /
+
+# Disallow crawling of Next.js build artifacts and API routes
+Disallow: /_next/
+Disallow: /api/
+
+# Point to the sitemap
+Sitemap: https://aubacgiang.edu.vn/sitemap.xml
