@@ -11,12 +11,12 @@ const nextConfig = {
             },
             {
                 protocol: 'http',
-                hostname: 'demo.ytyhomestaydaingan.vn',
+                hostname: 'admin.aubacgiang.edu.vn',
                 pathname: '/userfiles/**',
             },
             {
                 protocol: 'https',
-                hostname: 'demo.ytyhomestaydaingan.vn',
+                hostname: 'admin.aubacgiang.edu.vn',
                 pathname: '/userfiles/**',
             },
             {
